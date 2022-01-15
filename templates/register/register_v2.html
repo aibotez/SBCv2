@@ -22,10 +22,14 @@
     <div class="card-body">
       <p class="login-box-msg">Register a new membership</p>
 
+      <div>
+        <label class="login-box-msg" style="color:red" id="GlobalNotice"></label>
+      </div>
+
       <form action="/registerVerify/" method="post">
         {%csrf_token%}
         <div class="input-group mb-3">
-          <input type="text" class="form-control" name="username" placeholder="用户名">
+          <input type="text" class="form-control" id="username" name="username" placeholder="用户名">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -55,7 +59,7 @@
 
 
         <div class="input-group mb-3">
-          <input type="password" class="form-control" name="userpassword1" placeholder="密码">
+          <input type="password" class="form-control" id="userpass1" name="userpassword1" placeholder="密码">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -63,7 +67,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" name="userpassword2" placeholder="再次输入密码">
+          <input type="password" class="form-control" id="userpass2" name="userpassword2" placeholder="再次输入密码">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -81,7 +85,7 @@
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Register</button>
+            <input type="submit" value="注册" class="btn btn-primary btn-block" id="register_button" disabled>
           </div>
           <!-- /.col -->
         </div>
@@ -115,8 +119,94 @@
 
 
 
-
 <script>
+<!--document.getElementById("register_button").disabled = true;-->
+var VcodeJudge = '-1';
+var preVcode='';
+var setTime=setInterval(GlobalCheck,1200);
+  function GlobalCheck()
+  {
+    var usernamestr = document.getElementById('username').value;
+    var userpassstr1 = document.getElementById('userpass1').value;
+    var userpassstr2 = document.getElementById('userpass2').value;
+    var Emailstr = document.getElementById('email_input').value;
+    var Vcodestr = document.getElementById('VcodeContent').value;
+
+
+
+    if (/.*[\u4e00-\u9fa5]+.*$/.test(usernamestr))
+    {
+      document.getElementById("GlobalNotice").innerHTML = "用户名不能含有汉字！";
+      return;
+    }
+    document.getElementById("GlobalNotice").innerHTML = "";
+
+    if (Vcodestr.length > 4)
+    {
+      document.getElementById("GlobalNotice").innerHTML = "验证码太长！";
+      return;
+    }
+
+    if (Vcodestr.length == 4 && preVcode != Vcodestr)
+    {
+      preVcode = Vcodestr;
+      JuggeVcode(Vcodestr,Emailstr);
+    }
+    if (VcodeJudge =='0')
+    {
+       document.getElementById("GlobalNotice").innerHTML = "验证码错误！";
+       return;
+    }
+<!--    console.log(VcodeJudge);-->
+    if (/.*[\u4e00-\u9fa5]+.*$/.test(userpassstr1))
+    {
+      document.getElementById("GlobalNotice").innerHTML = "密码不能含有汉字！";
+      return;
+    }
+    document.getElementById("GlobalNotice").innerHTML = "";
+    if(userpassstr1 != userpassstr2 && userpassstr2 != '')
+    {
+      document.getElementById("GlobalNotice").innerHTML = "两次密码不一致！";
+      return;
+    }
+
+
+    if(usernamestr != '' && userpassstr1 !='' && Emailstr !='' && Vcodestr !='')
+    {
+      document.getElementById("register_button").disabled = false;
+      return;
+    }
+
+
+  }
+
+  function JuggeVcode(Vecode,useremail)
+    {
+        var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
+
+        httpRequest.open('GET', 'http://127.0.0.1:90/VerifyVcode/?'+'Vcode='+Vecode+'&email='+useremail, true); //第二步：打开连接
+        httpRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）
+<!--        httpRequest.send('Vcode='+Vecode+'&email='+useremail);//发送请求 将情头体写在send中-->
+        httpRequest.send('Vcode=55');//发送请求 将情头体写在send中
+        httpRequest.onreadystatechange = function ()
+        {//请求后的回调接口，可将请求成功后要执行的程序写在其中
+            if (httpRequest.readyState == 4 && httpRequest.status == 200)
+            {//验证请求是否发送成功
+              VcodeJudge = httpRequest.responseText;//获取到服务端返回的数据
+              if (VcodeJudge =='0')
+              {
+                document.getElementById("GlobalNotice").innerHTML = "";
+                document.getElementById("GlobalNotice").innerHTML = "验证码错误！";
+              }
+<!--              console.log(VcodeJudege);-->
+
+            }
+         }
+    };
+
+</script>
+<script>
+<!--window.location.href="/login/";-->
   var sendCode = 0;
   var setTime=setInterval(judgeinput,1000);
   function GetVcode()
@@ -126,7 +216,7 @@
         var Vcodestr = document.getElementById('VcodeContent').value;
         if(Emailstr=='')
         {
-          alert("验证码为空")
+          alert("邮箱为空")
           return;
         }
 

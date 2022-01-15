@@ -24,5 +24,6 @@ urlpatterns = [
     path('register/',view.Register),
     path('home/',view.Home),
     path('GetVcode/',view.GetVcode),
+    path('VerifyVcode/',view.VerifyVcode),
     path('registerVerify/',view.registerVerify),
 ]

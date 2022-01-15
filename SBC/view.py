@@ -30,6 +30,13 @@ def GetVcode(request):
 
     return HttpResponse('5684')
 
+def VerifyVcode(request):
+    print(request.GET)
+    Vcode = request.GET['Vcode']
+    if Vcode == '1234':
+        return HttpResponse('1')
+    return HttpResponse('0')
+
 @require_POST
 def registerVerify(request):
     if request.method == 'POST':
