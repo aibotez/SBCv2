@@ -16,14 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import view
-
+from Vcodeapp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/',view.login),
     path('register/',view.Register),
     path('home/',view.Home),
-    path('GetVcode/',view.GetVcode),
-    path('VerifyVcode/',view.VerifyVcode),
+    path('GetVcode/',views.GetVcode),
+    path('VerifyVcode/',views.VerifyVcode),
     path('registerVerify/',view.registerVerify),
 ]

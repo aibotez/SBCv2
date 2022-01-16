@@ -9,11 +9,12 @@ import socket,os,time,threading
 from django.views.decorators.http import require_GET, require_http_methods, require_POST
 from PIL import Image
 
-from pack.SendEmail import SendEmail
-
-
-Em = SendEmail.EmailManage()
-Vcode = Em.GenerateVCode()
+# from pack.SendEmail import SendEmail
+# from Vcodeapp import models
+#
+#
+# Em = SendEmail.EmailManage()
+# Vcode = Em.GenerateVCode()
 # Em.SendMessagebyQq('2290227486@qq.com',Vcode,'163')
 
 def Home(request):
@@ -25,17 +26,17 @@ def login(request):
 def Register(request):
     return render(request, "register/register_v2.html")
 
-def GetVcode(request):
-    Vcode = Em.GenerateVCode()
-
-    return HttpResponse('5684')
-
-def VerifyVcode(request):
-    print(request.GET)
-    Vcode = request.GET['Vcode']
-    if Vcode == '1234':
-        return HttpResponse('1')
-    return HttpResponse('0')
+# def GetVcode(request):
+#     Vcode = Em.GenerateVCode()
+#
+#     return HttpResponse('5684')
+#
+# def VerifyVcode(request):
+#     print(request.GET)
+#     Vcode = request.GET['Vcode']
+#     if Vcode == '1234':
+#         return HttpResponse('1')
+#     return HttpResponse('0')
 
 @require_POST
 def registerVerify(request):
@@ -46,3 +47,5 @@ def registerVerify(request):
         useremail = userInfos['useremail']
         vcode = userInfos['vcode']
         return HttpResponse('ok')
+
+
