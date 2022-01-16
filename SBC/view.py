@@ -20,11 +20,11 @@ from PIL import Image
 def Home(request):
     return render(request, "login/login.html")
 
-def login(request):
-    return render(request, "login/login.html")
-
-def Register(request):
-    return render(request, "register/register_v2.html")
+# def login(request):
+#     return render(request, "login/login.html")
+#
+# def Register(request):
+#     return render(request, "register/register_v2.html")
 
 # def GetVcode(request):
 #     Vcode = Em.GenerateVCode()
