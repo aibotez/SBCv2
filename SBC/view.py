@@ -48,4 +48,11 @@ def registerVerify(request):
         vcode = userInfos['vcode']
         return HttpResponse('ok')
 
+# import time
+# t1 = int(time.time())
+# print(t1,type(t1))
+# time.sleep(2)
+# t2 = int(time.time())
+# print(t2)
+# print(t2-t1)
 

@@ -208,6 +208,7 @@ var setTime=setInterval(GlobalCheck,1200);
 <script>
 <!--window.location.href="/login/";-->
   var sendCode = 0;
+
   var setTime=setInterval(judgeinput,1000);
   function GetVcode()
     {
@@ -254,8 +255,8 @@ var setTime=setInterval(GlobalCheck,1200);
     function GetVcodefromS()
     {
         var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
-
-        httpRequest.open('GET', 'http://127.0.0.1:90/GetVcode/', true); //第二步：打开连接
+        var useremail = document.getElementById('email_input').value;
+        httpRequest.open('GET', 'http://127.0.0.1:90/GetVcode/?useremail='+useremail, true); //第二步：打开连接
         httpRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）
         httpRequest.send('name=teswe&ee=ef');//发送请求 将情头体写在send中
         httpRequest.onreadystatechange = function ()

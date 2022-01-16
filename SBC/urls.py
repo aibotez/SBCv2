@@ -27,4 +27,5 @@ urlpatterns = [
     path('GetVcode/',views.GetVcode),
     path('VerifyVcode/',views.VerifyVcode),
     path('registerVerify/',view.registerVerify),
+    path('test/',views.test),
 ]

@@ -8,4 +8,6 @@ class Vcodemode(models.Model):
     ipv6 = models.CharField(max_length=200)
     islocked = models.IntegerField()
     locklevel = models.IntegerField()
-    firstrequesttime = models.CharField(max_length=32)
+    firstrequesttime = models.IntegerField()
+    lastrequesttime = models.IntegerField()
+    retimesper = models.IntegerField()
