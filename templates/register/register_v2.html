@@ -120,7 +120,7 @@
 
 
 <script>
-<!--document.getElementById("register_button").disabled = true;-->
+document.getElementById("register_button").disabled = true;
 var VcodeJudge = '-1';
 var preVcode='';
 var setTime=setInterval(GlobalCheck,1200);
@@ -132,7 +132,7 @@ var setTime=setInterval(GlobalCheck,1200);
     var Emailstr = document.getElementById('email_input').value;
     var Vcodestr = document.getElementById('VcodeContent').value;
 
-
+    document.getElementById("register_button").disabled = true;
 
     if (/.*[\u4e00-\u9fa5]+.*$/.test(usernamestr))
     {
@@ -170,21 +170,19 @@ var setTime=setInterval(GlobalCheck,1200);
       return;
     }
 
-
-    if(usernamestr != '' && userpassstr1 !='' && Emailstr !='' && Vcodestr !='')
+    if(usernamestr != '' && userpassstr1 !='' && Emailstr !='' && Vcodestr !='' && userpassstr1 == userpassstr2)
     {
       document.getElementById("register_button").disabled = false;
       return;
     }
-
 
   }
 
   function JuggeVcode(Vecode,useremail)
     {
         var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
-
-        httpRequest.open('GET', 'http://127.0.0.1:90/VerifyVcode/?'+'Vcode='+Vecode+'&email='+useremail, true); //第二步：打开连接
+        cururl = 'http://'+window.location.host;
+        httpRequest.open('GET', cururl+'/VerifyVcode/?'+'Vcode='+Vecode+'&email='+useremail, true); //第二步：打开连接
         httpRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）
 <!--        httpRequest.send('Vcode='+Vecode+'&email='+useremail);//发送请求 将情头体写在send中-->
         httpRequest.send('Vcode=55');//发送请求 将情头体写在send中
@@ -208,7 +206,7 @@ var setTime=setInterval(GlobalCheck,1200);
 <script>
 <!--window.location.href="/login/";-->
   var sendCode = 0;
-
+  var SendCodeNotLimit = 1;
   var setTime=setInterval(judgeinput,1000);
   function GetVcode()
     {
@@ -220,12 +218,17 @@ var setTime=setInterval(GlobalCheck,1200);
           alert("邮箱为空")
           return;
         }
-
         GetVcodefromS();
-
         var time=3;
         var Vcodestr = document.getElementById('sendsms')
         setTime1=setInterval(function(){
+           if (SendCodeNotLimit == '0')
+             {
+                clearInterval(setTime1);
+                Vcodestr.disabled = true;
+                Vcodestr.value = "验证码发送过于频繁，稍后再试";
+                return;
+             }
             if(time<=0){
                 clearInterval(setTime1);
                 document.getElementById("sendsms").disabled = false;
@@ -256,14 +259,21 @@ var setTime=setInterval(GlobalCheck,1200);
     {
         var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
         var useremail = document.getElementById('email_input').value;
-        httpRequest.open('GET', 'http://127.0.0.1:90/GetVcode/?useremail='+useremail, true); //第二步：打开连接
+        cururl = 'http://'+window.location.host;
+        httpRequest.open('GET', cururl+'/GetVcode/?useremail='+useremail, true); //第二步：打开连接
         httpRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）
         httpRequest.send('name=teswe&ee=ef');//发送请求 将情头体写在send中
         httpRequest.onreadystatechange = function ()
         {//请求后的回调接口，可将请求成功后要执行的程序写在其中
             if (httpRequest.readyState == 4 && httpRequest.status == 200)
             {//验证请求是否发送成功
-<!--              var json = httpRequest.responseText;//获取到服务端返回的数据-->
+              var Vcodestr = document.getElementById('sendsms')
+              SendCodeNotLimit = httpRequest.responseText;//获取到服务端返回的数据
+              if(SendCodeNotLimit == '0')
+              {
+                Vcodestr.disabled = true;
+                Vcodestr.value = "验证码发送过于频繁，稍后再试";
+              }
 <!--              console.log(json);-->
             }
          }

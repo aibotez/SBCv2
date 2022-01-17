@@ -4,6 +4,7 @@ from django.http import HttpResponse,JsonResponse
 from pack.SendEmail import SendEmail
 from Vcodeapp import models
 import time
+from django.views.decorators.http import require_GET, require_http_methods, require_POST
 
 
 
@@ -48,7 +49,7 @@ class VcodeManage():
         return 0
 
     def Updateretimesper(self,userdata,overtime):
-        if overtime < 5:#1*60*60:
+        if overtime < 6:#1*60*60:
             retimesper = userdata.retimesper+1
         else:
             retimesper = 0
@@ -65,12 +66,25 @@ class VcodeManage():
             locklevel = 0
         return locklevel
 
+    def VerifyVcode(self,useremail,userVcode):
+        try:
+            userdata = models.Vcodemode.objects.get(useremail=useremail)
+            if userdata.Vcode == userVcode:
+                return 1
+        except:
+            return 0
+        return 0
+
     def VerifyuserRe(self,useremail,useripv4):
         self.useremail = useremail
         self.useripv4 = useripv4
         curtime = int(time.time())
         try:
             self.userdata = models.Vcodemode.objects.get(useremail=useremail)
+
+            if self.userdata.ipv4 != self.useripv4:
+                self.userdata.ipv4 = self.useripv4
+
             overtime = curtime - self.userdata.lastrequesttime
             if self.OverForbidTime(self.userdata.locklevel, overtime):
                 self.userdata.islocked = 0
@@ -81,7 +95,7 @@ class VcodeManage():
                 self.userdata.locklevel = self.userdata.locklevel+1
                 return 0
             else:
-                if overtime <60/60:
+                if overtime <1:
                     self.userdata.islocked = 1
                     self.userdata.locklevel = self.userdata.locklevel+1
                     # self.userdata.save()
@@ -118,7 +132,12 @@ class VcodeManage():
 # Create your views here.
 def GetVcode(request):
     useremail = request.GET['useremail']
-    useripv4 = '0.0'
+    userinfo = request.META
+    if 'HTTP_X_FORWARDED_FOR' in userinfo.keys():
+        useripv4 = request.META['HTTP_X_FORWARDED_FOR']
+    else:
+        useripv4 = request.META['REMOTE_ADDR']
+    print(useripv4)
     Vcode =''
     msg='0'
     vcodemanage=VcodeManage()
@@ -131,9 +150,10 @@ def GetVcode(request):
     return HttpResponse(msg)
 
 def VerifyVcode(request):
-    print(request.GET)
+    vcodemanage = VcodeManage()
     Vcode = request.GET['Vcode']
-    if Vcode == '1234':
+    useremail = request.GET['email']
+    if vcodemanage.VerifyVcode(useremail,Vcode):
         return HttpResponse('1')
     return HttpResponse('0')
 def test(request):
@@ -155,3 +175,4 @@ def Vcodedb_handle(Useremail,VCode,Ipv4,Ipv6):
 
     models.Vcodemode.objects.create(useremail=Useremail,password='123456',age=33)
     return HttpResponse('OK')
+

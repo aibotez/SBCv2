@@ -38,15 +38,15 @@ def Home(request):
 #         return HttpResponse('1')
 #     return HttpResponse('0')
 
-@require_POST
-def registerVerify(request):
-    if request.method == 'POST':
-        userInfos = request.POST
-        username = userInfos['username']
-        userpassword = userInfos['userpassword1']
-        useremail = userInfos['useremail']
-        vcode = userInfos['vcode']
-        return HttpResponse('ok')
+# @require_POST
+# def registerVerify(request):
+#     if request.method == 'POST':
+#         userInfos = request.POST
+#         username = userInfos['username']
+#         userpassword = userInfos['userpassword1']
+#         useremail = userInfos['useremail']
+#         vcode = userInfos['vcode']
+#         return HttpResponse('ok')
 
 # import time
 # t1 = int(time.time())
