@@ -4,11 +4,28 @@ from Usersapp.models import User
 from django.contrib.auth import authenticate,login,logout
 
 
+#改密码user.set_password(password)
 class loginOper():
     def __init__(self):
         pass
-    def loginact(self):
-        pass
+
+    def LoginVerifyUser(self,userInfos):
+        useripv4 = userInfos['ipv4']
+        userpassword = userInfos['userpassword']
+        useremail = userInfos['useremail']
+        if User.objects.filter(email=useremail).exists():
+            Userfo = User.objects.get(email=useremail)
+            username = Userfo.username
+            if authenticate(username=username,password=userpassword):
+                print(useremail, userpassword)
+                if Userfo.ipv4 == useripv4:
+                    return 1
+                else:
+                    Userfo.ipv4 = useripv4
+                    Userfo.save()
+                return 1
+        return 0
+
 
 class registerOper():
     def __init__(self):
