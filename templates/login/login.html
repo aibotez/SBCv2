@@ -24,9 +24,9 @@
     <div class="card-body">
       <p class="login-box-msg">Sign in to start your session</p>
 
-      <form action="../../index3.html" method="post">
+      <form action="/loginVerify/" method="post">
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email">
+          <input type="email" class="form-control" id="emailcontent" placeholder="邮箱">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -34,7 +34,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" class="form-control" id="pswcontent" placeholder="密码">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -52,7 +52,7 @@
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            <button type="submit" class="btn btn-primary btn-block" id="signbutton">Sign In</button>
           </div>
           <!-- /.col -->
         </div>
@@ -87,5 +87,28 @@
 <script src="/static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/static/dist/js/adminlte.min.js"></script>
+
+<script>
+  document.getElementById("signbutton").disabled = true;
+  var setTime=setInterval(GlobalCheck,1000);
+  function GlobalCheck()
+  {
+    var passstr = document.getElementById('pswcontent').value;
+    var Emailstr = document.getElementById('emailcontent').value;
+
+    if(passstr=='' || Emailstr=='')
+    {
+      document.getElementById("signbutton").disabled = true;
+      return;
+    }
+    else
+    {
+      document.getElementById("signbutton").disabled = false;
+    }
+  }
+
+</script>
+
+
 </body>
 </html>

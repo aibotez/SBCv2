@@ -9,6 +9,10 @@ from LoginRegisterapp.LoginRegisterManage import registerOper
 def login(request):
     return render(request, "login/login.html")
 
+@require_POST
+def loginVerify(request):
+    pass
+
 def Register(request):
     return render(request, "register/register_v2.html")
 
