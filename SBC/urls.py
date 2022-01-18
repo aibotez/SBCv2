@@ -18,6 +18,7 @@ from django.urls import path
 from . import view
 from Vcodeapp import views
 from LoginRegisterapp import viewsLR
+from forgotpasswordapp import views as viewFG
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,4 +30,7 @@ urlpatterns = [
     path('registerVerify/',viewsLR.registerVerify),
     path('loginVerify/',viewsLR.loginVerify),
     path('test/',views.test),
+    path('forgotpassword/',viewFG.forgotpassword),
+    path('forgotpassVcodeVerify/',viewFG.VerifyVcode),
+    path('ChangePassword/',viewFG.ChangePassword),
 ]

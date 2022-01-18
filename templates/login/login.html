@@ -24,6 +24,12 @@
     <div class="card-body">
       <p class="login-box-msg">Sign in to start your session</p>
 
+
+      <div>
+        <label class="login-box-msg" style="color:red" id="GlobalNotice">{{msg}}</label>
+      </div>
+
+
       <form action="/loginVerify/" method="post">
         <div class="input-group mb-3">
           <input type="email" class="form-control" name="useremail" id="emailcontent" placeholder="邮箱">
@@ -69,7 +75,7 @@
       <!-- /.social-auth-links -->
 
       <p class="mb-1">
-        <a href="forgot-password.html">I forgot my password</a>
+        <a href="/forgotpassword/">I forgot my password</a>
       </p>
       <p class="mb-0">
         <a href="/register" class="text-center">Register a new membership</a>

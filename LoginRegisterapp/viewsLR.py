@@ -29,7 +29,7 @@ def loginVerify(request):
         if res:
             return HttpResponse('1')
         else:
-            return render(request, "login/login.html",msg)
+            return render(request, "login/login.html",locals())
 
 
 def Register(request):
