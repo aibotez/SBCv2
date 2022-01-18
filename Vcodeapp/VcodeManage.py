@@ -57,7 +57,7 @@ class VcodeManage():
             locklevel = 0
         return locklevel
 
-    def VerifyVcode(self,useremail,userVcode):
+    def VerifyVcode(self,useremail,userVcode,dele):
         try:
             userdata = models.Vcodemode.objects.get(useremail=useremail)
             curtime = int(time.time())
@@ -67,8 +67,9 @@ class VcodeManage():
                 userdata.save()
                 return 0
             if userdata.Vcode == userVcode and len(userVcode) == 4:
-                userdata.Vcode = '01'
-                userdata.save()
+                if int(dele):
+                    userdata.Vcode = '01'
+                    userdata.save()
                 return 1
         except:
             return 0

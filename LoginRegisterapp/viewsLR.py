@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.decorators.http import require_GET, require_http_methods, require_POST
 from django.http import HttpResponse,JsonResponse
 from LoginRegisterapp.LoginRegisterManage import registerOper,loginOper
+from django.shortcuts import redirect
 
 # Create your views here.
 
@@ -26,8 +27,11 @@ def loginVerify(request):
         Login = loginOper()
         res = Login.LoginVerifyUser(userInfos)
         msg = '用户名或密码错误'
-        if res:
-            return HttpResponse('1')
+        if res['status']:
+            response = redirect('/')#7 * 24 * 3600
+            response.set_cookie('coks', userInfos['useremail']+'auth:'+res['pass'], max_age=20)
+            # return render(request,'home/home.html')
+            return response
         else:
             return render(request, "login/login.html",locals())
 
@@ -44,6 +48,8 @@ def registerVerify(request):
         userInfos['ipv4'] = useripv4
         Reg = registerOper()
         info = Reg.registeract(userInfos)
-        if info == 1:
-            return HttpResponse('ok')
-        return HttpResponse(info)
+        if info['status'] == 1:
+            response = redirect('/')
+            response.set_cookie('coks',userInfos['useremail']+'auth:'+info['pass'], max_age=7)
+            return response
+        return HttpResponse(info['status'])

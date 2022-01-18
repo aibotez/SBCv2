@@ -8,6 +8,7 @@ from django.http import HttpResponse,JsonResponse
 from LoginRegisterapp.LoginRegisterManage import registerOper,loginOper
 from Vcodeapp import VcodeManage
 from forgotpasswordapp import ChangeUserInfo
+from django.http import HttpResponseRedirect
 
 def forgotpassword(request):
     return render(request, 'forgotpass/forgot-password-v2.html')
@@ -23,7 +24,7 @@ def VerifyVcode(request):
         if msg:
             vcodemanage = VcodeManage.VcodeManage()
             msg='验证码错误'
-            VerRes = vcodemanage.VerifyVcode(useremail,Vcode)
+            VerRes = vcodemanage.VerifyVcode(useremail,Vcode,1)
             if VerRes:
                 msg = ''
                 return render(request, 'forgotpass/recover-password-v2.html',locals())
@@ -49,6 +50,6 @@ def ChangePassword(request):
             changeuserInfo = ChangeUserInfo.ChangeUserfo()
             msg = changeuserInfo.ChangePassword(useremail,password1)
             if msg:
-                return render(request, 'home/home.html')
+                return HttpResponseRedirect('/')
             msg = '未知错误'
             return render(request, 'forgotpass/recover-password-v2.html', locals())

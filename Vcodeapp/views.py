@@ -19,14 +19,14 @@ def GetVcode(request):
         useripv4 = request.META['HTTP_X_FORWARDED_FOR']
     else:
         useripv4 = request.META['REMOTE_ADDR']
-    print(useripv4)
+    # print(useripv4)
     Vcode =''
     msg='0'
     vcodemanage=VcodeManage.VcodeManage()
     if vcodemanage.VerifyuserRe(useremail,useripv4):
-        # Vcode = Em.GenerateVCode()
-        # Em.SendVcodeby(useremail,Vcode,'163')
-        Vcode = 'test'
+        Vcode = Em.GenerateVCode()
+        Em.SendVcodeby(useremail,Vcode,'163')
+        # Vcode = 'test'
         msg='1'
     vcodemanage.saveInfo(Vcode)
     return HttpResponse(msg)
@@ -35,26 +35,8 @@ def VerifyVcode(request):
     vcodemanage = VcodeManage.VcodeManage()
     Vcode = request.GET['Vcode']
     useremail = request.GET['email']
-    if vcodemanage.VerifyVcode(useremail,Vcode):
+    if vcodemanage.VerifyVcode(useremail,Vcode,0):
         return HttpResponse('1')
     return HttpResponse('0')
-def test(request):
-    # models.Vcodemode.objects.create(useremail='emailtest00000@test.com', Vcode='1234',ipv4='0.',
-    #                                 ipv6='00.',islocked=0,locklevel=0,firstrequesttime=0,lastrequesttime=0,
-    #                                 retimesper=0)
-    allda = models.Vcodemode.objects.get(useremail="emailtest00000@test.com")
-    print(allda)
-    # allda.Vcode = '4321'
-    # allda.save()
-    # print(allda.Vcode)
-    # for i in allda:
-    #     print(i.useremail)
-    #     print(i.Vcode)
 
-    return HttpResponse(locals())
-
-def Vcodedb_handle(Useremail,VCode,Ipv4,Ipv6):
-
-    models.Vcodemode.objects.create(useremail=Useremail,password='123456',age=33)
-    return HttpResponse('OK')
 
