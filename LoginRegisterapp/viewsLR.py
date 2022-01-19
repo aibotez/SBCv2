@@ -29,7 +29,7 @@ def loginVerify(request):
         msg = '用户名或密码错误'
         if res['status']:
             response = redirect('/')#7 * 24 * 3600
-            response.set_cookie('coks', userInfos['useremail']+'auth:'+res['pass'], max_age=20)
+            response.set_cookie('coks', userInfos['useremail']+'auth:'+res['pass'], max_age=7 * 24 * 3600)
             # return render(request,'home/home.html')
             return response
         else:
@@ -50,6 +50,6 @@ def registerVerify(request):
         info = Reg.registeract(userInfos)
         if info['status'] == 1:
             response = redirect('/')
-            response.set_cookie('coks',userInfos['useremail']+'auth:'+info['pass'], max_age=7)
+            response.set_cookie('coks',userInfos['useremail']+'auth:'+info['pass'], max_age=7 * 24 * 3600)
             return response
         return HttpResponse(info['status'])

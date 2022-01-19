@@ -17,6 +17,9 @@ from PIL import Image
 def Home(request):
     if LoginVerfiy.LoginVerfiy().verifylogin(request):
         return HttpResponseRedirect('/login/')
-    return render(request, "home/home.html")
+
+    data = [{'file-name':'abc.pdf','file-lj':'home/asg'},{'file-name':'dirs1','file-lj':'home/asg'}]
+    filelj = ['home','asg']
+    return render(request, "home/home1.html",locals())
 
 
