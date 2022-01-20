@@ -76,3 +76,5 @@ def home(request):
     # path = "/plugins/flot/"
     data=filesget(path)
     return render(request, "home/FileList.html", locals())
+
+#os.symlink(src,dst)创建软链接
