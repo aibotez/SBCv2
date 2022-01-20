@@ -22,6 +22,7 @@ from forgotpasswordapp import views as viewFG
 
 urlpatterns = [
     path('', view.Home),
+    path('test/', view.home),
     path('admin/', admin.site.urls),
     path('login/',viewsLR.login),
     path('register/',viewsLR.Register),

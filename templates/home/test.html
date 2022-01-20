@@ -11,19 +11,45 @@
 </style>
 </head>
 <body>
-<h1>鼠标经停变色</h1>
-<table width="80%" border="0" align="center">
-  <tr class="change">
-    <td style="width:100%">
-      <div>
-        <input name="Fruit" type="checkbox" value="" />
-      </div>
-    </td>
-<!--    <td>&nbsp;</td>-->
-  </tr>
-  <tr class="change">
-    <td style="width:100%">2&nbsp;</td>
-  </tr>
-</table>
+
+
+
+<head>
+    <meta charset="utf-8">
+</head>
+<div class="refresh">
+    1111111111111111111
+    1111111111111111111
+    1111111111111111111
+</div>
+<div>
+     <!--不刷新这边的内容-->
+     22222222222222222222
+</div>
+<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        setInterval(function () { $(".refresh").load(location.href + " .refresh"); }, 2000);
+    })
+</script>
+
+
+
+<!--<h1>鼠标经停变色</h1>-->
+<!--<table width="80%" border="0" align="center">-->
+<!--  <tr class="change">-->
+<!--    <td style="width:100%">-->
+<!--      <div>-->
+<!--        <input name="Fruit" type="checkbox" value="" />-->
+<!--      </div>-->
+<!--    </td>-->
+<!--&lt;!&ndash;    <td>&nbsp;</td>&ndash;&gt;-->
+<!--  </tr>-->
+<!--  <tr class="change">-->
+<!--    <td style="width:100%">2&nbsp;</td>-->
+<!--  </tr>-->
+<!--</table>-->
+
+
 </body>
 </html>
