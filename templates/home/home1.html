@@ -5,6 +5,12 @@
     <title>小黑云</title>
 
     <style>
+        tr.change:hover
+        {
+            background-color:#DCDCDC;
+            opacity:0.5;
+            width:100%;
+        }
 
         .div
         {
@@ -23,7 +29,7 @@
           }
         .div1
             {
-               background-color: red;
+               background-color: black;
                color: red;
                width: 20%;
                height: 100%;
@@ -73,10 +79,40 @@
 
         <div style="height:84.5%;width:100%;background-color:purple">
             {% for filedata in data %}
-                <div class="container" style="width:100%;background-color:black;">
-                    <input name="Fruit" type="checkbox" value="" />
 
-                </div>
+                <table width="100%" border="0" style="width:100%;background-color:black;" onclick="">
+                    <tr class="change">
+                        <td style="width:100%;background-color:red;">
+                            <div class="container">
+                                <div class="container" style="width:10%">
+                                    <input name="Fruit" type="checkbox" value="" />&nbsp;
+                                    <img src="/static/img/foldersm.png">
+                                </div>
+                                <div style="width:50%;">
+                                    <a style="color:#C0C0C0;font-size:20px;text-decoration:none;" href="#">
+                                        {{filedata.filename}}
+                                    </a>
+                                </div>
+                                <div style="width:15%;">
+                                    <label>
+                                        {{filedata.big}}
+                                    </label>
+                                </div>
+                                <div style="width:25%;">
+                                    <label>
+                                        {{filedata.date}}
+                                    </label>
+                                </div>
+
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+<!--                <div class="container" id="ofs" style="width:100%;background-color:black;" onfocus="onfocusevent()">-->
+<!--                    <input name="Fruit" type="checkbox" value="" />-->
+<!--                    <img src="/static/img/folder.png">-->
+
+<!--                </div>-->
             <div style="border-bottom:1px solid #CCC"></div>
             {% endfor %}
         </div>
@@ -88,7 +124,12 @@
 </div>
 
 
-
+<script>
+    function onfocusevent()
+    {
+        document.getElementById("ofs").style.background = "purple";
+    }
+</script>
 
 <script>
     function UpShow()
