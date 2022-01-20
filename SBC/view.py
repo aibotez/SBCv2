@@ -67,6 +67,8 @@ def Home(request):
     return render(request, "home/home1.html",locals())
 # @require_POST
 def home(request):
+    if LoginVerfiy.LoginVerfiy().verifylogin(request):
+        return HttpResponseRedirect('/login/')
     print(request.POST['ids'])
     path =request.POST['ids']
     path = path.replace('C:/doucment/gitstock/SBCtest/SBCtestFolder','')

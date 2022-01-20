@@ -127,6 +127,13 @@
 
         var cururl = 'http://'+window.location.host+'/test/';
         $("#FilesData").load(cururl,{"ids": act.id});
+
+        var stateObject = {};
+        var title = "Wow Title";
+        var newUrl = "/?path="+act.id;
+        history.pushState(stateObject,title,newUrl);
+
+
 <!--        $.ajax({-->
 <!--        async: false,-->
 <!--        type: "POST",-->
