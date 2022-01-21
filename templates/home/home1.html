@@ -55,20 +55,31 @@
 
     </div>
 
+    <div style="height:10%;width:100%;background-color:white;">
+        <button type="submit" id="signbutton">Sign In</button>
+    </div>
+
     <div class="div2" id="ShowMain">
-        <div style="height:10%;width:100%;background-color:white;">
-             <button type="submit" id="signbutton">Sign In</button>
-        </div>
-        <div class="container" style="height:4%;">
+        <!--<div style="height:10%;width:100%;background-color:white;">-->
+             <!--<button type="submit" id="signbutton">Sign In</button>-->
+        <!--</div>-->
+        <div class="container" id="navlist" style="height:4%;">
             {% for navi in navlist %}
-                <div>
-                    <a id={{navi.path}} style="color:#C0C0C0;font-size:15px;text-decoration:none;" href="javascript:void(0);" onclick="test(this)">&ensp;{{navi.navname}}</a>
-                </div>
-                <div>
-                    <span id={{navi.path}}00 style="color:#C0C0C0;font-size:15px;">&ensp;&gt;</span>
-                </div>
+                {% if navi.path == navlastpath %}
+                    <div>
+                        <a id={{navi.path}} style="color:#000000;font-size:15px;text-decoration:none;" href="javascript:void(0);" onclick="test(this)">&ensp;{{navi.navname}}</a>
+                    </div>
+                {% else %}
+                    <div>
+                        <a id={{navi.path}} style="color:#C0C0C0;font-size:15px;text-decoration:none;" href="javascript:void(0);" onclick="test(this)">&ensp;{{navi.navname}}</a>
+                    </div>
+                    <div>
+                        <span id={{navi.path}}00 style="color:#C0C0C0;font-size:15px;">&ensp;&gt;</span>
+                    </div>
+                 {% endif %}
             {% endfor %}
         </div>
+        <div style="border-bottom:1px solid #CCC"></div>
         <div class="container" style="height:2.9%;width:100%;">
             <label style="display:block;width:60%;height:100%;color:Gray;">文件名</label>
             <label style="display:block;width:15%;height:100%;color:Gray;">大小</label>
@@ -118,6 +129,16 @@
 
 
 <script>
+function NvaShow1()
+{
+    var breadnavlist = {{navlist|safe}}
+    var breadnav = breadnavlist[breadnavlist.length-1].path;
+    var actBv = document.getElementById(breadnav);
+    actBv.style.fontSize = "15px";
+    actBv.style.color = "#000000";
+    actBv.removeAttribute("href");
+    document.getElementById(breadnav+"00").innerHTML = "";
+}
     function test(act)
     {
         var encodeurl = encodeURIComponent(act.id)
@@ -177,6 +198,9 @@
     }
 </script>
 <script>
+
+var NvaShow = function()
+{
     var breadnavlist = {{navlist|safe}}
     var breadnav = breadnavlist[breadnavlist.length-1].path;
     var actBv = document.getElementById(breadnav);
@@ -184,6 +208,8 @@
     actBv.style.color = "#000000";
     actBv.removeAttribute("href");
     document.getElementById(breadnav+"00").innerHTML = "";
+}
+<!--NvaShow();-->
 </script>
 
 

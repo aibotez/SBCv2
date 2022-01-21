@@ -73,6 +73,8 @@ def Home(request):
     datas=filesget(paths)
     data=datas[0]
     navlist = datas[1]
+    navlastpath = navlist[-1]['path']
+    print(navlastpath)
     return render(request, "home/home1.html",locals())
 # @require_POST
 def home(request):
@@ -85,6 +87,7 @@ def home(request):
     datas=filesget(paths)
     data=datas[0]
     navlist = datas[1]
+    navlastpath = navlist[-1]['path']
     # uesremail = LoginRes['uesremail']
     # print(request.POST['ids'])
     # path = path.replace('C:/doucment/gitstock/SBCtest/SBCtestFolder','')
