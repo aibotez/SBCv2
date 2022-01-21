@@ -56,7 +56,7 @@
     </div>
 
     <div style="height:10%;width:100%;background-color:white;">
-        <button type="submit" id="signbutton">Sign In</button>
+        <button type="submit" id="signbutton" onclick="DownFile()">Sign In</button>
     </div>
 
     <div class="div2" id="ShowMain">
@@ -95,7 +95,7 @@
                             <td style="width:100%;">
                                 <div class="container">
                                     <div class="container" style="width:10%">
-                                        <input name="FieChose" type="checkbox" value="" />&nbsp;
+                                        <input name={{filedata.filelj}} type="checkbox" value="" />&nbsp;
                                         <img src={{filedata.imgpath}} width="50%">
                                     </div>
                                     <div style="width:50%;">
@@ -126,19 +126,58 @@
     </div>
 </div>
 
-
+<div style="display:none">
+    <form action="/FileDown/" id="b" method="post">
+        <input type="text" name="downinfo" id="downpaths">
+        <button type="submit" id="downbuton"></button>
+    </form>
+</div>
 
 <script>
-function NvaShow1()
-{
-    var breadnavlist = {{navlist|safe}}
-    var breadnav = breadnavlist[breadnavlist.length-1].path;
-    var actBv = document.getElementById(breadnav);
-    actBv.style.fontSize = "15px";
-    actBv.style.color = "#000000";
-    actBv.removeAttribute("href");
-    document.getElementById(breadnav+"00").innerHTML = "";
-}
+    function DownFile()
+    {
+        var downfiles = FindCheckdown();
+        if (downfiles == "网页版不支持文件夹上传/下载")
+        {
+            alert("网页版不支持文件夹上传/下载");
+            return;
+        }
+        console.log(downfiles);
+        for(var i=0;i<downfiles.length;i++)
+        {
+
+            document.getElementById("downpaths").value = JSON.stringify(downfiles[i]);
+            document.getElementById("downbuton").click();
+        }
+    }
+
+    function FindCheckdown()
+    {
+        var files = {{data|safe}};
+        var Res = [];
+        for (var i=0;i<files.length;i++)
+        {
+            file = files[i].filelj;
+            if (document.getElementsByName(file)[0].checked==true)
+            {
+                filename = files[i].filename;
+                feisdir =files[i].isdir;
+                if (feisdir == 1)
+                    {
+                        msg = "网页版不支持文件夹上传/下载"
+                        return msg;
+                    }
+                 Res.push({'fename':filename,'fepath':file});
+            }
+
+        }
+        return Res;
+        <!--console.log(Res);-->
+    }
+</script>
+
+<script>
+
     function test(act)
     {
         var encodeurl = encodeURIComponent(act.id)

@@ -4,6 +4,10 @@ import os
 class GetUserPath():
     def __init__(self):
         self.ServerHomePath = 'D:/documents/GitStock/SBCuserTest/'
+
+    def GetDownPath(self,DownReInfo,LoginRes):
+        useremail = LoginRes['useremail']
+
     def userpath(self,req,LoginRes):
         useremail = LoginRes['useremail']
         if 'path' not in req:

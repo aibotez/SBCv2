@@ -41,15 +41,17 @@ def filesget(paths):
         fileson = path + i
         filesize = '-'
         isdir = 1
+        filepath = fileson+'/'
         imgpath = '/static/img/foldersm.png'
         if not os.path.isdir(filesonserver):
             filesize = os.path.getsize(filesonserver)
             filesize = size_format(filesize)
             isdir = 0
             imgpath = '/static/img/wj.jfif'
+            filepath = fileson
         fesdata.append({
             'filename':i,
-            'filelj':fileson+'/',
+            'filelj':filepath,
             'big':filesize,
             'date':getdate(filesonserver),
             'isdir':isdir,
@@ -96,5 +98,15 @@ def home(request):
     # data=filesget(paths)
 
     return render(request, "home/FileList.html", locals())
+
+@require_POST
+def FileDown(request):
+    downinfo = request.POST['downinfo']
+    print(downinfo)
+    LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
+    if LoginRes['res']:
+        return HttpResponseRedirect('/login/')
+    getuserpath = GetUserPath.GetUserPath()
+    return HttpResponse('25')
 
 #os.symlink(src,dst)创建软链接
