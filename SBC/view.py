@@ -12,6 +12,8 @@ import socket,os,time,threading
 from django.views.decorators.http import require_GET, require_http_methods, require_POST
 from PIL import Image
 
+from SBC import FileDownUp
+
 def size_format(size):
     if size < 1000:
         return '%i' % size + 'size'
@@ -99,15 +101,17 @@ def home(request):
 
     return render(request, "home/FileList.html", locals())
 
-# @require_POST
+@require_POST
 def FileDown(request):
-    downinfo = request.GET['downinfo']
-    print(downinfo)
+    downinfo = request.POST['downinfo']
+    # print(downinfo,type(downinfo))
     LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
     if LoginRes['res']:
         return HttpResponseRedirect('/login/')
     getuserpath = GetUserPath.GetUserPath()
-    getuserpath.GetDownPath(downinfo,LoginRes)
-    return HttpResponse('25')
+    downinfo = getuserpath.GetDownPath(downinfo,LoginRes)
+    FileDowUpCOm = FileDownUp.FileDU()
+    res = FileDowUpCOm.Down(downinfo)
+    return res
 
 #os.symlink(src,dst)创建软链接

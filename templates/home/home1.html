@@ -127,13 +127,29 @@
 </div>
 
 <div style="display:none">
-    <form action="/FileDown/" id="b" method="post">
+    <form action="/FileDown/" id="down" method="post">
         <input type="text" name="downinfo" id="downpaths">
         <button type="submit" id="downbuton"></button>
     </form>
 </div>
 
 <script>
+
+    function postfrom()
+    {
+        $.ajax({
+        async: false,
+        type: "POST",
+        url: '/FileDown/',
+        data: $('#down').serialize(),
+        dataType: "json",
+        success: function () { },
+        error: function () { },
+        complete: function () {
+
+        }
+        })
+    }
     function DownFile()
     {
 
@@ -146,17 +162,18 @@
         console.log(downfiles);
         for(var i=0;i<downfiles.length;i++)
         {
-            cururl = 'http://'+window.location.host;
-            urli = cururl+'/FileDown/?downinfo='+encodeURIComponent(JSON.stringify(downfiles[i]))
-            var a = document.createElement('a');
-            <!--var url = window.URL.createObjectURL(blob);-->
-            var filename = downfiles[i].fename;
-            a.href = urli;
-            a.download = filename;
-            a.click();
-            a.remove();
+            <!--cururl = 'http://'+window.location.host;-->
+            <!--urli = cururl+'/FileDown/?downinfo='+encodeURIComponent(JSON.stringify(downfiles[i]))-->
+            <!--var a = document.createElement('a');-->
+            <!--&lt;!&ndash;var url = window.URL.createObjectURL(blob);&ndash;&gt;-->
+            <!--var filename = downfiles[i].fename;-->
+            <!--a.href = urli;-->
+            <!--a.download = filename;-->
+            <!--a.click();-->
+            <!--a.remove();-->
 
-            <!--document.getElementById("downpaths").value = JSON.stringify(downfiles[i]);-->
+            document.getElementById("downpaths").value = JSON.stringify(downfiles[i]);
+            postfrom();
             <!--document.getElementById("downbuton").click();-->
         }
     }

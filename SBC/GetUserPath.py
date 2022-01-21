@@ -1,15 +1,18 @@
 import urllib.parse
-import os
+import os,json
 
 class GetUserPath():
     def __init__(self):
         self.ServerHomePath = 'D:/documents/GitStock/SBCuserTest/'
 
     def GetDownPath(self,DownReInfo,LoginRes):
+        DownReInfo = json.loads(DownReInfo)
         useremail = LoginRes['useremail']
         path = DownReInfo['fepath']
         filedownpath = self.ServerHomePath+useremail+path.replace('/home','')
-        return filedownpath
+        filedownname = DownReInfo['fename']
+        # print(filedownpath,filedownname)
+        return {'fename':filedownname,'fepath':filedownpath}
 
     def userpath(self,req,LoginRes):
         useremail = LoginRes['useremail']

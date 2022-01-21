@@ -6,20 +6,22 @@ class FileDU():
     def __init__(self):
         pass
 
+    def file_iterator(self,file_name, chunk_size=20 * 1024 * 1024):
+        with open(file_name, 'rb') as f:
+            while True:
+                c = f.read(chunk_size)
+                if c:
+                    yield c
+                else:
+                    break
+
     def Down(self,FileInfo):
 
         the_file_name = FileInfo['fename']
         the_file_path = FileInfo['fepath']
-        def file_iterator(file_name, chunk_size=20*1024*1024):
-            with open(file_name,'rb') as f:
-                while True:
-                    c = f.read(chunk_size)
-                    if c:
-                        yield c
-                    else:
-                        break
+        # print(the_file_name,the_file_path)
         #response = FileResponse(file_iterator(the_file_name))
-        response = StreamingHttpResponse(file_iterator(the_file_path))
+        response = StreamingHttpResponse(self.file_iterator(the_file_path))
         response = FileResponse(response)
         response['Content-Type'] = 'application/octet-stream'
         response['content-length'] = os.path.getsize(the_file_path)
