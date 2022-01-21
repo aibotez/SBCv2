@@ -23,58 +23,75 @@ def size_format(size):
         return '%.1f' % float(size/1000000000) + 'GB'
     elif 1000000000000 <= size:
         return '%.1f' % float(size/1000000000000) + 'TB'
-def filesget(path):
-
+def filesget(paths):
+    path = paths[0]
+    serverpath = paths[1]
     navpath = path[1:-1]
     navpathlist = navpath.split('/')
+    navpaths = []
+    s = '/'
+    for i in navpathlist:
+        s = s+i+'/'
+        navpaths.append({'navname':i,'path':s})
 
-    lj = 'C:/doucment/gitstock/SBCtest/SBCtestFolder'+path
-    dirshome = os.listdir(lj)
+    dirshome = os.listdir(serverpath)
     fesdata=[]
     for i in dirshome:
-        febig = '-'
+        filesonserver = serverpath + i
+        fileson = path + i
+        filesize = '-'
         isdir = 1
         imgpath = '/static/img/foldersm.png'
-        if not os.path.isdir(lj + i):
-            febig = os.path.getsize(lj + i)
-            febig = size_format(febig)
+        if not os.path.isdir(filesonserver):
+            filesize = os.path.getsize(filesonserver)
+            filesize = size_format(filesize)
             isdir = 0
             imgpath = '/static/img/wj.jfif'
         fesdata.append({
             'filename':i,
-            'filelj':lj+i+'/',
-            'big':febig,
-            'date':getdate(lj+i),
+            'filelj':fileson+'/',
+            'big':filesize,
+            'date':getdate(filesonserver),
             'isdir':isdir,
             'imgpath':imgpath,
         })
-    return fesdata
+    return [fesdata,navpaths]
 
 def getdate(fie):
     statbuf = os.stat(fie)
     date=time.strftime('%Y-%m-%d %H:%M', time.localtime(statbuf.st_mtime))
     # date= statbuf.st_mtime
     return date
+from SBC import GetUserPath
 def Home(request):
-    if LoginVerfiy.LoginVerfiy().verifylogin(request):
+    LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
+    if LoginRes['res']:
         return HttpResponseRedirect('/login/')
-    path = "/plugins/"
-    data=filesget(path)
-    # data = [{'filename':'abc.pdf','filelj':'home/asg','big':'20.5M','date':'2021-08-09'},
-    #         {'filename':'dirs1','filelj':'home/asg','big':'127KB','date':'2019-10-12'},
-    #         ]
-    filelj = ['home','asg']
+    getuserpath = GetUserPath.GetUserPath()
+    req = request.GET.dict()
+    paths = getuserpath.userpath(req,LoginRes)
+    datas=filesget(paths)
+    data=datas[0]
+    navlist = datas[1]
     return render(request, "home/home1.html",locals())
 # @require_POST
 def home(request):
-    if LoginVerfiy.LoginVerfiy().verifylogin(request):
+    LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
+    if LoginRes['res']:
         return HttpResponseRedirect('/login/')
-    print(request.POST['ids'])
-    path =request.POST['ids']
-    path = path.replace('C:/doucment/gitstock/SBCtest/SBCtestFolder','')
-    print(path)
+    getuserpath = GetUserPath.GetUserPath()
+    req = {'path':request.POST['ids']}
+    paths = getuserpath.userpath(req,LoginRes)
+    datas=filesget(paths)
+    data=datas[0]
+    navlist = datas[1]
+    # uesremail = LoginRes['uesremail']
+    # print(request.POST['ids'])
+    # path = path.replace('C:/doucment/gitstock/SBCtest/SBCtestFolder','')
+    # print(path)
     # path = "/plugins/flot/"
-    data=filesget(path)
+    # data=filesget(paths)
+
     return render(request, "home/FileList.html", locals())
 
 #os.symlink(src,dst)创建软链接

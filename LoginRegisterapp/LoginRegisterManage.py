@@ -3,6 +3,7 @@ from Usersapp.models import User
 # from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from Vcodeapp import VcodeManage
+from SBC import GetUserPath
 
 #改密码user.set_password(password)
 class loginOper():
@@ -59,10 +60,14 @@ class registerOper():
         VerifyUserInfo = self.VerifyUser(Vcode,useremail,username)
         msg = {'status':VerifyUserInfo, 'pass': ''}
         if VerifyUserInfo == 1:
-            Cuser = User.objects.create_user(username=username,password=userpassword1,email=useremail,ipv4=useripv4)
-            Userfo = User.objects.get(email=useremail)
-            msg['status'] = 1
-            msg['pass'] = Userfo.password
+            getuserpath = GetUserPath.GetUserPath()
+            if getuserpath.NewRegisterPath(useremail):
+                Cuser = User.objects.create_user(username=username,password=userpassword1,email=useremail,ipv4=useripv4)
+                Userfo = User.objects.get(email=useremail)
+                msg['status'] = 1
+                msg['pass'] = Userfo.password
+                return msg
+            msg['status'] = '用户文件创建失败'
             return msg
         return msg
 

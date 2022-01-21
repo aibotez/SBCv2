@@ -20,7 +20,6 @@
         }
        .div2
           {
-            background-color: aqua;
             color: black;
             width: 79%;
             height: 100%;
@@ -29,7 +28,7 @@
           }
         .div1
             {
-               background-color: black;
+               background-color: #ADADAD;
                color: red;
                width: 20%;
                height: 100%;
@@ -42,8 +41,6 @@
             align-items: center;
             flex-wrap: wrap;
         }
-
-
     </style>
 
 <!--<script src="https://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.2.min.js"></script>-->
@@ -58,49 +55,49 @@
 
     </div>
 
-    <div class="div2" id="div2">
-        <div style="height:10%;width:100%;background-color:black;">
-
+    <div class="div2" id="ShowMain">
+        <div style="height:10%;width:100%;background-color:white;">
+             <button type="submit" id="signbutton">Sign In</button>
         </div>
-        <div class="container" style="height:3%;background-color:yellow;">
-            {% for filei in filelj %}
+        <div class="container" style="height:4%;">
+            {% for navi in navlist %}
                 <div>
-                    <a id={{filei}} style="color:#C0C0C0;font-size:20px;text-decoration:none;" href="javascript:void(0);" onclick="UpShow()">&ensp;{{filei}}</a>
+                    <a id={{navi.path}} style="color:#C0C0C0;font-size:15px;text-decoration:none;" href="javascript:void(0);" onclick="test(this)">&ensp;{{navi.navname}}</a>
                 </div>
                 <div>
-                    <span id={{filei}}00 style="color:#C0C0C0;font-size:15px;">&ensp;&gt;</span>
+                    <span id={{navi.path}}00 style="color:#C0C0C0;font-size:15px;">&ensp;&gt;</span>
                 </div>
             {% endfor %}
         </div>
-        <div class="container" style="height:2.3%;width:100%;background-color:black;">
-            <label style="display:block;width:60%;height:100%;background-color:white;">文件名</label>
-            <label style="display:block;width:15%;height:100%;background-color:white;">大小</label>
-            <label style="display:block;width:25%;height:100%;background-color:white;">修改日期</label>
+        <div class="container" style="height:2.9%;width:100%;">
+            <label style="display:block;width:60%;height:100%;color:Gray;">文件名</label>
+            <label style="display:block;width:15%;height:100%;color:Gray;">大小</label>
+            <label style="display:block;width:25%;height:100%;color:Gray;">修改日期</label>
         </div>
         <div style="border-bottom:1px solid #CCC"></div>
 
-        <div style="overflow:scroll;height:84.5%;width:100%;background-color:purple">
+        <div style="overflow:scroll;height:84.5%;width:100%;">
             <div id="FilesData">
                 {% for filedata in data %}
-                    <table width="100%" border="0" style="width:100%;background-color:black;">
+                    <table width="100%" border="0" style="width:100%;">
                         <tr class="change">
-                            <td style="width:100%;background-color:red;">
+                            <td style="width:100%;">
                                 <div class="container">
                                     <div class="container" style="width:10%">
                                         <input name="FieChose" type="checkbox" value="" />&nbsp;
                                         <img src={{filedata.imgpath}} width="50%">
                                     </div>
                                     <div style="width:50%;">
-                                        <a id={{filedata.filelj}} style="color:#C0C0C0;font-size:20px;text-decoration:none;" href="javascript:void(0);" onclick="test(this)">
+                                        <a id={{filedata.filelj}} style="color:black;font-size:20px;text-decoration:none;" href="javascript:void(0);" onclick="test(this)">
                                             {{filedata.filename}}
                                         </a>
                                     </div>
-                                    <div style="width:15%;">
+                                    <div style="width:15%;color:Gray;">
                                         <label>
                                             {{filedata.big}}
                                         </label>
                                     </div>
-                                    <div style="width:25%;">
+                                    <div style="width:25%;color:Gray;">
                                         <label>
                                             {{filedata.date}}
                                         </label>
@@ -115,7 +112,6 @@
             </div>
         </div>
 
-
     </div>
 </div>
 
@@ -124,13 +120,13 @@
 <script>
     function test(act)
     {
-
+        var encodeurl = encodeURIComponent(act.id)
         var cururl = 'http://'+window.location.host+'/test/';
-        $("#FilesData").load(cururl,{"ids": act.id});
+        $("#ShowMain").load(cururl,{"ids": encodeurl});
 
         var stateObject = {};
         var title = "Wow Title";
-        var newUrl = "/?path="+act.id;
+        var newUrl = "/?path="+encodeurl;
         history.pushState(stateObject,title,newUrl);
 
 
@@ -150,37 +146,44 @@
 </script>
 
 <script>
-    function UpShow()
+    function UpShow(act)
     {
-        var breadnav = {{filelj|safe}}
-        for(var i=0;i<breadnav.length;i++)
-          {
-            var actBv = document.getElementById(breadnav[i]);
-            if(i == breadnav.length-1)
-              {
-                actBv.style.color = "#000000";
-                actBv.removeAttribute("href");
-                document.getElementById(breadnav[i]+"00").innerHTML = "";
-              }
-            else
-              {
-                actBv.href = 'file?h='+breadnav[i];
-              }
-          }
+
+
+        var cururl = 'http://'+window.location.host+'/test/';
+        $("#ShowMain").load(cururl,{"ids": act.id});
+
+        var stateObject = {};
+        var title = "Wow Title";
+        var newUrl = "/?path="+act.id;
+        history.pushState(stateObject,title,newUrl);
+
+        <!--var breadnavlist = {{navlist|safe}}-->
+        <!--for(var i=0;i<breadnavlist.length;i++)-->
+          <!--{-->
+            <!--var breadnav = breadnavlist[i].path;-->
+            <!--var actBv = document.getElementById(breadnav);-->
+            <!--if(i == breadnav.length-1)-->
+              <!--{-->
+                <!--actBv.style.color = "#000000";-->
+                <!--actBv.removeAttribute("href");-->
+                <!--document.getElementById(breadnavlist[i].path+"00").innerHTML = "";-->
+              <!--}-->
+            <!--else-->
+              <!--{-->
+                <!--actBv.href = '?path='+breadnavlist[i].path;-->
+              <!--}-->
+          <!--}-->
     }
 </script>
 <script>
-    var breadnav = {{filelj|safe}}
-    for(var i=0;i<breadnav.length;i++)
-     {
-         var actBv = document.getElementById(breadnav[i]);
-         if(i == breadnav.length-1)
-          {
-             actBv.style.color = "#000000";
-             actBv.removeAttribute("href");
-             document.getElementById(breadnav[i]+"00").innerHTML = "";
-          }
-     }
+    var breadnavlist = {{navlist|safe}}
+    var breadnav = breadnavlist[breadnavlist.length-1].path;
+    var actBv = document.getElementById(breadnav);
+    actBv.style.fontSize = "15px";
+    actBv.style.color = "#000000";
+    actBv.removeAttribute("href");
+    document.getElementById(breadnav+"00").innerHTML = "";
 </script>
 
 
