@@ -142,6 +142,8 @@
         type: "POST",
         url: '/FileDown/',
         data: $('#down').serialize(),
+        <!--processData: false,-->
+        contentType: false,
         dataType: "json",
         success: function () { },
         error: function () { },
@@ -162,18 +164,18 @@
         console.log(downfiles);
         for(var i=0;i<downfiles.length;i++)
         {
-            <!--cururl = 'http://'+window.location.host;-->
-            <!--urli = cururl+'/FileDown/?downinfo='+encodeURIComponent(JSON.stringify(downfiles[i]))-->
-            <!--var a = document.createElement('a');-->
-            <!--&lt;!&ndash;var url = window.URL.createObjectURL(blob);&ndash;&gt;-->
-            <!--var filename = downfiles[i].fename;-->
-            <!--a.href = urli;-->
+            cururl = 'http://'+window.location.host;
+            urli = cururl+'/FileDown/?downinfo='+encodeURIComponent(JSON.stringify(downfiles[i]))
+            var a = document.createElement('a');
+            <!--var url = window.URL.createObjectURL(blob);-->
+            var filename = downfiles[i].fename;
+            a.href = urli;
             <!--a.download = filename;-->
-            <!--a.click();-->
-            <!--a.remove();-->
+            a.click();
+            a.remove();
 
-            document.getElementById("downpaths").value = JSON.stringify(downfiles[i]);
-            postfrom();
+            <!--document.getElementById("downpaths").value = JSON.stringify(downfiles[i]);-->
+            <!--postfrom();-->
             <!--document.getElementById("downbuton").click();-->
         }
     }

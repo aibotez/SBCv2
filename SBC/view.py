@@ -101,9 +101,10 @@ def home(request):
 
     return render(request, "home/FileList.html", locals())
 
-@require_POST
+# @require_POST
 def FileDown(request):
-    downinfo = request.POST['downinfo']
+    # print(request.POST)
+    downinfo = request.GET['downinfo']
     # print(downinfo,type(downinfo))
     LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
     if LoginRes['res']:
