@@ -7,6 +7,9 @@ class GetUserPath():
 
     def GetDownPath(self,DownReInfo,LoginRes):
         useremail = LoginRes['useremail']
+        path = DownReInfo['fepath']
+        filedownpath = self.ServerHomePath+useremail+path.replace('/home','')
+        return filedownpath
 
     def userpath(self,req,LoginRes):
         useremail = LoginRes['useremail']

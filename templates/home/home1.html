@@ -136,6 +136,7 @@
 <script>
     function DownFile()
     {
+
         var downfiles = FindCheckdown();
         if (downfiles == "网页版不支持文件夹上传/下载")
         {
@@ -145,9 +146,18 @@
         console.log(downfiles);
         for(var i=0;i<downfiles.length;i++)
         {
+            cururl = 'http://'+window.location.host;
+            urli = cururl+'/FileDown/?downinfo='+encodeURIComponent(JSON.stringify(downfiles[i]))
+            var a = document.createElement('a');
+            <!--var url = window.URL.createObjectURL(blob);-->
+            var filename = downfiles[i].fename;
+            a.href = urli;
+            a.download = filename;
+            a.click();
+            a.remove();
 
-            document.getElementById("downpaths").value = JSON.stringify(downfiles[i]);
-            document.getElementById("downbuton").click();
+            <!--document.getElementById("downpaths").value = JSON.stringify(downfiles[i]);-->
+            <!--document.getElementById("downbuton").click();-->
         }
     }
 

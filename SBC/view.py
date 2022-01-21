@@ -99,14 +99,15 @@ def home(request):
 
     return render(request, "home/FileList.html", locals())
 
-@require_POST
+# @require_POST
 def FileDown(request):
-    downinfo = request.POST['downinfo']
+    downinfo = request.GET['downinfo']
     print(downinfo)
     LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
     if LoginRes['res']:
         return HttpResponseRedirect('/login/')
     getuserpath = GetUserPath.GetUserPath()
+    getuserpath.GetDownPath(downinfo,LoginRes)
     return HttpResponse('25')
 
 #os.symlink(src,dst)创建软链接
