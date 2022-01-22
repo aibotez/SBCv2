@@ -12,11 +12,11 @@
             {% for navi in navlist %}
                 {% if navi.path == navlastpath %}
                     <div>
-                        <a id={{navi.path}} style="color:#000000;font-size:15px;text-decoration:none;" href="javascript:void(0);" onclick="test(this)">&ensp;{{navi.navname}}</a>
+                        <a id={{navi.path}} style="color:#000000;font-size:15px;text-decoration:none;">&ensp;{{navi.navname}}</a>
                     </div>
                 {% else %}
                     <div>
-                        <a id={{navi.path}} style="color:#C0C0C0;font-size:15px;text-decoration:none;" href="javascript:void(0);" onclick="test(this)">&ensp;{{navi.navname}}</a>
+                        <a id={{navi.path}} style="color:#C0C0C0;font-size:15px;text-decoration:none;" href="javascript:void(0);" onclick="RefreshFiles(this)">&ensp;{{navi.navname}}</a>
                     </div>
                     <div>
                         <span id={{navi.path}}00 style="color:#C0C0C0;font-size:15px;">&ensp;&gt;</span>
@@ -44,7 +44,7 @@
                                         <img src={{filedata.imgpath}} width="50%">
                                     </div>
                                     <div style="width:50%;">
-                                        <a id={{filedata.filelj}} style="color:black;font-size:20px;text-decoration:none;" href="javascript:void(0);" onclick="test(this)">
+                                        <a id={{filedata.filelj}} style="color:black;font-size:20px;text-decoration:none;" href="javascript:void(0);" onclick="RefreshFiles(this)">
                                             {{filedata.filename}}
                                         </a>
                                     </div>

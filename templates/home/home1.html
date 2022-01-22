@@ -56,7 +56,14 @@
     </div>
 
     <div style="height:10%;width:100%;background-color:white;">
-        <button type="submit" id="signbutton" onclick="DownFile()">Sign In</button>
+        <div>
+            <button id="downbutton" value="下载" onclick="DownFiles()">
+                下载
+            </button>
+        </div>
+        <div>
+            <input type="file" name="files" multiple="multiple" id="upbutton" value="上传">
+        </div>
     </div>
 
     <div class="div2" id="ShowMain">
@@ -67,11 +74,11 @@
             {% for navi in navlist %}
                 {% if navi.path == navlastpath %}
                     <div>
-                        <a id={{navi.path}} style="color:#000000;font-size:15px;text-decoration:none;" href="javascript:void(0);" onclick="test(this)">&ensp;{{navi.navname}}</a>
+                        <a id={{navi.path}} style="color:#000000;font-size:15px;text-decoration:none;">&ensp;{{navi.navname}}</a>
                     </div>
                 {% else %}
                     <div>
-                        <a id={{navi.path}} style="color:#C0C0C0;font-size:15px;text-decoration:none;" href="javascript:void(0);" onclick="test(this)">&ensp;{{navi.navname}}</a>
+                        <a id={{navi.path}} style="color:#C0C0C0;font-size:15px;text-decoration:none;" href="javascript:void(0);" onclick="RefreshFiles(this)">&ensp;{{navi.navname}}</a>
                     </div>
                     <div>
                         <span id={{navi.path}}00 style="color:#C0C0C0;font-size:15px;">&ensp;&gt;</span>
@@ -99,7 +106,7 @@
                                         <img src={{filedata.imgpath}} width="50%">
                                     </div>
                                     <div style="width:50%;">
-                                        <a id={{filedata.filelj}} style="color:black;font-size:20px;text-decoration:none;" href="javascript:void(0);" onclick="test(this)">
+                                        <a id={{filedata.filelj}} style="color:black;font-size:20px;text-decoration:none;" href="javascript:void(0);" onclick="RefreshFiles(this)">
                                             {{filedata.filename}}
                                         </a>
                                     </div>
@@ -125,96 +132,48 @@
 
     </div>
 </div>
-
-<div style="display:none">
-    <form action="/FileDown/" id="down" method="post">
-        <input type="text" name="downinfo" id="downpaths">
-        <button type="submit" id="downbuton"></button>
-    </form>
-</div>
+<script src="/static/js/Down.js"></script>
+<!--<div style="display:none">-->
+    <!--<form action="/FileDown/" id="down" method="post">-->
+        <!--<input type="text" name="downinfo" id="downpaths">-->
+        <!--<button type="submit" id="downbuton"></button>-->
+    <!--</form>-->
+<!--</div>-->
 
 <script>
-
-    function postfrom()
-    {
-        $.ajax({
-        async: false,
-        type: "POST",
-        url: '/FileDown/',
-        data: $('#down').serialize(),
-        <!--processData: false,-->
-        contentType: false,
-        dataType: "json",
-        success: function () { },
-        error: function () { },
-        complete: function () {
-
-        }
-        })
-    }
-    function DownFile()
+    function UpFiles()
     {
 
-        var downfiles = FindCheckdown();
-        if (downfiles == "网页版不支持文件夹上传/下载")
-        {
-            alert("网页版不支持文件夹上传/下载");
-            return;
-        }
-        console.log(downfiles);
-        for(var i=0;i<downfiles.length;i++)
-        {
-            cururl = 'http://'+window.location.host;
-            urli = cururl+'/FileDown/?downinfo='+encodeURIComponent(JSON.stringify(downfiles[i]))
-            var a = document.createElement('a');
-            <!--var url = window.URL.createObjectURL(blob);-->
-            var filename = downfiles[i].fename;
-            a.href = urli;
-            <!--a.download = filename;-->
-            a.click();
-            a.remove();
-
-            <!--document.getElementById("downpaths").value = JSON.stringify(downfiles[i]);-->
-            <!--postfrom();-->
-            <!--document.getElementById("downbuton").click();-->
-        }
     }
-
-    function FindCheckdown()
+</script>
+<script>
+    function DownFiles()
     {
         var files = {{data|safe}};
-        var Res = [];
-        for (var i=0;i<files.length;i++)
-        {
-            file = files[i].filelj;
-            if (document.getElementsByName(file)[0].checked==true)
-            {
-                filename = files[i].filename;
-                feisdir =files[i].isdir;
-                if (feisdir == 1)
-                    {
-                        msg = "网页版不支持文件夹上传/下载"
-                        return msg;
-                    }
-                 Res.push({'fename':filename,'fepath':file});
-            }
+        var ChoseFileLen = FindCheckdown(files).length;
+        if (ChoseFileLen < 1)
+        {return;}
 
+        if(ChoseFileLen>1)
+        {
+            DownFilebyGet(files);
+            return;
         }
-        return Res;
-        <!--console.log(Res);-->
+        DownFilebyPost(files);
+        <!--document.getElementById("downbutton").disabled = true;-->
     }
 </script>
 
 <script>
 
-    function test(act)
+    function RefreshFiles(act)
     {
         var encodeurl = encodeURIComponent(act.id)
-        var cururl = 'http://'+window.location.host+'/test/';
+        var cururl = 'http://'+window.location.host+'/RefreshFiles/';
         $("#ShowMain").load(cururl,{"ids": encodeurl});
 
         var stateObject = {};
-        var title = "Wow Title";
+        var title = "小黑云";
         var newUrl = "/?path="+encodeurl;
         history.pushState(stateObject,title,newUrl);
 
@@ -234,51 +193,7 @@
     }
 </script>
 
-<script>
-    function UpShow(act)
-    {
 
-
-        var cururl = 'http://'+window.location.host+'/test/';
-        $("#ShowMain").load(cururl,{"ids": act.id});
-
-        var stateObject = {};
-        var title = "Wow Title";
-        var newUrl = "/?path="+act.id;
-        history.pushState(stateObject,title,newUrl);
-
-        <!--var breadnavlist = {{navlist|safe}}-->
-        <!--for(var i=0;i<breadnavlist.length;i++)-->
-          <!--{-->
-            <!--var breadnav = breadnavlist[i].path;-->
-            <!--var actBv = document.getElementById(breadnav);-->
-            <!--if(i == breadnav.length-1)-->
-              <!--{-->
-                <!--actBv.style.color = "#000000";-->
-                <!--actBv.removeAttribute("href");-->
-                <!--document.getElementById(breadnavlist[i].path+"00").innerHTML = "";-->
-              <!--}-->
-            <!--else-->
-              <!--{-->
-                <!--actBv.href = '?path='+breadnavlist[i].path;-->
-              <!--}-->
-          <!--}-->
-    }
-</script>
-<script>
-
-var NvaShow = function()
-{
-    var breadnavlist = {{navlist|safe}}
-    var breadnav = breadnavlist[breadnavlist.length-1].path;
-    var actBv = document.getElementById(breadnav);
-    actBv.style.fontSize = "15px";
-    actBv.style.color = "#000000";
-    actBv.removeAttribute("href");
-    document.getElementById(breadnav+"00").innerHTML = "";
-}
-<!--NvaShow();-->
-</script>
 
 
 </body>

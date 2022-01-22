@@ -104,11 +104,13 @@ def home(request):
 # @require_POST
 def FileDown(request):
     # print(request.POST)
-    downinfo = request.GET['downinfo']
-    # print(downinfo,type(downinfo))
     LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
     if LoginRes['res']:
         return HttpResponseRedirect('/login/')
+    if request.method == 'POST':
+        downinfo = request.POST['downinfo']
+    else:
+        downinfo = request.GET['downinfo']
     getuserpath = GetUserPath.GetUserPath()
     downinfo = getuserpath.GetDownPath(downinfo,LoginRes)
     FileDowUpCOm = FileDownUp.FileDU()
