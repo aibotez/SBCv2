@@ -5,6 +5,13 @@
     <title>小黑云</title>
 
     <style>
+        div.changediv:hover
+        {
+            background-color:#DCDCDC;
+            opacity:0.5;
+            width:100%;
+        }
+
         tr.change:hover
         {
             background-color:#DCDCDC;
@@ -41,6 +48,11 @@
             align-items: center;
             flex-wrap: wrap;
         }
+        .Updetail {
+            position: fixed;	        /* 设置fixed固定定位 */
+            bottom: 20px;		/* 距离浏览器窗口下边框20px */
+            right: 50px;		/* 距离浏览器窗口右边框20px */
+        }
     </style>
 
 <!--<script src="https://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.2.min.js"></script>-->
@@ -61,8 +73,10 @@
                 下载
             </button>
         </div>
-        <div>
-            <input type="file" name="files" multiple="multiple" id="upbutton" value="上传">
+        <div id="UpCom">
+            <input type="file" id="SelectFiles" style="display:none" multiple="multiple" onchange="onChange(event)" />
+            <!--<input type="file" name="files" multiple="multiple" id="upbutton" value="上传">-->
+            <button id="UP" value="上传" onclick="upload()">上传</button>
         </div>
     </div>
 
@@ -132,7 +146,147 @@
 
     </div>
 </div>
+
+<div class="Updetail" style="border-radius:10px;border:2px solid #ECF0F1;width:370px;background-color:#FDFEFE">
+    <div class="changediv" style="height:50px;" onclick="FolderUpDetail()">
+        <label style="width:100%;line-height:50px">上传标题</label>
+    </div>
+    <div style="border-bottom:1px solid #CCC"></div>
+    <div id="UpDetailContent">
+        <div style="overflow:hidden;height:420px;width:100%;">
+            <div id="UpList" style="width:100%;">
+                <div style="width:100%"><label>abc.pdf</label></div>
+                <div style="width:100%" class="container">
+                    <progress value= '70'  max= '100' style="width:60%"></progress>
+                    <label style="font-size:12px;color:Gray;">2 MB/32 MB</label>
+                    &nbsp;
+                    <label style="font-size:12px;color:Gray;">3MB/s</label>
+                </div>
+            </div>
+        </div>
+
+        <div style="width:100%;">
+            <a style="display: inline-block;text-align: center;width:100%;color:black;font-size:15px;text-decoration:none;" href="javascript:void(0);" onclick="FolderUpDetail()">
+                收起
+            </a>
+        </div>
+
+    </div>
+</div>
 <script src="/static/js/Down.js"></script>
+<script src="/static/js/Upfiles.js"></script>
+
+
+<script>
+for(var i=0;i<6;i++)
+{
+        var div = document.getElementById("UpList");
+        var label = document.createElement("label");
+        label.innerText = i+"test.py";
+        div.appendChild(label);
+        var div2 = document.createElement("div");
+        div2.style = "width:100%";
+        div2.class = "container";
+        div.appendChild(div2);
+        var progress = document.createElement("progress");
+        progress.id = i+"progress";
+        progress.max = "100";
+        progress.value = "50";
+        progress.style = "width:60%";
+        div2.appendChild(progress);
+        var label2 = document.createElement("label");
+        label2.id = i+"label";
+        label2.style = "font-size:12px;color:Gray;";
+        label2.innerText = "6 MB/88 MB 6 M/s";
+        div2.appendChild(label2);
+        }
+</script>
+
+    <script>
+      function onChange(event) {
+        const file = event.target.files;
+        console.log(file.length);
+        <!--const reader = new FileReader();-->
+        <!--reader.onloadend = (arg) => {-->
+          <!--console.log(reader.result);-->
+        <!--};-->
+        <!--reader.readAsDataURL(file);-->
+      }
+    </script>
+
+<script>
+    function upload(){
+        document.getElementById("SelectFiles").click();
+        <!--var div = document.getElementById("UpCom");-->
+        <!--var inputfiles = document.createElement("input");-->
+        <!--inputfiles.setAttribute('style','display:none');-->
+
+        <!--inputfiles.type = "file";-->
+        <!--inputfiles.name = "files";-->
+        <!--&lt;!&ndash;inputfiles.multiple="multiple";&ndash;&gt;-->
+        <!--inputfiles.id="upfiles";-->
+        <!--inputfiles.onchange="onChange(event)";-->
+        <!--div.appendChild(inputfiles);-->
+
+        <!--inputfiles.click();-->
+        <!--console.log(inputfiles.files)-->
+
+
+        <!--document.getElementById(0+"progress").value=0;-->
+        <!--for(var i=0;i<100;i++)-->
+        <!--{-->
+            <!--var start = (new Date()).getTime();-->
+            <!--while((new Date()).getTime() - start < 1000)-->
+            <!--{}-->
+            <!--console.log(i);-->
+            <!--document.getElementById(0+"progress").value=i;-->
+            <!--&lt;!&ndash;for(var j=0;j<6;j++)&ndash;&gt;-->
+            <!--&lt;!&ndash;{&ndash;&gt;-->
+                <!--&lt;!&ndash;document.getElementById(0+"progress").value=i;&ndash;&gt;-->
+            <!--&lt;!&ndash;}&ndash;&gt;-->
+        <!--}-->
+
+        <!--var div = document.getElementById("UpList");-->
+        <!--var label = document.createElement("label");-->
+        <!--label.innerText = "test.py";-->
+        <!--div.appendChild(label);-->
+        <!--var div2 = document.createElement("div");-->
+        <!--div2.style = "width:100%";-->
+        <!--div2.class = "container";-->
+        <!--div.appendChild(div2);-->
+        <!--var progress = document.createElement("progress");-->
+        <!--progress.id = "feiprogress";-->
+        <!--progress.max = "100";-->
+        <!--progress.value = "50";-->
+        <!--progress.style = "width:60%";-->
+        <!--div2.appendChild(progress);-->
+        <!--var label2 = document.createElement("label");-->
+        <!--label2.id = "feilabel";-->
+        <!--label2.style = "font-size:12px;color:Gray;";-->
+        <!--label2.innerText = "6 MB/88 MB 6 M/s";-->
+        <!--div2.appendChild(label2);-->
+    }
+
+</script>
+
+
+<script>
+    var Folderact = 0;
+    function FolderUpDetail()
+    {
+        if(Folderact == 0)
+        {
+            document.getElementById("UpDetailContent").style.display="none";
+            Folderact = 1;
+        }
+        else
+        {
+            document.getElementById("UpDetailContent").style.display="";
+            Folderact = 0;
+        }
+    }
+</script>
+
 <!--<div style="display:none">-->
     <!--<form action="/FileDown/" id="down" method="post">-->
         <!--<input type="text" name="downinfo" id="downpaths">-->
