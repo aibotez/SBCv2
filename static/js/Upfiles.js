@@ -17,6 +17,7 @@
 		start = (new Date()).getTime();
         file = event.target.files;
 		SelectFilesNums = file.length;
+		document.getElementById("Updetails").style.display="";
 		for (var i=0;i<SelectFilesNums;i++)
 		{
 			var div = document.getElementById("UpList");
