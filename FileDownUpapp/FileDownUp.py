@@ -21,7 +21,7 @@ class MakeLink():
 class FileUp():
     def __init__(self):
         self.FilesInfo=None
-        self.FilesStock = 'D:/documents/GitStock/SBCuserTest/FilesStock'
+        self.FilesStock = 'D:/documents/GitStock/SBCuserTest/FilesStock/'
         self.FileServerHome = 'D:/documents/GitStock/SBCuserTest/'
 
     def Upfile(self,feMd5,useremail,file_obj):
