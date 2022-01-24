@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'Vcodeapp',
     'LoginRegisterapp',
     'Usersapp',
-    'forgotpasswordapp'
+    'forgotpasswordapp',
+    'FileDownUpapp',
 ]
 
 MIDDLEWARE = [

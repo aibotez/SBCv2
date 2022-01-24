@@ -19,6 +19,7 @@ from . import view
 from Vcodeapp import views
 from LoginRegisterapp import viewsLR
 from forgotpasswordapp import views as viewFG
+from FileDownUpapp import views as viewDU
 
 urlpatterns = [
     path('', view.Home),
@@ -27,8 +28,8 @@ urlpatterns = [
     path('login/',viewsLR.login),
     path('register/',viewsLR.Register),
     path('home/',view.Home),
-    path('FileDown/',view.FileDown),
-    path('Upfile/',view.FileUp),
+    path('FileDown/',viewDU.FileDown),
+    path('Upfile/',viewDU.FileUp),
     path('GetVcode/',views.GetVcode),
     path('VerifyVcode/',views.VerifyVcode),
     path('registerVerify/',viewsLR.registerVerify),

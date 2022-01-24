@@ -1,5 +1,49 @@
     var file = "";
 	var start = (new Date()).getTime();
+	
+	
+	function GetFileMd5(file)
+	{
+		var blobSlice = File.prototype.slice || File.prototype.mozSlice || File.prototype.webkitSlice;
+		chunkSize = 2097152; // 每次读取2MB
+		var chunks = Math.ceil(file.size / chunkSize);
+		var currentChunk = 0;
+		spark = new SparkMD5.ArrayBuffer();
+        frOnload = function(e){
+            //log.innerHTML+="\n读取文件 "+parseInt(currentChunk+1)+" of "+chunks;
+                spark.append(e.target.result);
+                currentChunk++;
+                if (currentChunk < chunks)
+                    loadNext();
+                else
+				{
+					upload(file,spark.end());
+					//upload(file,spark.end());
+					//console.log(spark.end());
+
+					return spark.end();
+				}
+					//console.log(spark.end());
+					//return 123;
+                    //log.innerHTML+="\n读取完成！\n\n文件md5:"+spark.end()+"\n";
+            }
+		
+        frOnerror = function () {
+			return 'md5ReadFaile';
+            //upload(file,'md5ReadFaile');
+            };
+		function loadNext() {
+            var fileReader = new FileReader();
+            fileReader.onload = frOnload;
+            fileReader.onerror = frOnerror;
+            var start = currentChunk * chunkSize,
+            end = ((start + chunkSize) >= file.size) ? file.size : start + chunkSize;
+            fileReader.readAsArrayBuffer(blobSlice.call(file, start, end));
+            };
+		loadNext();
+
+	}
+	
 	function size_format(size)
 	{
 		if (size < 1024)
@@ -18,7 +62,9 @@
         file = event.target.files;
 		SelectFilesNums = file.length;
 		document.getElementById("Updetails").style.display="";
-		for (var i=0;i<SelectFilesNums;i++)
+
+
+		for (var i=0; i<SelectFilesNums;i++)
 		{
 			var div = document.getElementById("UpList");
 			var label = document.createElement("label");
@@ -39,13 +85,23 @@
 			label2.style = "font-size:12px;color:Gray;";
 			label2.innerText = "6 MB/88 MB 6 M/s";
 			div2.appendChild(label2);
-			upload(file[i]);
+			//var FileMd5 = '0';
+			FileMd5 = GetFileMd5(file[i]);
+			//var starti = (new Date()).getTime();
+			//while(FileMd5 == '0')
+			//{console.log(FileMd5)}
+			//console.log(FileMd5);
+			//GetFileMd5(file[i]);
+			//console.log(FileMd5);
+			//upload(file[i]);
 		}
         //console.log(file[0]);
 		
     }
 	
-	function upload(file) {
+	function upload(file,FileMd5) {
+		//var FileMd5 = GetFileMd5(file);
+		//console.log(FileMd5);
 		var cururl = 'http://'+window.location.host;
 		var UpUrl = cururl+'/Upfile/';
         //创建formData对象  初始化为form表单中的数据
@@ -53,7 +109,9 @@
         var formData = new FormData();
         //var fileInput = document.getElementById("myFile");
         //var file = fileInput.files[0];
+		//console.log(file.name)
         formData.append("file",file);
+		formData.append("FileMd5",FileMd5);
 		//alert(formData);
         // ajax异步上传
         $.ajax({
