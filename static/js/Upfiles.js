@@ -1,4 +1,5 @@
     var file = "";
+	var start = (new Date()).getTime();
 	function size_format(size)
 	{
 		if (size < 1024)
@@ -13,6 +14,7 @@
 		{return size/(1024*1024*1024*1024).toFixed(2) + 'TB'}	}
 	
 	function onChange(event) {
+		start = (new Date()).getTime();
         file = event.target.files;
 		SelectFilesNums = file.length;
 		for (var i=0;i<SelectFilesNums;i++)
@@ -36,12 +38,13 @@
 			label2.style = "font-size:12px;color:Gray;";
 			label2.innerText = "6 MB/88 MB 6 M/s";
 			div2.appendChild(label2);
+			upload(file[i]);
 		}
-        console.log(file[0]);
-		upload();
+        //console.log(file[0]);
+		
     }
 	
-	function upload() {
+	function upload(file) {
 		var cururl = 'http://'+window.location.host;
 		var UpUrl = cururl+'/Upfile/';
         //创建formData对象  初始化为form表单中的数据
@@ -49,8 +52,8 @@
         var formData = new FormData();
         //var fileInput = document.getElementById("myFile");
         //var file = fileInput.files[0];
-        formData.append("file", file[0]);
-		alert(formData);
+        formData.append("file",file);
+		//alert(formData);
         // ajax异步上传
         $.ajax({
             url: UpUrl,
@@ -79,13 +82,14 @@
 
 		//上传进度回调函数
 		function resultProgress(e) {
-			console.log(e);
-			console.log(file[0]);
+			//console.log(e);
+			//console.log(file);
 			if (e.lengthComputable) {
 				var percent = e.loaded / e.total * 100;
-
-				document.getElementById(file[0].name+"progress").value = percent;
-				document.getElementById(file[0].name+"label").innerText = size_format(e.loaded)+"/"+size_format(e.total);
+				var Upspeed = size_format(1000*e.loaded/((new Date()).getTime() - start))+"/s";
+				document.getElementById(file.name+"progress").value = percent;
+				document.getElementById(file.name+"label").innerText = size_format(e.loaded)+"/"+size_format(e.total)
+				+" "+Upspeed;
 				//$(".show_result").html(percent + "%");
 				var percentStr = String(percent);
 				if (percentStr == "100") {

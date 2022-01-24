@@ -124,10 +124,10 @@ def FileUp(request):
         return HttpResponseRedirect('/login/')
     # print(request.FILES.get("file"))
     file_obj = request.FILES.get("file")
-    print(file_obj)
-    # with open('static/uptest/' + file_obj.name, "wb") as f:
-    #     for chunk in file_obj.chunks(chunk_size=2 * 1024 * 1024):
-    #         f.write(chunk)
+    # print(file_obj)
+    with open('static/uptest/' + file_obj.name, "wb") as f:
+        for chunk in file_obj.chunks(chunk_size=2 * 1024 * 1024):
+            f.write(chunk)
     return HttpResponse('1')
 
 #os.symlink(src,dst)创建软链接
