@@ -40,6 +40,7 @@ class FileUp():
             srcfename = file_obj.name
             lk = MakeLink()
             lk.mklk(dst,srcfename,dstfename)
+            models.FilesStock.objects.create(FileMd5=feMd5, FileName=srcfename,FilePath=self.FilesStock + srcfename)
 
 class FileDU():
     def __init__(self):
