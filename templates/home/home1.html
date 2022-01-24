@@ -56,7 +56,9 @@
     </style>
 
 <!--<script src="https://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.2.min.js"></script>-->
-    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <!--<script src="https://code.jquery.com/jquery-3.1.1.js"></script>-->
+    <script src="/static/js/Upfiles.js"></script>
+    <script src="/static/js/jquery-3.1.1.js"></script>
 
 </head>
 <body>
@@ -76,7 +78,7 @@
         <div id="UpCom">
             <input type="file" id="SelectFiles" style="display:none" multiple="multiple" onchange="onChange(event)" />
             <!--<input type="file" name="files" multiple="multiple" id="upbutton" value="上传">-->
-            <button id="UP" value="上传" onclick="upload()">上传</button>
+            <button id="UP" value="上传" onclick="document.getElementById('SelectFiles').click()">上传</button>
         </div>
     </div>
 
@@ -147,7 +149,7 @@
     </div>
 </div>
 
-<div class="Updetail" style="border-radius:10px;border:2px solid #ECF0F1;width:370px;background-color:#FDFEFE">
+<div class="Updetail" style="border-radius:10px;border:3px solid #ECF0F1;width:370px;background-color:#FDFEFE">
     <div class="changediv" style="height:50px;" onclick="FolderUpDetail()">
         <label style="width:100%;line-height:50px">上传标题</label>
     </div>
@@ -155,13 +157,13 @@
     <div id="UpDetailContent">
         <div style="overflow:hidden;height:420px;width:100%;">
             <div id="UpList" style="width:100%;">
-                <div style="width:100%"><label>abc.pdf</label></div>
-                <div style="width:100%" class="container">
-                    <progress value= '70'  max= '100' style="width:60%"></progress>
-                    <label style="font-size:12px;color:Gray;">2 MB/32 MB</label>
-                    &nbsp;
-                    <label style="font-size:12px;color:Gray;">3MB/s</label>
-                </div>
+                <!--<div style="width:100%"><label>abc.pdf</label></div>-->
+                <!--<div style="width:100%" class="container">-->
+                    <!--<progress value= '70'  max= '100' style="width:60%"></progress>-->
+                    <!--<label style="font-size:12px;color:Gray;">2 MB/32 MB</label>-->
+                    <!--&nbsp;-->
+                    <!--<label style="font-size:12px;color:Gray;">3MB/s</label>-->
+                <!--</div>-->
             </div>
         </div>
 
@@ -174,36 +176,36 @@
     </div>
 </div>
 <script src="/static/js/Down.js"></script>
-<script src="/static/js/Upfiles.js"></script>
+
 
 
 <script>
 for(var i=0;i<6;i++)
 {
-        var div = document.getElementById("UpList");
-        var label = document.createElement("label");
-        label.innerText = i+"test.py";
-        div.appendChild(label);
-        var div2 = document.createElement("div");
-        div2.style = "width:100%";
-        div2.class = "container";
-        div.appendChild(div2);
-        var progress = document.createElement("progress");
-        progress.id = i+"progress";
-        progress.max = "100";
-        progress.value = "50";
-        progress.style = "width:60%";
-        div2.appendChild(progress);
-        var label2 = document.createElement("label");
-        label2.id = i+"label";
-        label2.style = "font-size:12px;color:Gray;";
-        label2.innerText = "6 MB/88 MB 6 M/s";
-        div2.appendChild(label2);
+        <!--var div = document.getElementById("UpList");-->
+        <!--var label = document.createElement("label");-->
+        <!--label.innerText = i+"test.py";-->
+        <!--div.appendChild(label);-->
+        <!--var div2 = document.createElement("div");-->
+        <!--div2.style = "width:100%";-->
+        <!--div2.class = "container";-->
+        <!--div.appendChild(div2);-->
+        <!--var progress = document.createElement("progress");-->
+        <!--progress.id = i+"progress";-->
+        <!--progress.max = "100";-->
+        <!--progress.value = "50";-->
+        <!--progress.style = "width:60%";-->
+        <!--div2.appendChild(progress);-->
+        <!--var label2 = document.createElement("label");-->
+        <!--label2.id = i+"label";-->
+        <!--label2.style = "font-size:12px;color:Gray;";-->
+        <!--label2.innerText = "6 MB/88 MB 6 M/s";-->
+        <!--div2.appendChild(label2);-->
         }
 </script>
 
     <script>
-      function onChange(event) {
+      function onChange1(event) {
         const file = event.target.files;
         console.log(file.length);
         <!--const reader = new FileReader();-->
@@ -213,61 +215,6 @@ for(var i=0;i<6;i++)
         <!--reader.readAsDataURL(file);-->
       }
     </script>
-
-<script>
-    function upload(){
-        document.getElementById("SelectFiles").click();
-        <!--var div = document.getElementById("UpCom");-->
-        <!--var inputfiles = document.createElement("input");-->
-        <!--inputfiles.setAttribute('style','display:none');-->
-
-        <!--inputfiles.type = "file";-->
-        <!--inputfiles.name = "files";-->
-        <!--&lt;!&ndash;inputfiles.multiple="multiple";&ndash;&gt;-->
-        <!--inputfiles.id="upfiles";-->
-        <!--inputfiles.onchange="onChange(event)";-->
-        <!--div.appendChild(inputfiles);-->
-
-        <!--inputfiles.click();-->
-        <!--console.log(inputfiles.files)-->
-
-
-        <!--document.getElementById(0+"progress").value=0;-->
-        <!--for(var i=0;i<100;i++)-->
-        <!--{-->
-            <!--var start = (new Date()).getTime();-->
-            <!--while((new Date()).getTime() - start < 1000)-->
-            <!--{}-->
-            <!--console.log(i);-->
-            <!--document.getElementById(0+"progress").value=i;-->
-            <!--&lt;!&ndash;for(var j=0;j<6;j++)&ndash;&gt;-->
-            <!--&lt;!&ndash;{&ndash;&gt;-->
-                <!--&lt;!&ndash;document.getElementById(0+"progress").value=i;&ndash;&gt;-->
-            <!--&lt;!&ndash;}&ndash;&gt;-->
-        <!--}-->
-
-        <!--var div = document.getElementById("UpList");-->
-        <!--var label = document.createElement("label");-->
-        <!--label.innerText = "test.py";-->
-        <!--div.appendChild(label);-->
-        <!--var div2 = document.createElement("div");-->
-        <!--div2.style = "width:100%";-->
-        <!--div2.class = "container";-->
-        <!--div.appendChild(div2);-->
-        <!--var progress = document.createElement("progress");-->
-        <!--progress.id = "feiprogress";-->
-        <!--progress.max = "100";-->
-        <!--progress.value = "50";-->
-        <!--progress.style = "width:60%";-->
-        <!--div2.appendChild(progress);-->
-        <!--var label2 = document.createElement("label");-->
-        <!--label2.id = "feilabel";-->
-        <!--label2.style = "font-size:12px;color:Gray;";-->
-        <!--label2.innerText = "6 MB/88 MB 6 M/s";-->
-        <!--div2.appendChild(label2);-->
-    }
-
-</script>
 
 
 <script>

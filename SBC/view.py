@@ -15,16 +15,16 @@ from PIL import Image
 from SBC import FileDownUp
 
 def size_format(size):
-    if size < 1000:
+    if size < 1024:
         return '%i' % size + 'size'
-    elif 1000 <= size < 1000000:
-        return '%.1f' % float(size/1000) + 'KB'
-    elif 1000000 <= size < 1000000000:
-        return '%.1f' % float(size/1000000) + 'MB'
-    elif 1000000000 <= size < 1000000000000:
-        return '%.1f' % float(size/1000000000) + 'GB'
-    elif 1000000000000 <= size:
-        return '%.1f' % float(size/1000000000000) + 'TB'
+    elif 1024 <= size < 1024*1024:
+        return '%.1f' % float(size/1024) + 'KB'
+    elif 1024*1024 <= size < 1024*1024*1024:
+        return '%.1f' % float(size/(1024*1024)) + 'MB'
+    elif 1024*1024*1024 <= size < 1024*1024*1024*1024:
+        return '%.1f' % float(size/(1024*1024*1024)) + 'GB'
+    elif 1024*1024*1024*1024 <= size:
+        return '%.1f' % float(size/(1024*1024*1024*1024)) + 'TB'
 def filesget(paths):
     path = paths[0]
     serverpath = paths[1]
@@ -116,5 +116,18 @@ def FileDown(request):
     FileDowUpCOm = FileDownUp.FileDU()
     res = FileDowUpCOm.Down(downinfo)
     return res
+
+@require_POST
+def FileUp(request):
+    LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
+    if LoginRes['res']:
+        return HttpResponseRedirect('/login/')
+    # print(request.FILES.get("file"))
+    file_obj = request.FILES.get("file")
+    print(file_obj)
+    # with open('static/uptest/' + file_obj.name, "wb") as f:
+    #     for chunk in file_obj.chunks(chunk_size=2 * 1024 * 1024):
+    #         f.write(chunk)
+    return HttpResponse('1')
 
 #os.symlink(src,dst)创建软链接

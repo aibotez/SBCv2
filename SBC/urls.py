@@ -28,6 +28,7 @@ urlpatterns = [
     path('register/',viewsLR.Register),
     path('home/',view.Home),
     path('FileDown/',view.FileDown),
+    path('Upfile/',view.FileUp),
     path('GetVcode/',views.GetVcode),
     path('VerifyVcode/',views.VerifyVcode),
     path('registerVerify/',viewsLR.registerVerify),
