@@ -59,7 +59,9 @@
     <!--<script src="https://code.jquery.com/jquery-3.1.1.js"></script>-->
     <script src="/static/js/Upfiles.js"></script>
     <script src="/static/js/jquery-3.1.1.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/spark-md5/3.0.0/spark-md5.min.js"></script>
+    <script src="/static/js//spark-md5.min.js"></script>
+    <script src="/static/js//SendMessegetoSer.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/spark-md5/3.0.0/spark-md5.min.js"></script>-->
 
 </head>
 <body>
@@ -91,6 +93,7 @@
             {% for navi in navlist %}
                 {% if navi.path == navlastpath %}
                     <div>
+                        <label style="display:none;" id="CurPath">{{navi.path}}</label>
                         <a id={{navi.path}} style="color:#000000;font-size:15px;text-decoration:none;">&ensp;{{navi.navname}}</a>
                     </div>
                 {% else %}
@@ -176,6 +179,9 @@
 
     </div>
 </div>
+
+
+
 <script src="/static/js/Down.js"></script>
 
 
@@ -242,18 +248,18 @@
         history.pushState(stateObject,title,newUrl);
 
 
-<!--        $.ajax({-->
-<!--        async: false,-->
-<!--        type: "POST",-->
-<!--        url: '/test/',-->
-<!--        data: {"ids": act.id},-->
-<!--        dataType: "json",-->
-<!--        success: function () { },-->
-<!--        error: function () { },-->
-<!--        complete: function () {-->
-<!--        $("#FilesData").load(cururl,datas);-->
-<!--        }-->
-<!--        })-->
+        <!--$.ajax({-->
+        <!--async: false,-->
+        <!--type: "POST",-->
+        <!--url: '/test/',-->
+        <!--data: {"ids": act.id},-->
+        <!--dataType: "json",-->
+        <!--success: function () { },-->
+        <!--error: function () { },-->
+        <!--complete: function () {-->
+        <!--$("#FilesData").load(cururl,datas);-->
+        <!--}-->
+        <!--})-->
     }
 </script>
 

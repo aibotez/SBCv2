@@ -3,6 +3,7 @@ from django.utils.encoding import escape_uri_path
 import os
 
 from FileDownUpapp import models
+from SBC import GetUserPath
 
 
 
@@ -23,6 +24,27 @@ class FileUp():
         self.FilesInfo=None
         self.FilesStock = 'D:/documents/GitStock/SBCuserTest/FilesStock/'
         self.FileServerHome = 'D:/documents/GitStock/SBCuserTest/'
+        self.getuserpath = GetUserPath.GetUserPath()
+
+    def UpfileCheck(self,redit,useremail):
+        feMd5 = redit['FileMd5']
+        userpath = redit['CurPath']
+        if models.FilesStock.objects.filter(FileMd5=feMd5).exists():
+            dst = self.getuserpath.getuserserpath(useremail,userpath)
+            dstfename = redit['FileName']
+            srcfename = models.FilesStock.objects.filter(FileMd5=feMd5).FileName
+            lk = MakeLink()
+            lk.mklk(dst,srcfename,dstfename)
+            return {'exist':1}
+        else:
+            FileStart = 0
+            if feMd5 in os.listdir(self.FilesStock):
+                FileStart = os.path.getsize(feMd5)
+            FeInfo = {
+                'exist':0,
+                'FileStart':FileStart
+            }
+            return FeInfo
 
     def Upfile(self,feMd5,useremail,file_obj):
         if models.FilesStock.objects.filter(FileMd5=feMd5).exists():

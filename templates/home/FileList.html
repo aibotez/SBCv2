@@ -12,6 +12,7 @@
             {% for navi in navlist %}
                 {% if navi.path == navlastpath %}
                     <div>
+                        <label style="display:none;" id="CurPath">{{navi.path}}</label>
                         <a id={{navi.path}} style="color:#000000;font-size:15px;text-decoration:none;">&ensp;{{navi.navname}}</a>
                     </div>
                 {% else %}

@@ -23,6 +23,17 @@ def FileDown(request):
     res = FileDowUpCOm.Down(downinfo)
     return res
 
+
+@require_POST
+def CheckFile(request):
+    LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
+    if LoginRes['res']:
+        return HttpResponseRedirect('/login/')
+
+    FileDowUpCOm = FileDownUp.FileUp()
+    res = FileDowUpCOm.UpfileCheck(request.POST.dict(),LoginRes['useremail'])
+    return JsonResponse(res)
+
 @require_POST
 def FileUp(request):
     LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)

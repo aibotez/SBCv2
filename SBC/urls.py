@@ -30,6 +30,7 @@ urlpatterns = [
     path('home/',view.Home),
     path('FileDown/',viewDU.FileDown),
     path('Upfile/',viewDU.FileUp),
+    path('CheckFile/',viewDU.CheckFile),
     path('GetVcode/',views.GetVcode),
     path('VerifyVcode/',views.VerifyVcode),
     path('registerVerify/',viewsLR.registerVerify),

@@ -14,6 +14,11 @@ class GetUserPath():
         # print(filedownpath,filedownname)
         return {'fename':filedownname,'fepath':filedownpath}
 
+    def getuserserpath(self,useremail,userpath):
+        spath = userpath.replace('/home', '')
+        serverpath = self.ServerHomePath + useremail + spath
+        return serverpath
+
     def userpath(self,req,LoginRes):
         useremail = LoginRes['useremail']
         if 'path' not in req:

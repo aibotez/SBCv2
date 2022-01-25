@@ -102,6 +102,20 @@
 	function upload(file,FileMd5) {
 		//var FileMd5 = GetFileMd5(file);
 		//console.log(FileMd5);
+		var CurPath = document.getElementById("CurPath").innerText;
+		urlpath = "/CheckFile/";
+		data={
+			'CurPath':CurPath,
+			'FileName':file.name,
+			'FileMd5':FileMd5
+		};
+		var CheckFileRes = PostMethod(urlpath,data,0);
+		console.log(CheckFileRes);
+		if(CheckFileRes.exist)
+		{
+			console.log('秒传');
+			return;
+		}
 		var cururl = 'http://'+window.location.host;
 		var UpUrl = cururl+'/Upfile/';
         //创建formData对象  初始化为form表单中的数据
