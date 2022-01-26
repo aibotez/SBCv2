@@ -15,6 +15,8 @@ class MakeLink():
     def mklk(self,dst,srcfename,dstfename):
         # dstDirs = r'D:\documents\GitStock\SBCuserTest\2290227486@qq.com'
         fe = dst+'/'+dstfename
+        if os.path.exists(fe):
+            os.remove(fe)
         os.symlink(self.FilesStock+'/'+srcfename,fe)
 
 
@@ -32,37 +34,56 @@ class FileUp():
         if models.FilesStock.objects.filter(FileMd5=feMd5).exists():
             dst = self.getuserpath.getuserserpath(useremail,userpath)
             dstfename = redit['FileName']
-            srcfename = models.FilesStock.objects.filter(FileMd5=feMd5).FileName
+            srcfename = models.FilesStock.objects.get(FileMd5=feMd5).FileName
             lk = MakeLink()
             lk.mklk(dst,srcfename,dstfename)
             return {'exist':1}
         else:
             FileStart = 0
             if feMd5 in os.listdir(self.FilesStock):
-                FileStart = os.path.getsize(feMd5)
+                FileStart = os.path.getsize(self.FilesStock+feMd5)
             FeInfo = {
                 'exist':0,
                 'FileStart':FileStart
             }
             return FeInfo
 
-    def Upfile(self,feMd5,useremail,file_obj):
-        if models.FilesStock.objects.filter(FileMd5=feMd5).exists():
-            dst =self.FileServerHome+useremail
-            dstfename = file_obj.name
-            srcfename = models.FilesStock.objects.filter(FileMd5=feMd5).FileName
-            lk = MakeLink()
-            lk.mklk(dst,srcfename,dstfename)
-        else:
-            with open(self.FilesStock + file_obj.name, "wb") as f:
-                for chunk in file_obj.chunks(chunk_size=2 * 1024 * 1024):
-                    f.write(chunk)
-            dst =self.FileServerHome+useremail
-            dstfename = file_obj.name
-            srcfename = file_obj.name
+    def Upfile(self,redit,useremail,file_obj):
+        feMd5 = redit['FileMd5']
+        userpath = redit['CurPath']
+        with open(self.FilesStock + feMd5, "ab") as f:
+            # f.seek(0,2)
+            for chunk in file_obj.chunks(chunk_size=2 * 1024 * 1024):
+                f.write(chunk)
+        # print(redit['FileSize'],os.path.getsize(self.FilesStock + feMd5))
+        # print(type(redit['isLastChunk']))
+        # print(self.FilesStock + redit['FileName'])
+        if (int(redit['isLastChunk'])):
+            os.rename(self.FilesStock + feMd5,self.FilesStock + redit['FileName'])
+            dst = self.getuserpath.getuserserpath(useremail,userpath)
+            dstfename = redit['FileName']
+            srcfename = redit['FileName']
             lk = MakeLink()
             lk.mklk(dst,srcfename,dstfename)
             models.FilesStock.objects.create(FileMd5=feMd5, FileName=srcfename,FilePath=self.FilesStock + srcfename)
+
+        #
+        # if models.FilesStock.objects.filter(FileMd5=feMd5).exists():
+        #     dst =self.FileServerHome+useremail
+        #     dstfename = file_obj.name
+        #     srcfename = models.FilesStock.objects.filter(FileMd5=feMd5).FileName
+        #     lk = MakeLink()
+        #     lk.mklk(dst,srcfename,dstfename)
+        # else:
+        #     with open(self.FilesStock + file_obj.name, "wb") as f:
+        #         for chunk in file_obj.chunks(chunk_size=2 * 1024 * 1024):
+        #             f.write(chunk)
+        #     dst =self.FileServerHome+useremail
+        #     dstfename = file_obj.name
+        #     srcfename = file_obj.name
+        #     lk = MakeLink()
+        #     lk.mklk(dst,srcfename,dstfename)
+        #     models.FilesStock.objects.create(FileMd5=feMd5, FileName=srcfename,FilePath=self.FilesStock + srcfename)
 
 class FileDU():
     def __init__(self):

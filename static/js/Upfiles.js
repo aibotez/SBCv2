@@ -1,6 +1,8 @@
     var file = "";
 	var start = (new Date()).getTime();
-	
+	var WaitUpNums = 0;
+	var FinshUpNums = 0;
+	var UpManage = new Array();
 	
 	function GetFileMd5(file)
 	{
@@ -57,13 +59,32 @@
 		else(1024*1024*1024*1024 <= size)
 		{return size/(1024*1024*1024*1024).toFixed(2) + 'TB'}	}
 	
+	function upcontrol(conid)
+	{
+
+		var fileid = conid.id;
+		var filei = UpManage[fileid]['file'];
+		var upact = UpManage[fileid]['isup'];
+		if (upact)
+		{
+			UpManage[fileid]['isup']=0;
+			
+		}
+		else{
+			UpManage[fileid]['isup']=1;
+			GetFileMd5(filei);
+		}
+		console.log(UpManage[fileid]['isup']);
+	}
+	
 	function onChange(event) {
+		var CurPath = document.getElementById("CurPath").innerText;
 		start = (new Date()).getTime();
         file = event.target.files;
 		SelectFilesNums = file.length;
+		WaitUpNums = WaitUpNums+SelectFilesNums;
 		document.getElementById("Updetails").style.display="";
-
-
+		document.getElementById("UpdetailsTitle").innerText = WaitUpNums+"个文件正在上传";
 		for (var i=0; i<SelectFilesNums;i++)
 		{
 			var div = document.getElementById("UpList");
@@ -71,20 +92,34 @@
 			label.innerText = file[i].name;
 			div.appendChild(label);
 			var div2 = document.createElement("div");
-			div2.style = "width:100%";
+			div2.style = "width:100%;padding:0px 0px";
 			div2.class = "container";
 			div.appendChild(div2);
 			var progress = document.createElement("progress");
-			progress.id = file[i].name+"progress";
+			progress.id = CurPath+file[i].name+"progress";
 			progress.max = "100";
 			progress.value = "0";
-			progress.style = "width:60%";
+			//progress.style = "width:60%;color:lightpink;";
+			progress.style = "overflow:hidden;border-radius:1em;width:60%;color:lightpink;";
 			div2.appendChild(progress);
 			var label2 = document.createElement("label");
-			label2.id = file[i].name+"label";
-			label2.style = "font-size:12px;color:Gray;";
-			label2.innerText = "6 MB/88 MB 6 M/s";
+			label2.id = CurPath+file[i].name+"label";
+			//label2.style = "display:table-cell;vertical-align:middle;font-size:12px;color:black;";
+			label2.style = "position:absolute;left:10px;font-size:15px;color:black;";
+			label2.innerText = "--/--";
 			div2.appendChild(label2);
+			var UpControl = document.createElement("input");
+			UpControl.type="Button";
+			UpControl.id = CurPath+file[i].name+"UpControl";
+			//UpControl.onclick = "upcontrol(this)";
+			UpControl.setAttribute("onclick","upcontrol(this)");
+			UpControl.value="暂停/继续";
+			
+			div2.appendChild(UpControl);
+			
+			UpManage[CurPath+file[i].name+"UpControl"] = {'isUp':1,'file':file[i]};
+			
+			//UpManage.add(CurPath+file[i].name,{'isUp':1,'file':file[i]});
 			//var FileMd5 = '0';
 			FileMd5 = GetFileMd5(file[i]);
 			//var starti = (new Date()).getTime();
@@ -99,9 +134,53 @@
 		
     }
 	
+	function upfilechunk(file,CurPath,FileMd5,startchunk)
+	{
+		const chunkSize = 2*1024*1024;
+		uploadact(startchunk);
+		function uploadact(startchunk)
+		{
+			start = (new Date()).getTime();
+			var isLastChunk = 0;
+			  // 上传完成
+			if (startchunk >= file.size) {
+				FinshUpNums = FinshUpNums+1;
+				document.getElementById("UpdetailsTitle").innerText = WaitUpNums+"个文件正在上传! "+
+				"已完成"+FinshUpNums+"个文件";
+				RefreshFiles({'id':CurPath});
+				return;
+			}
+			let endchunk = (startchunk + chunkSize > file.size) ? file.size : (startchunk + chunkSize);
+			let fd = new FormData();
+			fd.append("file",file.slice(startchunk, endchunk));
+			if(endchunk>= file.size)
+			{isLastChunk = 1}
+			fd.append("FileMd5",FileMd5);
+			fd.append('CurPath',CurPath);
+			fd.append('FileName',file.name);
+			fd.append('isLastChunk',isLastChunk);
+			var fileids = CurPath+file.name+"UpControl";
+			
+			let xhr = new XMLHttpRequest();
+			xhr.open('post', '/Upfile/', true);
+			xhr.onload = function() {
+				if (this.readyState == 4 && this.status == 200 && UpManage[fileids]['isup']==1) {
+					let progress = document.getElementById(CurPath+file.name+"progress");
+					progress.max = file.size;
+					progress.value = endchunk;
+					var Upspeed = size_format(1000*(endchunk-startchunk)/((new Date()).getTime() - start))+"/s";
+					document.getElementById(CurPath+file.name+"label").innerText = size_format(endchunk)+"/"+size_format(file.size)+" "+Upspeed;
+					uploadact(endchunk);
+				}
+			}
+			xhr.send(fd);
+		}
+	}
+	
 	function upload(file,FileMd5) {
 		//var FileMd5 = GetFileMd5(file);
 		//console.log(FileMd5);
+		//console.log(UpManage);
 		var CurPath = document.getElementById("CurPath").innerText;
 		urlpath = "/CheckFile/";
 		data={
@@ -113,9 +192,22 @@
 		console.log(CheckFileRes);
 		if(CheckFileRes.exist)
 		{
-			console.log('秒传');
+			var progress = document.getElementById(CurPath+file.name+"progress");
+			progress.max = file.size;
+			progress.value = file.size;
+			RefreshFiles({'id':CurPath});
+			FinshUpNums = FinshUpNums+1;
+			document.getElementById("UpdetailsTitle").innerText = WaitUpNums+"个文件正在上传! "+"已完成"+FinshUpNums+"个文件";
+			document.getElementById(CurPath+file.name+"label").innerText = size_format(file.size)+"/"+size_format(file.size)+" 秒传";
 			return;
 		}
+		var startchunk = CheckFileRes.FileStart;
+		upfilechunk(file,CurPath,FileMd5,startchunk);
+		
+
+	}
+	function backup()
+	{
 		var cururl = 'http://'+window.location.host;
 		var UpUrl = cururl+'/Upfile/';
         //创建formData对象  初始化为form表单中的数据

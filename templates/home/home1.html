@@ -59,8 +59,9 @@
     <!--<script src="https://code.jquery.com/jquery-3.1.1.js"></script>-->
     <script src="/static/js/Upfiles.js"></script>
     <script src="/static/js/jquery-3.1.1.js"></script>
-    <script src="/static/js//spark-md5.min.js"></script>
-    <script src="/static/js//SendMessegetoSer.js"></script>
+    <script src="/static/js/spark-md5.min.js"></script>
+    <script src="/static/js/SendMessegetoSer.js"></script>
+    <script src="/static/js/Refresh.js"></script>
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/spark-md5/3.0.0/spark-md5.min.js"></script>-->
 
 </head>
@@ -155,7 +156,8 @@
 
 <div class="Updetail" id="Updetails" style="display:none;border-radius:10px;border:3px solid #ECF0F1;width:420px;background-color:#FDFEFE">
     <div class="changediv" style="height:50px;" onclick="FolderUpDetail()">
-        <label style="width:100%;line-heighlabel>
+        <!--<br>-->
+        <label id="UpdetailsTitle" style="text-align: center;height:100%;width:100%;line-height:50px"></label>
     </div>
     <div style="border-bottom:1px solid #CCC"></div>
     <div id="UpDetailContent">
@@ -236,7 +238,7 @@
 
 <script>
 
-    function RefreshFiles(act)
+    function RefreshFiles1(act)
     {
         var encodeurl = encodeURIComponent(act.id)
         var cururl = 'http://'+window.location.host+'/RefreshFiles/';

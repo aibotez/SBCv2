@@ -39,13 +39,16 @@ def FileUp(request):
     LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
     if LoginRes['res']:
         return HttpResponseRedirect('/login/')
-    # print(request.FILES.get("file"))
     file_obj = request.FILES.get("file")
-    FileMd5 = request.POST['FileMd5']
-    # print(file_obj)
-    print(FileMd5)
-    return HttpResponse('1')
-    with open('static/uptest/' + file_obj.name, "wb") as f:
-        for chunk in file_obj.chunks(chunk_size=2 * 1024 * 1024):
-            f.write(chunk)
+    FileDowUpCOm = FileDownUp.FileUp()
+    FileDowUpCOm.Upfile(request.POST.dict(),LoginRes['useremail'],file_obj)
+    # # print(request.FILES.get("file"))
+    # file_obj = request.FILES.get("file")
+    # FileMd5 = request.POST['FileMd5']
+    # # print(file_obj)
+    # print(FileMd5)
+    # return HttpResponse('1')
+    # with open('static/uptest/' + file_obj.name, "wb") as f:
+    #     for chunk in file_obj.chunks(chunk_size=2 * 1024 * 1024):
+    #         f.write(chunk)
     return HttpResponse('1')
