@@ -4,7 +4,7 @@
 	var FinshUpNums = 0;
 	var UpManage = new Array();
 	
-	function GetFileMd5(file)
+	function GetFileMd5(file,Manageid,CurPath)
 	{
 		var blobSlice = File.prototype.slice || File.prototype.mozSlice || File.prototype.webkitSlice;
 		chunkSize = 2097152; // 每次读取2MB
@@ -16,9 +16,14 @@
                 spark.append(e.target.result);
                 currentChunk++;
                 if (currentChunk < chunks)
-                    loadNext();
+				{
+					document.getElementById(CurPath+file.name+"label").innerText ="正在扫描文件 "+(100*currentChunk/chunks).toFixed(2)+"%";
+					loadNext();
+				}
+                    
                 else
 				{
+					UpManage[Manageid]['md5']=spark.end();
 					upload(file,spark.end());
 					//upload(file,spark.end());
 					//console.log(spark.end());
@@ -55,26 +60,32 @@
 		if (1024*1024 <= size && size< 1024*1024*1024)
 		{return (size/(1024*1024)).toFixed(2) + 'MB'}
 		if (1024*1024*1024 <= size && size< 1024*1024*1024*1024)
-		{return size/(1024*1024*1024).toFixed(2) + 'GB'}
+		{return (size/(1024*1024*1024)).toFixed(2) + 'GB'}
 		else(1024*1024*1024*1024 <= size)
-		{return size/(1024*1024*1024*1024).toFixed(2) + 'TB'}	}
+		{return (size/(1024*1024*1024*1024)).toFixed(2) + 'TB'}	}
 	
 	function upcontrol(conid)
 	{
 
 		var fileid = conid.id;
 		var filei = UpManage[fileid]['file'];
-		var upact = UpManage[fileid]['isup'];
-		if (upact)
+		var upact = UpManage[fileid]['isUp'];
+		//console.log(upact);
+		if (upact == 1)
 		{
-			UpManage[fileid]['isup']=0;
+			UpManage[fileid]['isUp']=0;
+			document.getElementById(fileid).name = 0;
 			
 		}
 		else{
-			UpManage[fileid]['isup']=1;
-			GetFileMd5(filei);
+			UpManage[fileid]['isUp']=1;
+			document.getElementById(fileid).name = 1;
+			FileMd5 = UpManage[fileid]['md5'];
+			file = UpManage[fileid]['file'];
+			upload(file,FileMd5);
+			//GetFileMd5(filei);
 		}
-		console.log(UpManage[fileid]['isup']);
+		//console.log(UpManage[fileid]['isUp']);
 	}
 	
 	function onChange(event) {
@@ -114,6 +125,7 @@
 			//UpControl.onclick = "upcontrol(this)";
 			UpControl.setAttribute("onclick","upcontrol(this)");
 			UpControl.value="暂停/继续";
+			UpControl.name=1;
 			
 			div2.appendChild(UpControl);
 			
@@ -121,7 +133,7 @@
 			
 			//UpManage.add(CurPath+file[i].name,{'isUp':1,'file':file[i]});
 			//var FileMd5 = '0';
-			FileMd5 = GetFileMd5(file[i]);
+			FileMd5 = GetFileMd5(file[i],CurPath+file[i].name+"UpControl",CurPath);
 			//var starti = (new Date()).getTime();
 			//while(FileMd5 == '0')
 			//{console.log(FileMd5)}
@@ -159,13 +171,12 @@
 			fd.append('CurPath',CurPath);
 			fd.append('FileName',file.name);
 			fd.append('isLastChunk',isLastChunk);
-			var fileids = CurPath+file.name+"UpControl";
-			
 			let xhr = new XMLHttpRequest();
 			xhr.open('post', '/Upfile/', true);
 			xhr.onload = function() {
-				if (this.readyState == 4 && this.status == 200 && UpManage[fileids]['isup']==1) {
+				if (this.readyState == 4 && this.status == 200 && UpManage[CurPath+file.name+"UpControl"]['isUp']==1) {
 					let progress = document.getElementById(CurPath+file.name+"progress");
+					//console.log(document.getElementById(CurPath+file.name+"UpControl").name);
 					progress.max = file.size;
 					progress.value = endchunk;
 					var Upspeed = size_format(1000*(endchunk-startchunk)/((new Date()).getTime() - start))+"/s";
@@ -189,7 +200,7 @@
 			'FileMd5':FileMd5
 		};
 		var CheckFileRes = PostMethod(urlpath,data,0);
-		console.log(CheckFileRes);
+		//console.log(CheckFileRes);
 		if(CheckFileRes.exist)
 		{
 			var progress = document.getElementById(CurPath+file.name+"progress");
