@@ -43,6 +43,7 @@ class FileUp():
 
     def UpfileCheck(self,redit,useremail):
         feMd5 = redit['FileMd5']
+        print(feMd5)
         userpath = redit['CurPath']
         if models.FilesStock.objects.filter(FileMd5=feMd5).exists():
             dst = self.getuserpath.getuserserpath(useremail,userpath)

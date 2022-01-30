@@ -4,13 +4,63 @@
 	var FinshUpNums = 0;
 	var UpManage = new Array();
 	
+	
+	function GetFileMd51(file)
+	{
+		var blobSlice = File.prototype.slice || File.prototype.mozSlice || File.prototype.webkitSlice;
+		var chunkSize = 2097152; // 每次读取2MB
+		var chunks = Math.ceil(file.size / chunkSize);
+		var currentChunk = 0;
+		var spark = new SparkMD5.ArrayBuffer();
+        frOnload = function(e){
+            //log.innerHTML+="\n读取文件 "+parseInt(currentChunk+1)+" of "+chunks;
+                spark.append(e.target.result);
+                currentChunk++;
+                if (currentChunk < chunks)
+				{
+					//document.getElementById(CurPath+file.name+"label").innerText ="正在扫描文件 "+(100*currentChunk/chunks).toFixed(2)+"%";
+					loadNext();
+				}
+                    
+                else
+				{
+					//UpManage[Manageid]['md5']=spark.end();
+					console.log(spark.end());
+					console.log(file);
+
+
+					return spark.end();
+				}
+					//console.log(spark.end());
+					//return 123;
+                    //log.innerHTML+="\n读取完成！\n\n文件md5:"+spark.end()+"\n";
+            }
+		
+        frOnerror = function () {
+			return 'md5ReadFaile';
+            //upload(file,'md5ReadFaile');
+            };
+		function loadNext() {
+            var fileReader = new FileReader();
+            fileReader.onload = frOnload;
+            fileReader.onerror = frOnerror;
+            var start = currentChunk * chunkSize,
+            end = ((start + chunkSize) >= file.size) ? file.size : start + chunkSize;
+            fileReader.readAsArrayBuffer(blobSlice.call(file, start, end));
+            };
+		loadNext();
+
+	}
+	
+	
+	
 	function GetFileMd5(file,Manageid,CurPath)
 	{
 		var blobSlice = File.prototype.slice || File.prototype.mozSlice || File.prototype.webkitSlice;
-		chunkSize = 2097152; // 每次读取2MB
+		var chunkSize = 2097152; // 每次读取2MB
 		var chunks = Math.ceil(file.size / chunkSize);
 		var currentChunk = 0;
-		spark = new SparkMD5.ArrayBuffer();
+		var spark = new SparkMD5.ArrayBuffer();
         frOnload = function(e){
             //log.innerHTML+="\n读取文件 "+parseInt(currentChunk+1)+" of "+chunks;
                 spark.append(e.target.result);
@@ -23,8 +73,9 @@
                     
                 else
 				{
-					UpManage[Manageid]['md5']=spark.end();
-					upload(file,spark.end());
+					var FileMd5 = spark.end().toString();
+					UpManage[Manageid]['md5']=FileMd5;
+					upload(file,FileMd5);
 					//upload(file,spark.end());
 					//console.log(spark.end());
 
@@ -95,6 +146,7 @@
 		var CurPath = document.getElementById("CurPath").innerText;
 		start = (new Date()).getTime();
         file = event.target.files;
+		
 		SelectFilesNums = file.length;
 		WaitUpNums = WaitUpNums+SelectFilesNums;
 		document.getElementById("Updetails").style.display="";
@@ -166,8 +218,8 @@
 			
 			//UpManage.add(CurPath+file[i].name,{'isUp':1,'file':file[i]});
 			//var FileMd5 = '0';
-			
-			FileMd5 = GetFileMd5(file[i],CurPath+file[i].name+"UpControl",CurPath);
+			//GetFileMd51(file[i]);
+			GetFileMd5(file[i],CurPath+file[i].name+"UpControl",CurPath);
 			
 			//var starti = (new Date()).getTime();
 			//while(FileMd5 == '0')
@@ -192,7 +244,8 @@
 			  // 上传完成
 			if (startchunk >= file.size) {
 				FinshUpNums = FinshUpNums+1;
-				
+				document.getElementById(CurPath+file.name+"UpControl").disabled = true;
+				document.getElementById(CurPath+file.name+"UpControl").style = "background-image: url(/static/img/finish.jpg);width: 23px;height: 23px;background-size:23px 23px; border: 0;";
 				document.getElementById("UpdetailsTitle").innerText = WaitUpNums+"个文件正在上传! "+
 				"已完成"+FinshUpNums+"个文件";
 				RefreshFiles({'id':CurPath});
