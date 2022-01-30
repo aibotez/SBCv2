@@ -1,6 +1,6 @@
 from django.http import StreamingHttpResponse,FileResponse
 from django.utils.encoding import escape_uri_path
-import os
+import os,hashlib
 
 from FileDownUpapp import models
 from SBC import GetUserPath
@@ -28,6 +28,19 @@ class FileUp():
         self.FileServerHome = 'D:/documents/GitStock/SBCuserTest/'
         self.getuserpath = GetUserPath.GetUserPath()
 
+    def GetFileMd5(self,filename):
+        if not os.path.isfile(filename):
+            return
+        myhash = hashlib.md5()
+        f = open(filename,"rb")
+        while True:
+            b = f.read(8096)
+            if not b:
+                break
+            myhash.update(b)
+        f.close()
+        return myhash.hexdigest()
+
     def UpfileCheck(self,redit,useremail):
         feMd5 = redit['FileMd5']
         userpath = redit['CurPath']
@@ -42,6 +55,8 @@ class FileUp():
             FileStart = 0
             if feMd5 in os.listdir(self.FilesStock):
                 FileStart = os.path.getsize(self.FilesStock+feMd5)
+                # if FileStart == redit['FileSize']:
+                #     if feMd == self.GetFileMd5(filename):
             FeInfo = {
                 'exist':0,
                 'FileStart':FileStart
@@ -59,6 +74,8 @@ class FileUp():
         # print(type(redit['isLastChunk']))
         # print(self.FilesStock + redit['FileName'])
         if (int(redit['isLastChunk'])):
+            if os.path.exists(self.FilesStock + redit['FileName']):
+                os.remove(self.FilesStock + redit['FileName'])
             os.rename(self.FilesStock + feMd5,self.FilesStock + redit['FileName'])
             dst = self.getuserpath.getuserserpath(useremail,userpath)
             dstfename = redit['FileName']

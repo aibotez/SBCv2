@@ -74,14 +74,17 @@
 		if (upact == 1)
 		{
 			UpManage[fileid]['isUp']=0;
-			document.getElementById(fileid).name = 0;
+			//document.getElementById(fileid).name = 0;
+			
+			document.getElementById(fileid).style = "background-image: url(/static/img/start.png);width: 23px;height: 23px;background-size:23px 23px; border: 0;";
 			
 		}
 		else{
 			UpManage[fileid]['isUp']=1;
-			document.getElementById(fileid).name = 1;
+			//document.getElementById(fileid).name = 1;
 			FileMd5 = UpManage[fileid]['md5'];
 			file = UpManage[fileid]['file'];
+			document.getElementById(fileid).style = "background-image: url(/static/img/plause.png);width: 23px;height: 23px;background-size:23px 23px; border: 0;";
 			upload(file,FileMd5);
 			//GetFileMd5(filei);
 		}
@@ -99,41 +102,73 @@
 		for (var i=0; i<SelectFilesNums;i++)
 		{
 			var div = document.getElementById("UpList");
+			var divtitle = document.createElement("div");
+			
+	
 			var label = document.createElement("label");
 			label.innerText = file[i].name;
-			div.appendChild(label);
+			divtitle.appendChild(label);
+			div.appendChild(divtitle);
 			var div2 = document.createElement("div");
-			div2.style = "width:100%;padding:0px 0px";
-			div2.class = "container";
-			div.appendChild(div2);
+			div2.style = "float:left;width:100%;";
+			//div2.class = "container";
+			//div.appendChild(div2);
 			var progress = document.createElement("progress");
 			progress.id = CurPath+file[i].name+"progress";
 			progress.max = "100";
 			progress.value = "0";
 			//progress.style = "width:60%;color:lightpink;";
-			progress.style = "overflow:hidden;border-radius:1em;width:60%;color:lightpink;";
-			div2.appendChild(progress);
+			progress.style = "overflow:hidden;border-radius:1em;width:100%;color:lightpink;";
+			//div2.appendChild(progress);
+			
+			
+			var divSpeed = document.createElement("div");
+			divSpeed.style = "float:left;height:100%;width:70%;";
+			div2.appendChild(divSpeed);
+			divSpeed.appendChild(progress);
+			
+			
+			
+			
+			
 			var label2 = document.createElement("label");
 			label2.id = CurPath+file[i].name+"label";
 			//label2.style = "display:table-cell;vertical-align:middle;font-size:12px;color:black;";
-			label2.style = "position:absolute;left:10px;font-size:15px;color:black;";
+			label2.style = "width:100%;font-size:15px;color:black;";
 			label2.innerText = "--/--";
-			div2.appendChild(label2);
+			//div2.appendChild(label2);
 			var UpControl = document.createElement("input");
 			UpControl.type="Button";
 			UpControl.id = CurPath+file[i].name+"UpControl";
 			//UpControl.onclick = "upcontrol(this)";
 			UpControl.setAttribute("onclick","upcontrol(this)");
-			UpControl.value="暂停/继续";
+			//UpControl.value="暂停/继续";position:relative;top:-10px;
+			UpControl.style = "background-image: url(/static/img/plause.png);width:23px;height:23px;background-size:23px 23px; border:0;";
 			UpControl.name=1;
 			
-			div2.appendChild(UpControl);
+			//div2.appendChild(UpControl);
 			
+			
+			
+			var divSpeedlabel = document.createElement("div");
+			divSpeedlabel.style = "position:relative;top:-21px;left:10px;float:left;height:100%;width:60%;";
+			div2.appendChild(divSpeedlabel);
+			divSpeedlabel.appendChild(label2);
+			
+			var divbutton = document.createElement("div");
+			divbutton.style = "float:left;position:relative;top:-21px;left:60px;";
+			div2.appendChild(divbutton);
+			divbutton.appendChild(UpControl);
+			
+			
+			div.appendChild(div2);
 			UpManage[CurPath+file[i].name+"UpControl"] = {'isUp':1,'file':file[i]};
 			
 			//UpManage.add(CurPath+file[i].name,{'isUp':1,'file':file[i]});
 			//var FileMd5 = '0';
+			
 			FileMd5 = GetFileMd5(file[i],CurPath+file[i].name+"UpControl",CurPath);
+			
 			//var starti = (new Date()).getTime();
 			//while(FileMd5 == '0')
 			//{console.log(FileMd5)}
@@ -157,6 +192,7 @@
 			  // 上传完成
 			if (startchunk >= file.size) {
 				FinshUpNums = FinshUpNums+1;
+				
 				document.getElementById("UpdetailsTitle").innerText = WaitUpNums+"个文件正在上传! "+
 				"已完成"+FinshUpNums+"个文件";
 				RefreshFiles({'id':CurPath});
@@ -197,7 +233,8 @@
 		data={
 			'CurPath':CurPath,
 			'FileName':file.name,
-			'FileMd5':FileMd5
+			'FileMd5':FileMd5,
+			'FileSize':file.size,
 		};
 		var CheckFileRes = PostMethod(urlpath,data,0);
 		//console.log(CheckFileRes);
@@ -208,7 +245,11 @@
 			progress.value = file.size;
 			RefreshFiles({'id':CurPath});
 			FinshUpNums = FinshUpNums+1;
+			//console.log(222);
+			document.getElementById(CurPath+file.name+"UpControl").disabled = true;
+			document.getElementById(CurPath+file.name+"UpControl").style = "background-image: url(/static/img/finish.jpg);width: 23px;height: 23px;background-size:23px 23px; border: 0;";
 			document.getElementById("UpdetailsTitle").innerText = WaitUpNums+"个文件正在上传! "+"已完成"+FinshUpNums+"个文件";
+			//console.log(" 秒传");
 			document.getElementById(CurPath+file.name+"label").innerText = size_format(file.size)+"/"+size_format(file.size)+" 秒传";
 			return;
 		}
