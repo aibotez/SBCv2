@@ -62,6 +62,7 @@
     <script src="/static/js/spark-md5.min.js"></script>
     <script src="/static/js/SendMessegetoSer.js"></script>
     <script src="/static/js/Refresh.js"></script>
+    <script src="/static/js/DelFiles.js"></script>
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/spark-md5/3.0.0/spark-md5.min.js"></script>-->
 
 </head>
@@ -84,6 +85,13 @@
             <!--<input type="file" name="files" multiple="multiple" id="upbutton" value="上传">-->
             <button id="UP" value="上传" onclick="document.getElementById('SelectFiles').click()">上传</button>
         </div>
+
+        <div>
+            <button onclick="DelFiles0()">
+                删除
+            </button>
+        </div>
+
     </div>
 
     <div class="div2" id="ShowMain">
@@ -213,9 +221,10 @@
 <!--</div>-->
 
 <script>
-    function UpFiles()
+    function DelFiles0()
     {
-
+        var files = {{data|safe}};
+        DelFiles(files);
     }
 </script>
 <script>
