@@ -1,3 +1,14 @@
+
+function AckDel(ChoseFiles)
+{
+	console.log(ChoseFiles);
+}
+
+function CancelDel()
+{
+	
+}
+
 function DelFiles(files)
 {
 	
@@ -35,8 +46,19 @@ function DelFiles(files)
 	content.innerHTML = s;
 	contentdiv.appendChild(content);
 	
+	var OperButtondiv = document.createElement("div");
+	var AckButton = document.createElement("input");
+	AckButton.type="Button";
+	AckButton.value="确认删除";
+	AckButton.onclick = function(){AckDel(ChoseFiles);};
+
 	
+	var CancelButton = document.createElement("input");
+	CancelButton.type="Button";
+	CancelButton.value="取消";
 	
+	OperButtondiv.appendChild(AckButton);
+	div.appendChild(OperButtondiv);
 	
 	
 	div.appendChild(contentdiv);
