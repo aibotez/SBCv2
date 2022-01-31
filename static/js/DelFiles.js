@@ -45,11 +45,16 @@ function DelFiles(files)
 	div_.style = "border-bottom:1px solid #CCC";
 	div.appendChild(div_);
 	
+	var Dellabel = document.createElement("label");
+	Dellabel.innerHTML = "<br>是否要删除以下文件：<br><br>";
+	Dellabel.style = "position:relative;left:20px;width:100%;font-size:15px;color:black;";
+	div.appendChild(Dellabel);
+	
 	var contentdiv = document.createElement("div");
-	contentdiv.style="overflow-y: scroll;overflow-x:hidden;width:100%;height:70%;position:relative;left:20px;";
+	contentdiv.style="overflow-y: scroll;overflow-x:hidden;width:100%;height:40%;position:relative;left:20px;";
 	var content = document.createElement("label");
 	content.style="position:relative;left:0px";
-	var s= "<br>是否要删除以下文件：<br><br>";
+	var s= "";
 	for (var i=0;i<ChoseFileLen;i++)
 	{
 		s = s+ChoseFiles[i]['fename']+'<br>';
@@ -58,7 +63,7 @@ function DelFiles(files)
 	contentdiv.appendChild(content);
 	
 	var OperButtondiv = document.createElement("div");
-	OperButtondiv.style = "position:relative;left:20px;";
+	OperButtondiv.style = "position:relative;left:20px;top:5px";
 	var AckButton = document.createElement("input");
 	AckButton.type="Button";
 	AckButton.style = "background-color:red;border-radius:5px;color:white";
