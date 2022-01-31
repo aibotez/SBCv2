@@ -78,7 +78,7 @@ def Home(request):
     data=datas[0]
     navlist = datas[1]
     navlastpath = navlist[-1]['path']
-    print(navlastpath)
+    # print(navlastpath)
     return render(request, "home/home1.html",locals())
 # @require_POST
 def home(request):
@@ -100,6 +100,29 @@ def home(request):
     # data=filesget(paths)
 
     return render(request, "home/FileList.html", locals())
+
+@require_POST
+def DelFiles(request):
+    LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
+    if LoginRes['res']:
+        return HttpResponseRedirect('/login/')
+    DelFilesInfo = {}
+    DelFilesStr = request.POST.dict()
+    for k in DelFilesStr.keys():
+        DelFilesInfo = json.loads(k)
+
+    DelFilesList = DelFilesInfo['data']
+    getuserpath = GetUserPath.GetUserPath()
+    for i in DelFilesList:
+        path = i['fepath']
+        userPath = getuserpath.getuserserpath(LoginRes['useremail'],path)
+        try:
+            # print(userPath)
+            os.remove(userPath)
+        except Exception as e:
+            print(e)
+
+    return HttpResponse('ok')
 
 # @require_POST
 # def FileDown(request):

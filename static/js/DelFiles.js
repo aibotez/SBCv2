@@ -1,12 +1,22 @@
 
 function AckDel(ChoseFiles)
 {
-	console.log(ChoseFiles);
+	//console.log(ChoseFiles);
+	var urlpath = "/DelFiles/";
+	var datas = {'data':ChoseFiles};
+	var res = PostMethod(urlpath,JSON.stringify(datas),0);
+	//console.log(res);
+	var CurPath = document.getElementById("CurPath").innerText;
+	var DelFilesDetails = document.getElementById("DelFilesDetails");
+	DelFilesDetails.remove();
+	RefreshFiles({'id':CurPath});
 }
 
 function CancelDel()
 {
-	
+	var DelFilesDetails = document.getElementById("DelFilesDetails");
+	DelFilesDetails.remove();
+	//document.getElementById('DelFilesDetails').style.display = "none";
 }
 
 function DelFiles(files)
@@ -20,6 +30,7 @@ function DelFiles(files)
        {return;}
 	var bo = document.body;
 	var div = document.createElement("div");
+	div.id = "DelFilesDetails";
 	div.style = "overflow:hidden;border-radius:10px;border:3px solid #ECF0F1;position:fixed;top:50%;left:50%;width:360px;height:200px;background-color:pink";
 	
 	var labeldiv = document.createElement("div");
@@ -56,12 +67,15 @@ function DelFiles(files)
 	var CancelButton = document.createElement("input");
 	CancelButton.type="Button";
 	CancelButton.value="取消";
+	CancelButton.onclick = function(){CancelDel();};
 	
 	OperButtondiv.appendChild(AckButton);
-	div.appendChild(OperButtondiv);
+	OperButtondiv.appendChild(CancelButton);
+	
 	
 	
 	div.appendChild(contentdiv);
+	div.appendChild(OperButtondiv);
 	bo.appendChild(div);
 	
 }
