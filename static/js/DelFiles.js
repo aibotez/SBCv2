@@ -58,14 +58,17 @@ function DelFiles(files)
 	contentdiv.appendChild(content);
 	
 	var OperButtondiv = document.createElement("div");
+	OperButtondiv.style = "position:relative;left:20px;";
 	var AckButton = document.createElement("input");
 	AckButton.type="Button";
+	AckButton.style = "background-color:red;border-radius:5px;color:white";
 	AckButton.value="确认删除";
 	AckButton.onclick = function(){AckDel(ChoseFiles);};
 
 	
 	var CancelButton = document.createElement("input");
 	CancelButton.type="Button";
+	CancelButton.style="position:relative;left:30px;border-radius:5px;";
 	CancelButton.value="取消";
 	CancelButton.onclick = function(){CancelDel();};
 	
