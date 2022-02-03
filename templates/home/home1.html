@@ -160,6 +160,12 @@
                                         <img src={{filedata.imgpath}} width="50%">
                                     </div>
                                     <div style="width:50%;">
+                                        <div class="container" id={{filedata.filelj}}ReName style="display:none;height:100%;">
+                                            <textarea id={{filedata.filelj}}ReNameText wrap='off' rows="1" cols="100" style="font-size:20px;width:60%;overflow-x:hidden">{{filedata.filename}}</textarea>
+                                            <button id={{filedata.filelj}}ReNameSure name={{filedata.filelj}} onclick="ReNameAct(this)">&radic;</button>
+                                            <button id={{filedata.filelj}}ReNameCancel onclick="ReNameAct(this)">取消</button>
+                                        </div>
+
                                         <a id={{filedata.filelj}} style="color:black;font-size:20px;text-decoration:none;" href="javascript:void(0);" onclick="RefreshFiles(this)">
                                             {{filedata.filename}}
                                         </a>

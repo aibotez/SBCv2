@@ -7,9 +7,19 @@ function Rename(files)
        {return;}
     var ChoseFile = ChoseFiles[0];
     console.log(ChoseFile);
+	var ChoseFileid = ChoseFile["fepath"];
+	document.getElementById(ChoseFileid).style.display="none";
+	document.getElementById(ChoseFileid+"ReName").style.display="";
 	
 }
-
+function ReNameAct(act)
+{
+	if (act.id.indexOf("ReNameCancel") != -1)
+	{
+		console.log(act.id);
+		return;
+	}
+}
 
 function FindCheck(files)
 {
