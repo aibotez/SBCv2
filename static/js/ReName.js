@@ -10,9 +10,13 @@ function Rename(files)
     //console.log(ChoseFile);
 	var ChoseFileid = ChoseFile["fepath"];
 	//document.getElementById(ChoseFileid+"Choseboxone").disabled="disabled";
+	var SureButtonid = document.getElementById(ChoseFileid+"ReNameSure");
+	var CancelButtonid = document.getElementById(ChoseFileid+"ReNameCancel");
 	document.getElementById(ChoseFileid).style.display="none";
 	document.getElementById(ChoseFileid+"ReName").style.display="";
 	
+	SureButtonid.style = "margin-left:3px;cursor:pointer;background-image: url(/static/img/Sure.jpg);width:20px;height:20px;background-size:20px 20px; border:0;";
+	CancelButtonid.style = "margin-left:3px;cursor:pointer;background-image: url(/static/img/Cancel.jpg);width:20px;height:20px;background-size:20px 20px; border:0;";
 }
 function ReNameAct(act)
 {
