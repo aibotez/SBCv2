@@ -10,6 +10,7 @@ from urllib import parse
 import shutil,json,io
 import socket,os,time,threading
 from django.views.decorators.http import require_GET, require_http_methods, require_POST
+from SBC import FileOper
 from PIL import Image
 
 # from SBC import FileDownUp
@@ -129,7 +130,14 @@ def ReName(request):
     LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
     if LoginRes['res']:
         return HttpResponseRedirect('/login/')
-    print(request.POST)
+    ReNameInfo = request.POST.dict()
+    fileOper = FileOper.FileOper()
+    # print(request.POST)
+
+    getuserpath = GetUserPath.GetUserPath()
+    userPath = getuserpath.getuserserpath(LoginRes['useremail'], ReNameInfo['OldNamePath'])
+    res = fileOper.Rename(userPath ,ReNameInfo['NewName'])
+    return HttpResponse(res)
 
 # @require_POST
 # def FileDown(request):
