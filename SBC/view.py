@@ -130,6 +130,7 @@ def ReName(request):
     if LoginRes['res']:
         return HttpResponseRedirect('/login/')
     print(request.POST)
+
 # @require_POST
 # def FileDown(request):
 #     # print(request.POST)

@@ -18,6 +18,12 @@ function Rename(files)
 	SureButtonid.style = "margin-left:3px;cursor:pointer;background-image: url(/static/img/Sure.jpg);width:20px;height:20px;background-size:20px 20px; border:0;";
 	CancelButtonid.style = "margin-left:3px;cursor:pointer;background-image: url(/static/img/Cancel.jpg);width:20px;height:20px;background-size:20px 20px; border:0;";
 }
+function ReNameCancel(act)
+{
+	var ChoseFileid = act.name;
+		document.getElementById(ChoseFileid).style.display="";
+	document.getElementById(ChoseFileid+"ReName").style.display="none";
+}
 function ReNameAct(act)
 {
 	if (act.id.indexOf("ReNameCancel") != -1)
