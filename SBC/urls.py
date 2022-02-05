@@ -25,6 +25,7 @@ urlpatterns = [
     path('', view.Home),
     path('RefreshFiles/', view.home),
     path('DelFiles/',view.DelFiles),
+    path('ReName/',view.ReName),
     path('admin/', admin.site.urls),
     path('login/',viewsLR.login),
     path('register/',viewsLR.Register),

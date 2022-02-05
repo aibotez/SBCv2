@@ -124,6 +124,12 @@ def DelFiles(request):
 
     return HttpResponse('ok')
 
+@require_POST
+def ReName(request):
+    LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
+    if LoginRes['res']:
+        return HttpResponseRedirect('/login/')
+    print(request.POST)
 # @require_POST
 # def FileDown(request):
 #     # print(request.POST)

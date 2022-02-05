@@ -12,6 +12,13 @@
             width:100%;
         }
 
+         div.unchangediv:hover
+        {
+            background-color:#FBFCFC;
+            opacity:0.9;
+            width:100%;
+        }
+
         tr.change:hover
         {
             background-color:#A2D9CE;
@@ -152,11 +159,16 @@
             <div id="FilesData">
                 {% for filedata in data %}
                     <table width="100%" border="0" style="width:100%;">
-                        <tr class="change" id={{filedata.filelj}}Chosebox onclick="Chosebox(this)" >
-                            <td style="width:100%;">
+                        <tr class="change">
+                            <td style="width:2%;">
+                                <div>
+                                    <input name={{filedata.filelj}} id={{filedata.filelj}}Choseboxone type="checkbox" value="" />
+                                </div>
+                            </td>
+                            <td style="width:98%;" id={{filedata.filelj}}Chosebox onclick="Chosebox(this)">
                                 <div class="container">
                                     <div class="container" style="width:10%">
-                                        <input name={{filedata.filelj}} id="" type="checkbox" value="" onclick="Chosebox(this)" />&nbsp;
+                                        <!--<input name={{filedata.filelj}} id={{filedata.filelj}}Choseboxone type="checkbox" value="" onclick="Chosebox(this)" />&nbsp;-->
                                         <img src={{filedata.imgpath}} width="50%">
                                     </div>
                                     <div style="width:50%;">
@@ -237,18 +249,20 @@
         {
             <!--console.log(ChoseBoxId.split("Chosebox")[0]);-->
             var BoxName = ChoseBoxId.split("Chosebox")[0];
-            if(document.getElementsByName(BoxName)[0].checked==true)
-            {
-                document.getElementsByName(BoxName)[0].checked=false;
-            }
-            else
-            {
-                document.getElementsByName(BoxName)[0].checked=true;
-            }
+            document.getElementsByName(BoxName)[0].checked=true;
+            <!--if(document.getElementsByName(BoxName)[0].checked==true)-->
+            <!--{-->
+                <!--document.getElementsByName(BoxName)[0].checked=false;-->
+            <!--}-->
+            <!--else-->
+            <!--{-->
+                <!--document.getElementsByName(BoxName)[0].checked=true;-->
+            <!--}-->
         }
         else
         {
             var BoxName = act.name;
+            <!--document.getElementsByName(BoxName)[0].checked=true;-->
             <!--console.log(BoxName);-->
             if(document.getElementsByName(BoxName)[0].checked==true)
             {

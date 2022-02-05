@@ -6,8 +6,10 @@ function Rename(files)
     if (ChoseFileLen < 1)
        {return;}
     var ChoseFile = ChoseFiles[0];
-    console.log(ChoseFile);
+	
+    //console.log(ChoseFile);
 	var ChoseFileid = ChoseFile["fepath"];
+	//document.getElementById(ChoseFileid+"Choseboxone").disabled="disabled";
 	document.getElementById(ChoseFileid).style.display="none";
 	document.getElementById(ChoseFileid+"ReName").style.display="";
 	
@@ -16,9 +18,22 @@ function ReNameAct(act)
 {
 	if (act.id.indexOf("ReNameCancel") != -1)
 	{
-		console.log(act.id);
+		//console.log(act.id);
 		return;
 	}
+	var ReNamePath = act.name;
+	var ReNameTextid = act.name+"ReNameText";
+	var NewName = document.getElementById(ReNameTextid).value;
+	//console.log(NewName);
+	var OldNamePath = act.name;
+	
+	data={
+		'OldNamePath':OldNamePath,
+		'NewName':NewName,
+	}
+	var res = PostMethod("/ReName/",data,0);
+
+	
 }
 
 function FindCheck(files)
