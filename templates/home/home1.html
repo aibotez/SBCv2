@@ -159,14 +159,19 @@
             <div id="FilesData">
                 {% for filedata in data %}
                     <table width="100%" border="0" style="width:100%;">
+
                         <tr class="change">
-                            <td style="width:2%;">
+                            <td class="container" style="width:2%;">
                                 <div>
                                     <input name={{filedata.filelj}} id={{filedata.filelj}}Choseboxone type="checkbox" value="" />
                                 </div>
                             </td>
                             <td style="width:98%;" id={{filedata.filelj}}Chosebox onclick="Chosebox(this)">
-                                <div class="container">
+                                <!--<div style="width:2%">-->
+                                    <!--<input name={{filedata.filelj}} id={{filedata.filelj}}Choseboxone type="checkbox" value="" />-->
+                                <!--</div>-->
+                                <!--&nbsp;-->
+                                <div class="container" style="width:100%">
                                     <div class="container" style="width:10%">
                                         <!--<input name={{filedata.filelj}} id={{filedata.filelj}}Choseboxone type="checkbox" value="" onclick="Chosebox(this)" />&nbsp;-->
                                         <img src={{filedata.imgpath}} width="50%">
