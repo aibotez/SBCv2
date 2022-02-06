@@ -14,7 +14,9 @@
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+	color:blue;
 }
+.menudropdown-content a:hover {background-color: #f1f1f1}
 .menudropdown:hover .menudropdown-content {
   display: block;
 }
