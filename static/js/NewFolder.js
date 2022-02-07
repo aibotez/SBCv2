@@ -62,6 +62,7 @@ function NewFolder()
 	NFdiv.appendChild(inputdiv);
 	NFdiv.appendChild(imgdiv);
 	bo.appendChild(NFdiv);
+	bo.style="background-color:#E5E7E9";
 }
 
 
