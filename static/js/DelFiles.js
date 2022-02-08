@@ -31,7 +31,7 @@ function DelFiles(files)
 	var bo = document.body;
 	var div = document.createElement("div");
 	div.id = "DelFilesDetails";
-	div.style = "overflow:hidden;border-radius:10px;border:3px solid #ECF0F1;position:fixed;top:50%;left:50%;width:360px;height:200px;background-color:pink";
+	div.style = "overflow:hidden;border-radius:10px;border:3px solid #ECF0F1;position:fixed;top:30%;left:40%;width:360px;height:200px;background-color:pink";
 	
 	var labeldiv = document.createElement("div");
 	labeldiv.style = "width:100%;background-color:red";
