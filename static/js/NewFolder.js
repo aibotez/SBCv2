@@ -1,20 +1,73 @@
 
-function Ack()
-{}
-function Cancel()
-{}
-
-function NewFolder()
+function Ack(NewFolderName)
 {
+	var CurPath = document.getElementById("CurPath").innerText;
+	var urlpath = "/netOper/";
+	var data = {
+		'netOper':"NewFilder",
+		'CurPath':CurPath,
+		'NewFolderName':NewFolderName
+	}
+	PostMethod(urlpath,data,0);
+	var bo = document.body;
+	bo.style="background-color:white";
+	var NewFolderDiv = document.getElementById("NewFolderDiv");
+	NewFolderDiv.remove();
+	RefreshFiles({'id':CurPath});
+}
+function Cancel()
+{
+	var bo = document.body;
+	bo.style="background-color:white";
+	var NewFolderDiv = document.getElementById("NewFolderDiv");
+	NewFolderDiv.remove();
+}
+
+function CheckFolder(files,NewFolderName)
+{
+	//var NewFolderName = "新建文件夹";
+	//console.log(NewFolderName);
+	for (var i=0;i<files.length;i++)
+	{
+		//console.log(files[i].isdir);
+		if(NewFolderName==files[i].filename && files[i].isdir==1)
+		{
+			//console.log(files[i].filename);
+			if (NewFolderName == "新建文件夹")
+			{
+				NewFolderName = "新建文件夹1";
+				
+			}
+			else
+			{
+				//console.log(parseInt(NewFolderName.substring(5,NewFolderName.length))+1);
+				//var newnameInt = parseInt(NewFolderName.substring(5,NewFolderName.length))+1;
+				//console.log(newnameInt.toString());
+				NewFolderName = NewFolderName.substring(0,5)+(parseInt(NewFolderName.substring(5,NewFolderName.length))+1).toString();
+			}
+			
+			CheckFolder(files,NewFolderName);
+		}
+	}
+	return NewFolderName;
+}
+
+function NewFolder(files)
+{
+	//var files = {{data|safe}};
+	//document.getElementById("menudropdown").style.display="";
+	var NewFolderName = CheckFolder(files,"新建文件夹");
+	//console.log(NewFolderName);
 	var CurPath = document.getElementById("CurPath").innerText;
 	var bo = document.body;
 	var NFdiv = document.createElement("div");
+	NFdiv.id="NewFolderDiv";
 	NFdiv.style="background-color:white;position: fixed;border-radius:10px;border:3px solid #ECF0F1;top:30%;left:40%;width:340px;height:336px;";
 	
 	var labeldiv = document.createElement("div");
 	labeldiv.style = "width:100%;";
 	var label = document.createElement("label");
-	label.style = "position:relative;left:20px;width:100%;font-size:20px;color:black;";
+	label.style = "position:relative;top:10px;left:20px;width:100%;font-size:20px;color:black;";
 	label.innerText = "新建文件夹";
 	labeldiv.appendChild(label);
 	NFdiv.appendChild(labeldiv);
@@ -34,7 +87,7 @@ function NewFolder()
 	inputdiv.style = "position:relative;top:200px;left:30px;height:28px;width:80%;";
 	var input = document.createElement("input");
 	input.type="text";
-	input.value="新建文件夹";
+	input.value=NewFolderName;
 	input.style = "font-size:18px;border-radius:5px;border:0;position:relative;height:100%;width:100%;background-color:#B2BABB";
 	inputdiv.appendChild(input);
 	
@@ -44,7 +97,7 @@ function NewFolder()
 	AckButton.type="Button";
 	AckButton.style = "cursor:pointer;border-radius:5px;height:30px;";
 	AckButton.value="确 认";
-	AckButton.onclick = function(){Ack();};
+	AckButton.onclick = function(){Ack(NewFolderName);};
 
 	
 	var CancelButton = document.createElement("input");

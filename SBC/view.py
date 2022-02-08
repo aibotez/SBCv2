@@ -102,6 +102,8 @@ def home(request):
 
     return render(request, "home/FileList.html", locals())
 
+
+import shutil
 @require_POST
 def DelFiles(request):
     LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
@@ -119,7 +121,11 @@ def DelFiles(request):
         userPath = getuserpath.getuserserpath(LoginRes['useremail'],path)
         try:
             # print(userPath)
-            os.remove(userPath)
+            # print(i)
+            if i['feisdir']:
+                shutil.rmtree(userPath)
+            else:
+                os.remove(userPath)
         except Exception as e:
             print(e)
 
@@ -139,6 +145,15 @@ def ReName(request):
     res = fileOper.Rename(userPath ,ReNameInfo['NewName'])
     return HttpResponse(res)
 
+
+@require_POST
+def netOper(request):
+    LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
+    if LoginRes['res']:
+        return HttpResponseRedirect('/login/')
+    netoper = FileOper.netOper()
+    res = netoper.netOperMain(LoginRes['useremail'],request.POST.dict())
+    return HttpResponse(res)
 # @require_POST
 # def FileDown(request):
 #     # print(request.POST)
