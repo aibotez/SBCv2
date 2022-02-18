@@ -77,6 +77,8 @@ def Home(request):
     paths = getuserpath.userpath(req,LoginRes)
     datas=filesget(paths)
     data=datas[0]
+    datajson = json.dumps(data)
+    # print(datajson)
     navlist = datas[1]
     navlastpath = navlist[-1]['path']
     # print(navlastpath)
