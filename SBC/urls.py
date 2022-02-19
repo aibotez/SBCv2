@@ -20,6 +20,7 @@ from Vcodeapp import views
 from LoginRegisterapp import viewsLR
 from forgotpasswordapp import views as viewFG
 from FileDownUpapp import views as viewDU
+from SBCShareapp import views as viewShare
 
 urlpatterns = [
     path('', view.Home),
@@ -42,4 +43,7 @@ urlpatterns = [
     path('forgotpassword/',viewFG.forgotpassword),
     path('forgotpassVcodeVerify/',viewFG.VerifyVcode),
     path('ChangePassword/',viewFG.ChangePassword),
+
+
+    path('CreatShareFile/',viewShare.CreatShareFile),
 ]

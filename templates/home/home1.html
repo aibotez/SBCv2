@@ -134,99 +134,7 @@
 
     </div>
 
-    <div class="div2" id="ShowMain">
-        <!--<div style="height:10%;width:100%;background-color:white;">-->
-             <!--<button type="submit" id="signbutton">Sign In</button>-->
-        <!--</div>-->
-
-
-        <!--<div class="container" id="navlist" style="height:4%;">-->
-            <!--{% for navi in navlist %}-->
-                <!--{% if navi.path == navlastpath %}-->
-                    <!--<div>-->
-                        <!--<label style="display:none;" id="CurPath">{{navi.path}}</label>-->
-                        <!--<a id={{navi.path}} style="color:#000000;font-size:15px;text-decoration:none;">&ensp;{{navi.navname}}</a>-->
-                    <!--</div>-->
-                <!--{% else %}-->
-                    <!--<div>-->
-                        <!--<a id={{navi.path}} style="color:#C0C0C0;font-size:15px;text-decoration:none;" href="javascript:void(0);" onclick="RefreshFiles(this)">&ensp;{{navi.navname}}</a>-->
-                    <!--</div>-->
-                    <!--<div>-->
-                        <!--<span id={{navi.path}}00 style="color:#C0C0C0;font-size:15px;">&ensp;&gt;</span>-->
-                    <!--</div>-->
-                 <!--{% endif %}-->
-            <!--{% endfor %}-->
-        <!--</div>-->
-        <!--<div style="border-bottom:1px solid #CCC"></div>-->
-        <!--<div class="container" style="height:2.9%;width:100%;">-->
-            <!--<label style="display:block;width:58%;height:100%;color:Gray;">文件名</label>-->
-            <!--<label style="display:block;width:15%;height:100%;color:Gray;">大小</label>-->
-            <!--<label style="display:block;width:25%;height:100%;color:Gray;">修改日期</label>-->
-        <!--</div>-->
-        <!--<div style="border-bottom:1px solid #CCC"></div>-->
-
-        <!--<div style="overflow:scroll;height:84.5%;width:100%;">-->
-            <!--<div id="FilesData">-->
-                <!--{% for filedata in data %}-->
-                    <!--<table width="100%" border="0" style="width:100%;">-->
-                        <!--<tr class="change">-->
-                            <!--<td style="width:2%;">-->
-                                <!--<div>-->
-                                    <!--<input name={{filedata.filelj}} id={{filedata.filelj}}Choseboxone type="checkbox" value="" />-->
-                                <!--</div>-->
-                            <!--</td>-->
-                            <!--<td style="width:98%;" id={{filedata.filelj}}Chosebox onclick="Chosebox(this)">-->
-                                <!--&lt;!&ndash;<div style="width:2%">&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<input name={{filedata.filelj}} id={{filedata.filelj}}Choseboxone type="checkbox" value="" />&ndash;&gt;-->
-                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                                <!--&lt;!&ndash;&nbsp;&ndash;&gt;-->
-                                <!--<div class="container" style="width:100%">-->
-                                    <!--<div class="container" style="width:6%">-->
-                                        <!--&lt;!&ndash;<input name={{filedata.filelj}} id={{filedata.filelj}}Choseboxone type="checkbox" value="" onclick="Chosebox(this)" />&nbsp;&ndash;&gt;-->
-                                        <!--<img src={{filedata.imgpath}} width="80%">-->
-                                    <!--</div>-->
-                                    <!--<div style="width:50%;">-->
-                                        <!--<div class="container" id={{filedata.filelj}}ReName style="display:none;height:100%;">-->
-                                            <!--<textarea id={{filedata.filelj}}ReNameText name={{filedata.filename}} wrap='off' rows="1" cols="100" style="font-size:20px;width:60%;overflow-x:hidden">{{filedata.filename}}</textarea>-->
-                                            <!--&lt;!&ndash;&nbsp;&ndash;&gt;-->
-                                            <!--<div class="container" style="margin-left:3px;border:1px solid #000;width:26px;height:26px;border-radius:3px;background-color:white;">-->
-                                                <!--<button id={{filedata.filelj}}ReNameSure name={{filedata.filelj}} onclick="ReNameAct(this)"></button>-->
-                                             <!--</div>-->
-
-                                            <!--&lt;!&ndash;<button id={{filedata.filelj}}ReNameSure name={{filedata.filelj}} onclick="ReNameAct(this)"></button>&ndash;&gt;-->
-                                            <!--&lt;!&ndash;&nbsp;&ndash;&gt;-->
-                                            <!--<div class="container" style="margin-left:3px;border:1px solid #000;width:26px;height:26px;border-radius:3px;background-color:white;">-->
-                                                <!--<button id={{filedata.filelj}}ReNameCancel name={{filedata.filelj}} onclick="ReNameCancel(this)"></button>-->
-                                            <!--</div>-->
-                                        <!--</div>-->
-
-                                        <!--<a id={{filedata.filelj}} style="color:black;font-size:20px;text-decoration:none;" href="javascript:void(0);" onclick="RefreshFiles(this)">-->
-                                            <!--{{filedata.filename}}-->
-                                        <!--</a>-->
-                                    <!--</div>-->
-                                    <!--<div style="width:40%;color:Gray;" class="container">-->
-                                        <!--<div style="width:38%;color:Gray;">-->
-                                            <!--<label>-->
-                                                <!--{{filedata.big}}-->
-                                            <!--</label>-->
-                                        <!--</div>-->
-                                        <!--<div style="width:62%;color:Gray;">-->
-                                            <!--<label>-->
-                                                <!--{{filedata.date}}-->
-                                            <!--</label>-->
-                                        <!--</div>-->
-                                    <!--</div>-->
-
-                                <!--</div>-->
-                            <!--</td>-->
-                        <!--</tr>-->
-                    <!--</table>-->
-                    <!--<div style="border-bottom:1px solid #CCC"></div>-->
-                <!--{% endfor %}-->
-            <!--</div>-->
-        <!--</div>-->
-
-    </div>
+    <div class="div2" id="ShowMain"></div>
 </div>
 
 <div class="Updetail" id="Updetails" style="display:none;border-radius:10px;border:3px solid #ECF0F1;width:420px;background-color:#FDFEFE">
@@ -238,13 +146,6 @@
     <div id="UpDetailContent">
         <div style="overflow:hidden;height:420px;width:100%;">
             <div id="UpList" style="width:100%;">
-                <!--<div style="width:100%"><label>abc.pdf</label></div>-->
-                <!--<div style="width:100%" class="container">-->
-                    <!--<progress value= '70'  max= '100' style="width:60%"></progress>-->
-                    <!--<label style="font-size:12px;color:Gray;">2 MB/32 MB</label>-->
-                    <!--&nbsp;-->
-                    <!--<label style="font-size:12px;color:Gray;">3MB/s</label>-->
-                <!--</div>-->
             </div>
         </div>
 
@@ -256,6 +157,81 @@
 
     </div>
 </div>
+
+<div id="ShareFilesUrl" class="container" style="display:;background-color:#424949;overflow:hidden;border-radius:10px;border:3px solid #ECF0F1;position:fixed;top:30%;left:25%;width:60%;">
+    <div style="width:22%;">
+        <label style="font-size:20px;color:white;">
+            分享链接为：
+        </label>
+    </div>
+    <div style="width:73%;">
+        <a id="ShareFilesUrllabel" style="font-size:20px;color:red;">
+            668
+        </a>
+    </div>
+    <div style="width:5%;">
+        <button id="ShareFilesUrlbutton"> </button>
+    </div>
+</div>
+
+<div id = "ShareFiles" style="display:none;background-color:white;overflow:hidden;border-radius:10px;border:3px solid #ECF0F1;position:fixed;top:15%;left:25%;width:500px;height:500px;">
+    <div style="width:100%">
+        <label style = "position:relative;top:10px;left:20px;width:100%;font-size:20px;color:black;">
+            分享文件
+        </label>
+    </div>
+    <label style = "position:relative;left:20px;width:100%;font-size:20px;color:black;">
+        <br>是否要分享以下文件：<br><br>
+    </label>
+    <div style="overflow-y: scroll;overflow-x:hidden;width:100%;height:30%;position:relative;left:20px;">
+        <label id="ShareContentDetails" style="position:relative;left:0px">
+
+        </label>
+    </div>
+    <div class="container">
+        <div style="width:100%" class="container">
+            <div class="container">
+                <label style = "position:relative;left:20px;font-size:20px;color:black;">
+                    选择有效期
+                </label>
+            </div>
+            <div class="container" style="position:relative;left:30px;z-index:999">
+                <div class="menudropdown" id="Sharemenudropdown">
+                    <button id="SharemenudropdownB" onclick="SharemenudropdownShow()" style="font-size:20px;cursor:pointer;width:60px;height:30px;border-radius:5px;background-color:white;color:blue;">1天</button>
+                    <div class="menudropdown-content" id="Sharemenudropdown-content" style="display:none;">
+                        <a href="javascript:void(0);" onclick="ShareDuring(1)">1天</a>
+                        <a href="javascript:void(0);" onclick="ShareDuring(2)">7天</a>
+                        <a href="javascript:void(0);" onclick="ShareDuring(3)">1个月</a>
+                        <a href="javascript:void(0);" onclick="ShareDuring(4)">永久</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="width:100%">
+            <div class="container" style="position:relative;left:20px;top:60px;font-size:20px;">
+                <div>
+                    <label>
+                        分享密码：
+                    </label>
+                </div>
+                <div>
+                    <input type="text" id="SharePass" placeholder="默认为无" style="font-size:18px;width:130px">
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div style="width:100%;position:relative;left:20px;top:130px;" class="container">
+        <div>
+            <input type="button" onclick="SureShare()" value="确认分享" style="cursor:pointer;height:36px;background-color:red;border-radius:5px;color:white">
+        </div>
+        <div>
+            <input type="button" onclick="CancelShare()" value="取消分享" style="cursor:pointer;position:relative;left:20px;height:36px;border-radius:5px;">
+        </div>
+    </div>
+
+</div>
+
 <!--<input id="CurDatas" type="text" style="display:none;" value={{datajson}}>-->
 
 
@@ -276,6 +252,11 @@
     {
         var menudropdown_content = document.getElementById("menudropdown-content");
 	    menudropdown_content.style.display = "block";
+    }
+    function SharemenudropdownShow()
+    {
+        var Sharemenudropdown_content = document.getElementById("Sharemenudropdown-content");
+        Sharemenudropdown_content.style.display = "block";
     }
 </script>
 <!--<script>-->

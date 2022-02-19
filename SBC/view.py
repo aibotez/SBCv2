@@ -74,7 +74,6 @@ def Home(request):
         return HttpResponseRedirect('/login/')
     getuserpath = GetUserPath.GetUserPath()
     req = request.GET.dict()
-
     paths = getuserpath.userpath(req,LoginRes)
     req['path'] = paths[0]
     datas=filesget(paths)

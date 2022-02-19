@@ -1,4 +1,29 @@
 
+var ShareFileInfo = [];
+
+function SureShare()
+{
+	var ShareFeDateDur = document.getElementById("SharemenudropdownB").innerHTML;
+	var SharePass = document.getElementById("SharePass").value;
+	postdata={
+		'ShareFile':ShareFileInfo,
+		'ShareDateDur':ShareFeDateDur,
+		'SharePass':SharePass
+	}
+	var urlpath = "/CreatShareFile/";
+	var jsondata = JSON.stringify(postdata);
+	var res = PostMethod(urlpath,jsondata,0);
+	CancelShare();
+	var SSureButtonid = document.getElementById("ShareFilesUrlbutton");
+	SSureButtonid.style = "position:relative;top:1px;border-radius:5px;cursor:pointer;background-image: url(/static/img/Sure.jpg);width:24px;height:24px;background-size:24px 24px; border:0;";
+
+}
+function CancelShare()
+{
+	var bo = document.body;
+	bo.style="background-color:white";
+	document.getElementById("ShareFiles").style.display="none";
+}
 
 function SBCShare()
 {
@@ -10,46 +35,48 @@ function SBCShare()
 	//console.log(ChoseFileLen);
     if (ChoseFileLen < 1)
        {return;}
+	ShareFileInfo = ChoseFiles;
     var bo = document.body;
 	bo.style="background-color:#E5E7E9";
-	var div = document.createElement("div");
-	div.id = "DelFilesDetails";
-	div.style = "background-color:white;overflow:hidden;border-radius:10px;border:3px solid #ECF0F1;position:fixed;top:10%;left:20%;width:500px;height:500px;";
 	
-	var labeldiv = document.createElement("div");
-	labeldiv.style = "width:100%;";
-	var label = document.createElement("label");
-	label.style = "position:relative;top:10px;left:20px;width:100%;font-size:20px;color:black;";
-	label.innerText = "分享文件";
-	labeldiv.appendChild(label);
-	div.appendChild(labeldiv);
-	
-	var Sharlabel = document.createElement("label");
-	Sharlabel.innerHTML = "<br>是否要分享以下文件：<br><br>";
-	Sharlabel.style = "position:relative;left:20px;width:100%;font-size:20px;color:black;";
-	div.appendChild(Sharlabel);
-	
-	var contentdiv = document.createElement("div");
-	contentdiv.style="overflow-y: scroll;overflow-x:hidden;width:100%;height:40%;position:relative;left:20px;";
-	var content = document.createElement("label");
-	content.style="position:relative;left:0px";
+	var div = document.getElementById("ShareFiles");
+	div.style.display = "";
+	var content = document.getElementById("ShareContentDetails");
 	var s= "";
 	for (var i=0;i<ChoseFileLen;i++)
 	{
 		s = s+ChoseFiles[i]['fename']+'<br>';
 	}
 	content.innerHTML = s;
-	contentdiv.appendChild(content);
 	
 	
-	
-	
-	div.appendChild(contentdiv);
-	bo.appendChild(div);
+
 	
 	
 }
+function ShareDuring(dataDur)
+{
+	var Sharemenudropdown_content = document.getElementById("Sharemenudropdown-content");
+	Sharemenudropdown_content.style.display = "none";
+	if (dataDur ==1)
+	{
+		FeDataDur = "1天";
+	}
+	else if (dataDur ==2)
+	{
+		FeDataDur = "7天";
+	}
+	else if (dataDur ==3)
+	{
+		FeDataDur = "1个月";
+	}
+	else
+	{
+		FeDataDur = "永久";
+	}
+	document.getElementById("SharemenudropdownB").innerHTML = FeDataDur;
 
+}
 function FindCheck(files)
 {
 	//var files = {{data|safe}};

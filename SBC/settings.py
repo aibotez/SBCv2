@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'Usersapp',
     'forgotpasswordapp',
     'FileDownUpapp',
+    'SBCShareapp',
 ]
 
 MIDDLEWARE = [

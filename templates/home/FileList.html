@@ -48,7 +48,8 @@
                                     </div>
                                     <div style="width:50%;">
                                         <div class="container" id={{filedata.filelj}}ReName style="display:none;height:100%;">
-                                            <textarea id={{filedata.filelj}}ReNameText name={{filedata.filename}} wrap='off' rows="1" cols="100" style="font-size:20px;width:60%;overflow-x:hidden">{{filedata.filename}}</textarea>
+                                            <input type="text" id={{filedata.filelj}}ReNameText name={{filedata.filename}} value={{filedata.filename}}>
+                                            <!--<textarea id={{filedata.filelj}}ReNameText name={{filedata.filename}} wrap='off' rows="1" cols="100" style="font-size:20px;width:60%;overflow-x:hidden">{{filedata.filename}}</textarea>-->
                                             <!--&nbsp;-->
                                             <div class="container" style="margin-left:3px;border:1px solid #000;width:26px;height:26px;border-radius:3px;background-color:white;">
                                                 <button id={{filedata.filelj}}ReNameSure name={{filedata.filelj}} onclick="ReNameAct(this)"></button>
