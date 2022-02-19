@@ -80,7 +80,9 @@
     <script src="/static/js/DelFiles.js"></script>
     <script src="/static/js/ReName.js"></script>
     <script src="/static/js/NewFolder.js"></script>
+    <script src="/static/js/SBCShare.js"></script>
     <script src="/static/js/GlobalVar.js"></script>
+
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/spark-md5/3.0.0/spark-md5.min.js"></script>-->
 
 </head>
@@ -119,10 +121,10 @@
             </div>
             &nbsp;
             <div class="menudropdown" id="menudropdown">
-                <button style="width:60px;height:30px;border-radius:5px;background-color:white;color:blue;">更多</button>
-                <div class="menudropdown-content">
+                <button onclick="menudropdownShow()" style="cursor:pointer;width:60px;height:30px;border-radius:5px;background-color:white;color:blue;">更多</button>
+                <div class="menudropdown-content" id="menudropdown-content" style="display:none;">
                     <a href="javascript:void(0);" onclick="NewFolder()">新建</a>
-                    <a href="javascript:void(0);" onclick="Share(this)">分享</a>
+                    <a href="javascript:void(0);" onclick="SBCShare()">分享</a>
                     <a href="javascript:void(0);" onclick="Moveto(this)">移动</a>
                     <a href="javascript:void(0);" onclick="Copyto(this)">复制</a>
                     <a href="javascript:void(0);" onclick="Attribute(this)">属性</a>
@@ -269,7 +271,13 @@
     RefreshFiles({'id':reqs.path});
 </script>
 
-
+<script>
+    function menudropdownShow()
+    {
+        var menudropdown_content = document.getElementById("menudropdown-content");
+	    menudropdown_content.style.display = "block";
+    }
+</script>
 <!--<script>-->
     <!--function NewFolder0()-->
     <!--{-->
