@@ -19,9 +19,9 @@ function CancelDel()
 	//document.getElementById('DelFilesDetails').style.display = "none";
 }
 
-function DelFiles(files)
+function DelFiles()
 {
-	
+	var files = Window.globalConfig.GlobalFiles;
 	//var files = {{data|safe}};
 	var ChoseFiles = FindCheck(files);
     var ChoseFileLen = ChoseFiles.length;

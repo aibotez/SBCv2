@@ -74,7 +74,9 @@ def Home(request):
         return HttpResponseRedirect('/login/')
     getuserpath = GetUserPath.GetUserPath()
     req = request.GET.dict()
+
     paths = getuserpath.userpath(req,LoginRes)
+    req['path'] = paths[0]
     datas=filesget(paths)
     data=datas[0]
     datajson = json.dumps(data)
@@ -84,11 +86,13 @@ def Home(request):
     # print(navlastpath)
     return render(request, "home/home1.html",locals())
 # @require_POST
-def home(request):
+def FileList(request):
     LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
     if LoginRes['res']:
         return HttpResponseRedirect('/login/')
     getuserpath = GetUserPath.GetUserPath()
+    # if request.method == 'GET':
+    #     pass
     req = {'path':request.POST['ids']}
     paths = getuserpath.userpath(req,LoginRes)
     datas=filesget(paths)

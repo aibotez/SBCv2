@@ -23,7 +23,7 @@ from FileDownUpapp import views as viewDU
 
 urlpatterns = [
     path('', view.Home),
-    path('RefreshFiles/', view.home),
+    path('RefreshFiles/', view.FileList),
     path('DelFiles/',view.DelFiles),
     path('ReName/',view.ReName),
     path('netOper/',view.netOper),

@@ -52,9 +52,10 @@ function CheckFolder(files,NewFolderName)
 	return NewFolderName;
 }
 
-function NewFolder(files)
+function NewFolder()
 {
 	//var files = {{data|safe}};
+	var files = Window.globalConfig.GlobalFiles;
 	//document.getElementById("menudropdown").style.display="";
 	var NewFolderName = CheckFolder(files,"新建文件夹");
 	//console.log(NewFolderName);

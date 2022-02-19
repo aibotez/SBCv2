@@ -7,6 +7,7 @@
     {
 		//console.log(act);
 		
+		
         var encodeurl = encodeURIComponent(act.id)
         var cururl = 'http://'+window.location.host+'/RefreshFiles/';
         $("#ShowMain").load(cururl,{"ids": encodeurl},function(response){

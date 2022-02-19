@@ -1,5 +1,8 @@
-function Rename(files)
+function Rename()
 {
+
+	
+	var files = Window.globalConfig.GlobalFiles;
 	var ChoseFiles = FindCheck(files);
     var ChoseFileLen = ChoseFiles.length;
 	//console.log(ChoseFileLen);
