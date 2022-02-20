@@ -11,7 +11,7 @@ function PostMethod(urlpath,datas,isSanc)
         error: function () { },
         complete: function (data) {}
     })
-	
+	//alert(resdata.res);
 	return resdata;
 	
 }

@@ -3,10 +3,12 @@ from SBC import LoginVerfiy
 from django.http import HttpResponse,JsonResponse
 from django.http import HttpResponseRedirect
 import json
+from django.views.decorators.http import require_GET, require_http_methods, require_POST
 from SBCShareapp import SBCShareManage
 # Create your views here.
 
 
+@require_POST
 def CreatShareFile(request):
     LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
     if LoginRes['res']:
@@ -16,4 +18,5 @@ def CreatShareFile(request):
     req = request.POST.dict()
     SBCShareManages = SBCShareManage.ShareManage()
     res = SBCShareManages.CreatShareUrl(ShareFileInfo,LoginRes,req)
-    return HttpResponse(res)
+    return JsonResponse({'res':res})
+    # return HttpResponse()

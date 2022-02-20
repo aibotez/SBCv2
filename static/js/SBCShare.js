@@ -1,6 +1,11 @@
 
 var ShareFileInfo = [];
 
+function FinshShare()
+{
+	CancelShare();
+}
+
 function SureShare()
 {
 	var ShareFeDateDur = document.getElementById("SharemenudropdownB").innerHTML;
@@ -13,9 +18,15 @@ function SureShare()
 	var urlpath = "/CreatShareFile/";
 	var jsondata = JSON.stringify(postdata);
 	var res = PostMethod(urlpath,jsondata,0);
-	CancelShare();
-	var SSureButtonid = document.getElementById("ShareFilesUrlbutton");
-	SSureButtonid.style = "position:relative;top:1px;border-radius:5px;cursor:pointer;background-image: url(/static/img/Sure.jpg);width:24px;height:24px;background-size:24px 24px; border:0;";
+	//CancelShare();
+	console.log(res);
+	document.getElementById("ShareUrlContent").innerHTML=res.res;
+	var div = document.getElementById("ShareFiles");
+	div.style.height = "300px";
+	document.getElementById("ShareSetShow").style.display="none";
+	document.getElementById("ShareUrlShow").style.display="";
+	//var SSureButtonid = document.getElementById("ShareFilesUrlbutton");
+	//SSureButtonid.style = "position:relative;top:1px;border-radius:5px;cursor:pointer;background-image: url(/static/img/Sure.jpg);width:24px;height:24px;background-size:24px 24px; border:0;";
 
 }
 function CancelShare()
@@ -28,6 +39,8 @@ function CancelShare()
 function SBCShare()
 {
 	var menudropdown_content = document.getElementById("menudropdown-content");
+	document.getElementById("ShareUrlShow").style.display="none";
+	document.getElementById("ShareSetShow").style.display="";
 	menudropdown_content.style.display = "none";
 	var files = Window.globalConfig.GlobalFiles;
 	var ChoseFiles = FindCheck(files);
@@ -40,7 +53,7 @@ function SBCShare()
 	bo.style="background-color:#E5E7E9";
 	
 	var div = document.getElementById("ShareFiles");
-	div.style.display = "";
+	div.style.height = "500px";
 	var content = document.getElementById("ShareContentDetails");
 	var s= "";
 	for (var i=0;i<ChoseFileLen;i++)
@@ -48,6 +61,7 @@ function SBCShare()
 		s = s+ChoseFiles[i]['fename']+'<br>';
 	}
 	content.innerHTML = s;
+	div.style.display = "";
 	
 	
 
