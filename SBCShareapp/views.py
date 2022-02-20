@@ -10,13 +10,15 @@ from SBCShareapp import SBCShareManage
 
 @require_POST
 def CreatShareFile(request):
+
     LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
     if LoginRes['res']:
         return HttpResponseRedirect('/login/')
     ShareFileInfo = json.loads(list(request.POST.keys())[0])
     # print(ShareFileInfo)
     req = request.POST.dict()
+    CurUrl = request.get_host()
     SBCShareManages = SBCShareManage.ShareManage()
-    res = SBCShareManages.CreatShareUrl(ShareFileInfo,LoginRes,req)
+    res = SBCShareManages.CreatShareUrl(ShareFileInfo,LoginRes,CurUrl)
     return JsonResponse({'res':res})
     # return HttpResponse()
