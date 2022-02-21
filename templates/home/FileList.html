@@ -1,32 +1,32 @@
 
 
     <script src="/static/js/GlobalVar.js"></script>
-        <div class="container" id="navlist" style="height:4%;">
+        <div class="container" id="navlist" style="height:3rem;">
             {% for navi in navlist %}
                 {% if navi.path == navlastpath %}
                     <div>
                         <label style="display:none;" id="CurPath">{{navi.path}}</label>
-                        <a id={{navi.path}} style="color:#000000;font-size:15px;text-decoration:none;">&ensp;{{navi.navname}}</a>
+                        <a id={{navi.path}} style="color:#000000;font-size:1.5rem;text-decoration:none;">&ensp;{{navi.navname}}</a>
                     </div>
                 {% else %}
                     <div>
-                        <a id={{navi.path}} style="color:#C0C0C0;font-size:15px;text-decoration:none;" href="javascript:void(0);" onclick="RefreshFiles(this)">&ensp;{{navi.navname}}</a>
+                        <a id={{navi.path}} style="color:#C0C0C0;font-size:1.5rem;text-decoration:none;" href="javascript:void(0);" onclick="RefreshFiles(this)">&ensp;{{navi.navname}}</a>
                     </div>
                     <div>
-                        <span id={{navi.path}}00 style="color:#C0C0C0;font-size:15px;">&ensp;&gt;</span>
+                        <span id={{navi.path}}00 style="color:#C0C0C0;font-size:1.5rem;">&ensp;&gt;</span>
                     </div>
                  {% endif %}
             {% endfor %}
         </div>
         <div style="border-bottom:1px solid #CCC"></div>
-        <div class="container" style="height:2.9%;width:100%;">
-            <label style="display:block;width:58%;height:100%;color:Gray;">文件名</label>
-            <label style="display:block;width:15%;height:100%;color:Gray;">大小</label>
-            <label style="display:block;width:25%;height:100%;color:Gray;">修改日期</label>
+        <div class="container" style="width:100%;">
+            <label style="font-size:1.5rem;display:block;width:58%;height:100%;color:Gray;">文件名</label>
+            <label style="font-size:1.5rem;display:block;width:15%;height:100%;color:Gray;">大小</label>
+            <label style="font-size:1.5rem;display:block;width:25%;height:100%;color:Gray;">修改日期</label>
         </div>
         <div style="border-bottom:1px solid #CCC"></div>
 
-        <div style="overflow:scroll;height:84.5%;width:100%;">
+        <div style="overflow:scroll;height:96%;width:100%;">
             <div id="FilesData">
                 {% for filedata in data %}
                     <table width="100%" border="0" style="width:100%;">
@@ -42,7 +42,7 @@
                                 <!--</div>-->
                                 <!--&nbsp;-->
                                 <div class="container" style="width:100%">
-                                    <div class="container" style="width:6%">
+                                    <div class="container" style="width:8%">
                                         <!--<input name={{filedata.filelj}} id={{filedata.filelj}}Choseboxone type="checkbox" value="" onclick="Chosebox(this)" />&nbsp;-->
                                         <img src={{filedata.imgpath}} width="80%">
                                     </div>
@@ -62,11 +62,11 @@
                                             </div>
                                         </div>
 
-                                        <a id={{filedata.filelj}} name="File" style="color:black;font-size:20px;text-decoration:none;" href="javascript:void(0);" onclick="RefreshFiles(this)">
+                                        <a id={{filedata.filelj}} name="File" style="color:black;font-size:2rem;text-decoration:none;" href="javascript:void(0);" onclick="RefreshFiles(this)">
                                             {{filedata.filename}}
                                         </a>
                                     </div>
-                                    <div style="width:40%;color:Gray;" class="container">
+                                    <div style="font-size:2rem;width:40%;color:Gray;" class="container">
                                         <div style="width:38%;color:Gray;">
                                             <label>
                                                 {{filedata.big}}
