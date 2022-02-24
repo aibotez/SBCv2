@@ -10,7 +10,8 @@ from SBC import GetUserPath
 
 class MakeLink():
     def __init__(self):
-        self.FilesStock = r'D:\documents\GitStock\SBCuserTest\FilesStock'
+        # self.FilesStock = r'D:\documents\GitStock\SBCuserTest\FilesStock'
+        self.FilesStock = r'D:\SBCStock'
 
     def mklk(self,dst,srcfename,dstfename):
         # dstDirs = r'D:\documents\GitStock\SBCuserTest\2290227486@qq.com'
@@ -21,11 +22,14 @@ class MakeLink():
 
 
 
+
 class FileUp():
     def __init__(self):
         self.FilesInfo=None
-        self.FilesStock = 'D:/documents/GitStock/SBCuserTest/FilesStock/'
-        self.FileServerHome = 'D:/documents/GitStock/SBCuserTest/'
+        # self.FilesStock = 'D:/documents/GitStock/SBCuserTest/FilesStock/'
+        # self.FileServerHome = 'D:/documents/GitStock/SBCuserTest/'
+        self.FilesStock = 'D:/SBCStock/'
+        self.FileServerHome = 'D:/SBCUsers/'
         self.getuserpath = GetUserPath.GetUserPath()
 
     def GetFileMd5(self,filename):

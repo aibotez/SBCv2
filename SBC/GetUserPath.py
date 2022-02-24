@@ -3,7 +3,8 @@ import os,json
 
 class GetUserPath():
     def __init__(self):
-        self.ServerHomePath = 'D:/documents/GitStock/SBCuserTest/'
+        # self.ServerHomePath = 'D:/documents/GitStock/SBCuserTest/'
+        self.ServerHomePath = 'D:/SBCUsers/'
 
     def GetDownPath(self,DownReInfo,LoginRes):
         DownReInfo = json.loads(DownReInfo)
