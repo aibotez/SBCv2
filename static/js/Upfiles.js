@@ -57,7 +57,7 @@
 	function GetFileMd5(file,Manageid,CurPath)
 	{
 		var blobSlice = File.prototype.slice || File.prototype.mozSlice || File.prototype.webkitSlice;
-		var chunkSize = 2097152; // 每次读取2MB
+		var chunkSize = 1024*1024; // 每次读取2MB
 		var chunks = Math.ceil(file.size / chunkSize);
 		var currentChunk = 0;
 		var spark = new SparkMD5.ArrayBuffer();
