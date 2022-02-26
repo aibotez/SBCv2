@@ -27,28 +27,28 @@
         <div style="border-bottom:1px solid #CCC"></div>
 
         <div style="overflow:scroll;height:96%;width:100%;">
-            <div id="FilesData">
+            <div id="FilesData" style="width:100%;">
                 {% for filedata in data %}
-                    <table width="100%" border="0" style="width:100%;">
-                        <tr class="change">
+                    <table border="0" style="width:100%;border:0;word-break:break-all;table-layout: fixed;">
+                        <tr class="change" style="width:100%;">
                             <td style="width:2%;">
                                 <div>
                                     <input name={{filedata.filelj}} id={{filedata.filelj}}Choseboxone type="checkbox" value="" />
                                 </div>
                             </td>
-                            <td style="width:98%;" id={{filedata.filelj}}Chosebox onclick="Chosebox(this)">
+                            <td style="width:98%;word-break:break-all;" id={{filedata.filelj}}Chosebox onclick="Chosebox(this)">
                                 <!--<div style="width:2%">-->
                                     <!--<input name={{filedata.filelj}} id={{filedata.filelj}}Choseboxone type="checkbox" value="" />-->
                                 <!--</div>-->
                                 <!--&nbsp;-->
-                                <div class="container" style="width:100%">
+                                <div class="container" style="width:100%;overflow:hidden;">
                                     <div class="container" style="width:8%">
                                         <!--<input name={{filedata.filelj}} id={{filedata.filelj}}Choseboxone type="checkbox" value="" onclick="Chosebox(this)" />&nbsp;-->
                                         <img src={{filedata.imgpath}} width="80%">
                                     </div>
-                                    <div style="width:50%;overflow:hidden;text-overflow: ellipsis;white-space: nowrap">
+                                    <div id="FileLabel" style="width:50%;overflow:hidden;text-overflow: ellipsis;white-space: nowrap">
                                         <div class="container" id={{filedata.filelj}}ReName style="display:none;height:100%;">
-                                            <input type="text" id={{filedata.filelj}}ReNameText name={{filedata.filename}} value={{filedata.filename}}>
+                                            <input type="text" id={{filedata.filelj}}ReNameText name={{filedata.filename}} style="font-size:2rem;" value={{filedata.filename}}>
                                             <!--<textarea id={{filedata.filelj}}ReNameText name={{filedata.filename}} wrap='off' rows="1" cols="100" style="font-size:20px;width:60%;overflow-x:hidden">{{filedata.filename}}</textarea>-->
                                             <!--&nbsp;-->
                                             <div class="container" style="margin-left:3px;border:1px solid #000;width:26px;height:26px;border-radius:3px;background-color:white;">
@@ -61,10 +61,12 @@
                                                 <button id={{filedata.filelj}}ReNameCancel name={{filedata.filelj}} onclick="ReNameCancel(this)"></button>
                                             </div>
                                         </div>
+                                        <div style="width:100%;overflow:hidden;text-overflow: ellipsis;white-space: nowrap">
+                                            <a id={{filedata.filelj}} name="File" style="display:block;overflow:hidden;text-overflow: ellipsis;white-space: nowrap;width:100%;color:black;font-size:2rem;text-decoration:none;" href="javascript:void(0);" onclick="RefreshFiles(this)">
+                                                {{filedata.filename}}
+                                            </a>
+                                        </div>
 
-                                        <a id={{filedata.filelj}} name="File" style="color:black;font-size:2rem;text-decoration:none;" href="javascript:void(0);" onclick="RefreshFiles(this)">
-                                            {{filedata.filename}}
-                                        </a>
                                     </div>
                                     <div style="font-size:2rem;width:40%;color:Gray;" class="container">
                                         <div style="width:38%;color:Gray;">
@@ -92,6 +94,7 @@
 
     <script>
         Window.globalConfig.GlobalFiles = {{data|safe}};
+
 
     </script>
 

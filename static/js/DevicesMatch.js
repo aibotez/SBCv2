@@ -16,7 +16,11 @@ function Match()
 		document.documentElement.style.fontSize = ScWidth/60+'px';
 		document.getElementById("div1").style.display="none";
 		document.getElementById("HightModeMenu").style.display="";
-		document.getElementById("ShowMain").style.width = "100%";
+		//document.getElementById("FileLabel").style.width = "1000px";
+		document.getElementById("ShowMain").style.width = ScWidth+"px";
+		//document.getElementById("FilesData").style.width = ScWidth+"px";
+		//console.log(ScWidth);
+		
 		
 	}
 	else
