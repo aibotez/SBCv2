@@ -58,7 +58,7 @@ class FileUp():
             lk = MakeLink()
             lk.mklk(dst,srcfename,dstfename)
             usermange = UserManage.usermange()
-            usermange.AddUsedCap(useremail,os.path.getsize(srcfename))
+            usermange.AddUsedCap(useremail,os.path.getsize(self.FilesStock + redit['FileName']))
             return {'exist':1}
         else:
             FileStart = 0
@@ -93,7 +93,7 @@ class FileUp():
             lk.mklk(dst,srcfename,dstfename)
             models.FilesStock.objects.create(FileMd5=feMd5, FileName=srcfename,FilePath=self.FilesStock + srcfename)
             usermange = UserManage.usermange()
-            usermange.AddUsedCap(useremail,os.path.getsize(srcfename))
+            usermange.AddUsedCap(useremail,os.path.getsize(self.FilesStock + redit['FileName']))
 
 
 

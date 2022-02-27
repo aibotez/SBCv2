@@ -135,12 +135,14 @@ def DelFiles(request):
             # print(userPath)
             # print(i)
             if i['feisdir']:
-                shutil.rmtree(userPath)
+
                 DirsSize = getdirsize(userPath)
                 usermange.DelUsedCap(LoginRes['useremail'],DirsSize)
+                shutil.rmtree(userPath)
             else:
-                os.remove(userPath)
+
                 usermange.DelUsedCap(LoginRes['useremail'],os.path.getsize(userPath))
+                os.remove(userPath)
         except Exception as e:
             print(e)
 
