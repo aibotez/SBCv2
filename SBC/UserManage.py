@@ -14,3 +14,13 @@ class usermange():
         if UserInfo.usedcapacity + NewFeSize > UserInfo.totalcapacity:
             return 1
         return 0
+
+    def AddUsedCap(self,useremail,NewFesize):
+        UserInfo = User.objects.get(email=useremail)
+        UserInfo.usedcapacity = UserInfo.usedcapacity + NewFesize
+        UserInfo.save()
+
+    def DelUsedCap(self,useremail,NewFesize):
+        UserInfo = User.objects.get(email=useremail)
+        UserInfo.usedcapacity = UserInfo.usedcapacity - NewFesize
+        UserInfo.save()
