@@ -26,13 +26,13 @@
         </div>
         <div style="border-bottom:1px solid #CCC"></div>
 
-        <div style="overflow:scroll;height:96%;width:100%;">
+        <div style="overflow:scroll;height:100%;width:100%;">
             <div id="FilesData" style="width:100%;">
                 {% for filedata in data %}
                     <table border="0" style="width:100%;border:0;word-break:break-all;table-layout: fixed;">
                         <tr class="change" style="width:100%;">
                             <td style="width:3%;">
-                                <div style="margin:2px">
+                                <div>
                                     <input name={{filedata.filelj}} id={{filedata.filelj}}Choseboxone type="checkbox" value="" />
                                 </div>
                             </td>
@@ -61,8 +61,8 @@
                                                 <button id={{filedata.filelj}}ReNameCancel name={{filedata.filelj}} onclick="ReNameCancel(this)"></button>
                                             </div>
                                         </div>
-                                        <div style="width:100%;overflow:hidden;text-overflow: ellipsis;white-space: nowrap">
-                                            <a id={{filedata.filelj}} name="File" style="display:block;overflow:hidden;text-overflow: ellipsis;white-space: nowrap;width:100%;color:black;font-size:2rem;text-decoration:none;" href="javascript:void(0);" onclick="RefreshFiles(this)">
+                                        <div style="max-width:90%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+                                            <a id={{filedata.filelj}} name="File" style="color:black;font-size:2rem;text-decoration:none;" href="javascript:void(0);" onclick="RefreshFiles(this)">
                                                 {{filedata.filename}}
                                             </a>
                                         </div>
