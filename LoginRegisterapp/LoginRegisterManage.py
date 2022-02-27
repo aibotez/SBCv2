@@ -32,7 +32,7 @@ class loginOper():
 
 class registerOper():
     def __init__(self):
-        self.UserIntCap = 100*1024*1024*1024*1024#100GB
+        self.UserIntCap = 100*1024*1024*1024#100GB
 
     def VerifyUser(self,Vcode,useremail,username):
         try:
