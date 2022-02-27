@@ -40,7 +40,7 @@ class VcodeManage():
         return 0
 
     def Updateretimesper(self,userdata,overtime):
-        if overtime < 6:#1*60*60:
+        if overtime < 1*60*60:#1*60*60:
             retimesper = userdata.retimesper+1
         else:
             retimesper = 0
