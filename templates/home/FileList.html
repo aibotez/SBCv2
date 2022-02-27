@@ -26,7 +26,7 @@
         </div>
         <div style="border-bottom:1px solid #CCC"></div>
 
-        <div style="overflow:scroll;height:100%;width:100%;">
+        <div id="Showmainscroll" style="overflow:scroll;height:100%;width:100%;">
             <div id="FilesData" style="width:100%;">
                 {% for filedata in data %}
                     <table border="0" style="width:100%;border:0;word-break:break-all;table-layout: fixed;">
@@ -94,8 +94,13 @@
 
     <script>
         Window.globalConfig.GlobalFiles = {{data|safe}};
-
-
+        var ScWidth = document.documentElement.clientWidth;
+	    var ScHeight = document.documentElement.clientHeight;
+	    if(ScHeight>ScWidth)
+	    {var pxperrem = ScWidth/60}
+	    else
+	    {var pxperrem = ScWidth/90}
+        document.getElementById("Showmainscroll").style.height = ScHeight-100-0.03*ScHeight-3*pxperrem-2*pxperrem+"px";
     </script>
 
         <!--&lt;!&ndash;<div style="height:10%;width:100%;background-color:black;">&ndash;&gt;-->

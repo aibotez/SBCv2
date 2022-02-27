@@ -17,7 +17,8 @@ function Match()
 		document.getElementById("div1").style.display="none";
 		document.getElementById("HightModeMenu").style.display="";
 		//document.getElementById("FileLabel").style.width = "1000px";
-		document.getElementById("ShowMain").style.width = ScWidth+"px";
+		document.getElementById("ShowMain").style.width = "100%";
+		document.getElementById("ShowMain").style.height = ScHeight-100-0.03*ScHeight+"px";
 		//document.getElementById("FilesData").style.width = ScWidth+"px";
 		//console.log(ScWidth);
 		
