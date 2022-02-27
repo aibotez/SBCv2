@@ -5,6 +5,7 @@ import os,hashlib
 from Usersapp.models import User
 from FileDownUpapp import models
 from SBC import GetUserPath
+from SBC import UserManage
 
 
 
@@ -56,6 +57,8 @@ class FileUp():
             srcfename = models.FilesStock.objects.get(FileMd5=feMd5).FileName
             lk = MakeLink()
             lk.mklk(dst,srcfename,dstfename)
+            usermange = UserManage.usermange()
+            usermange.AddUsedCap(useremail,os.path.getsize(srcfename))
             return {'exist':1}
         else:
             FileStart = 0
@@ -89,6 +92,8 @@ class FileUp():
             lk = MakeLink()
             lk.mklk(dst,srcfename,dstfename)
             models.FilesStock.objects.create(FileMd5=feMd5, FileName=srcfename,FilePath=self.FilesStock + srcfename)
+            usermange = UserManage.usermange()
+            usermange.AddUsedCap(useremail,os.path.getsize(srcfename))
 
 
 

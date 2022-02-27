@@ -23,4 +23,6 @@ class usermange():
     def DelUsedCap(self,useremail,NewFesize):
         UserInfo = User.objects.get(email=useremail)
         UserInfo.usedcapacity = UserInfo.usedcapacity - NewFesize
+        if UserInfo.usedcapacity <0:
+            UserInfo.usedcapacity = 0
         UserInfo.save()

@@ -11,6 +11,7 @@ import shutil,json,io
 import socket,os,time,threading
 from django.views.decorators.http import require_GET, require_http_methods, require_POST
 from SBC import FileOper
+from SBC import UserManage
 from PIL import Image
 
 # from SBC import FileDownUp
@@ -107,7 +108,11 @@ def FileList(request):
 
     return render(request, "home/FileList.html", locals())
 
-
+def getdirsize(dir):
+    size = 0
+    for root, dirs, files in os.walk(dir):
+        size += sum([os.path.getsize(os.path.join(root, name)) for name in files])
+    return size
 import shutil
 @require_POST
 def DelFiles(request):
@@ -124,13 +129,18 @@ def DelFiles(request):
     for i in DelFilesList:
         path = i['fepath']
         userPath = getuserpath.getuserserpath(LoginRes['useremail'],path)
+        usermange = UserManage.usermange()
+
         try:
             # print(userPath)
             # print(i)
             if i['feisdir']:
                 shutil.rmtree(userPath)
+                DirsSize = getdirsize(userPath)
+                usermange.DelUsedCap(LoginRes['useremail'],DirsSize)
             else:
                 os.remove(userPath)
+                usermange.DelUsedCap(LoginRes['useremail'],os.path.getsize(userPath))
         except Exception as e:
             print(e)
 
