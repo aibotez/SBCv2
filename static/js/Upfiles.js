@@ -260,6 +260,7 @@
 			fd.append("FileMd5",FileMd5);
 			fd.append('CurPath',CurPath);
 			fd.append('FileName',file.name);
+			fd.append('FileSize',file.size);
 			fd.append('isLastChunk',isLastChunk);
 			let xhr = new XMLHttpRequest();
 			xhr.open('post', '/Upfile/', true);

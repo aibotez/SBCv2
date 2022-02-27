@@ -4,6 +4,7 @@ from SBC import LoginVerfiy
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse,JsonResponse
 from SBC import GetUserPath
+from SBC import UserManage
 from FileDownUpapp import FileDownUp
 # Create your views here.
 
@@ -29,7 +30,10 @@ def CheckFile(request):
     LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
     if LoginRes['res']:
         return HttpResponseRedirect('/login/')
-
+    FileSize = int(request.POST['FileSize'])
+    usermange = UserManage.usermange()
+    if usermange.Capisfull(LoginRes['useremail'],FileSize):
+        return HttpResponse('FULL')
     FileDowUpCOm = FileDownUp.FileUp()
     res = FileDowUpCOm.UpfileCheck(request.POST.dict(),LoginRes['useremail'])
     return JsonResponse(res)
@@ -39,6 +43,11 @@ def FileUp(request):
     LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
     if LoginRes['res']:
         return HttpResponseRedirect('/login/')
+
+    FileSize = int(request.POST['FileSize'])
+    usermange = UserManage.usermange()
+    if usermange.Capisfull(LoginRes['useremail'],FileSize):
+        return HttpResponse('FULL')
     file_obj = request.FILES.get("file")
     FileDowUpCOm = FileDownUp.FileUp()
     FileDowUpCOm.Upfile(request.POST.dict(),LoginRes['useremail'],file_obj)
