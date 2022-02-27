@@ -9,17 +9,18 @@ function Rename()
     if (ChoseFileLen < 1)
        {return;}
     var ChoseFile = ChoseFiles[0];
-	
     //console.log(ChoseFile);
 	var ChoseFileid = ChoseFile["fepath"];
 	//document.getElementById(ChoseFileid+"Choseboxone").disabled="disabled";
+	var ReNameText = document.getElementById(ChoseFileid+"ReNameText");
 	var SureButtonid = document.getElementById(ChoseFileid+"ReNameSure");
 	var CancelButtonid = document.getElementById(ChoseFileid+"ReNameCancel");
 	document.getElementById(ChoseFileid).style.display="none";
 	document.getElementById(ChoseFileid+"ReName").style.display="";
 	
-	SureButtonid.style = "margin-left:3px;cursor:pointer;background-image: url(/static/img/Sure.jpg);width:20px;height:20px;background-size:20px 20px; border:0;";
-	CancelButtonid.style = "margin-left:3px;cursor:pointer;background-image: url(/static/img/Cancel.jpg);width:20px;height:20px;background-size:20px 20px; border:0;";
+	ReNameText.style = "font-size:2rem;width:60%;";
+	SureButtonid.style = "margin-left:3px;cursor:pointer;background-image: url(/static/img/Sure.jpg);width:2.5rem;height:2.5rem;background-size:2.5rem 2.5rem; border:0;";
+	CancelButtonid.style = "margin-left:3px;cursor:pointer;background-image: url(/static/img/Cancel.jpg);width:2.5rem;height:2.5rem;background-size:2.5rem 2.5rem; border:0;";
 }
 function ReNameCancel(act)
 {
