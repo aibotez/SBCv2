@@ -29,6 +29,7 @@ function Match()
 		document.documentElement.style.fontSize = ScWidth/90+'px';
 		document.getElementById("div1").style.display="";
 		document.getElementById("HightModeMenu").style.display="none";
+		//document.getElementById("ShowMain").style.height = "100%";
 	}
 	
 }
