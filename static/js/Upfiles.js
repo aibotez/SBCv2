@@ -283,6 +283,7 @@
 		//console.log(FileMd5);
 		//console.log(UpManage);
 		var CurPath = document.getElementById("CurPath").innerText;
+		document.getElementById(CurPath+file.name+"label").innerText = size_format(0)+"/"+size_format(file.size)+"";
 		urlpath = "/CheckFile/";
 		data={
 			'CurPath':CurPath,
