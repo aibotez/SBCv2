@@ -2,6 +2,7 @@ from django.http import StreamingHttpResponse,FileResponse
 from django.utils.encoding import escape_uri_path
 import os,hashlib
 
+from Usersapp.models import User
 from FileDownUpapp import models
 from SBC import GetUserPath
 
@@ -88,6 +89,8 @@ class FileUp():
             lk = MakeLink()
             lk.mklk(dst,srcfename,dstfename)
             models.FilesStock.objects.create(FileMd5=feMd5, FileName=srcfename,FilePath=self.FilesStock + srcfename)
+
+
 
         #
         # if models.FilesStock.objects.filter(FileMd5=feMd5).exists():
