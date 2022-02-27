@@ -32,7 +32,7 @@ class loginOper():
 
 class registerOper():
     def __init__(self):
-        pass
+        self.UserIntCap = 100*1024*1024*1024*1024#100GB
 
     def VerifyUser(self,Vcode,useremail,username):
         try:
@@ -62,7 +62,8 @@ class registerOper():
         if VerifyUserInfo == 1:
             getuserpath = GetUserPath.GetUserPath()
             if getuserpath.NewRegisterPath(useremail):
-                Cuser = User.objects.create_user(username=username,password=userpassword1,email=useremail,ipv4=useripv4)
+                print('Register New User')
+                Cuser = User.objects.create_user(username=username,password=userpassword1,email=useremail,ipv4=useripv4,usedcapacity = 0,totalcapacity=self.UserIntCap)
                 Userfo = User.objects.get(email=useremail)
                 msg['status'] = 1
                 msg['pass'] = Userfo.password
