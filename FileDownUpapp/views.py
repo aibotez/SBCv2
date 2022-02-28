@@ -43,7 +43,7 @@ def FileUp(request):
     LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
     if LoginRes['res']:
         return HttpResponseRedirect('/login/')
-
+    # print(request.POST)
     FileSize = int(request.POST['FileSize'])
     usermange = UserManage.usermange()
     if usermange.Capisfull(LoginRes['useremail'],FileSize):

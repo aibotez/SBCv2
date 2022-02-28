@@ -236,7 +236,7 @@
 	
 	function upfilechunk(file,CurPath,FileMd5,startchunk)
 	{
-		const chunkSize = 2*1024*1024;
+		const chunkSize = 512*1024;
 		uploadact(startchunk);
 		function uploadact(startchunk)
 		{
@@ -249,7 +249,7 @@
 				document.getElementById(CurPath+file.name+"UpControl").style = "background-image: url(/static/img/finish.jpg);width: 23px;height: 23px;background-size:23px 23px; border: 0;";
 				document.getElementById("UpdetailsTitle").innerText = WaitUpNums+"个文件正在上传! "+
 				"已完成"+FinshUpNums+"个文件";
-				RefreshFiles({'id':CurPath});
+				RefreshFiles({'id':Base64.encode(CurPath)});
 				return;
 			}
 			let endchunk = (startchunk + chunkSize > file.size) ? file.size : (startchunk + chunkSize);
@@ -299,7 +299,7 @@
 			var progress = document.getElementById(CurPath+file.name+"progress");
 			progress.max = file.size;
 			progress.value = file.size;
-			RefreshFiles({'id':CurPath});
+			RefreshFiles({'id':Base64.encode(CurPath)});
 			FinshUpNums = FinshUpNums+1;
 			//console.log(222);
 			document.getElementById(CurPath+file.name+"UpControl").disabled = true;
