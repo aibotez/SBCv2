@@ -16,7 +16,7 @@ function AckDel(ChoseFiles)
 	var CurPath = document.getElementById("CurPath").innerText;
 	var DelFilesDetails = document.getElementById("DelFilesDetails");
 	DelFilesDetails.remove();
-	RefreshFiles({'id':CurPath});
+	RefreshFiles({'id':Base64.encode(CurPath)});
 }
 
 function CancelDel()
