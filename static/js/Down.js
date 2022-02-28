@@ -64,7 +64,7 @@ function FindCheckdown(files)
 	for (var i=0;i<files.length;i++)
 	{
 		file = files[i].filelj;
-		if (document.getElementsByName(file)[0].checked==true)
+		if (document.getElementById(file+"Choseboxone").checked==true)
 		{
 			filename = files[i].filename;
 			feisdir =files[i].isdir;

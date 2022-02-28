@@ -1,6 +1,7 @@
 
 
     <script src="/static/js/GlobalVar.js"></script>
+    <script src="/static/js/js-base64-main/base64.js">/* load */</script>
         <div class="container" id="navlist" style="height:3rem;">
             {% for navi in navlist %}
                 {% if navi.path == navlastpath %}
@@ -33,10 +34,10 @@
                         <tr class="change" style="width:100%;">
                             <td style="width:3%;">
                                 <div>
-                                    <input name={{filedata.filelj}} id={{filedata.filelj}}Choseboxone type="checkbox" value="" />
+                                    <input name={{filedata.filelj}} id='{{filedata.filelj}}Choseboxone' type="checkbox" value="" />
                                 </div>
                             </td>
-                            <td style="width:97%;word-break:break-all;" id={{filedata.filelj}}Chosebox onclick="Chosebox(this)">
+                            <td style="width:97%;word-break:break-all;" id='{{filedata.filelj}}Chosebox' onclick="Chosebox(this)">
                                 <!--<div style="width:2%">-->
                                     <!--<input name={{filedata.filelj}} id={{filedata.filelj}}Choseboxone type="checkbox" value="" />-->
                                 <!--</div>-->
@@ -47,18 +48,18 @@
                                         <img src={{filedata.imgpath}} width="80%">
                                     </div>
                                     <div id="FileLabel" style="width:50%;overflow:hidden;text-overflow: ellipsis;white-space: nowrap">
-                                        <div class="container" id={{filedata.filelj}}ReName style="display:none;height:100%;">
-                                            <input type="text" id={{filedata.filelj}}ReNameText name={{filedata.filename}} style="font-size:2rem;" value={{filedata.filename}}>
+                                        <div class="container" id='{{filedata.filelj}}ReName' style="display:none;height:100%;">
+                                            <input type="text" id='{{filedata.filelj}}ReNameText' name={{filedata.filename}} style="font-size:2rem;" value={{filedata.filename}}>
                                             <!--<textarea id={{filedata.filelj}}ReNameText name={{filedata.filename}} wrap='off' rows="1" cols="100" style="font-size:20px;width:60%;overflow-x:hidden">{{filedata.filename}}</textarea>-->
                                             <!--&nbsp;-->
                                             <div class="container" style="margin-left:5px;border:1px solid #000;width:3rem;height:3rem;border-radius:3px;background-color:white;">
-                                                <button id={{filedata.filelj}}ReNameSure name={{filedata.filelj}} onclick="ReNameAct(this)"></button>
+                                                <button id='{{filedata.filelj}}ReNameSure' name={{filedata.filelj}} onclick="ReNameAct(this)"></button>
                                              </div>
 
                                             <!--<button id={{filedata.filelj}}ReNameSure name={{filedata.filelj}} onclick="ReNameAct(this)"></button>-->
                                             <!--&nbsp;-->
                                             <div class="container" style="margin-left:10px;border:1px solid #000;width:3rem;height:3rem;border-radius:3px;background-color:white;">
-                                                <button id={{filedata.filelj}}ReNameCancel name={{filedata.filelj}} onclick="ReNameCancel(this)"></button>
+                                                <button id='{{filedata.filelj}}ReNameCancel' name='{{filedata.filelj}}' onclick="ReNameCancel(this)"></button>
                                             </div>
                                         </div>
                                         <div style="max-width:90%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">

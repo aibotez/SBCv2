@@ -12,6 +12,7 @@ import socket,os,time,threading
 from django.views.decorators.http import require_GET, require_http_methods, require_POST
 from SBC import FileOper
 from SBC import UserManage
+import base64
 from PIL import Image
 
 # from SBC import FileDownUp
@@ -53,6 +54,10 @@ def filesget(paths):
             isdir = 0
             imgpath = '/static/img/wj.jfif'
             filepath = fileson
+        filepath = base64.encodebytes(filepath.encode('utf8')).decode()
+        filepath = filepath.replace('\n','')
+        # print(filepath,type(filepath))
+        # decode_str = base64.decodebytes(encode_str).decode()
         fesdata.append({
             'filename':i,
             'filelj':filepath,
@@ -137,12 +142,12 @@ def DelFiles(request):
             if i['feisdir']:
 
                 DirsSize = getdirsize(userPath)
-                usermange.DelUsedCap(LoginRes['useremail'],DirsSize)
                 shutil.rmtree(userPath)
+                usermange.DelUsedCap(LoginRes['useremail'], DirsSize)
             else:
-
-                usermange.DelUsedCap(LoginRes['useremail'],os.path.getsize(userPath))
+                DirsSize = os.path.getsize(userPath)
                 os.remove(userPath)
+                usermange.DelUsedCap(LoginRes['useremail'],DirsSize)
         except Exception as e:
             print(e)
 

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Mocha Tests js-base64</title>
+  
+</head>
+
+<body>
+  <div id="mocha"></div>
+  <script src="base64.js">/* load */</script>
+  <script src="https://unpkg.com/chai@4.2.0/chai.js"></script>
+	
+
+  <script>
+	var es = Base64.encode('china is so nb你');
+	var ds = Base64.decode(es);
+	console.log(es,ds)
+	
+  </script>
+</body>
+
+</html>

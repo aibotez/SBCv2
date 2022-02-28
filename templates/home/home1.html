@@ -82,6 +82,8 @@
     <script src="/static/js/NewFolder.js"></script>
     <script src="/static/js/SBCShare.js"></script>
     <script src="/static/js/GlobalVar.js"></script>
+    <script src="/static/js/FindChecks.js"></script>
+    <script src="/static/js/js-base64-main/base64.js">/* load */</script>
 
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/spark-md5/3.0.0/spark-md5.min.js"></script>-->
 
@@ -350,8 +352,8 @@
         if(ChoseBoxId.indexOf("Chosebox") != -1)
         {
             <!--console.log(ChoseBoxId.split("Chosebox")[0]);-->
-            var BoxName = ChoseBoxId.split("Chosebox")[0];
-            document.getElementsByName(BoxName)[0].checked=true;
+            var BoxName = ChoseBoxId.split("Chosebox")[0]+"Choseboxone";
+            document.getElementById(BoxName).checked=true;
             <!--if(document.getElementsByName(BoxName)[0].checked==true)-->
             <!--{-->
                 <!--document.getElementsByName(BoxName)[0].checked=false;-->
@@ -363,16 +365,16 @@
         }
         else
         {
-            var BoxName = act.name;
+            var BoxName = act.name+"Choseboxone";
             <!--document.getElementsByName(BoxName)[0].checked=true;-->
-            <!--console.log(BoxName);-->
-            if(document.getElementsByName(BoxName)[0].checked==true)
+
+            if(document.getElementById(BoxName).checked==true)
             {
-                document.getElementsByName(BoxName)[0].checked=false;
+                document.getElementById(BoxName).checked=false;
             }
             else
             {
-                document.getElementsByName(BoxName)[0].checked=true;
+                document.getElementById(BoxName).checked=true;
             }
         }
 
