@@ -126,6 +126,7 @@ def DelFiles(request):
         return HttpResponseRedirect('/login/')
     DelFilesInfo = {}
     DelFilesStr = request.POST.dict()
+    # print(DelFilesStr)
     for k in DelFilesStr.keys():
         DelFilesInfo = json.loads(k)
 

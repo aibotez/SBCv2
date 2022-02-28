@@ -9,7 +9,9 @@ function FindCheck(files)
 		{
 			filename = files[i].filename;
 			feisdir =files[i].isdir;
-			Res.push({'fename':filename,'fepath':file,'feisdir':feisdir});
+			filepath = Base64.decode(file)
+			//console.log(file);
+			Res.push({'fename':filename,'fepath':filepath,'feisdir':feisdir,'fileId':file});
 		}
 		
 	}

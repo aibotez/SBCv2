@@ -10,7 +10,7 @@ function Rename()
        {return;}
     var ChoseFile = ChoseFiles[0];
     //console.log(ChoseFile);
-	var ChoseFileid = ChoseFile["fepath"];
+	var ChoseFileid = ChoseFile["fileId"];
 	//document.getElementById(ChoseFileid+"Choseboxone").disabled="disabled";
 	var ReNameText = document.getElementById(ChoseFileid+"ReNameText");
 	var SureButtonid = document.getElementById(ChoseFileid+"ReNameSure");
@@ -39,7 +39,7 @@ function ReNameAct(act)
 	var ReNameTextid = act.name+"ReNameText";
 	var NewName = document.getElementById(ReNameTextid).value;
 	//console.log(NewName);
-	var OldNamePath = act.name;
+	var OldNamePath = Base64.decode(act.name);
 	var OldName = document.getElementById(ReNameTextid).name;
 	//console.log(OldName);
 	if(OldName==NewName)

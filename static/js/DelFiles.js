@@ -2,8 +2,15 @@
 function AckDel(ChoseFiles)
 {
 	//console.log(ChoseFiles);
+	var ChoseFileLen = ChoseFiles.length;
+	for (var i=0;i<ChoseFileLen;i++)
+	{
+		ChoseFiles[i].fileId="";
+	}
 	var urlpath = "/DelFiles/";
 	var datas = {'data':ChoseFiles};
+
+
 	var res = PostMethod(urlpath,JSON.stringify(datas),0);
 	//console.log(res);
 	var CurPath = document.getElementById("CurPath").innerText;
