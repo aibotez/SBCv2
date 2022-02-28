@@ -13,6 +13,7 @@ from django.views.decorators.http import require_GET, require_http_methods, requ
 from SBC import FileOper
 from SBC import UserManage
 import base64
+import mimetypes
 from PIL import Image
 
 # from SBC import FileDownUp
@@ -28,6 +29,23 @@ def size_format(size):
         return '%.1f' % float(size/(1024*1024*1024)) + 'GB'
     elif 1024*1024*1024*1024 <= size:
         return '%.1f' % float(size/(1024*1024*1024*1024)) + 'TB'
+
+def GetImgConPath(fepath):
+    fetypes = mimetypes.guess_type(fepath)
+    # print(fepath,fetypes)
+    try:
+        fetype = fetypes[0].split('/')[0]
+
+        if fetype == 'image':
+            with open(fepath,'rb') as f:
+                lsf = base64.b64decode(f.read())
+                # imgbase64 = "data:image/jpeg;base64," + str(lsf)
+                imgbase64 = "data:image/jpg;base64,"+str(base64.b64encode(lsf),encoding='utf-8')
+                print(imgbase64)
+            return imgbase64
+    except Exception as e:
+        print(e)
+    return '/static/img/wj.jfif'
 def filesget(paths):
     path = paths[0]
     serverpath = paths[1]
@@ -54,7 +72,8 @@ def filesget(paths):
             filesize = os.path.getsize(filesonserver)
             filesize = size_format(filesize)
             isdir = 0
-            imgpath = '/static/img/wj.jfif'
+            imgpath = GetImgConPath(filesonserver)
+            # imgpath = '/static/img/wj.jfif'
             filepath = fileson
         filepath = base64.encodebytes(filepath.encode('utf8')).decode()
         filepath = filepath.replace('\n','')
