@@ -37,7 +37,9 @@ def filesget(paths):
     s = '/'
     for i in navpathlist:
         s = s+i+'/'
-        navpaths.append({'navname':i,'path':s})
+        Npath = base64.encodebytes(s.encode('utf8')).decode()
+        Npath = Npath.replace('\n', '')
+        navpaths.append({'navname':i,'path':s,'pathId':Npath})
 
     dirshome = os.listdir(serverpath)
     fesdata=[]
