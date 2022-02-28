@@ -73,7 +73,7 @@ function FindCheckdown(files)
 				msg = "网页版不支持文件夹上传/下载";
 				return msg;
 			}
-			Res.push({'fename':filename,'fepath':file});
+			Res.push({'fename':filename,'fepath':Base64.decode(file)});
 		}
 		
 	}
