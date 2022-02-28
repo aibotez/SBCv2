@@ -54,6 +54,6 @@ function ReNameAct(act)
 	}
 	var res = PostMethod("/ReName/",data,0);
 	var CurPath = document.getElementById("CurPath").innerText;
-	RefreshFiles({'id':CurPath});
+	RefreshFiles({'id':Base64.encode(CurPath)});
 }
 
