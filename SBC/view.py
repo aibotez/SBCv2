@@ -32,7 +32,7 @@ def size_format(size):
         return '%.1f' % float(size/(1024*1024*1024*1024)) + 'TB'
 
 
-def deal_inspect_img(base64_data):
+def deal_inspect_img(base64_data,imgtype):
     """裁剪base64字符串的图片"""
     byte_data = base64.b64decode(base64_data)
     # BytesIO 对象
@@ -45,7 +45,7 @@ def deal_inspect_img(base64_data):
     # BytesIO 对象
     imgByteArr = io.BytesIO()
     # 写入BytesIO对象
-    img2.save(imgByteArr, format='JPEG')
+    img2.save(imgByteArr, format=imgtype)
     # 获得字节
     imgByteArr = imgByteArr.getvalue()
     base64_str = base64.b64encode(imgByteArr).decode()
@@ -55,12 +55,14 @@ def GetImgConPath(fepath):
     # print(fepath,fetypes)
     try:
         fetype = fetypes[0].split('/')[0]
+
         if fetype == 'image':
+            imgtype = fetypes[0].split('/')[1]
             with open(fepath,'rb') as f:
                 # lsf = base64.b64decode(f.read())
                 imgbase64 = base64.b64encode(f.read()).decode()
-                imgbase64 = deal_inspect_img(imgbase64)
-                imgbase64Url = "data:image/jpg;base64," + imgbase64
+                imgbase64 = deal_inspect_img(imgbase64,imgtype)
+                imgbase64Url = "data:image/{};base64,".format(imgtype) + imgbase64
                 # imgbase64 = "data:image/jpg;base64,"+str(base64.b64encode(lsf),encoding='utf-8').replace('\n','')
                 # print(imgbase64)
             return imgbase64Url
