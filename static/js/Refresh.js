@@ -12,7 +12,8 @@
 			RefreshAct(act);
 		}
 		else{
-			
+			//console.log(CheckFiles[0].fepath);
+			location.href="preview/?"+"filepath="+CheckFiles[0].fepath;
 		}
 	}
 	function RefreshAct(act)

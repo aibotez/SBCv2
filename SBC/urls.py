@@ -21,6 +21,7 @@ from LoginRegisterapp import viewsLR
 from forgotpasswordapp import views as viewFG
 from FileDownUpapp import views as viewDU
 from SBCShareapp import views as viewShare
+from previewapp import views as viewPre
 
 urlpatterns = [
     path('', view.Home),
@@ -46,4 +47,6 @@ urlpatterns = [
 
 
     path('CreatShareFile/',viewShare.CreatShareFile),
+
+    path('preview/',viewPre.preview),
 ]
