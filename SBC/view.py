@@ -45,7 +45,7 @@ def deal_inspect_img(base64_data):
     # BytesIO 对象
     imgByteArr = io.BytesIO()
     # 写入BytesIO对象
-    img2.save(imgByteArr, format='PNG')
+    img2.save(imgByteArr, format='JPEG')
     # 获得字节
     imgByteArr = imgByteArr.getvalue()
     base64_str = base64.b64encode(imgByteArr).decode()
