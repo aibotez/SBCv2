@@ -15,6 +15,7 @@ from SBC import UserManage
 import base64
 import mimetypes
 from PIL import Image
+from io import BytesIO
 
 # from SBC import FileDownUp
 
@@ -30,20 +31,39 @@ def size_format(size):
     elif 1024*1024*1024*1024 <= size:
         return '%.1f' % float(size/(1024*1024*1024*1024)) + 'TB'
 
+
+def deal_inspect_img(base64_data):
+    """裁剪base64字符串的图片"""
+    byte_data = base64.b64decode(base64_data)
+    # BytesIO 对象
+    image_data = io.BytesIO(byte_data)
+    # 得到Image对象
+    img = Image.open(image_data)
+    # 裁剪图片(左，上，右，下)，笛卡尔坐标系
+    # img2 = img.crop((962, 485, 1897, 810))
+    img2 = img.resize((50, 50), Image.ANTIALIAS)
+    # BytesIO 对象
+    imgByteArr = io.BytesIO()
+    # 写入BytesIO对象
+    img2.save(imgByteArr, format='PNG')
+    # 获得字节
+    imgByteArr = imgByteArr.getvalue()
+    base64_str = base64.b64encode(imgByteArr).decode()
+    return base64_str
 def GetImgConPath(fepath):
     fetypes = mimetypes.guess_type(fepath)
     # print(fepath,fetypes)
     try:
         fetype = fetypes[0].split('/')[0]
-
         if fetype == 'image':
             with open(fepath,'rb') as f:
                 # lsf = base64.b64decode(f.read())
-                # imgbase64 = "data:image/jpeg;base64," + str(lsf)
-                imgbase64 = "data:image/jpg;base64," + base64.b64encode(f.read()).decode()
+                imgbase64 = base64.b64encode(f.read()).decode()
+                imgbase64 = deal_inspect_img(imgbase64)
+                imgbase64Url = "data:image/jpg;base64," + imgbase64
                 # imgbase64 = "data:image/jpg;base64,"+str(base64.b64encode(lsf),encoding='utf-8').replace('\n','')
                 # print(imgbase64)
-            return imgbase64
+            return imgbase64Url
     except Exception as e:
         print(e)
     return '/static/img/wj.jfif'
