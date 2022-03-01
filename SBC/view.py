@@ -38,10 +38,11 @@ def GetImgConPath(fepath):
 
         if fetype == 'image':
             with open(fepath,'rb') as f:
-                lsf = base64.b64decode(f.read())
+                # lsf = base64.b64decode(f.read())
                 # imgbase64 = "data:image/jpeg;base64," + str(lsf)
-                imgbase64 = "data:image/jpg;base64,"+str(base64.b64encode(lsf),encoding='utf-8')
-                print(imgbase64)
+                imgbase64 = "data:image/jpg;base64," + base64.b64encode(f.read()).decode()
+                # imgbase64 = "data:image/jpg;base64,"+str(base64.b64encode(lsf),encoding='utf-8').replace('\n','')
+                # print(imgbase64)
             return imgbase64
     except Exception as e:
         print(e)
