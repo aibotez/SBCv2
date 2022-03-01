@@ -130,8 +130,15 @@
                 </a>
             </div>
 
-            <div style="width:100%">
-
+            <div style="margin-top:2rem;width:100%;overflow:hidden;">
+                <div style="width:100%;overflow:hidden;text-overflow:ellipsis;">
+                    <label id="usedcaplael" style="width:100%;font-size:1.5rem;overflow:hidden;text-overflow:ellipsis;">
+                        {{UserUsedCap.usedcappercentstr}}
+                    </label>
+                </div>
+                <div>
+                    <progress id="usedcapid" value='0.6'  max='1'></progress>
+                </div>
             </div>
 
         </div>

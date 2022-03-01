@@ -17,6 +17,7 @@ import mimetypes
 from PIL import Image
 from io import BytesIO
 
+
 # from SBC import FileDownUp
 
 def size_format(size):
@@ -133,6 +134,8 @@ def Home(request):
     navlist = datas[1]
     navlastpath = navlist[-1]['path']
     # print(navlastpath)
+    usermanage = UserManage.usermange()
+    UserUsedCap = usermanage.GetUserUsedCap(LoginRes['useremail'])
     return render(request, "home/home1.html",locals())
 # @require_POST
 def FileList(request):
@@ -154,7 +157,8 @@ def FileList(request):
     # print(path)
     # path = "/plugins/flot/"
     # data=filesget(paths)
-
+    usermanage = UserManage.usermange()
+    UserUsedCap = usermanage.GetUserUsedCap(LoginRes['useremail'])
     return render(request, "home/FileList.html", locals())
 
 def getdirsize(dir):
