@@ -36,15 +36,16 @@ See https://github.com/adobe-type-tools/cmap-resources
 
 
 <script type="text/javascript">
-  sessionStorage.setItem("_imgUrl",'{{pdfbase64|safe}}');
+  //sessionStorage.setItem("_imgUrl",'{{pdfbase64|safe}}');
+  try{
   var DEFAULT_URL = "";
   var pdfUrl = document.location.search.substring(1);
-      var BASE64_MARKER = ';base64,';//声明文件流编码格式
-      var preFileId = "";
-      //var pdfAsDataUri = {{pdfbase64|safe}};
-      var pdfAsDataUri = sessionStorage.getItem("_imgUrl");//这里就是pdf文件的base64码，我是通过session传递base64的
-      var pdfAsArray = convertDataURIToBinary(pdfAsDataUri);
-      DEFAULT_URL = pdfAsArray;
+  var BASE64_MARKER = ';base64,';//声明文件流编码格式
+  var preFileId = "";
+  var pdfAsDataUri = '{{pdfbase64|safe}}';
+      //var pdfAsDataUri = sessionStorage.getItem("_imgUrl");//这里就是pdf文件的base64码，我是通过session传递base64的
+  var pdfAsArray = convertDataURIToBinary(pdfAsDataUri);
+  DEFAULT_URL = pdfAsArray;
       //编码转换
       function convertDataURIToBinary(dataURI) {
 
@@ -57,7 +58,11 @@ See https://github.com/adobe-type-tools/cmap-resources
              }
           return array;
       }
-
+}
+catch(err)
+{
+alert(err);
+}
 </script>
 <!-- 添加在viewer.js引用之前 -->
     <script src="/static/js/pdfjs-2.13.216-dist/build/pdf.js"></script>
