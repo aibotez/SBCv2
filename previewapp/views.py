@@ -26,7 +26,7 @@ def preview(request):
     req = {'path':request.GET['filepath']}
     path = getuserpath.userpath(req,LoginRes)[1]
     FiletypeJudge = FileType.FileType()
-    filetype = FiletypeJudge.GetFileType(path)
+    filetype = FiletypeJudge.GetFileType(path)[0]
     if filetype == 'image':
         image_data = open(path, "rb").read()
         return HttpResponse(image_data, content_type="image/png")

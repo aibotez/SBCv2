@@ -15,6 +15,7 @@ from SBC import UserManage
 import base64
 import mimetypes
 from PIL import Image
+from SBC import FileType
 from io import BytesIO
 
 
@@ -51,22 +52,33 @@ def deal_inspect_img(base64_data,imgtype):
     imgByteArr = imgByteArr.getvalue()
     base64_str = base64.b64encode(imgByteArr).decode()
     return base64_str
+
+def GetImgconBase64(fepath,imgtype):
+    with open(fepath, 'rb') as f:
+        # lsf = base64.b64decode(f.read())
+        imgbase64 = base64.b64encode(f.read()).decode()
+        imgbase64 = deal_inspect_img(imgbase64, imgtype)
+        imgbase64Url = "data:image/{};base64,".format(imgtype) + imgbase64
+        return imgbase64Url
 def GetImgConPath(fepath):
-    fetypes = mimetypes.guess_type(fepath)
+    filtypeOb = FileType.FileType()
+    # fetypes = mimetypes.guess_type(fepath)
     # print(fepath,fetypes)
     try:
-        fetype = fetypes[0].split('/')[0]
-
-        if fetype == 'image':
-            imgtype = fetypes[0].split('/')[1]
-            with open(fepath,'rb') as f:
-                # lsf = base64.b64decode(f.read())
-                imgbase64 = base64.b64encode(f.read()).decode()
-                imgbase64 = deal_inspect_img(imgbase64,imgtype)
-                imgbase64Url = "data:image/{};base64,".format(imgtype) + imgbase64
-                # imgbase64 = "data:image/jpg;base64,"+str(base64.b64encode(lsf),encoding='utf-8').replace('\n','')
-                # print(imgbase64)
-            return imgbase64Url
+        fetype = filtypeOb.GetFileType(fepath)
+        # fetype = fetypes[0].split('/')[0]
+        if fetype[0] == 'image':
+            imgtype = fetype[1]
+            return GetImgconBase64(fepath,imgtype)
+        if fetype[0] == 'pdf':
+            path = '/static/img/filecon/pdfcon.jpg'
+            return path
+        if fetype[0] == 'word':
+            path = '/static/img/filecon/wordcon.jpg'
+            return path
+        if fetype[0] == 'ppt':
+            path = '/static/img/filecon/pptcon.jpg'
+            return path
     except Exception as e:
         print(e)
     return '/static/img/wj.jfif'
