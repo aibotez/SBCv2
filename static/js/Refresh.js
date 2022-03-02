@@ -31,12 +31,20 @@
         var newUrl = "/?path="+encodeurl;
         history.pushState(stateObject,title,newUrl);
 	}
-	function RefreshFiles(act)
+	
+	function RefreshFile(act)
     {
-		//console.log(act);
+
 		
 		var files = Window.globalConfig.GlobalFiles;
 		setTimeout(() => {
 			Dealrefresh(act);
 			}, 100);
+	} 
+	
+	function RefreshFiles(act)
+    {
+		//console.log(act);
+		
+		RefreshAct(act);
 	}
