@@ -65,7 +65,7 @@ const defaultOptions = {
     kind: OptionKind.VIEWER + OptionKind.PREFERENCE
   },
   defaultUrl: {
-    value: "compressed.tracemonkey-pldi-09.pdf",
+    value: DEFAULT_URL,
     kind: OptionKind.VIEWER
   },
   defaultZoomValue: {
@@ -109,7 +109,7 @@ const defaultOptions = {
     kind: OptionKind.VIEWER + OptionKind.PREFERENCE
   },
   imageResourcesPath: {
-    value: "./images/",
+    value: "/static/js/pdfjs-2.13.216-dist/web/images/",
     kind: OptionKind.VIEWER
   },
   maxCanvasPixels: {
@@ -162,7 +162,7 @@ const defaultOptions = {
     kind: OptionKind.API
   },
   cMapUrl: {
-    value: "../web/cmaps/",
+    value: "/static/js/pdfjs-2.13.216-dist/web/cmaps/",
     kind: OptionKind.API
   },
   disableAutoFetch: {
@@ -218,7 +218,7 @@ const defaultOptions = {
     kind: OptionKind.WORKER
   },
   workerSrc: {
-    value: "../build/pdf.worker.js",
+    value: "/static/js/pdfjs-2.13.216-dist/build/pdf.worker.js",
     kind: OptionKind.WORKER
   }
 };
@@ -232,7 +232,7 @@ const defaultOptions = {
     kind: OptionKind.VIEWER
   };
   defaultOptions.sandboxBundleSrc = {
-    value: "../build/pdf.sandbox.js",
+    value: "/static/js/pdfjs-2.13.216-dist/build/pdf.sandbox.js",
     kind: OptionKind.VIEWER
   };
   defaultOptions.renderer.kind += OptionKind.PREFERENCE;

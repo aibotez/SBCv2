@@ -31,6 +31,7 @@ def preview(request):
         image_data = open(path, "rb").read()
         return HttpResponse(image_data, content_type="image/png")
     if filetype == 'pdf':
-        pdfbase64 = "data:application/pdf;base64," + GetFeBase64(path)
+        # pdfbase64 = "data:application/pdf;base64," + GetFeBase64(path)
+        pdfbase64 = GetFeBase64(path)
         # return HttpResponseRedirect('/pdfviewer.html')
-        return render(request, "preview/pdfpreview.html",locals())
+        return render(request, "preview/pdfviewer.html",locals())

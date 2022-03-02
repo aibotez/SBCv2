@@ -20,7 +20,7 @@ Adobe CMap resources are covered by their own copyright but the same license:
 
 See https://github.com/adobe-type-tools/cmap-resources
 -->
-<html dir="ltr" mozdisallowselectionprint>
+<html dir="ltr">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -28,14 +28,39 @@ See https://github.com/adobe-type-tools/cmap-resources
     <title>PDF viewer</title>
 
 
-    <link rel="stylesheet" href="/static/js/pdfjs-2.13.216-dist/web/webviewer.css">
+    <link rel="stylesheet" href="/static/js/pdfjs-2.13.216-dist/web/viewer.css">
 
 
 <!-- This snippet is used in production (included from viewer.html) -->
 <link rel="resource" type="application/l10n" href="/static/js/pdfjs-2.13.216-dist/web/locale/locale.properties">
-<script src="/static/js/pdfjs-2.13.216-dist/build/pdf.js"></script>
 
 
+<script type="text/javascript">
+  sessionStorage.setItem("_imgUrl",'{{pdfbase64|safe}}');
+  var DEFAULT_URL = "";
+  var pdfUrl = document.location.search.substring(1);
+      var BASE64_MARKER = ';base64,';//声明文件流编码格式
+      var preFileId = "";
+      //var pdfAsDataUri = {{pdfbase64|safe}};
+      var pdfAsDataUri = sessionStorage.getItem("_imgUrl");//这里就是pdf文件的base64码，我是通过session传递base64的
+      var pdfAsArray = convertDataURIToBinary(pdfAsDataUri);
+      DEFAULT_URL = pdfAsArray;
+      //编码转换
+      function convertDataURIToBinary(dataURI) {
+
+          var raw = window.atob(dataURI);//这个方法在ie内核下无法正常解析。
+          var rawLength = raw.length;
+                //转换成pdf.js能直接解析的Uint8Array类型
+          var array = new Uint8Array(new ArrayBuffer(rawLength));
+          for (i = 0; i < rawLength; i++) {
+                array[i] = raw.charCodeAt(i) & 0xff;
+             }
+          return array;
+      }
+
+</script>
+<!-- 添加在viewer.js引用之前 -->
+    <script src="/static/js/pdfjs-2.13.216-dist/build/pdf.js"></script>
   <script src="/static/js/pdfjs-2.13.216-dist/web/viewer.js"></script>
 
   </head>
