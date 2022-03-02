@@ -9,7 +9,13 @@ class FileType():
         fetypes = mimetypes.guess_type(fepath)
         fetype = 'others'
         try:
-            fetype = fetypes[0].split('/')[0]
+            Types = fetypes[0].split('/')
+            if Types[0] == 'image':
+                fetype = 'image'
+                return fetype
+            if Types[1] == 'pdf':
+                fetype = 'pdf'
+                return fetype
         except:
             pass
         return fetype
