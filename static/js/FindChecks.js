@@ -1,6 +1,7 @@
-function FindCheck(files)
+function FindCheck(files1)
 {
 	//var files = {{data|safe}};
+	var files = Window.globalConfig.GlobalFiles;
 	var Res = [];
 	for (var i=0;i<files.length;i++)
 	{

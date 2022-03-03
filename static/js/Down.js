@@ -60,9 +60,10 @@ function DownFilebyGet(files)
 	}
 
 }
-function FindCheckdown(files)
+function FindCheckdown(files1)
 {
 	//var files = {{data|safe}};
+	var files = Window.globalConfig.GlobalFiles;
 	var Res = [];
 	for (var i=0;i<files.length;i++)
 	{
