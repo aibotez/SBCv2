@@ -10,7 +10,7 @@ class FileType():
         fetype = 'others'
         try:
             Types = fetypes[0].split('/')
-            print(Types,fepath)
+            # print(Types,fepath)
             if Types[0] == 'image':
                 fetype = ['image',Types[1]]
                 return fetype
@@ -37,7 +37,7 @@ class FileType():
                 return fetype
         except:
             pass
-        
+
         try:
             kind = filetype.guess(fepath)
             if 'compressed' in kind.mime:
