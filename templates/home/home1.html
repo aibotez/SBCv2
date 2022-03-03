@@ -70,6 +70,7 @@
     </style>
 
 <link rel="stylesheet" type="text/css" href="/static/css/DropdownMean.css" charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/static/css/NetOperNav.css" charset="utf-8">
 <!--<script src="https://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.2.min.js"></script>-->
     <!--<script src="https://code.jquery.com/jquery-3.1.1.js"></script>-->
     <script src="/static/js/Upfiles.js"></script>
@@ -112,23 +113,38 @@
         </div>
 
         <div class="container" style="width:100%;margin-top:20px">
-            <div style="width:30%;background-color:red"></div>
-            <div>
-                <label>
-                    文件
-                </label>
-            </div>
+            <ul onclick="" class="NetNavul">
+                <li>
+                    <a>
+                        文件
+                    </a>
+                </li>
+            </ul>
+            <ul class="NetNavul">
+                <li>
+                    <a>
+                        网盘设置
+                    </a>
+                </li>
+            </ul>
         </div>
 
         <div class="container" style="position:absolute;width:18%;margin-top:20px;bottom:5rem;">
             <div style="margin-left:20px;">
                 <img src="/static/img/cat0.jpg" width="36px" height="36px">
             </div>
-            <div style="width:50%;margin-left:5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
-                <a style="color:white;font-size:20px;">
+            <div class="menudropdown" style="width:50%;margin-left:5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+                <a href="javascript:void(0);" onclick="UsermenudropdownShow()" style="color:white;font-size:20px;text-decoration:none;">
                     {{UserUsedCap.username}}
                 </a>
+                <div class="menudropdown-content" id="Usermenudropdown-content" style="font-size:1.5rem;display:none;">
+                    <a href="javascript:void(0);" onclick="">设置</a>
+                    <a href="javascript:void(0);" onclick="">退出登录</a>
+                </div>
             </div>
+
+
+
 
             <div style="margin-left:20px;margin-top:2rem;width:100%;overflow:hidden;">
                 <div style="width:100%;overflow:hidden;text-overflow:ellipsis;">
@@ -167,6 +183,9 @@
                     {{UserUsedCap.username}}
                 </a>
             </div>
+
+
+
             <div style="margin-top:0.5rem;width:100%;overflow:hidden;">
                 <div style="width:100%;overflow:hidden;text-overflow:ellipsis;">
                     <label id="usedcaplael" style="width:100%;font-size:1.5rem;overflow:hidden;text-overflow:ellipsis;">
@@ -367,6 +386,17 @@
     {
         var Sharemenudropdown_content = document.getElementById("Sharemenudropdown-content");
         Sharemenudropdown_content.style.display = "block";
+    }
+    function UsermenudropdownShow()
+    {
+        var menudropdown_content = document.getElementById("Usermenudropdown-content");
+	    if(menudropdown_content.style.display == "block")
+	    {
+	        menudropdown_content.style.display = "none"
+	        return;
+	    }
+	    menudropdown_content.style.display = "block";
+
     }
 </script>
 <!--<script>-->
