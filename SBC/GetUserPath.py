@@ -7,6 +7,8 @@ class GetUserPath():
         self.ServerHomePath = 'C:/SBC/SBCUsers/'
 
     def GetDownPath(self,DownReInfo,LoginRes):
+
+        DownReInfo = urllib.parse.unquote(DownReInfo)
         DownReInfo = json.loads(DownReInfo)
         useremail = LoginRes['useremail']
         path = DownReInfo['fepath']

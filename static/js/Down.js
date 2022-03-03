@@ -9,8 +9,11 @@ function DownFilebyPost(files)
 		alert("网页版不支持文件夹上传/下载");
 		return;
 	}
+	//alert(downfiles.length);
 	for(var i=0;i<downfiles.length;i++)
 	{
+		downfile = downfiles[i];
+		downfile.fileId = "";
 		var start = (new Date()).getTime();
         while((new Date()).getTime() - start < delay)
 			{}
@@ -22,7 +25,7 @@ function DownFilebyPost(files)
         var inputContent = document.createElement('input')
         inputContent.setAttribute('type','hidden');
         inputContent.setAttribute('name','downinfo');
-        inputContent.setAttribute('value',JSON.stringify(downfiles[i]));
+        inputContent.setAttribute('value',JSON.stringify(downfile));
 		//console.log(downfiles[i]);
         $('body').append(form);
         form.append(inputContent);
