@@ -79,6 +79,18 @@ def GetImgConPath(fepath):
         if fetype[0] == 'ppt':
             path = '/static/img/filecon/pptcon.jpg'
             return path
+        if fetype[0] == 'excel':
+            path = '/static/img/filecon/excelcon.jpg'
+            return path
+        if fetype[0] == 'zip':
+            path = '/static/img/filecon/zipcon.png'
+            return path
+        if fetype[0] == 'html':
+            path = '/static/img/filecon/htmlcon.jpg'
+            return path
+        if fetype[0] == 'exe':
+            path = '/static/img/filecon/execon.jpg'
+            return path
     except Exception as e:
         print(e)
     return '/static/img/wj.jfif'
