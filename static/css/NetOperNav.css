@@ -1,15 +1,24 @@
 
-ul.NetNavul:hover
+div.NetNavdiv:hover
 {
     background-color:#A2D9CE;
+	border-radius:10px;
     opacity:0.5;
     width:100%;
 }
+.NetNavdiv
+{
+	width:100%;
+	display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
 .NetNavul
 {
 	cursor:pointer;
-	background-color:#34495E;
-	opacity:0.5;
+	//background-color:#34495E;
+	//opacity:0.5;
 	width:100%;
 	margin:0px;
 }
