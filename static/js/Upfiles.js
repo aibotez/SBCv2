@@ -1,8 +1,11 @@
     var file = "";
+	var Files = [];
 	var start = (new Date()).getTime();
 	var WaitUpNums = 0;
 	var FinshUpNums = 0;
 	var UpingNums = 0;
+	var UpNums = 3;
+	var CurUpIter = 0;
 	var UpManage = new Array();
 	
 	
@@ -144,12 +147,29 @@
 		//console.log(UpManage[fileid]['isUp']);
 	}
 	
+	function UpFileEx()
+	{
+		var IterLen = UpNums-UpingNums;
+		var CurPath = document.getElementById("CurPath").innerText;
+		var CurUpIteri = CurUpIter
+		for(var i=CurUpIteri;i<CurUpIteri+IterLen;i++)
+		{
+			//console.log(CurUpIteri+IterLen);
+			if(i<Files.length)
+			{
+				GetFileMd5(Files[i],CurPath+Files[i].name+"UpControl",CurPath);
+				CurUpIter = CurUpIter+1;
+				UpingNums = UpingNums+1;
+			}
+		}
+	}
+	
 	function onChange(event) {
 		document.getElementById("Upmenudropdown-content").style.display = "none";
 		var CurPath = document.getElementById("CurPath").innerText;
 		start = (new Date()).getTime();
         file = event.target.files;
-		
+		Files = file;
 		SelectFilesNums = file.length;
 		WaitUpNums = WaitUpNums+SelectFilesNums;
 		document.getElementById("Updetails").style.display="";
@@ -221,7 +241,9 @@
 			//UpManage.add(CurPath+file[i].name,{'isUp':1,'file':file[i]});
 			//var FileMd5 = '0';
 			//GetFileMd51(file[i]);
-			GetFileMd5(file[i],CurPath+file[i].name+"UpControl",CurPath);
+			
+			UpFileEx();
+			//GetFileMd5(file[i],CurPath+file[i].name+"UpControl",CurPath);
 			
 			//var starti = (new Date()).getTime();
 			//while(FileMd5 == '0')
@@ -231,6 +253,7 @@
 			//console.log(FileMd5);
 			//upload(file[i]);
 		}
+		
 		
     }
 	
@@ -251,6 +274,7 @@
 				document.getElementById("UpdetailsTitle").innerText = WaitUpNums+"个文件正在上传! "+
 				"已完成"+FinshUpNums+"个文件";
 				RefreshFiles({'id':Base64.encode(CurPath)});
+				UpFileEx();
 				return;
 			}
 			let endchunk = (startchunk + chunkSize > file.size) ? file.size : (startchunk + chunkSize);
@@ -304,13 +328,14 @@
 			progress.value = file.size;
 			RefreshFiles({'id':Base64.encode(CurPath)});
 			FinshUpNums = FinshUpNums+1;
-			UpingNums = UpingNums-1;
+			//UpingNums = UpingNums-1;
 			//console.log(222);
 			document.getElementById(CurPath+file.name+"UpControl").disabled = true;
 			document.getElementById(CurPath+file.name+"UpControl").style = "background-image: url(/static/img/finish.jpg);width: 23px;height: 23px;background-size:23px 23px; border: 0;";
 			document.getElementById("UpdetailsTitle").innerText = WaitUpNums+"个文件正在上传! "+"已完成"+FinshUpNums+"个文件";
 			//console.log(" 秒传");
 			document.getElementById(CurPath+file.name+"label").innerText = size_format(file.size)+"/"+size_format(file.size)+" 秒传";
+			UpFileEx();
 			return;
 		}
 		var startchunk = CheckFileRes.FileStart;
