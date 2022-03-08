@@ -217,8 +217,17 @@
             &nbsp;
             <div id="UpCom">
                 <input type="file" id="SelectFiles" style="display:none" multiple="multiple" onchange="onChange(event)" />
+                <input type="file" id="SelectFolder" style="display:none" onchange="onChange(event)" webkitdirectory />
                 <!--<input type="file" name="files" multiple="multiple" id="upbutton" value="上传">-->
-                <button id="UP" value="上传" style="font-size:1.5rem;width:5rem;height:3rem;border-radius:1rem;background-color:white;color:blue;" onclick="document.getElementById('SelectFiles').click()">上传</button>
+                <div class="menudropdown">
+                    <button id="UP" value="上传" style="font-size:1.5rem;width:5rem;height:3rem;border-radius:1rem;background-color:white;color:blue;" onclick="UpmenudropdownShow()">上传</button>
+                    <div class="menudropdown-content" id="Upmenudropdown-content" style="width:12rem;font-size:1rem;display:none;">
+                        <a href="javascript:void(0);" style="font-size:1.5rem;" onclick="document.getElementById('SelectFiles').click()">上传文件</a>
+                        <a href="javascript:void(0);" style="font-size:1.5rem;" onclick="document.getElementById('SelectFolder').click()">上传文件夹</a>
+                    </div>
+                </div>
+
+                <!--<button id="UP" value="上传" style="font-size:1.5rem;width:5rem;height:3rem;border-radius:1rem;background-color:white;color:blue;" onclick="document.getElementById('SelectFiles').click()">上传</button>-->
             </div>
             &nbsp;
             <div>
@@ -403,7 +412,16 @@
 	        return;
 	    }
 	    menudropdown_content.style.display = "block";
-
+    }
+    function UpmenudropdownShow()
+    {
+        var menudropdown_content = document.getElementById("Upmenudropdown-content");
+	    if(menudropdown_content.style.display == "block")
+	    {
+	        menudropdown_content.style.display = "none"
+	        return;
+	    }
+	    menudropdown_content.style.display = "block";
     }
 </script>
 <!--<script>-->

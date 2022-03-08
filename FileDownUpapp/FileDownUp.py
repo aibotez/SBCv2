@@ -55,7 +55,6 @@ class FileUp():
             userpath = userpath + redit['webkitRelativePath'].replace(redit['FileName'],'')
         if models.FilesStock.objects.filter(FileMd5=feMd5).exists():
             dst = self.getuserpath.getuserserpath(useremail,userpath)
-            print(dst,userpath)
             if not os.path.isdir(dst):
                 os.makedirs(dst)
             dstfename = redit['FileName']
@@ -80,6 +79,10 @@ class FileUp():
     def Upfile(self,redit,useremail,file_obj):
         feMd5 = redit['FileMd5']
         userpath = redit['CurPath']
+        userpath = redit['CurPath']
+        if not redit['webkitRelativePath'] =='':
+            userpath = userpath + redit['webkitRelativePath'].replace(redit['FileName'],'')
+
         with open(self.FilesStock + feMd5, "ab") as f:
             # f.seek(0,2)
             for chunk in file_obj.chunks(chunk_size=2 * 1024 * 1024):
@@ -92,6 +95,8 @@ class FileUp():
                 os.remove(self.FilesStock + redit['FileName'])
             os.rename(self.FilesStock + feMd5,self.FilesStock + redit['FileName'])
             dst = self.getuserpath.getuserserpath(useremail,userpath)
+            if not os.path.isdir(dst):
+                os.makedirs(dst)
             dstfename = redit['FileName']
             srcfename = redit['FileName']
             lk = MakeLink()
