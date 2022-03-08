@@ -261,6 +261,7 @@
 			fd.append('CurPath',CurPath);
 			fd.append('FileName',file.name);
 			fd.append('FileSize',file.size);
+			fd.append('webkitRelativePath',file.webkitRelativePath);
 			fd.append('isLastChunk',isLastChunk);
 			let xhr = new XMLHttpRequest();
 			xhr.open('post', '/Upfile/', true);
@@ -291,6 +292,7 @@
 			'FileName':file.name,
 			'FileMd5':FileMd5,
 			'FileSize':file.size,
+			'webkitRelativePath':file.webkitRelativePath,
 		};
 		var CheckFileRes = PostMethod(urlpath,data,0);
 		//console.log(CheckFileRes);

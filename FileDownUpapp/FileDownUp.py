@@ -51,8 +51,13 @@ class FileUp():
         feMd5 = redit['FileMd5']
         # print(feMd5)
         userpath = redit['CurPath']
+        if not redit['webkitRelativePath'] =='':
+            userpath = userpath + redit['webkitRelativePath'].replace(redit['FileName'],'')
         if models.FilesStock.objects.filter(FileMd5=feMd5).exists():
             dst = self.getuserpath.getuserserpath(useremail,userpath)
+            print(dst,userpath)
+            if not os.path.isdir(dst):
+                os.makedirs(dst)
             dstfename = redit['FileName']
             srcfename = models.FilesStock.objects.get(FileMd5=feMd5).FileName
             lk = MakeLink()
