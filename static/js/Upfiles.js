@@ -2,6 +2,7 @@
 	var start = (new Date()).getTime();
 	var WaitUpNums = 0;
 	var FinshUpNums = 0;
+	var UpingNums = 0;
 	var UpManage = new Array();
 	
 	
@@ -144,6 +145,7 @@
 	}
 	
 	function onChange(event) {
+		document.getElementById("Upmenudropdown-content").style.display = "none";
 		var CurPath = document.getElementById("CurPath").innerText;
 		start = (new Date()).getTime();
         file = event.target.files;
@@ -157,7 +159,6 @@
 			var div = document.getElementById("UpList");
 			var divtitle = document.createElement("div");
 			
-	
 			var label = document.createElement("label");
 			label.innerText = file[i].name;
 			divtitle.appendChild(label);
@@ -176,7 +177,7 @@
 			
 			
 			var divSpeed = document.createElement("div");
-			divSpeed.style = "float:left;height:100%;width:70%;";
+			divSpeed.style = "float:left;height:100%;width:80%;";
 			div2.appendChild(divSpeed);
 			divSpeed.appendChild(progress);
 			
@@ -204,12 +205,12 @@
 			
 			
 			var divSpeedlabel = document.createElement("div");
-			divSpeedlabel.style = "position:relative;top:-21px;left:10px;float:left;height:100%;width:60%;";
+			divSpeedlabel.style = "position:relative;top:-19px;left:10px;float:left;height:100%;width:60%;";
 			div2.appendChild(divSpeedlabel);
 			divSpeedlabel.appendChild(label2);
 			
 			var divbutton = document.createElement("div");
-			divbutton.style = "float:left;position:relative;top:-21px;left:60px;";
+			divbutton.style = "float:left;position:relative;top:-21px;left:100px;";
 			div2.appendChild(divbutton);
 			divbutton.appendChild(UpControl);
 			
@@ -230,7 +231,6 @@
 			//console.log(FileMd5);
 			//upload(file[i]);
 		}
-        //console.log(file[0]);
 		
     }
 	
@@ -245,6 +245,7 @@
 			  // 上传完成
 			if (startchunk >= file.size) {
 				FinshUpNums = FinshUpNums+1;
+				UpingNums = UpingNums-1;
 				document.getElementById(CurPath+file.name+"UpControl").disabled = true;
 				document.getElementById(CurPath+file.name+"UpControl").style = "background-image: url(/static/img/finish.jpg);width: 23px;height: 23px;background-size:23px 23px; border: 0;";
 				document.getElementById("UpdetailsTitle").innerText = WaitUpNums+"个文件正在上传! "+
@@ -303,6 +304,7 @@
 			progress.value = file.size;
 			RefreshFiles({'id':Base64.encode(CurPath)});
 			FinshUpNums = FinshUpNums+1;
+			UpingNums = UpingNums-1;
 			//console.log(222);
 			document.getElementById(CurPath+file.name+"UpControl").disabled = true;
 			document.getElementById(CurPath+file.name+"UpControl").style = "background-image: url(/static/img/finish.jpg);width: 23px;height: 23px;background-size:23px 23px; border: 0;";
