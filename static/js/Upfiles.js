@@ -4,7 +4,7 @@
 	var WaitUpNums = 0;
 	var FinshUpNums = 0;
 	var UpingNums = 0;
-	var UpNums = 3;
+	var UpNums = 2;
 	var CurUpIter = 0;
 	var UpManage = new Array();
 	
@@ -57,31 +57,37 @@
 	}
 	
 	
-	
+	function GetFileMd50(file,Manageid,CurPath)
+	{
+		console.log(file.name);
+	}
 	function GetFileMd5(file,Manageid,CurPath)
 	{
-		var blobSlice = File.prototype.slice || File.prototype.mozSlice || File.prototype.webkitSlice;
-		var chunkSize = 1024*1024; // 每次读取2MB
-		var chunks = Math.ceil(file.size / chunkSize);
-		var currentChunk = 0;
-		var spark = new SparkMD5.ArrayBuffer();
-        frOnload = function(e){
+		let filei = file;
+		let blobSlice = File.prototype.slice || File.prototype.mozSlice || File.prototype.webkitSlice;
+		let chunkSize = 1024*1024; // 每次读取2MB
+		let chunks = Math.ceil(file.size / chunkSize);
+		let currentChunk = 0;
+		let spark = new SparkMD5.ArrayBuffer();
+        let frOnload = function(e){
             //log.innerHTML+="\n读取文件 "+parseInt(currentChunk+1)+" of "+chunks;
                 spark.append(e.target.result);
                 currentChunk++;
                 if (currentChunk < chunks)
 				{
+					console.log(filei.name);
 					document.getElementById(CurPath+file.name+"label").innerText ="正在扫描文件 "+(100*currentChunk/chunks).toFixed(2)+"%";
 					loadNext();
 				}
                     
                 else
 				{
-					var FileMd5 = spark.end().toString();
+					let FileMd5 = spark.end().toString();
+					document.getElementById(CurPath+file.name+"label").innerText ="扫描完成！";
 					UpManage[Manageid]['md5']=FileMd5;
-					upload(file,FileMd5);
-					//upload(file,spark.end());
-					//console.log(spark.end());
+					//upload(file,FileMd5);
+					UpingNums = UpingNums-1;
+					UpFileEx();
 
 					return spark.end();
 				}
@@ -90,17 +96,17 @@
                     //log.innerHTML+="\n读取完成！\n\n文件md5:"+spark.end()+"\n";
             }
 		
-        frOnerror = function () {
+        let frOnerror = function () {
 			return 'md5ReadFaile';
             //upload(file,'md5ReadFaile');
             };
 		function loadNext() {
-            var fileReader = new FileReader();
+            let fileReader = new FileReader();
             fileReader.onload = frOnload;
             fileReader.onerror = frOnerror;
-            var start = currentChunk * chunkSize,
-            end = ((start + chunkSize) >= file.size) ? file.size : start + chunkSize;
-            fileReader.readAsArrayBuffer(blobSlice.call(file, start, end));
+            let starti = currentChunk * chunkSize,
+            end = ((starti + chunkSize) >= file.size) ? file.size : starti + chunkSize;
+            fileReader.readAsArrayBuffer(blobSlice.call(file, starti, end));
             };
 		loadNext();
 
@@ -152,19 +158,29 @@
 		var IterLen = UpNums-UpingNums;
 		var CurPath = document.getElementById("CurPath").innerText;
 		var CurUpIteri = CurUpIter
-		for(var i=CurUpIteri;i<CurUpIteri+IterLen;i++)
+		for(let i=CurUpIteri;i<CurUpIteri+IterLen;i++)
 		{
 			//console.log(CurUpIteri+IterLen);
 			if(i<Files.length)
 			{
-				GetFileMd5(Files[i],CurPath+Files[i].name+"UpControl",CurPath);
+				console.log(i);
+				setTimeout(function(){
+　　			GetFileMd5(file[i],CurPath+file[i].name+"UpControl",CurPath);
+				}, i*0);
+				//GetFileMd5(Files[i],CurPath+Files[i].name+"UpControl",CurPath);
+				console.log(Files[i].name+"UpControl");
 				CurUpIter = CurUpIter+1;
 				UpingNums = UpingNums+1;
 			}
+
+
 		}
 	}
 	
 	function onChange(event) {
+		CurUpIter = 0;
+		//UpingNums = 0;
+		alert(UpingNums);
 		document.getElementById("Upmenudropdown-content").style.display = "none";
 		var CurPath = document.getElementById("CurPath").innerText;
 		start = (new Date()).getTime();
@@ -174,7 +190,7 @@
 		WaitUpNums = WaitUpNums+SelectFilesNums;
 		document.getElementById("Updetails").style.display="";
 		document.getElementById("UpdetailsTitle").innerText = WaitUpNums+"个文件正在上传";
-		for (var i=0; i<SelectFilesNums;i++)
+		for (let i=0; i<SelectFilesNums;i++)
 		{
 			var div = document.getElementById("UpList");
 			var divtitle = document.createElement("div");
@@ -242,7 +258,9 @@
 			//var FileMd5 = '0';
 			//GetFileMd51(file[i]);
 			
-			UpFileEx();
+			//setTimeout(function(){
+　　			//GetFileMd5(file[i],CurPath+file[i].name+"UpControl",CurPath);
+			//}, 500);
 			//GetFileMd5(file[i],CurPath+file[i].name+"UpControl",CurPath);
 			
 			//var starti = (new Date()).getTime();
@@ -253,7 +271,8 @@
 			//console.log(FileMd5);
 			//upload(file[i]);
 		}
-		
+		setTimeout("UpFileEx()", 100)
+		//UpFileEx();
 		
     }
 	
@@ -328,7 +347,7 @@
 			progress.value = file.size;
 			RefreshFiles({'id':Base64.encode(CurPath)});
 			FinshUpNums = FinshUpNums+1;
-			//UpingNums = UpingNums-1;
+			UpingNums = UpingNums-1;
 			//console.log(222);
 			document.getElementById(CurPath+file.name+"UpControl").disabled = true;
 			document.getElementById(CurPath+file.name+"UpControl").style = "background-image: url(/static/img/finish.jpg);width: 23px;height: 23px;background-size:23px 23px; border: 0;";
