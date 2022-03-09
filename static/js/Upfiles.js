@@ -4,7 +4,7 @@
 	var WaitUpNums = 0;
 	var FinshUpNums = 0;
 	var UpingNums = 0;
-	var UpNums = 2;
+	var UpNums = 3;
 	var CurUpIter = 0;
 	var UpManage = new Array();
 	
@@ -75,7 +75,7 @@
                 currentChunk++;
                 if (currentChunk < chunks)
 				{
-					console.log(filei.name);
+					//console.log(filei.name);
 					document.getElementById(CurPath+file.name+"label").innerText ="正在扫描文件 "+(100*currentChunk/chunks).toFixed(2)+"%";
 					loadNext();
 				}
@@ -85,9 +85,9 @@
 					let FileMd5 = spark.end().toString();
 					document.getElementById(CurPath+file.name+"label").innerText ="扫描完成！";
 					UpManage[Manageid]['md5']=FileMd5;
-					//upload(file,FileMd5);
-					UpingNums = UpingNums-1;
-					UpFileEx();
+					upload(file,FileMd5);
+					//UpingNums = UpingNums-1;
+					//UpFileEx();
 
 					return spark.end();
 				}
@@ -178,9 +178,14 @@
 	}
 	
 	function onChange(event) {
-		CurUpIter = 0;
-		//UpingNums = 0;
-		alert(UpingNums);
+		if (UpingNums==0)
+		{
+			CurUpIter = 0;
+		}
+		else{
+			alert('请等待当前文件上传完成！');
+			return;
+		}
 		document.getElementById("Upmenudropdown-content").style.display = "none";
 		var CurPath = document.getElementById("CurPath").innerText;
 		start = (new Date()).getTime();
@@ -282,7 +287,7 @@
 		uploadact(startchunk);
 		function uploadact(startchunk)
 		{
-			start = (new Date()).getTime();
+			let starti = (new Date()).getTime();
 			var isLastChunk = 0;
 			  // 上传完成
 			if (startchunk >= file.size) {
@@ -315,7 +320,7 @@
 					//console.log(document.getElementById(CurPath+file.name+"UpControl").name);
 					progress.max = file.size;
 					progress.value = endchunk;
-					var Upspeed = size_format(1000*(endchunk-startchunk)/((new Date()).getTime() - start))+"/s";
+					var Upspeed = size_format(1000*(endchunk-startchunk)/((new Date()).getTime() - starti))+"/s";
 					document.getElementById(CurPath+file.name+"label").innerText = size_format(endchunk)+"/"+size_format(file.size)+" "+Upspeed;
 					uploadact(endchunk);
 				}
