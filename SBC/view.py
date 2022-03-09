@@ -60,6 +60,15 @@ def GetImgconBase64(fepath,imgtype):
         imgbase64 = deal_inspect_img(imgbase64, imgtype)
         imgbase64Url = "data:image/{};base64,".format(imgtype) + imgbase64
         return imgbase64Url
+def GetImgConPath1(fepath):
+    try:
+        filtypeOb = FileType.FileType()
+        fetype = filtypeOb.GetFileType(fepath)
+        imgtype = fetype[1]
+        return GetImgconBase64(fepath, imgtype)
+    except Exception as e:
+        print(e)
+    return '/static/img/wj.jfif'
 def GetImgConPath(fepath):
     filtypeOb = FileType.FileType()
     # fetypes = mimetypes.guess_type(fepath)
@@ -68,8 +77,10 @@ def GetImgConPath(fepath):
         fetype = filtypeOb.GetFileType(fepath)
         # fetype = fetypes[0].split('/')[0]
         if fetype[0] == 'image':
-            imgtype = fetype[1]
-            return GetImgconBase64(fepath,imgtype)
+            path = '/static/img/filecon/imgcon.jpg'
+            return path
+            # imgtype = fetype[1]
+            # return GetImgconBase64(fepath,imgtype)
         if fetype[0] == 'pdf':
             path = '/static/img/filecon/pdfcon.jpg'
             return path
@@ -109,6 +120,7 @@ def filesget(paths):
 
     dirshome = os.listdir(serverpath)
     fesdata=[]
+    imgFiles = []
     for i in dirshome:
         filesonserver = serverpath + i
         fileson = path + i
@@ -121,6 +133,8 @@ def filesget(paths):
             filesize = size_format(filesize)
             isdir = 0
             imgpath = GetImgConPath(filesonserver)
+            if 'imgcon.jpg' in imgpath:
+                imgFiles.append({'fepath':fileson})
             # imgpath = '/static/img/wj.jfif'
             filepath = fileson
         filepath = base64.encodebytes(filepath.encode('utf8')).decode()
@@ -135,7 +149,7 @@ def filesget(paths):
             'isdir':isdir,
             'imgpath':imgpath,
         })
-    return [fesdata,navpaths]
+    return [fesdata,navpaths,imgFiles]
 
 def getdate(fie):
     statbuf = os.stat(fie)
@@ -174,6 +188,7 @@ def FileList(request):
     datas=filesget(paths)
     data=datas[0]
     navlist = datas[1]
+    imgFiles = datas[2]
     navlastpath = navlist[-1]['path']
     # uesremail = LoginRes['uesremail']
     # print(request.POST['ids'])
@@ -225,6 +240,24 @@ def DelFiles(request):
             print(e)
 
     return HttpResponse('ok')
+
+@require_POST
+def GetImgCon(request):
+    LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
+    if LoginRes['res']:
+        return HttpResponseRedirect('/login/')
+    imgdict = request.POST.dict()
+    imgdict = json.loads(list(imgdict.keys())[0])
+    getuserpath = GetUserPath.GetUserPath()
+    reData = {'src':[]}
+    Src = []
+    for i in imgdict['imgdata']:
+        fepath = getuserpath.getuserserpath(LoginRes['useremail'], i['fepath'])
+        fesrc = GetImgConPath1(fepath)
+        Src.append(fesrc)
+    reData['src'] = Src
+    # print(imgdict['imgdata'])
+    return JsonResponse(reData)
 
 @require_POST
 def ReName(request):

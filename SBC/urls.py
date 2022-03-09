@@ -33,6 +33,7 @@ urlpatterns = [
     path('login/',viewsLR.login),
     path('register/',viewsLR.Register),
     path('home/',view.Home),
+    path('GetImgCon/',view.GetImgCon),
     path('FileDown/',viewDU.FileDown),
     path('Upfile/',viewDU.FileUp),
     path('CheckFile/',viewDU.CheckFile),

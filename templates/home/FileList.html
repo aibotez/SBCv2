@@ -1,6 +1,7 @@
 
 
     <script src="/static/js/GlobalVar.js"></script>
+    <script src="/static/js/ShowDeals.js"></script>
     <script src="/static/js/js-base64-main/base64.js">/* load */</script>
         <div class="container" id="navlist" style="height:3rem;">
             {% for navi in navlist %}
@@ -45,7 +46,7 @@
                                 <div class="container" style="width:100%;overflow:hidden;">
                                     <div class="container" style="width:8%">
                                         <!--<input name={{filedata.filelj}} id={{filedata.filelj}}Choseboxone type="checkbox" value="" onclick="Chosebox(this)" />&nbsp;-->
-                                        <img src='{{filedata.imgpath}}' width="80%">
+                                        <img id='{{filedata.filelj}}Imgcon' src='{{filedata.imgpath}}' width="80%">
                                     </div>
                                     <div id="FileLabel" style="width:50%;overflow:hidden;text-overflow: ellipsis;white-space: nowrap">
                                         <div class="container" id='{{filedata.filelj}}ReName' style="display:none;height:100%;">
@@ -94,6 +95,7 @@
 
 
     <script>
+
         Window.globalConfig.GlobalFiles = {{data|safe}};
         var ScWidth = document.documentElement.clientWidth;
 	    var ScHeight = document.documentElement.clientHeight;
@@ -107,6 +109,9 @@
 	        document.getElementById("Showmainscroll").style.height = ScHeight-4*pxperrem-5*pxperrem+"px";
 	    }
 
+	    setTimeout(function(){
+　　		ShowconDeals({{imgFiles|safe}});
+		}, 100);
     </script>
 
         <!--&lt;!&ndash;<div style="height:10%;width:100%;background-color:black;">&ndash;&gt;-->
