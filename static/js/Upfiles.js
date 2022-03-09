@@ -85,6 +85,7 @@
 					let FileMd5 = spark.end().toString();
 					document.getElementById(CurPath+file.name+"label").innerText ="扫描完成！";
 					UpManage[Manageid]['md5']=FileMd5;
+					//console.log(FileMd5);
 					upload(file,FileMd5);
 					//UpingNums = UpingNums-1;
 					//UpFileEx();
@@ -163,12 +164,12 @@
 			//console.log(CurUpIteri+IterLen);
 			if(i<Files.length)
 			{
-				console.log(i);
+				//console.log(i);
 				setTimeout(function(){
 　　			GetFileMd5(file[i],CurPath+file[i].name+"UpControl",CurPath);
 				}, i*0);
 				//GetFileMd5(Files[i],CurPath+Files[i].name+"UpControl",CurPath);
-				console.log(Files[i].name+"UpControl");
+				//console.log(Files[i].name+"UpControl");
 				CurUpIter = CurUpIter+1;
 				UpingNums = UpingNums+1;
 			}
@@ -283,7 +284,7 @@
 	
 	function upfilechunk(file,CurPath,FileMd5,startchunk)
 	{
-		const chunkSize = 512*1024;
+		const chunkSize = 64*1024;
 		uploadact(startchunk);
 		function uploadact(startchunk)
 		{
