@@ -6,6 +6,13 @@ div.NetNavdiv:hover
     opacity:0.5;
     width:100%;
 }
+div.NetNavdiv1:hover
+{
+    background-color:#A2D9CE;
+	border-radius:10px;
+    opacity:0.5;
+    //width:100%;
+}
 .NetNavdiv
 {
 	width:100%;
@@ -35,6 +42,41 @@ div.NetNavdiv:hover
 	margin:0px;
     //display:inline; /*li {display: inline} 让 li 不再独占一行, 宽度上只会得到必要的而不是占有所在容器的全宽*/
     //font-size: larger;
+    text-decoration:none;
+} 
+a{
+	font-size:2rem;
+    text-decoration:none;   /*去掉下划线*/
+}
+
+.NetNavdiv1
+{
+	//position:absolute;
+	//border:1px solid black;
+	//border-radius:10px;
+	left:1rem;
+	width:15%;
+	height:100%;
+	margin-top:0px;
+	//float:left;
+	display: flex;
+}
+.NetNavul1
+{
+	cursor:pointer;
+	display:table;
+	height:100%;
+	width:100%;
+	margin: 0 auto;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
+.NetNavul1 li{
+    list-style-type:none; /*去掉项目符号的，比如你用了<ul><li></li><li></li></ul>默认的li里边的字是有列表符号的，小圆点。这个list-style-type: none就是不要列表符号*/
+    clear:both;
+    width:100%;
+	margin-left:-1rem;
     text-decoration:none;
 } 
 a{

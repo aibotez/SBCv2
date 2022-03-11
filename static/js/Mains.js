@@ -19,6 +19,27 @@ function NavMeans(oper)
 	}
 	return;
 	//document.getElementById(ActId).style.backgroundColor = Chosed;
+	
+}
 
+function NavMeans1(oper)
+{
+	var Chosed = "rgb(162, 217, 206)";
+	var ids = ["NavMeans_Files1","NavMeans_Photo1","NavMeans_Video1","NavMeans_Share1"];
+	if (document.getElementById(oper).style.backgroundColor == Chosed)
+	{
+		return;
+	}
+	
+	document.getElementById(oper).style = "background-color:#A2D9CE;border-radius:10px;";
+	for(let i=0;i<ids.length;i++)
+	{
+		if (ids[i] != oper)
+		{
+			document.getElementById(ids[i]).removeAttribute("style");
+		}
+	}
+	return;
+	//document.getElementById(ActId).style.backgroundColor = Chosed;
 	
 }
