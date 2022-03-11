@@ -2,35 +2,23 @@
 
 function NavMeans(oper)
 {
-
-	var Chosed = "#A2D9CE";
-	var unChosed = "#ADADAD";
-	if(oper == "Files")
+	var Chosed = "rgb(162, 217, 206)";
+	var ids = ["NavMeans_Files","NavMeans_Photo","NavMeans_Video","NavMeans_Share"];
+	if (document.getElementById(oper).style.backgroundColor == Chosed)
 	{
-		ActId = "NavMeans_Files";
-		if (document.getElementById(ActId).style.backgroundColor == Chosed)
-		{
-			return;
-		}
-		else{
-			document.getElementById(ActId).style.backgroundColor = Chosed;
-			document.getElementById("NavMeans_NetSet").style.backgroundColor = unChosed;
-			return;
-		}
+		return;
 	}
 	
-	if(oper == "NetSet")
+	document.getElementById(oper).style = "background-color:#A2D9CE;border-radius:10px;";
+	for(let i=0;i<ids.length;i++)
 	{
-		ActId = "NavMeans_NetSet";
-		if (document.getElementById(ActId).style.backgroundColor == Chosed)
+		if (ids[i] != oper)
 		{
-			return;
-		}
-		else{
-			document.getElementById(ActId).style.backgroundColor = Chosed;
-			document.getElementById("NavMeans_Files").style.backgroundColor = unChosed;
-			return;
+			document.getElementById(ids[i]).removeAttribute("style");
 		}
 	}
+	return;
+	//document.getElementById(ActId).style.backgroundColor = Chosed;
+
 	
 }
