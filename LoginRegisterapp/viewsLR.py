@@ -22,15 +22,20 @@ def loginVerify(request):
     useripv4 = GrtIpv4(request)
     if request.method == 'POST':
         request.POST = request.POST.copy()
-        userInfos = request.POST
+        userInfos = request.POST.dict()
+        # print(request.POST)
         userInfos['ipv4'] = useripv4
         Login = loginOper()
         res = Login.LoginVerifyUser(userInfos)
         msg = '用户名或密码错误'
+
         if res['status']:
             response = redirect('/?path=/home/')#7 * 24 * 3600
-            response.set_cookie('coks', userInfos['useremail']+'auth:'+res['pass'], max_age=7 * 24 * 3600)
+            if 'remember' in userInfos:
+                response.set_cookie('coks', userInfos['useremail']+'auth:'+res['pass'], max_age=7 * 24 * 3600)
             # return render(request,'home/home.html')
+            else:
+                response.set_cookie('coks', userInfos['useremail'] + 'auth:' + res['pass'])
             return response
         else:
             return render(request, "login/login.html",locals())
