@@ -20,3 +20,28 @@
 .menudropdown:hover .menudropdown-content {
   display: block;
 }
+
+
+
+.Usermenudropdown {
+  position: relative;
+  display: inline-block;
+}
+.Usermenudropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #566573;
+  width: 10rem;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+.Usermenudropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+	font-size:1.5rem;
+}
+.Usermenudropdown-content a:hover {background-color: #99A3A4}
+.Usermenudropdown:hover .Usermenudropdown-content {
+  display: block;
+}

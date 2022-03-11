@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from SBC import LoginVerfiy
 from django.http import HttpResponse,JsonResponse
 from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
 from django.http import StreamingHttpResponse,FileResponse
 from urllib import parse
 import shutil,json,io
@@ -282,6 +283,17 @@ def netOper(request):
     netoper = FileOper.netOper()
     res = netoper.netOperMain(LoginRes['useremail'],request.POST.dict())
     return HttpResponse(res)
+
+@require_POST
+def QuitLogin(request):
+    LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
+    if LoginRes['res']:
+        return HttpResponseRedirect('/login/')
+    # response = redirect('/login/')
+    response = JsonResponse({'res':'ok'})
+    response.delete_cookie('coks')
+    return response
+
 # @require_POST
 # def FileDown(request):
 #     # print(request.POST)
