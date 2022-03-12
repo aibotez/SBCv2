@@ -22,3 +22,6 @@ def CreatShareFile(request):
     res = SBCShareManages.CreatShareUrl(ShareFileInfo,LoginRes,CurUrl)
     return JsonResponse({'res':res})
     # return HttpResponse()
+
+def SBCShareShow(request):
+    return render(request,'SBCShare/SBCShare.html')
