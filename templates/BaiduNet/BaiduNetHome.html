@@ -138,11 +138,11 @@
             <div style="margin-left:20px;margin-top:2rem;width:100%;overflow:hidden;">
                 <div style="width:100%;overflow:hidden;text-overflow:ellipsis;">
                     <label id="usedcaplael" style="width:100%;font-size:1.5rem;overflow:hidden;text-overflow:ellipsis;">
-                        {{UserUsedCap.usedcappercentstr}}
+                       {{BaiduNetUserInfo.userused}}
                     </label>
                 </div>
                 <div>
-                    <progress id="usedcapid" value={{UserUsedCap.usedcappercent}}  max=1></progress>
+                    <progress id="usedcapid" value={{BaiduNetUserInfo.userprecent}}  max=1></progress>
                 </div>
             </div>
             <div style="border-bottom:10px solid #CCC"></div>
@@ -153,7 +153,7 @@
                 </div>
                 <div class="Usermenudropdown" style="width:50%;margin-left:5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
                     <a href="javascript:void(0);" onclick="UsermenudropdownShow('Usermenudropdown-content')" style="color:black;font-size:20px;text-decoration:none;">
-                        {{UserUsedCap.username}}
+                        {{BaiduNetUserName}}
                     </a>
                     <div class="Usermenudropdown-content" id="Usermenudropdown-content" style="position: fixed;bottom: 10rem;display:none;">
                         <a href="javascript:void(0);" onclick="">设置</a>
@@ -177,7 +177,7 @@
             </div>
             <div style="">
                 <label style="color:black;font-weight:bold;font-size:2rem;">
-                    小黑云
+                    小黑云<p style="color:blue;font-size:20px;">百度云</p>
                 </label>
             </div>
         </div>
@@ -235,7 +235,7 @@
             </div>
             <div class="Usermenudropdown" style="width:50%;margin-left:10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
                 <a href="javascript:void(0);" onclick="UsermenudropdownShow('Usermenudropdown-content1')" style="color:white;font-size:1.5rem;">
-                    {{UserUsedCap.username}}
+                    {{BaiduNetUserInfo.username}}
                 </a>
 
                 <div class="Usermenudropdown-content" id="Usermenudropdown-content1" style="position:fixed;top: 3rem;display:none;z-index:999">
@@ -253,11 +253,11 @@
             <div style="margin-top:0.5rem;width:100%;overflow:hidden;">
                 <div style="width:100%;overflow:hidden;text-overflow:ellipsis;">
                     <label id="usedcaplael" style="width:100%;font-size:1.5rem;overflow:hidden;text-overflow:ellipsis;">
-                        {{UserUsedCap.usedcappercentstr}}
+                        {{BaiduNetUserInfo.userused}}
                     </label>
                 </div>
                 <div>
-                    <progress id="usedcapid" value={{UserUsedCap.usedcappercent}}  max=1></progress>
+                    <progress id="usedcapid" value={{BaiduNetUserInfo.userprecent}}  max=1></progress>
                 </div>
             </div>
         </div>

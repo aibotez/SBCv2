@@ -42,6 +42,8 @@ def BaiduNetHome(request):
     else:
         showpath = request.POST['showpath']
     showpath = unquote(showpath)
+    manage = BaiduNetManage.manage()
+    BaiduNetUserInfo = manage.GetBaiduNetUserInfo(LoginRes)
     return render(request,'BaiduNet/BaiduNetHome.html',locals())
 
 

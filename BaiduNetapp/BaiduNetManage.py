@@ -110,6 +110,24 @@ class baidunet():
             return path
         else:
             return '/static/img/wj.jfif'
+    def GetBaiduNetUserInfo(self):
+        url = 'https://pan.baidu.com/api/loginStatus?clienttype=0&app_id=250528&web=1'
+        res = requests.get(url,headers=self.headers).text
+        resdata = json.loads(res)
+        username = ''
+        if resdata['errno'] ==0:
+            username = resdata['login_info']['username']
+        url = 'https://pan.baidu.com/api/quota?clienttype=0&app_id=250528&web=1'
+        res = requests.get(url,headers=self.headers).text
+        resdata = json.loads(res)
+        usertotal = ''
+        userused = ''
+        userprecent = 0
+        if resdata['errno'] ==0:
+            usertotal = self.size_format(resdata['total'])
+            userused = self.size_format(resdata['used'])
+            userprecent = resdata['used']/resdata['total']
+        return {'username':username,'userused':userused+'/'+usertotal,'userprecent':userprecent}
 
     def GetFileList(self,path):
         urlSer = 'https://pan.baidu.com/api/list?&dir={}'.format(quote(path))
@@ -153,3 +171,8 @@ class manage():
         userEmail = LoginRes['useremail']
         BaiduNetUserManage.objects.create(useremail=userEmail,cookie=usercookie)
         return 1
+
+    def GetBaiduNetUserInfo(self,LoginRes):
+        checkre = self.CheckBaiduNetUserExist(LoginRes)
+        bdnOp = baidunet(checkre['cookie'])
+        return bdnOp.GetBaiduNetUserInfo()
