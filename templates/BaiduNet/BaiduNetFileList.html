@@ -11,7 +11,7 @@
                     </div>
                 {% else %}
                     <div>
-                        <a id={{navi.pathId}} style="color:#C0C0C0;font-size:1.5rem;text-decoration:none;" href="javascript:void(0);" onclick="RefreshFiles(this)">&ensp;{{navi.navname}}</a>
+                        <a id={{navi.pathId}} style="color:#C0C0C0;font-size:1.5rem;text-decoration:none;" href="javascript:void(0);" onclick="BaiduNetRefreshFiles(this)">&ensp;{{navi.navname}}</a>
                     </div>
                     <div>
                         <span id={{navi.path}}00 style="color:#C0C0C0;font-size:1.5rem;">&ensp;&gt;</span>
@@ -53,17 +53,17 @@
                                             <!--<textarea id={{filedata.filelj}}ReNameText name={{filedata.filename}} wrap='off' rows="1" cols="100" style="font-size:20px;width:60%;overflow-x:hidden">{{filedata.filename}}</textarea>-->
                                             <!--&nbsp;-->
                                             <div class="container" style="margin-left:5px;border:1px solid #000;width:3rem;height:3rem;border-radius:3px;background-color:white;">
-                                                <button id='{{filedata.filelj}}ReNameSure' name={{filedata.filelj}} onclick="ReNameAct(this)"></button>
+                                                <button id='{{filedata.filelj}}ReNameSure' name={{filedata.filelj}} onclick="BaiduNetReNameAct(this)"></button>
                                              </div>
 
                                             <!--<button id={{filedata.filelj}}ReNameSure name={{filedata.filelj}} onclick="ReNameAct(this)"></button>-->
                                             <!--&nbsp;-->
                                             <div class="container" style="margin-left:10px;border:1px solid #000;width:3rem;height:3rem;border-radius:3px;background-color:white;">
-                                                <button id='{{filedata.filelj}}ReNameCancel' name='{{filedata.filelj}}' onclick="ReNameCancel(this)"></button>
+                                                <button id='{{filedata.filelj}}ReNameCancel' name='{{filedata.filelj}}' onclick="BaiduNetReNameCancel(this)"></button>
                                             </div>
                                         </div>
                                         <div style="max-width:90%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
-                                            <a id={{filedata.filelj}} name="File" style="color:black;font-size:2rem;text-decoration:none;" href="javascript:void(0);" onclick="RefreshFile(this)">
+                                            <a id={{filedata.filelj}} name="File" style="color:black;font-size:2rem;text-decoration:none;" href="javascript:void(0);" onclick="BaiduNetRefreshFile(this)">
                                                 {{filedata.server_filename}}
                                             </a>
                                         </div>
