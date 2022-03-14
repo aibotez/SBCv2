@@ -72,7 +72,7 @@ class manage():
         userEmail = LoginRes['useremail']
         if BaiduNetUserManage.objects.filter(useremail=userEmail).exists():
             BaiduNetUserData = BaiduNetUserManage.objects.get(useremail=userEmail)
-            if len(BaiduNetUserData.cookie<10):
+            if len(BaiduNetUserData.cookie)<10:
                 return {'errno':'404'}
             return {'errno':'0','cookie':BaiduNetUserData.cookie}
         return {'errno': '404'}
@@ -83,3 +83,7 @@ class manage():
         bdnOp = baidunet(checkre['cookie'])
         bdndatas = bdnOp.GetFileList('/')
         return bdndatas
+    def BaiduNetSaveUser(self,LoginRes,usercookie):
+        userEmail = LoginRes['useremail']
+        BaiduNetUserManage.objects.create(useremail=userEmail,cookie=usercookie)
+        return 1

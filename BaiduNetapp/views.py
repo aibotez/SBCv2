@@ -22,3 +22,12 @@ def BaiduNetShow(request):
         return HttpResponseRedirect('/login/')
     manage = BaiduNetManage.manage()
     bdn = manage.baidunetShow(LoginRes)
+
+@require_POST
+def BaiduNetSaveUser(request):
+    LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
+    if LoginRes['res']:
+        return HttpResponseRedirect('/login/')
+    manage = BaiduNetManage.manage()
+    manage.BaiduNetSaveUser(LoginRes,request.POST.get('usercookie'))
+    return JsonResponse({'res':'1'})

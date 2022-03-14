@@ -56,4 +56,5 @@ urlpatterns = [
     path('preview/',viewPre.preview),
 
     path('BaiduNetUserExistCheck/',viewBdn.BaiduNetUserExistCheck),
+    path('BaiduNetSaveUser/',viewBdn.BaiduNetSaveUser),
 ]
