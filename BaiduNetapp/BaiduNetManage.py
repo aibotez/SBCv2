@@ -48,6 +48,65 @@ class baidunet():
         time_tuple = time.localtime(times)
         result = time.strftime(format, time_tuple)
         return result
+
+    def GetFileType(self,fe):
+        if fe['isdir'] == 1:
+            return 'folder'
+        fename = fe['server_filename']
+        fetype = fename.split('.')
+        if len(fetype) < 1:
+            return 'other'
+        fetype = fetype[-1].lower()
+        imgtypre = ['bmp','jpg','png','tif','gif''pcx','tga','exif','fpx','svg','psd','cdr','pcd','dxf','ufo','eps','ai','raw','WMF','webp','avif','apng']
+        if fetype in imgtypre:
+            return 'img'
+        if fetype == 'pdf':
+            return 'pdf'
+        if fetype == 'exe':
+            return 'exe'
+        if 'doc' in fetype:
+            return 'word'
+        if 'ppt' in fetype:
+            return 'ppt'
+        if 'xls' in fetype:
+            return 'excel'
+        if 'html' in fetype:
+            return 'html'
+        if fetype in ['7z','zip','rar']:
+            return 'zip'
+
+    def GetConImg(self,fe):
+        fetype = self.GetFileType(fe)
+
+        if fetype == 'folder':
+            return '/static/img/foldersm.png'
+        if fetype == 'img':
+            path = '/static/img/filecon/imgcon.jpg'
+            return path
+            # imgtype = fetype[1]
+            # return GetImgconBase64(fepath,imgtype)
+        if fetype == 'pdf':
+            path = '/static/img/filecon/pdfcon.jpg'
+            return path
+        if fetype == 'word':
+            path = '/static/img/filecon/wordcon.jpg'
+            return path
+        if fetype == 'ppt':
+            path = '/static/img/filecon/pptcon.jpg'
+            return path
+        if fetype == 'excel':
+            path = '/static/img/filecon/excelcon.jpg'
+            return path
+        if fetype == 'zip':
+            path = '/static/img/filecon/zipcon.png'
+            return path
+        if fetype == 'html':
+            path = '/static/img/filecon/htmlcon.jpg'
+            return path
+
+        else:
+            return '/static/img/filecon/execon.jpg'
+
     def GetFileList(self,path):
         urlSer = 'https://pan.baidu.com/api/list?&dir={}'.format(quote(path))
         headers = {
@@ -60,6 +119,7 @@ class baidunet():
                 filepath = base64.encodebytes(resdata['list'][i]['path'].encode('utf8')).decode()
                 filepath = filepath.replace('\n', '')
                 resdata['list'][i]['filelj'] = filepath
+                resdata['list'][i]['imgpath'] = self.GetConImg(resdata['list'][i])
                 resdata['list'][i]['size'] = self.size_format(resdata['list'][i]['size'])
                 resdata['list'][i]['server_mtime'] = self.FormTime(resdata['list'][i]['server_mtime'])
         return resdata
