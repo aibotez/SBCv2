@@ -64,7 +64,6 @@ class baidunet():
         if fetype == 'pdf':
             return 'pdf'
         if fetype == 'exe':
-
             return 'exe'
         if 'doc' in fetype:
             return 'word'
@@ -74,7 +73,7 @@ class baidunet():
             return 'excel'
         if 'html' in fetype:
             return 'html'
-        if fetype in ['7z','zip','rar']:
+        if fetype in ['7z','zip','rar','gz','tgz','bz']:
             return 'zip'
         return 'other'
 
