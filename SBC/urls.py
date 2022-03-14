@@ -22,6 +22,7 @@ from forgotpasswordapp import views as viewFG
 from FileDownUpapp import views as viewDU
 from SBCShareapp import views as viewShare
 from previewapp import views as viewPre
+from BaiduNetapp import views as viewBdn
 
 urlpatterns = [
     path('', view.Home),
@@ -53,4 +54,6 @@ urlpatterns = [
     path('SBCShare/',viewShare.SBCShareShow),
 
     path('preview/',viewPre.preview),
+
+    path('BaiduNetUserExistCheck/',viewBdn.BaiduNetUserExistCheck),
 ]
