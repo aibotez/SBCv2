@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小黑云</title>
+        <style>
+        div.changediv:hover
+        {
+            background-color:#A2D9CE;
+            opacity:0.5;
+            width:100%;
+        }
+
+         div.unchangediv:hover
+        {
+            background-color:#FBFCFC;
+            opacity:0.9;
+            width:100%;
+        }
+
+        tr.change:hover
+        {
+            background-color:#A2D9CE;
+            opacity:0.5;
+            width:100%;
+        }
+
+        .div
+        {
+            position:fixed;
+            top:0px;
+            left:0px;
+            width: 100%;
+            height: 100%;
+        }
+       .div2
+          {
+            color: black;
+            width: 81.5%;
+            height: 90%;
+            float:left;
+          }
+        .div1
+            {
+               background-color: #ADADAD;
+               width: 18%;
+               height: 100%;
+               border:1px solid #0ba;
+               float:left;
+            }
+
+        .container {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .Updetail {
+            position: fixed;	        /* 设置fixed固定定位 */
+            bottom: 20px;		/* 距离浏览器窗口下边框20px */
+            right: 50px;		/* 距离浏览器窗口右边框20px */
+        }
+        #drop-down ul {
+        display: none;
+        }
+        /*显示二级菜单*/
+        #drop-down:hover ul {
+        display: block;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="/static/css/DropdownMean.css" charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/static/css/NetOperNav.css" charset="utf-8">
+    <script src="/static/js/jquery-3.1.1.js"></script>
+    <script src="/static/js/spark-md5.min.js"></script>
+    <script src="/static/js/SendMessegetoSer.js"></script>
+    <script src="/static/js/BaiduNet/BaiduNet.js"></script>
+    <script src="/static/js/BaiduNet/BaiduNetRefresh.js"></script>
+    <script src="/static/js/js-base64-main/base64.js">/* load */</script>
+</head>
+<body style="background-color:white">
+
+<div class="div" id="div">
+    <div class="div1" id="div1">
+        <div class="container" style="width:100%;position:relative;">
+            <div style="margin:10px">
+                <img src="/static/img/xhy.jpg" width="50px" height="40px">
+            </div>
+            <div style="">
+                <label style="color:black;font-weight:bold;font-size:25px;">
+                    小黑云
+                </label>
+            </div>
+        </div>
+
+        <div class="container" style="width:100%;margin-top:60px">
+            <div class="NetNavdiv" onclick="NavMeans('NavMeans_Files')">
+                <ul id="NavMeans_Files" class="NetNavul" style="background-color:#A2D9CE;border-radius:10px;">
+                    <li>
+                        <a>
+                            文件
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="NetNavdiv" onclick="NavMeans('NavMeans_Photo')">
+                <ul id="NavMeans_Photo" class="NetNavul">
+                    <li>
+                        <a>
+                            图片
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="NetNavdiv" onclick="NavMeans('NavMeans_Video')">
+                <ul id="NavMeans_Video" class="NetNavul">
+                    <li>
+                        <a>
+                            视频
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="NetNavdiv" onclick="NavMeans('NavMeans_Share')">
+                <ul id="NavMeans_Share" class="NetNavul">
+                    <li>
+                        <a>
+                            分享
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container" style="position:absolute;width:18%;margin-top:20px;bottom:5rem;">
+
+
+            <div style="margin-left:20px;margin-top:2rem;width:100%;overflow:hidden;">
+                <div style="width:100%;overflow:hidden;text-overflow:ellipsis;">
+                    <label id="usedcaplael" style="width:100%;font-size:1.5rem;overflow:hidden;text-overflow:ellipsis;">
+                        {{UserUsedCap.usedcappercentstr}}
+                    </label>
+                </div>
+                <div>
+                    <progress id="usedcapid" value={{UserUsedCap.usedcappercent}}  max=1></progress>
+                </div>
+            </div>
+            <div style="border-bottom:10px solid #CCC"></div>
+            <div class="container" style="margin-top:2rem;width:100%">
+
+                <div style="margin-left:20px;">
+                    <img src="/static/img/cat0.jpg" width="36px" height="36px">
+                </div>
+                <div class="Usermenudropdown" style="width:50%;margin-left:5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+                    <a href="javascript:void(0);" onclick="UsermenudropdownShow('Usermenudropdown-content')" style="color:black;font-size:20px;text-decoration:none;">
+                        {{UserUsedCap.username}}
+                    </a>
+                    <div class="Usermenudropdown-content" id="Usermenudropdown-content" style="position: fixed;bottom: 10rem;display:none;">
+                        <a href="javascript:void(0);" onclick="">设置</a>
+                        <div style="width:99%;border:1px solid #808B96;"></div>
+                        <a href="javascript:void(0);" onclick="QuitLogin()">退出登录</a>
+                        <div style="width:99%;border:1px solid #808B96;"></div>
+                        <a href="javascript:void(0);" onclick="UsermenudropdownShow('Usermenudropdown-content')">取消</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="container" style="background-color: #ADADAD;width:100%;height:7rem" id="HightModeMenu">
+        <div class="container" style="top:0rem;width:20%;position:relative;">
+            <div style="margin:10px">
+                <img src="/static/img/xhy.jpg" width="50px" height="40px">
+            </div>
+            <div style="">
+                <label style="color:black;font-weight:bold;font-size:2rem;">
+                    小黑云
+                </label>
+            </div>
+        </div>
+
+        <div class="container" style="width:60%;height:100%">
+            <div class="NetNavdiv1" onclick="NavMeans1('NavMeans_Files1')">
+                <ul id="NavMeans_Files1" class="NetNavul1" style="background-color:#A2D9CE;border-radius:10px;">
+                    <li>
+                        <a>
+                            文件
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div style="height:70%;border:1px solid #566573;"></div>
+
+            <div class="NetNavdiv1" onclick="NavMeans1('NavMeans_Photo1')">
+                <ul id="NavMeans_Photo1" class="NetNavul1">
+                    <li>
+                        <a>
+                            图片
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div style="height:70%;border:1px solid #566573;"></div>
+
+            <div class="NetNavdiv1" onclick="NavMeans1('NavMeans_Video1')">
+                <ul id="NavMeans_Video1" class="NetNavul1">
+                    <li>
+                        <a>
+                            视频
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div style="height:70%;border:1px solid #566573;"></div>
+            <div class="NetNavdiv1" onclick="NavMeans1('NavMeans_Share1')">
+                <ul id="NavMeans_Share1" class="NetNavul1">
+                    <li>
+                        <a>
+                            分享
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div style="height:70%;border:1px solid #566573;"></div>
+
+        </div>
+
+        <div class="container" style="position:absolute;width:20%;top:0.5rem;right:3rem;">
+            <div>
+                <img src="/static/img/cat0.jpg" width="36px" height="36px">
+            </div>
+            <div class="Usermenudropdown" style="width:50%;margin-left:10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+                <a href="javascript:void(0);" onclick="UsermenudropdownShow('Usermenudropdown-content1')" style="color:white;font-size:1.5rem;">
+                    {{UserUsedCap.username}}
+                </a>
+
+                <div class="Usermenudropdown-content" id="Usermenudropdown-content1" style="position:fixed;top: 3rem;display:none;z-index:999">
+                    <a href="javascript:void(0);" onclick="">设置</a>
+                    <div style="width:99%;border:1px solid #808B96;"></div>
+                    <a href="javascript:void(0);" onclick="QuitLogin()">退出登录</a>
+                    <div style="width:99%;border:1px solid #808B96;"></div>
+                    <a href="javascript:void(0);" onclick="UsermenudropdownShow('Usermenudropdown-content1')">取消</a>
+                </div>
+
+            </div>
+
+
+
+            <div style="margin-top:0.5rem;width:100%;overflow:hidden;">
+                <div style="width:100%;overflow:hidden;text-overflow:ellipsis;">
+                    <label id="usedcaplael" style="width:100%;font-size:1.5rem;overflow:hidden;text-overflow:ellipsis;">
+                        {{UserUsedCap.usedcappercentstr}}
+                    </label>
+                </div>
+                <div>
+                    <progress id="usedcapid" value={{UserUsedCap.usedcappercent}}  max=1></progress>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div style="height:3%;width:100%;margin:10px">
+        <div style="display: flex;flex-wrap: wrap;position:relative;">
+            <div style="background-color:white">
+                <button id="downbutton" value="下载" style="font-size:1.5rem;width:5rem;height:3rem;border-radius:1rem;background-color:white;color:blue;" onclick="DownFiles()">
+                    下载
+                </button>
+            </div>
+            &nbsp;
+            <div id="UpCom">
+                <input type="file" id="SelectFiles" style="display:none" multiple="multiple" onchange="onChange(event)" />
+                <input type="file" id="SelectFolder" style="display:none" onchange="onChange(event)" webkitdirectory />
+                <!--<input type="file" name="files" multiple="multiple" id="upbutton" value="上传">-->
+                <div class="menudropdown">
+                    <button id="UP" value="上传" style="font-size:1.5rem;width:5rem;height:3rem;border-radius:1rem;background-color:white;color:blue;" onclick="UpmenudropdownShow()">上传</button>
+                    <div class="menudropdown-content" id="Upmenudropdown-content" style="width:12rem;font-size:1rem;display:none;">
+                        <a href="javascript:void(0);" style="font-size:1.5rem;" onclick="document.getElementById('SelectFiles').click()">上传文件</a>
+                        <a href="javascript:void(0);" style="font-size:1.5rem;" onclick="document.getElementById('SelectFolder').click()">上传文件夹</a>
+                    </div>
+                </div>
+
+                <!--<button id="UP" value="上传" style="font-size:1.5rem;width:5rem;height:3rem;border-radius:1rem;background-color:white;color:blue;" onclick="document.getElementById('SelectFiles').click()">上传</button>-->
+            </div>
+            &nbsp;
+            <div>
+                <button style="font-size:1.5rem;width:5rem;height:3rem;border-radius:1rem;background-color:white;color:blue;" onclick="DelFiles()">
+                    删除
+                </button>
+            </div>
+            &nbsp;
+            <div>
+                <button style="font-size:1.5rem;width:7rem;height:3rem;border-radius:1rem;background-color:white;color:blue;" onclick="Rename()">
+                    重命名
+                </button>
+            </div>
+            &nbsp;
+            <div class="menudropdown" id="menudropdown">
+                <button onclick="menudropdownShow()" style="font-size:1.5rem;cursor:pointer;width:5rem;height:3rem;border-radius:1rem;background-color:white;color:blue;">更多</button>
+                <div class="menudropdown-content" id="menudropdown-content" style="display:none;">
+                    <a href="javascript:void(0);" onclick="NewFolder()">新建</a>
+                    <a href="javascript:void(0);" onclick="SBCShare()">分享</a>
+                    <a href="javascript:void(0);" onclick="Moveto(this)">移动</a>
+                    <a href="javascript:void(0);" onclick="Copyto(this)">复制</a>
+                    <a href="javascript:void(0);" onclick="Attribute(this)">属性</a>
+                </div>
+            </div>
+
+            <div class="menudropdown" id="Netdropdown" style="margin-left:0.5rem">
+                <button onclick="NetdropdownShow()" style="font-size:1.5rem;cursor:pointer;width:8rem;height:3rem;border-radius:1rem;background-color:white;color:blue;">切换网盘</button>
+                <div class="menudropdown-content" id="Netdropdown-content" style="display:none;">
+                    <a href="javascript:void(0);" onclick="SBCNetShow()">小黑云</a>
+                    <a href="javascript:void(0);" onclick="BaiduNetShow()">百度云</a>
+                    <a href="javascript:void(0);" onclick="AlNetShow()">阿里云</a>
+
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <div class="div2" id="ShowMain"></div>
+</div>
+
+<div class="Updetail" id="Updetails" style="display:none;border-radius:10px;border:3px solid #ECF0F1;width:420px;background-color:#FDFEFE">
+    <div class="changediv" style="height:50px;" onclick="FolderUpDetail()">
+        <!--<br>-->
+        <label id="UpdetailsTitle" style="text-align: center;height:100%;width:100%;line-height:50px"></label>
+    </div>
+    <div style="border-bottom:1px solid #CCC"></div>
+    <div id="UpDetailContent">
+        <div style="overflow:scroll;height:420px;width:100%;">
+            <div id="UpList" style="width:100%;">
+            </div>
+        </div>
+
+        <div style="width:100%;">
+            <a style="display: inline-block;text-align: center;width:100%;color:black;font-size:15px;text-decoration:none;" href="javascript:void(0);" onclick="FolderUpDetail()">
+                收起
+            </a>
+        </div>
+
+    </div>
+</div>
+
+
+
+<div id = "ShareFiles" style="display:none;background-color:white;overflow:hidden;border-radius:10px;border:3px solid #ECF0F1;position:fixed;top:15%;left:25%;width:500px;height:500px">
+    <div style="width:100%">
+        <label style = "position:relative;top:10px;left:20px;width:100%;font-size:20px;color:black;">
+            分享文件
+        </label>
+    </div>
+    <label style = "position:relative;left:20px;width:100%;font-size:20px;color:black;">
+        <br>是否要分享以下文件：<br><br>
+    </label>
+    <div style="overflow-y: scroll;overflow-x:hidden;width:100%;height:100px;position:relative;left:20px;">
+        <label id="ShareContentDetails" style="position:relative;left:0px">
+
+        </label>
+    </div>
+    <div class="container" id="ShareSetShow">
+        <div style="width:100%" class="container">
+            <div class="container">
+                <label style = "position:relative;left:20px;font-size:20px;color:black;">
+                    选择有效期
+                </label>
+            </div>
+            <div class="container" style="position:relative;left:30px;z-index:999">
+                <div class="menudropdown" id="Sharemenudropdown">
+                    <button id="SharemenudropdownB" onclick="SharemenudropdownShow()" style="font-size:20px;cursor:pointer;width:60px;height:30px;border-radius:5px;background-color:white;color:blue;">1天</button>
+                    <div class="menudropdown-content" id="Sharemenudropdown-content" style="display:none;">
+                        <a href="javascript:void(0);" onclick="ShareDuring(1)">1天</a>
+                        <a href="javascript:void(0);" onclick="ShareDuring(2)">7天</a>
+                        <a href="javascript:void(0);" onclick="ShareDuring(3)">1个月</a>
+                        <a href="javascript:void(0);" onclick="ShareDuring(4)">永久</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="width:100%;position:relative;left:20px;top:60px;">
+            <div class="container" style="position:relative;font-size:20px;">
+                <div>
+                    <label>
+                        分享密码：
+                    </label>
+                </div>
+                <div>
+                    <input type="text" id="SharePass" placeholder="默认为无" style="font-size:18px;width:130px">
+                </div>
+            </div>
+        </div>
+
+        <div style="width:100%;position:relative;left:20px;top:160px" class="container">
+            <div>
+                <input type="button" onclick="SureShare()" value="确认分享" style="cursor:pointer;height:36px;background-color:red;border-radius:5px;color:white">
+            </div>
+            <div>
+                <input type="button" onclick="CancelShare()" value="取消分享" style="cursor:pointer;position:relative;left:20px;height:36px;border-radius:5px;">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container" id="ShareUrlShow" style="display:none;width:100%;position:relative;left:20px;">
+        <div style="width:100%">
+            <label style="font-size:20px;">
+                分享链接：
+            </label>
+        </div>
+        <div style="width:100%">
+            <div style="height:30px;max-width:70%;color:white;background-color:#85929E;border-radius:5px;">
+                <a id="ShareUrlContent" style="font-size:20px;width:100%">
+
+                </a>
+            </div>
+        </div>
+        <div style="position:relative;top:5px">
+            <button onclick="FinshShare()" style="width:50px;height:30px;border-radius:5px;background-color:white;color:blue;">
+                完成
+            </button>
+        </div>
+    </div>
+
+    <!--<div style="width:100%;position:relative;left:20px;top:130px;" class="container">-->
+        <!--<div>-->
+            <!--<input type="button" onclick="SureShare()" value="确认分享" style="cursor:pointer;height:36px;background-color:red;border-radius:5px;color:white">-->
+        <!--</div>-->
+        <!--<div>-->
+            <!--<input type="button" onclick="CancelShare()" value="取消分享" style="cursor:pointer;position:relative;left:20px;height:36px;border-radius:5px;">-->
+        <!--</div>-->
+    <!--</div>-->
+
+</div>
+
+<!--<input id="CurDatas" type="text" style="display:none;" value={{datajson}}>-->
+
+
+<script src="/static/js/Down.js"></script>
+
+
+<!--<script>-->
+   <!--var datas = document.getElementById("CurDatas").value;-->
+   <!--&lt;!&ndash;console.log(datas);&ndash;&gt;-->
+<!--</script>-->
+
+<script>
+    var reqs = '{{showpath|safe}}';
+   	let Showpath = Base64.encode(reqs);
+	BaiduNetRefreshFile({'id':Showpath});
+</script>
+<script src="/static/js/DevicesMatch.js"></script>
+<script>
+
+    function menudropdownShow()
+    {
+        var menudropdown_content = document.getElementById("menudropdown-content");
+	    if(menudropdown_content.style.display == "block")
+	    {
+	        menudropdown_content.style.display = "none"
+	        return;
+	    }
+	    menudropdown_content.style.display = "block";
+    }
+
+
+    function NetdropdownShow()
+    {
+        var menudropdown_content = document.getElementById("Netdropdown-content");
+	    if(menudropdown_content.style.display == "block")
+	    {
+	        menudropdown_content.style.display = "none"
+	        return;
+	    }
+	    menudropdown_content.style.display = "block";
+    }
+
+    function SharemenudropdownShow()
+    {
+        var Sharemenudropdown_content = document.getElementById("Sharemenudropdown-content");
+        Sharemenudropdown_content.style.display = "block";
+    }
+    function UsermenudropdownShow(actid)
+    {
+        var menudropdown_content = document.getElementById(actid);
+	    if(menudropdown_content.style.display == "block")
+	    {
+	        menudropdown_content.style.display = "none"
+	        return;
+	    }
+	    menudropdown_content.style.display = "block";
+    }
+    function UpmenudropdownShow()
+    {
+        var menudropdown_content = document.getElementById("Upmenudropdown-content");
+	    if(menudropdown_content.style.display == "block")
+	    {
+	        menudropdown_content.style.display = "none"
+	        return;
+	    }
+	    menudropdown_content.style.display = "block";
+    }
+</script>
+
+
+
+<script>
+    function Chosebox(act)
+    {
+        var ChoseBoxId = act.id;
+        if(ChoseBoxId.indexOf("Chosebox") != -1)
+        {
+            <!--console.log(ChoseBoxId.split("Chosebox")[0]);-->
+            var BoxName = ChoseBoxId.split("Chosebox")[0]+"Choseboxone";
+            document.getElementById(BoxName).checked=true;
+            <!--if(document.getElementsByName(BoxName)[0].checked==true)-->
+            <!--{-->
+                <!--document.getElementsByName(BoxName)[0].checked=false;-->
+            <!--}-->
+            <!--else-->
+            <!--{-->
+                <!--document.getElementsByName(BoxName)[0].checked=true;-->
+            <!--}-->
+        }
+        else
+        {
+            var BoxName = act.name+"Choseboxone";
+            <!--document.getElementsByName(BoxName)[0].checked=true;-->
+
+            if(document.getElementById(BoxName).checked==true)
+            {
+                document.getElementById(BoxName).checked=false;
+            }
+            else
+            {
+                document.getElementById(BoxName).checked=true;
+            }
+        }
+
+    }
+</script>
+
+<script>
+    var Folderact = 0;
+    function FolderUpDetail()
+    {
+        if(Folderact == 0)
+        {
+            document.getElementById("UpDetailContent").style.display="none";
+            Folderact = 1;
+        }
+        else
+        {
+            document.getElementById("UpDetailContent").style.display="";
+            Folderact = 0;
+        }
+    }
+</script>
+
+
+
+
+
+</body>
+</html>

@@ -31,6 +31,20 @@ def GetNavpath(path):
         navpaths.append({'navname':i,'path':s,'pathId':Npath})
     return navpaths
 
+
+def BaiduNetHome(request):
+    LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
+    if LoginRes['res']:
+        return HttpResponseRedirect('/login/')
+    showpath = '/'
+    if request.method == 'GET':
+        showpath = request.GET['showpath']
+    else:
+        showpath = request.POST['showpath']
+    showpath = unquote(showpath)
+    return render(request,'BaiduNet/BaiduNetHome.html',locals())
+
+
 def BaiduNetShow(request):
     LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
     if LoginRes['res']:

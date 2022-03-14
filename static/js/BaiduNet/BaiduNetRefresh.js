@@ -28,7 +28,7 @@
 			});
         var stateObject = {};
         var title = "小黑云";
-        var newUrl = "/BaiduNetShow?showpath="+encodeurl;
+        var newUrl = "/BaiduNetHome?showpath="+encodeurl;
         history.pushState(stateObject,title,newUrl);
 	}
 	
@@ -36,7 +36,7 @@
     {
 
 		
-		var files = Window.globalConfig.GlobalFiles;
+		//var files = Window.globalConfig.GlobalFiles;
 		setTimeout(() => {
 			BaiduNetRefreshAct(act);
 			//BaiduNetDealrefresh(act);
