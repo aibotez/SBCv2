@@ -115,8 +115,10 @@ class baidunet():
         res = requests.get(url,headers=self.headers).text
         resdata = json.loads(res)
         username = ''
+        photo_url = '/static/img/cat0.jpg'
         if resdata['errno'] ==0:
             username = resdata['login_info']['username']
+            photo_url = resdata['login_info']['photo_url']
         url = 'https://pan.baidu.com/api/quota?clienttype=0&app_id=250528&web=1'
         res = requests.get(url,headers=self.headers).text
         resdata = json.loads(res)
@@ -127,7 +129,7 @@ class baidunet():
             usertotal = self.size_format(resdata['total'])
             userused = self.size_format(resdata['used'])
             userprecent = resdata['used']/resdata['total']
-        return {'username':username,'userused':userused+'/'+usertotal,'userprecent':userprecent}
+        return {'username':username,'userused':userused+'/'+usertotal,'userprecent':userprecent,'photo_url':photo_url}
 
     def GetFileList(self,path):
         urlSer = 'https://pan.baidu.com/api/list?&dir={}'.format(quote(path))
