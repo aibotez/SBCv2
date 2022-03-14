@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 import json
 from django.views.decorators.http import require_GET, require_http_methods, require_POST
 from BaiduNetapp import BaiduNetManage
+from urllib.parse import quote,unquote
 # Create your views here.
 
 @require_POST
@@ -40,7 +41,7 @@ def BaiduNetShow(request):
         showpath = request.GET['showpath']
     else:
         showpath = request.POST['showpath']
-
+    showpath = unquote(showpath)
     manage = BaiduNetManage.manage()
     bdn = manage.baidunetShow(LoginRes,showpath)
     navlist = GetNavpath(showpath)

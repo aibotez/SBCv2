@@ -16,8 +16,14 @@ function BaiduNetShow()
 			let res = PostMethod(urlpath,datas,0);
 			if(res.res=='1')
 			{
-				
+				let Showpath = Base64.encode('/');
+				BaiduNetRefreshFile({'id':Showpath});
 			}
 		}
+	}
+	else
+	{
+		let Showpath = Base64.encode('/');
+		BaiduNetRefreshFile({'id':Showpath});
 	}
 }
