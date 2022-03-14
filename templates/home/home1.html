@@ -323,7 +323,7 @@
             &nbsp;
             <div class="menudropdown" id="menudropdown">
                 <button onclick="menudropdownShow()" style="font-size:1.5rem;cursor:pointer;width:5rem;height:3rem;border-radius:1rem;background-color:white;color:blue;">更多</button>
-                <div class="menudropdown-content" id="menudropdown-content" style="font-size:1.5rem;display:none;">
+                <div class="menudropdown-content" id="menudropdown-content" style="display:none;">
                     <a href="javascript:void(0);" onclick="NewFolder()">新建</a>
                     <a href="javascript:void(0);" onclick="SBCShare()">分享</a>
                     <a href="javascript:void(0);" onclick="Moveto(this)">移动</a>
@@ -331,6 +331,18 @@
                     <a href="javascript:void(0);" onclick="Attribute(this)">属性</a>
                 </div>
             </div>
+
+            <div class="menudropdown" id="Netdropdown" style="margin-left:0.5rem">
+                <button onclick="NetdropdownShow()" style="font-size:1.5rem;cursor:pointer;width:8rem;height:3rem;border-radius:1rem;background-color:white;color:blue;">切换网盘</button>
+                <div class="menudropdown-content" id="Netdropdown-content" style="display:none;">
+                    <a href="javascript:void(0);" onclick="SBCNetShow()">小黑云</a>
+                    <a href="javascript:void(0);" onclick="BaiduNetShow()">百度云</a>
+                    <a href="javascript:void(0);" onclick="AlNetShow()">阿里云</a>
+
+                </div>
+            </div>
+
+
         </div>
 
     </div>
@@ -477,6 +489,19 @@
 	    }
 	    menudropdown_content.style.display = "block";
     }
+
+
+    function NetdropdownShow()
+    {
+        var menudropdown_content = document.getElementById("Netdropdown-content");
+	    if(menudropdown_content.style.display == "block")
+	    {
+	        menudropdown_content.style.display = "none"
+	        return;
+	    }
+	    menudropdown_content.style.display = "block";
+    }
+
     function SharemenudropdownShow()
     {
         var Sharemenudropdown_content = document.getElementById("Sharemenudropdown-content");
