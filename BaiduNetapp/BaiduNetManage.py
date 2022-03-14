@@ -54,6 +54,7 @@ class baidunet():
             return 'folder'
         fename = fe['server_filename']
         fetype = fename.split('.')
+
         if len(fetype) < 1:
             return 'other'
         fetype = fetype[-1].lower()
@@ -63,6 +64,7 @@ class baidunet():
         if fetype == 'pdf':
             return 'pdf'
         if fetype == 'exe':
+
             return 'exe'
         if 'doc' in fetype:
             return 'word'
@@ -74,10 +76,10 @@ class baidunet():
             return 'html'
         if fetype in ['7z','zip','rar']:
             return 'zip'
+        return 'other'
 
     def GetConImg(self,fe):
         fetype = self.GetFileType(fe)
-
         if fetype == 'folder':
             return '/static/img/foldersm.png'
         if fetype == 'img':
@@ -94,6 +96,9 @@ class baidunet():
         if fetype == 'ppt':
             path = '/static/img/filecon/pptcon.jpg'
             return path
+        if fetype == 'exe':
+            path = '/static/img/filecon/execon.jpg'
+            return path
         if fetype == 'excel':
             path = '/static/img/filecon/excelcon.jpg'
             return path
@@ -103,9 +108,8 @@ class baidunet():
         if fetype == 'html':
             path = '/static/img/filecon/htmlcon.jpg'
             return path
-
         else:
-            return '/static/img/filecon/execon.jpg'
+            return '/static/img/wj.jfif'
 
     def GetFileList(self,path):
         urlSer = 'https://pan.baidu.com/api/list?&dir={}'.format(quote(path))
