@@ -62,13 +62,6 @@ class baidunet():
                 resdata['list'][i]['filelj'] = filepath
                 resdata['list'][i]['size'] = self.size_format(resdata['list'][i]['size'])
                 resdata['list'][i]['server_mtime'] = self.FormTime(resdata['list'][i]['server_mtime'])
-        # for i in resdata['list']:
-        #     if i['isdir']=='0':
-        #         print(i['server_filename'], i['path'], i['fs_id'], i['isdir'], self.size_format(i['size']),
-        #               self.FormTime(i['server_mtime']),i['md5'])
-        #     else:
-        #         print(i['server_filename'], i['path'], i['fs_id'], i['isdir'], self.size_format(i['size']),
-        #               self.FormTime(i['server_mtime']))
         return resdata
 
 class manage():
@@ -83,12 +76,12 @@ class manage():
                 return {'errno':'404'}
             return {'errno':'0','cookie':BaiduNetUserData.cookie}
         return {'errno': '404'}
-    def baidunetShow(self,LoginRes):
+    def baidunetShow(self,LoginRes,showpath):
         checkre = self.CheckBaiduNetUserExist(LoginRes)
         if checkre['errno'] == 404:
             return checkre
         bdnOp = baidunet(checkre['cookie'])
-        bdndatas = bdnOp.GetFileList('/')
+        bdndatas = bdnOp.GetFileList(showpath)
         return bdndatas
     def BaiduNetSaveUser(self,LoginRes,usercookie):
         userEmail = LoginRes['useremail']
