@@ -1,5 +1,5 @@
 from BaiduNetapp.models import BaiduNetUserManage
-import time,requests,json
+import time,requests,json,base64
 from urllib.parse import quote,unquote
 
 
@@ -55,6 +55,13 @@ class baidunet():
         }
         res = requests.get(urlSer,headers=headers).text
         resdata = json.loads(res)
+        if resdata['errno'] ==0:
+            for i in range(len(resdata['list'])):
+                filepath = base64.encodebytes(resdata['list'][i]['path'].encode('utf8')).decode()
+                filepath = filepath.replace('\n', '')
+                resdata['list'][i]['filelj'] = filepath
+                resdata['list'][i]['size'] = self.size_format(resdata['list'][i]['size'])
+                resdata['list'][i]['server_mtime'] = self.FormTime(resdata['list'][i]['server_mtime'])
         # for i in resdata['list']:
         #     if i['isdir']=='0':
         #         print(i['server_filename'], i['path'], i['fs_id'], i['isdir'], self.size_format(i['size']),
