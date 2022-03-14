@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'forgotpasswordapp',
     'FileDownUpapp',
     'SBCShareapp',
+    'BaiduNetapp',
 ]
 
 MIDDLEWARE = [
