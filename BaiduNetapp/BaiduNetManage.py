@@ -126,6 +126,8 @@ class baidunet():
                 resdata['list'][i]['imgpath'] = self.GetConImg(resdata['list'][i])
                 resdata['list'][i]['size'] = self.size_format(resdata['list'][i]['size'])
                 resdata['list'][i]['server_mtime'] = self.FormTime(resdata['list'][i]['server_mtime'])
+                if resdata['list'][i]['isdir'] == 1:
+                    resdata['list'][i]['size'] = '--'
         return resdata
 
 class manage():
