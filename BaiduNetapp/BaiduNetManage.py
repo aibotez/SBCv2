@@ -149,6 +149,46 @@ class baidunet():
                     resdata['list'][i]['size'] = '--'
         return resdata
 
+    def GetDownLink(self,path):
+        heardes ={
+            'User-Agent':'netdisk;P2SP;3.0.0.127',
+            'Cookie':self.cookies,
+            # 'Cookie':'BDUSS=WlEMzN1T25sRTgybnFaflJkUjVuOEc2VUZNc2c3TGtiLWVhME0zQ3Z6Qk12c0ZoSVFBQUFBJCQAAAAAAAAAAAEAAACnqKsdZGxvZWNxaTQyMjM0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEwxmmFMMZphW;STOKEN=c5816c3b29a51273a34621968b5b96fe55b8dca9381014d2ce64789e28419409;STOKEN=c5816c3b29a51273a34621968b5b96fe55b8dca9381014d2ce64789e28419409',
+            'Host': 'd.pcs.baidu.com'
+        }
+        payload = {
+            # 'sign': self.sign,
+            'app_id': '250528',
+            'method': 'locatedownload',
+            'check_blue': '1',
+            'es': '1',
+            'esl': '1',
+            'path':path,
+            'ver':'4.0',
+            'dtype':'1',
+            'err_ver':'1.0',
+            'ehps' : '1',
+            'eck' : '1',
+            'vip':'0',
+            'open_pflag':'0',
+            'dpkg':'1',
+            'sd':'0',
+            'clienttype':'9',
+            'version':'3.0.0.127',
+            'time':'1647091729',
+            # 'rand':'7d67077c7a5d4ba9ba1004ec26c18c41d596ec6f',
+            # 'devuid':'BDIMXV2-O_91B0C68690D247B58683966534818267-C_0-D_33534c59584e4b30354135333037205420202020-M_68F7283616CD-V_50A68A1D',
+            'channel':'0',
+            'version_app':'7.12.1.1',
+
+        }
+        url = 'https://d.pcs.baidu.com/rest/2.0/pcs/file'
+        # url = 'https://d.pcs.baidu.com/rest/2.0/pcs/file?app_id=250528&method=locatedownload&check_blue=1&es=1&esl=1&path=%2Ftest%2F5K.mat&ver=4.0&dtype=1&err_ver=1.0&ehps=1&eck=1&vip=0&open_pflag=0&dpkg=1&sd=0&clienttype=9&version=3.0.0.127&time=1647091729&rand=7d67077c7a5d4ba9ba1004ec26c18c41d596ec6f&devuid=BDIMXV2-O_91B0C68690D247B58683966534818267-C_0-D_33534c59584e4b30354135333037205420202020-M_68F7283616CD-V_50A68A1D&channel=0&version_app=7.12.1.1'
+        res = requests.post(url,headers=heardes,params=payload).text
+        resdata= json.load(res)
+        DownLink = resdata['urls'][0]['url']
+        return DownLink
+
 class manage():
     def __init__(self):
         pass
@@ -177,3 +217,8 @@ class manage():
         checkre = self.CheckBaiduNetUserExist(LoginRes)
         bdnOp = baidunet(checkre['cookie'])
         return bdnOp.GetBaiduNetUserInfo()
+
+    def GetBaiduNetDownLinkFromPan(self,path,LoginRes):
+        checkre = self.CheckBaiduNetUserExist(LoginRes)
+        bdnOp = baidunet(checkre['cookie'])
+        return bdnOp.GetDownLink(path)

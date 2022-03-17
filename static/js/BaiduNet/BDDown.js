@@ -1,20 +1,28 @@
 
 
-function BDDownFilebyGet(files)
+function BDDownFilebyGet()
 {
 	
 	var delay = 500;
-	var downfiles = FindCheckdown(files);
+	var downfiles = BDFindCheckdown();
+	console.log(downfiles);
+
 	if (downfiles == "网页版不支持文件夹上传/下载")
 	{
 		alert("网页版不支持文件夹上传/下载");
-		return;
+		
 	}
-	for(var i=0;i<downfiles.length;i++)
+	for(let i=0;i<downfiles.length;i++)
 	{
 		var start = (new Date()).getTime();
         while((new Date()).getTime() - start < delay)
 			{}
+		
+		let urlpath = "GetBDDownLink/"
+		datas = downfiles[i];
+		let DownLink = PostMethod(urlpath,datas,0);
+		console.log(DownLink);
+		return;
 		cururl = 'http://'+window.location.host;
 		urli = cururl+'/FileDown/?downinfo='+encodeURIComponent(JSON.stringify(downfiles[i]));
 		var a = document.createElement('a');
@@ -24,4 +32,28 @@ function BDDownFilebyGet(files)
 		a.remove();
 	}
 
+}
+
+function BDFindCheckdown()
+{
+	//var files = {{data|safe}};
+	var files = Window.globalConfig.GlobalBDFiles;
+	var Res = [];
+	for (var i=0;i<files.length;i++)
+	{
+		file = files[i].filelj;
+		if (document.getElementById(file+"Choseboxone").checked==true)
+		{
+			filename = files[i].server_filename;
+			feisdir =files[i].isdir;
+			if (feisdir == 1)
+			{
+				msg = "网页版不支持文件夹上传/下载";
+				return msg;
+			}
+			Res.push({'fename':filename,'fepath':Base64.decode(file)});
+		}
+		
+	}
+	return Res;
 }

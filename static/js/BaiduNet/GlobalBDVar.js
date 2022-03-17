@@ -1,0 +1,3 @@
+Window.globalConfig={
+	GlobalBDFiles:[]
+}

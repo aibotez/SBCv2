@@ -60,6 +60,7 @@ def BaiduNetShow(request):
     showpath = unquote(showpath)
     manage = BaiduNetManage.manage()
     bdn = manage.baidunetShow(LoginRes,showpath)
+    data = bdn['list']
     navlist = GetNavpath(showpath)
     navlastpath = navlist[-1]['path']
     return render(request, "BaiduNet/BaiduNetFileList.html", locals())
@@ -72,3 +73,15 @@ def BaiduNetSaveUser(request):
     manage = BaiduNetManage.manage()
     manage.BaiduNetSaveUser(LoginRes,request.POST.get('usercookie'))
     return JsonResponse({'res':'1'})
+
+@require_POST
+def GetBDDownLink(request):
+    LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
+    if LoginRes['res']:
+        return HttpResponseRedirect('/login/')
+    data = request.POST
+    print(data)
+    manage = BaiduNetManage.manage()
+    DownLink = manage.GetBaiduNetDownLinkFromPan(data['path'])
+
+    return HttpResponse('1')

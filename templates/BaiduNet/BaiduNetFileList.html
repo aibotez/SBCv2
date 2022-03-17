@@ -1,5 +1,5 @@
 
-
+    <script src="/static/js/BaiduNet/GlobalBDVar.js">
     <script src="/static/js/js-base64-main/base64.js">/* load */</script>
         <div class="container" id="navlist" style="height:3rem;">
             {% for navi in navlist %}
@@ -94,7 +94,7 @@
 
     <script>
 
-        //Window.globalConfig.GlobalFiles = {{data|safe}};
+        Window.globalConfig.GlobalBDFiles = {{data|safe}};
         var ScWidth = document.documentElement.clientWidth;
 	    var ScHeight = document.documentElement.clientHeight;
 	    if(ScHeight>ScWidth)
