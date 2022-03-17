@@ -1,6 +1,5 @@
 
-    <script src="/static/js/GlobalVar.js"></script>
-    <script src="/static/js/ShowDeals.js"></script>
+
     <script src="/static/js/js-base64-main/base64.js">/* load */</script>
         <div class="container" id="navlist" style="height:3rem;">
             {% for navi in navlist %}
@@ -63,7 +62,7 @@
                                             </div>
                                         </div>
                                         <div style="max-width:90%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
-                                            <a id={{filedata.filelj}} name="File" style="color:black;font-size:2rem;text-decoration:none;" href="javascript:void(0);" onclick="BaiduNetRefreshFile(this)">
+                                            <a id={{filedata.filelj}} name={{filedata.isdir}} style="color:black;font-size:2rem;text-decoration:none;" href="javascript:void(0);" onclick="BaiduNetRefreshFile(this)">
                                                 {{filedata.server_filename}}
                                             </a>
                                         </div>
@@ -109,6 +108,6 @@
 	    }
 
 	    setTimeout(function(){
-　　		ShowconDeals({{imgFiles|safe}});
+　　		//ShowconDeals({{imgFiles|safe}});
 		}, 100);
     </script>

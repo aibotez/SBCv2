@@ -5,18 +5,16 @@
 	}
 	function BaiduNetDealrefresh(act)
 	{
-		var files = Window.globalConfig.GlobalFiles;
-		var CheckFiles = FindCheck(files);
-		if(CheckFiles.length == 0 || CheckFiles[0].feisdir == 1)
+		console.log(act.id);
+		if (document.getElementById(act.id).name == 1)
 		{
 			BaiduNetRefreshAct(act);
 		}
-		else{
-			//console.log(CheckFiles[0].fepath);
-			ClearCheck();
-			window.open("preview/?"+"filepath="+CheckFiles[0].fepath);
-			//location.href="preview/?"+"filepath="+CheckFiles[0].fepath;
+		else
+		{
+			//window.open("preview/?"+"BDfilepath="+act.id);
 		}
+
 	}
 	function BaiduNetRefreshAct(act)
 	{
@@ -38,8 +36,8 @@
 		
 		//var files = Window.globalConfig.GlobalFiles;
 		setTimeout(() => {
-			BaiduNetRefreshAct(act);
-			//BaiduNetDealrefresh(act);
+			//BaiduNetRefreshAct(act);
+			BaiduNetDealrefresh(act);
 			}, 100);
 	} 
 	
