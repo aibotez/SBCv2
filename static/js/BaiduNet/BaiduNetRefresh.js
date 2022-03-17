@@ -5,7 +5,7 @@
 	}
 	function BaiduNetDealrefresh(act)
 	{
-		console.log(act.id);
+		//console.log(act.id);
 		if (document.getElementById(act.id).name == 1)
 		{
 			BaiduNetRefreshAct(act);

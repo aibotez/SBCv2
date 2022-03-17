@@ -42,7 +42,7 @@ function DownFilebyGet(files)
 	var downfiles = FindCheckdown(files);
 	if (downfiles == "网页版不支持文件夹上传/下载")
 	{
-		alert("网页版不支持文件夹上传/下载");
+		alert("网页版不支持文件夹下载");
 		return;
 	}
 	for(var i=0;i<downfiles.length;i++)
@@ -60,7 +60,7 @@ function DownFilebyGet(files)
 	}
 
 }
-function FindCheckdown(files1)
+function FindCheckdown(files)
 {
 	//var files = {{data|safe}};
 	var files = Window.globalConfig.GlobalFiles;
