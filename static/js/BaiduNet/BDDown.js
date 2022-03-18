@@ -27,7 +27,8 @@ function BDDownFilebyGet()
 			downurl = DownLink.DownLink;
 			let a = document.createElement('a');
 			let filename = downfiles[i].fename;
-			a.href = downurl;
+			//a.href = downurl;
+			a.href = 'reD/?url='+Base64.encode(downurl);
 			a.click();
 			a.remove();
 		}

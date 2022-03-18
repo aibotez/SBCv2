@@ -80,8 +80,26 @@ def GetBDDownLink(request):
     if LoginRes['res']:
         return HttpResponseRedirect('/login/')
     data = request.POST
-    print(data,data['fepath'])
+    # print(data,data['fepath'])
     manage = BaiduNetManage.manage()
     DownLink = manage.GetBaiduNetDownLinkFromPan(data['fepath'],LoginRes)
 
     return JsonResponse({'errno':'0','DownLink':DownLink})
+
+from django.shortcuts import redirect
+def reD(request):
+
+    url = request.GET['url']
+    burldata = base64.b64decode(url).decode("utf-8")
+    # print(burldata)
+    response = redirect(burldata)
+    heardes = {
+        'User-Agent': 'netdisk;P2SP;3.0.0.127',
+        # 'Cookie':'BDUSS=WlEMzN1T25sRTgybnFaflJkUjVuOEc2VUZNc2c3TGtiLWVhME0zQ3Z6Qk12c0ZoSVFBQUFBJCQAAAAAAAAAAAEAAACnqKsdZGxvZWNxaTQyMjM0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEwxmmFMMZphW;STOKEN=c5816c3b29a51273a34621968b5b96fe55b8dca9381014d2ce64789e28419409;STOKEN=c5816c3b29a51273a34621968b5b96fe55b8dca9381014d2ce64789e28419409',
+        # 'Connection': 'Keep - Alive',
+        # 'Host': 'bdcm01.baidupcs.com',
+        'Range': 'bytes=0-1024'
+    }
+    response.headers = heardes
+    print(response.headers)
+    return response
