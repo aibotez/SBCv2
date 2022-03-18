@@ -80,8 +80,8 @@ def GetBDDownLink(request):
     if LoginRes['res']:
         return HttpResponseRedirect('/login/')
     data = request.POST
-    print(data)
+    print(data,data['fepath'])
     manage = BaiduNetManage.manage()
-    DownLink = manage.GetBaiduNetDownLinkFromPan(data['path'])
+    DownLink = manage.GetBaiduNetDownLinkFromPan(data['fepath'],LoginRes)
 
-    return HttpResponse('1')
+    return JsonResponse({'errno':'0','DownLink':DownLink})

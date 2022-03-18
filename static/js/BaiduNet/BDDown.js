@@ -22,14 +22,17 @@ function BDDownFilebyGet()
 		datas = downfiles[i];
 		let DownLink = PostMethod(urlpath,datas,0);
 		console.log(DownLink);
+		if (DownLink.errno == '0')
+		{
+			downurl = DownLink.DownLink;
+			let a = document.createElement('a');
+			let filename = downfiles[i].fename;
+			a.href = downurl;
+			a.click();
+			a.remove();
+		}
 		return;
-		cururl = 'http://'+window.location.host;
-		urli = cururl+'/FileDown/?downinfo='+encodeURIComponent(JSON.stringify(downfiles[i]));
-		var a = document.createElement('a');
-		var filename = downfiles[i].fename;
-		a.href = urli;
-		a.click();
-		a.remove();
+
 	}
 
 }

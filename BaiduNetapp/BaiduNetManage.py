@@ -185,7 +185,9 @@ class baidunet():
         url = 'https://d.pcs.baidu.com/rest/2.0/pcs/file'
         # url = 'https://d.pcs.baidu.com/rest/2.0/pcs/file?app_id=250528&method=locatedownload&check_blue=1&es=1&esl=1&path=%2Ftest%2F5K.mat&ver=4.0&dtype=1&err_ver=1.0&ehps=1&eck=1&vip=0&open_pflag=0&dpkg=1&sd=0&clienttype=9&version=3.0.0.127&time=1647091729&rand=7d67077c7a5d4ba9ba1004ec26c18c41d596ec6f&devuid=BDIMXV2-O_91B0C68690D247B58683966534818267-C_0-D_33534c59584e4b30354135333037205420202020-M_68F7283616CD-V_50A68A1D&channel=0&version_app=7.12.1.1'
         res = requests.post(url,headers=heardes,params=payload).text
-        resdata= json.load(res)
+        # print(res)
+        resdata= json.loads(res)
+        # print(resdata['urls'])
         DownLink = resdata['urls'][0]['url']
         return DownLink
 
