@@ -96,12 +96,20 @@ def Down(FileInfo):
 
     heades = {
         'User-Agent': 'netdisk;P2SP;3.0.0.127',
-        # 'Cookie':'BDUSS=WlEMzN1T25sRTgybnFaflJkUjVuOEc2VUZNc2c3TGtiLWVhME0zQ3Z6Qk12c0ZoSVFBQUFBJCQAAAAAAAAAAAEAAACnqKsdZGxvZWNxaTQyMjM0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEwxmmFMMZphW;STOKEN=c5816c3b29a51273a34621968b5b96fe55b8dca9381014d2ce64789e28419409;STOKEN=c5816c3b29a51273a34621968b5b96fe55b8dca9381014d2ce64789e28419409',
         # 'Connection': 'Keep - Alive',
         # 'Host': 'bdcm01.baidupcs.com',
-        'Range': 'bytes=0-102400'
+        # 'Range': 'bytes=0-102400'
     }
     def file_iterator(chunk_size=64 * 1024):
+        # heades['Range'] = 'bytes={}-{}'.format(str(0), str(1024))
+        # with requests.get(FileInfo['url'],headers=heades,stream=True) as req:
+        #     for chunk in req.iter_content(chunk_size=chunk_size):
+        #         if chunk:
+        #             print(len(chunk))
+        #             yield chunk
+        #         else:
+        #             print(chunk)
+        #             break
 
         SizeOffet = -1
         while True:
@@ -115,6 +123,8 @@ def Down(FileInfo):
                 # break
                 SizeOffet = SizeOffet + chunk_size
                 yield res
+
+
     the_file_name = FileInfo['FileName']
     # print(the_file_name,the_file_path)
     # response = FileResponse(file_iterator(the_file_name))

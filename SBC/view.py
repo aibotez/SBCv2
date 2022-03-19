@@ -175,7 +175,11 @@ def Home(request):
     # print(navlastpath)
     usermanage = UserManage.usermange()
     UserUsedCap = usermanage.GetUserUsedCap(LoginRes['useremail'])
-    return render(request, "home/home1.html",locals())
+    response = render(request, "home/home1.html",locals())
+    response['x-content-type-options'] = 'nosniff'
+    response['Content-Type'] = 'text/html; charset=UTF-8'
+    response['Cache-control'] = 'no-cache'
+    return response
 # @require_POST
 def FileList(request):
     LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
@@ -199,7 +203,11 @@ def FileList(request):
     # data=filesget(paths)
     usermanage = UserManage.usermange()
     UserUsedCap = usermanage.GetUserUsedCap(LoginRes['useremail'])
-    return render(request, "home/FileList.html", locals())
+    response = render(request, "home/FileList.html", locals())
+    response['x-content-type-options'] = 'nosniff'
+    response['Content-Type'] = 'text/html; charset=UTF-8'
+    response['Cache-control'] = 'no-cache'
+    return response
 
 def getdirsize(dir):
     size = 0
