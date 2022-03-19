@@ -38,6 +38,69 @@ function BDDownFilebyGet()
 
 }
 
+
+
+function BDDownFilebyPost()
+{
+	var delay = 500;
+	var downfiles = BDFindCheckdown();
+	if (downfiles == "网页版不支持文件夹上传/下载")
+	{
+		alert("网页版不支持文件夹上传/下载");
+		return;
+	}
+	//alert(downfiles.length);
+	for(var i=0;i<downfiles.length;i++)
+	{
+		downfile = downfiles[i];
+		downfile.fileId = "";
+		var start = (new Date()).getTime();
+        while((new Date()).getTime() - start < delay)
+			{}
+		
+		let urlpath = "GetBDDownLink/"
+		datas = downfiles[i];
+		let DownLink = PostMethod(urlpath,datas,0);
+		if (DownLink.errno != '0')
+		{return;}
+		downurl = DownLink.DownLink;
+		FileSize = DownLink.FileSize;
+		console.log(FileSize);
+		if (FileSize<100*1024*1024)
+		{
+			let a = document.createElement('a');
+			let filename = downfiles[i].fename;
+			a.href = downurl;
+			a.click();
+			a.remove();
+			return;
+		}
+		return;
+	    var form = document.createElement('form');
+        form.setAttribute('style','display:none');
+        form.setAttribute('target','');
+        form.setAttribute('method','post');
+        form.setAttribute('action','/reD/')
+        var inputContent = document.createElement('input')
+        inputContent.setAttribute('type','hidden');
+        inputContent.setAttribute('name','url');
+        inputContent.setAttribute('value',downurl);
+		var inputContent1 = document.createElement('input')
+        inputContent1.setAttribute('type','hidden');
+        inputContent1.setAttribute('name','Range');
+        inputContent1.setAttribute('value','bytes=0-1024');
+		//console.log(downfiles[i]);
+        $('body').append(form);
+        form.append(inputContent);
+		form.append(inputContent1);
+        form.submit();
+        form.remove();
+		
+		
+	}
+}
+
+
 function BDFindCheckdown()
 {
 	//var files = {{data|safe}};

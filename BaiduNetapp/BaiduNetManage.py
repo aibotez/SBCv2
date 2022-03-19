@@ -187,6 +187,7 @@ class baidunet():
         res = requests.post(url,headers=heardes,params=payload).text
         # print(res)
         resdata= json.loads(res)
+        # print(resdata)
         # print(resdata['urls'])
         DownLink = resdata['urls'][0]['url']
         return DownLink

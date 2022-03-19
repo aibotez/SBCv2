@@ -2,7 +2,7 @@ from django.shortcuts import render
 from SBC import LoginVerfiy
 from django.http import HttpResponse,JsonResponse
 from django.http import HttpResponseRedirect
-import json
+import json,re
 from django.views.decorators.http import require_GET, require_http_methods, require_POST
 from BaiduNetapp import BaiduNetManage
 from urllib.parse import quote,unquote
@@ -83,22 +83,26 @@ def GetBDDownLink(request):
     # print(data,data['fepath'])
     manage = BaiduNetManage.manage()
     DownLink = manage.GetBaiduNetDownLinkFromPan(data['fepath'],LoginRes)
-
-    return JsonResponse({'errno':'0','DownLink':DownLink})
+    FileSize = int(re.findall(".*size=(\d+)&.*",DownLink)[0])
+    return JsonResponse({'errno':'0','DownLink':DownLink,'FileSize':FileSize})
 
 from django.shortcuts import redirect
 def reD(request):
 
+    print(request.META.get('HTTP_RANGE'))
+    print(request.POST['url'])
+    print(request.POST['Range'])
+    return HttpResponse(request.META.get('HTTP_RANGE'))
     url = request.GET['url']
     burldata = base64.b64decode(url).decode("utf-8")
-    # print(burldata)
+    print(burldata)
     response = redirect(burldata)
     heardes = {
         'User-Agent': 'netdisk;P2SP;3.0.0.127',
         # 'Cookie':'BDUSS=WlEMzN1T25sRTgybnFaflJkUjVuOEc2VUZNc2c3TGtiLWVhME0zQ3Z6Qk12c0ZoSVFBQUFBJCQAAAAAAAAAAAEAAACnqKsdZGxvZWNxaTQyMjM0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEwxmmFMMZphW;STOKEN=c5816c3b29a51273a34621968b5b96fe55b8dca9381014d2ce64789e28419409;STOKEN=c5816c3b29a51273a34621968b5b96fe55b8dca9381014d2ce64789e28419409',
         # 'Connection': 'Keep - Alive',
         # 'Host': 'bdcm01.baidupcs.com',
-        'Range': 'bytes=0-1024'
+        'Range': 'bytes=0-102400'
     }
     response.headers = heardes
     print(response.headers)
