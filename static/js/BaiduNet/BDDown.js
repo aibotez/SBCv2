@@ -65,7 +65,7 @@ function BDDownFilebyPost()
 		{return;}
 		downurl = DownLink.DownLink;
 		FileSize = DownLink.FileSize;
-		console.log(FileSize);
+
 		if (FileSize<100*1024*1024)
 		{
 			let a = document.createElement('a');
@@ -75,7 +75,7 @@ function BDDownFilebyPost()
 			a.remove();
 			return;
 		}
-		return;
+		//return;
 	    var form = document.createElement('form');
         form.setAttribute('style','display:none');
         form.setAttribute('target','');
@@ -89,10 +89,20 @@ function BDDownFilebyPost()
         inputContent1.setAttribute('type','hidden');
         inputContent1.setAttribute('name','Range');
         inputContent1.setAttribute('value','bytes=0-1024');
+		var inputContent2 = document.createElement('input')
+		inputContent2.setAttribute('type','hidden');
+        inputContent2.setAttribute('name','FileName');
+        inputContent2.setAttribute('value',downfiles[i].fename);
+		var inputContent3 = document.createElement('input')
+		inputContent3.setAttribute('type','hidden');
+        inputContent3.setAttribute('name','FileSize');
+        inputContent3.setAttribute('value',FileSize);
 		//console.log(downfiles[i]);
         $('body').append(form);
         form.append(inputContent);
 		form.append(inputContent1);
+		form.append(inputContent2);
+		form.append(inputContent3);
         form.submit();
         form.remove();
 		

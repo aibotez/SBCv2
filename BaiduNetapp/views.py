@@ -86,24 +86,53 @@ def GetBDDownLink(request):
     FileSize = int(re.findall(".*size=(\d+)&.*",DownLink)[0])
     return JsonResponse({'errno':'0','DownLink':DownLink,'FileSize':FileSize})
 
-from django.shortcuts import redirect
-def reD(request):
 
-    print(request.META.get('HTTP_RANGE'))
-    print(request.POST['url'])
-    print(request.POST['Range'])
-    return HttpResponse(request.META.get('HTTP_RANGE'))
-    url = request.GET['url']
-    burldata = base64.b64decode(url).decode("utf-8")
-    print(burldata)
-    response = redirect(burldata)
-    heardes = {
+
+
+from django.http import StreamingHttpResponse,FileResponse
+from django.utils.encoding import escape_uri_path
+import requests
+def Down(FileInfo):
+
+    heades = {
         'User-Agent': 'netdisk;P2SP;3.0.0.127',
         # 'Cookie':'BDUSS=WlEMzN1T25sRTgybnFaflJkUjVuOEc2VUZNc2c3TGtiLWVhME0zQ3Z6Qk12c0ZoSVFBQUFBJCQAAAAAAAAAAAEAAACnqKsdZGxvZWNxaTQyMjM0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEwxmmFMMZphW;STOKEN=c5816c3b29a51273a34621968b5b96fe55b8dca9381014d2ce64789e28419409;STOKEN=c5816c3b29a51273a34621968b5b96fe55b8dca9381014d2ce64789e28419409',
         # 'Connection': 'Keep - Alive',
         # 'Host': 'bdcm01.baidupcs.com',
         'Range': 'bytes=0-102400'
     }
-    response.headers = heardes
-    print(response.headers)
+    def file_iterator(chunk_size=64 * 1024):
+
+        SizeOffet = 0
+        while True:
+            if SizeOffet>FileInfo['FileSize']:
+                break
+            else:
+                heades['Range'] = 'bytes={}-{}'.format(str(SizeOffet),str(SizeOffet+chunk_size))
+
+                res = requests.get(FileInfo['url'],headers=heades).content
+                print(len(res))
+                # break
+                SizeOffet = SizeOffet + chunk_size
+                yield res
+    the_file_name = FileInfo['FileName']
+    # print(the_file_name,the_file_path)
+    # response = FileResponse(file_iterator(the_file_name))
+    response = StreamingHttpResponse(file_iterator())
+    response = FileResponse(response)
+    response['Content-Type'] = 'application/octet-stream'
+    response['content-length'] = FileInfo['FileSize']
+    # response['Content-Disposition'] = 'attachment;filename="{0}"'.format(wjname)
+    response["Content-Disposition"] = "attachment; filename*=UTF-8''{}".format(escape_uri_path(the_file_name))
     return response
+
+from django.shortcuts import redirect
+def reD(request):
+    FileInfo = {
+        'url':request.POST['url'],
+        'FileName':request.POST['FileName'],
+        'FileSize':int(request.POST['FileSize'])
+    }
+    print(request.POST['url'])
+    res = Down(FileInfo)
+    return res
