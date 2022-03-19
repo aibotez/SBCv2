@@ -54,7 +54,16 @@ function DownGetCookieTool()
 	a.remove();
 }
 
-function BDQuitLogin()
+
+function BDQuitLogin() {
+	var msg = "确定要退出百度云登录？退出后要重新登录";
+	if (confirm(msg)==true){
+	BDQuitLoginact();
+	}else{
+	return false;
+	}
+}
+function BDQuitLoginact()
 {
 	let urlpath = '/BaiduNetQuitLogin/'
 	datas = {};
