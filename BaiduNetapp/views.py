@@ -103,15 +103,15 @@ def Down(FileInfo):
     }
     def file_iterator(chunk_size=64 * 1024):
 
-        SizeOffet = 0
+        SizeOffet = -1
         while True:
             if SizeOffet>FileInfo['FileSize']:
                 break
             else:
-                heades['Range'] = 'bytes={}-{}'.format(str(SizeOffet),str(SizeOffet+chunk_size))
+                heades['Range'] = 'bytes={}-{}'.format(str(SizeOffet+1),str(SizeOffet+chunk_size))
 
                 res = requests.get(FileInfo['url'],headers=heades).content
-                print(len(res))
+                # print(len(res))
                 # break
                 SizeOffet = SizeOffet + chunk_size
                 yield res
