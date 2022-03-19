@@ -25,6 +25,10 @@ function BaiduNetShow()
 				//BaiduNetRefreshFile({'id':Showpath});
 				window.location.href="/BaiduNetHome/?showpath=/";
 			}
+			if (res.res=='cookieerror')
+			{
+				BaiduNetShow();
+			}
 		}
 	}
 	else

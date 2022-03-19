@@ -71,8 +71,8 @@ def BaiduNetSaveUser(request):
     if LoginRes['res']:
         return HttpResponseRedirect('/login/')
     manage = BaiduNetManage.manage()
-    manage.BaiduNetSaveUser(LoginRes,request.POST.get('usercookie'))
-    return JsonResponse({'res':'1'})
+    res = manage.BaiduNetSaveUser(LoginRes,request.POST.get('usercookie'))
+    return JsonResponse({'res':res})
 
 @require_POST
 def GetBDDownLink(request):

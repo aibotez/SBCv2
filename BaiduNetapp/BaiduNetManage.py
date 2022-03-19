@@ -212,9 +212,15 @@ class manage():
         bdndatas = bdnOp.GetFileList(showpath)
         return bdndatas
     def BaiduNetSaveUser(self,LoginRes,usercookie):
+        check = self.baidunetShow(LoginRes,'/')
+        if check['errno'] != 0:
+            return 'cookieerror'
         userEmail = LoginRes['useremail']
-        BaiduNetUserManage.objects.create(useremail=userEmail,cookie=usercookie)
-        return 1
+        try:
+            BaiduNetUserManage.objects.create(useremail=userEmail,cookie=usercookie)
+        except:
+            return 'saveerror'
+        return '1'
 
     def GetBaiduNetUserInfo(self,LoginRes):
         checkre = self.CheckBaiduNetUserExist(LoginRes)
