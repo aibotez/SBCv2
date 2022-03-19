@@ -60,5 +60,6 @@ urlpatterns = [
     path('BaiduNetShow/',viewBdn.BaiduNetShow),
     path('BaiduNetHome/',viewBdn.BaiduNetHome),
     path('GetBDDownLink/',viewBdn.GetBDDownLink),
+    path('BaiduNetQuitLogin/',viewBdn.BaiduNetQuitLogin),
     path('reD/',viewBdn.reD),
 ]

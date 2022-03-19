@@ -75,6 +75,14 @@ def BaiduNetSaveUser(request):
     return JsonResponse({'res':res})
 
 @require_POST
+def BaiduNetQuitLogin(request):
+    LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
+    if LoginRes['res']:
+        return HttpResponseRedirect('/login/')
+    manage = BaiduNetManage.manage()
+    res = manage.BaiduNetQuit(LoginRes, request.POST.get('usercookie'))
+    return JsonResponse({'res': res})
+@require_POST
 def GetBDDownLink(request):
     LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
     if LoginRes['res']:

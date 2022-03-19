@@ -201,6 +201,7 @@ class manage():
         if BaiduNetUserManage.objects.filter(useremail=userEmail).exists():
             BaiduNetUserData = BaiduNetUserManage.objects.get(useremail=userEmail)
             if len(BaiduNetUserData.cookie)<10:
+                BaiduNetUserData.delete()
                 return {'errno':'404'}
             return {'errno':'0','cookie':BaiduNetUserData.cookie}
         return {'errno': '404'}
@@ -220,6 +221,14 @@ class manage():
             BaiduNetUserManage.objects.create(useremail=userEmail,cookie=usercookie)
         except:
             return 'saveerror'
+        return '1'
+    def BaiduNetQuit(self,LoginRes,usercookie):
+        userEmail = LoginRes['useremail']
+        try:
+            BaiduNetUser = BaiduNetUserManage.objects.get(useremail=userEmail)
+            BaiduNetUser.delete()
+        except:
+            return 'quiterror'
         return '1'
 
     def GetBaiduNetUserInfo(self,LoginRes):

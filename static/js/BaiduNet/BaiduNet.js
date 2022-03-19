@@ -1,11 +1,16 @@
 
+function SBCNetShow()
+{
+	
+}
+
 
 function BaiduNetShow()
 {
 	var urlpath = '/BaiduNetUserExistCheck/'
 	datas = {};
 	let res = PostMethod(urlpath,datas,0);
-	console.log(res);
+	//console.log(res);
 	if(res.errno == '404')
 	{
 		var usercookie=prompt("输入cookie;直接确认会下载获取cookie工具，可通过该工具获取cookie","");
@@ -47,4 +52,13 @@ function DownGetCookieTool()
 	a.href = downurl;
 	a.click();
 	a.remove();
+}
+
+function BDQuitLogin()
+{
+	let urlpath = '/BaiduNetQuitLogin/'
+	datas = {};
+	let res = PostMethod(urlpath,datas,0);
+	if(res.errno == '1')
+	{}
 }
