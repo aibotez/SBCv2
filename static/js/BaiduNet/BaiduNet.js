@@ -1,7 +1,7 @@
 
 function SBCNetShow()
 {
-	
+	window.location.href="/";
 }
 
 
@@ -59,6 +59,8 @@ function BDQuitLogin()
 	let urlpath = '/BaiduNetQuitLogin/'
 	datas = {};
 	let res = PostMethod(urlpath,datas,0);
-	if(res.errno == '1')
-	{}
+	if(res.res == '1')
+	{
+		window.location.href="/";
+	}
 }
