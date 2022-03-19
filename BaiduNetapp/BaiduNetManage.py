@@ -206,7 +206,7 @@ class manage():
         return {'errno': '404'}
     def baidunetShow(self,LoginRes,showpath):
         checkre = self.CheckBaiduNetUserExist(LoginRes)
-        if checkre['errno'] == 404:
+        if checkre['errno'] == '404':
             return checkre
         bdnOp = baidunet(checkre['cookie'])
         bdndatas = bdnOp.GetFileList(showpath)
