@@ -109,7 +109,7 @@ function BDDownFilebyPost()
         while((new Date()).getTime() - start < delay)
 			{}
 		
-		let urlpath = "GetBDDownLink/"
+		let urlpath = "/GetBDDownLink/"
 		datas = downfiles[i];
 		let DownLink = PostMethod(urlpath,datas,0);
 		if (DownLink.errno != '0')

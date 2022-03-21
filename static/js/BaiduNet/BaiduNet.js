@@ -13,7 +13,7 @@ function BaiduNetShow()
 	//console.log(res);
 	if(res.errno == '404')
 	{
-		var usercookie=prompt("输入cookie;直接确认会下载获取cookie工具，可通过该工具获取cookie","");
+		var usercookie=prompt("输入cookie;直接确认会下载小黑云工具软件，该软件可以获取cookie，也可以通过该软件加速下载百度网盘资源","");
 		if (usercookie == "")
 		{
 			DownGetCookieTool();
