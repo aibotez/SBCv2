@@ -133,7 +133,9 @@ class baidunet():
     def GetFileList(self,path):
         urlSer = 'https://pan.baidu.com/api/list?&dir={}'.format(quote(path))
         headers = {
-            'Cookie':self.cookies
+            'Cookie':self.cookies,
+            'Host': 'pan.baidu.com',
+            'User-Agent:':'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36'
         }
         res = requests.get(urlSer,headers=headers).text
         resdata = json.loads(res)
@@ -212,9 +214,18 @@ class manage():
         bdnOp = baidunet(checkre['cookie'])
         bdndatas = bdnOp.GetFileList(showpath)
         return bdndatas
+
+    def CheckBDUserCookie(self,usercookie):
+        bdnOp = baidunet(usercookie)
+        bdndatas = bdnOp.GetFileList('/')
+        print(usercookie)
+        print(bdndatas)
+        if bdndatas['errno'] == 0:
+            return 1
+        return 0
+
     def BaiduNetSaveUser(self,LoginRes,usercookie):
-        check = self.baidunetShow(LoginRes,'/')
-        if check['errno'] != 0:
+        if not self.CheckBDUserCookie(usercookie):
             return 'cookieerror'
         userEmail = LoginRes['useremail']
         try:
