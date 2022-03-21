@@ -108,7 +108,7 @@ def Down(FileInfo):
         # 'Host': 'bdcm01.baidupcs.com',
         # 'Range': 'bytes=0-102400'
     }
-    def file_iterator(chunk_size=64 * 1024):
+    def file_iterator(chunk_size=400 * 1024):
         # heades['Range'] = 'bytes={}-{}'.format(str(0), str(1024))
         # with requests.get(FileInfo['url'],headers=heades,stream=True) as req:
         #     for chunk in req.iter_content(chunk_size=chunk_size):
@@ -151,6 +151,7 @@ def reD(request):
         'FileName':request.POST['FileName'],
         'FileSize':int(request.POST['FileSize'])
     }
-    print(request.POST['url'])
+    # print(request.POST['url'])
     res = Down(FileInfo)
     return res
+    # return HttpResponse(request.POST['url'])

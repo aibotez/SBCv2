@@ -1,4 +1,24 @@
 
+function BDDownS(downurl,downfile) {
+	let DownS=prompt("可复制以下链接使用工具高速下载，确认为直接下载(慢速，大文件(>60MB)不推荐)",downurl);
+	let msg = "确定直接下载吗？下载大文件相当不推荐";
+	if (confirm(msg)==true){
+	DOwnAct(downurl,downfile);
+	}else{
+	return false;
+	}
+}
+
+function DOwnAct(downurl,downfile)
+{
+	//downurl = DownLink.DownLink;
+	let a = document.createElement('a');
+	let filename = downfile.fename;
+			//a.href = downurl;
+	a.href = 'reD/?url='+Base64.encode(downurl);
+	a.click();
+	a.remove();
+}
 
 function BDDownFilebyGet()
 {
@@ -25,12 +45,8 @@ function BDDownFilebyGet()
 		if (DownLink.errno == '0')
 		{
 			downurl = DownLink.DownLink;
-			let a = document.createElement('a');
-			let filename = downfiles[i].fename;
-			//a.href = downurl;
-			a.href = 'reD/?url='+Base64.encode(downurl);
-			a.click();
-			a.remove();
+			BDDownS(downurl,downfiles[i]);
+
 		}
 		return;
 
