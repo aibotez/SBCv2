@@ -67,7 +67,7 @@ def BaiduNetShow(request):
 
 @require_POST
 def BaiduNetSaveUser(request):
-    # print(request.POST.get('usercookie'))
+    print(request.COOKIES)
     LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
     if LoginRes['res']:
         return HttpResponseRedirect('/login/')

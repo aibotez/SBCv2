@@ -135,7 +135,7 @@ class baidunet():
         headers = {
             'Cookie':self.cookies,
             'Host': 'pan.baidu.com',
-            'User-Agent:':'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36'
+            'User-Agent':'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36'
         }
         res = requests.get(urlSer,headers=headers).text
         resdata = json.loads(res)
