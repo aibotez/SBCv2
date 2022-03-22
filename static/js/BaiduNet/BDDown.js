@@ -1,6 +1,12 @@
 
 function BDDownS(DownLink,downfile) {
 	let DownS=prompt("可复制以下链接使用工具高速下载，确认为直接下载(慢速，大文件(>60MB)不推荐)",DownLink.DownLink);
+	
+	if (DownS == null)
+	{
+		return;
+	}
+
 	let msg = "确定直接下载吗？下载大文件相当不推荐";
 	if (confirm(msg)==true){
 	DOwnAct(DownLink,downfile);
