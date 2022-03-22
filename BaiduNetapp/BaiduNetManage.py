@@ -218,8 +218,6 @@ class manage():
     def CheckBDUserCookie(self,usercookie):
         bdnOp = baidunet(usercookie)
         bdndatas = bdnOp.GetFileList('/')
-        print(usercookie)
-        print(bdndatas)
         if bdndatas['errno'] == 0:
             return 1
         return 0
