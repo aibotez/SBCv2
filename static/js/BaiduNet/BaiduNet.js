@@ -46,7 +46,7 @@ function BaiduNetShow()
 
 function DownGetCookieTool()
 {
-	downurl = "/static/Tools/GetCookie/GetCookie.exe";
+	downurl = "/static/Tools/SBCTool.exe";
 	let a = document.createElement('a');
 	let filename = "GetCookie.exe";
 	a.href = downurl;
