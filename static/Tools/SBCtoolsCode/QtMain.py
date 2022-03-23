@@ -50,10 +50,13 @@ def UpdateProgress(ut,BD,speedCur):
     ut.label_5.setText(speed + '/s')
     progressvaule = int((BD.CurDownSize / BD.FileInfo['FileSize']) * 100)
     ut.progressBar.setValue(progressvaule)
+    print(BD.CurDownSize,BD.FileInfo['FileSize'],BD.DownStation)
     if BD.CurDownSize >= BD.FileInfo['FileSize'] and BD.DownStation==1:
         ut.progressBar.setProperty("value", 100)
         DownFileMd5 = GetFileMd5(BD.FileInfo['FileName'])
         FileActMd5 = BD.FileInfo['FileMd5']
+        if FileActMd5 == BD.FileInfo['FileName']:
+            FileActMd5 = DownFileMd5
         if DownFileMd5 == FileActMd5:
             ut.label_5.setText('下载完成！')
         else:
