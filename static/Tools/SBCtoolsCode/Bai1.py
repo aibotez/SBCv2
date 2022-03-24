@@ -52,8 +52,16 @@ class Bd():
 
     def GetFileName(self,response):
         req = response.headers
+
         # print(req)
         if 'Content-Disposition' in req:
+            fename = req['Content-Disposition']
+            if 'name=' in fename:
+                name = fename.split('name=')[-1]
+                name = name.replace("'",'')
+                name = name.replace('"', '')
+                return name
+
             name = req['Content-Disposition'].split('"')[-2].encode('ISO-8859-1').decode('utf-8')
             return name
         if response.url != self.url:
@@ -77,10 +85,12 @@ class Bd():
         self.ThreadDownAccept = 0
         return FileSize
     def GetFileMd5byNet(self,response):
+        import base64
         req = response.headers
         for i in req.keys():
             if 'md5' in i.lower():
-                self.FileMD5 = req[i]
+                FileMd5Base64 = base64.b64encode(req[i].encode("utf-8")).decode('utf-8')
+                self.FileMD5 = FileMd5Base64
 
 
     def GetFileInfo(self):
@@ -88,7 +98,7 @@ class Bd():
         response = requests.get(self.url, headers=self.headers,stream=True)
         # req = response.headers
         name = self.GetFileName(response)
-        print(name)
+        # print(name)
         FileSize = self.GetSize(response)
         self.GetFileMd5byNet(response)
         if self.FileMD5 == '0':
@@ -183,7 +193,17 @@ class Bd():
     def MergeFileChunk(self):
         print('DownFinish-MergeFile')
         with open(self.FileInfo['FileName'],'wb') as fm:
+
+            FileList = {}
+            NumList = []
             for i in self.FileChunks:
+                fechunkend = i['FileChunk'][-1]
+                FileList[str(fechunkend)] = {'ChunkName':i['ChunkName']}
+                NumList.append(fechunkend)
+            NumList = sorted(NumList)
+
+            for j in NumList:
+                i = FileList[str(j)]
                 # print(i['ChunkName'])
                 with open(i['ChunkName'],'rb') as f:
                     while True:
@@ -220,13 +240,48 @@ class Bd():
                         self.DownStation = 1
                         break
 
+    def OtherDown(self,FeInfo):
+        headers = {
+            'User-Agent':'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36',
+            'Connection': 'Keep - Alive',
+            # 'Host': 'bdcm01.baidupcs.com',
+            # 'Range': 'bytes=0-102400'
+        }
+        startpos = FeInfo['FileChunk'][0]
+        endpos = FeInfo['FileChunk'][1]
+        coutsize = endpos - startpos
+        feoffset = startpos
+        headers['Range'] = 'bytes={}-{}'.format(str(feoffset), str(endpos))
+        if not os.path.exists(FeInfo['ChunkName']):
+            with open(FeInfo['ChunkName'], "wb") as feC:
+                feC.write(b'')
+        feoffset = 0
+        with open(FeInfo['ChunkName'], "r+b") as fchunk:
+            # fchunk.seek(FeInfo['StartPosition'])
+            with requests.get(self.url, headers=headers, stream=True) as req:
+                for chunk in req.iter_content(chunk_size=512*1024):
+                    if chunk:
+                        self.TLock.acquire()
+                        self.CurDownSize = self.CurDownSize + len(chunk)
+                        self.TLock.release()
+                        fchunk.seek(FeInfo['StartPosition']+feoffset)
+                        fchunk.write(chunk)
+                        feoffset = feoffset + len(chunk)
+                    else:
+                        self.DownStation = 1
+                        break
+        if self.CurDownSize >= self.FileInfo['FileSize']:
+            self.MergeFileChunk()
+
     def Dow1(self,FeInfo):
 
         if self.ThreadDownAccept == 0:
             self.StreamDown()
             self.DownStation = 1
             return 1
-
+        if 'baidu' not in self.url and 'dp-logid' not in self.url:
+            self.OtherDown(FeInfo)
+            return 1
         headers = {
             'User-Agent': 'netdisk;P2SP;3.0.0.127',
             'Connection': 'Keep - Alive',
@@ -268,7 +323,8 @@ class Bd():
             self.MergeFileChunk()
 
 
-# url = 'http://pi.sbc.plus:800/static/Tools/SBCTool.exe'
+# url = 'https://cdn4.mydown.com/623affc5/5e34431239485546c1977ab08a1d9f22/newsoft/3__5000557__3f7372633d6c6d266c733d6e32393464323930613961__68616f2e3336302e636e__0c6b.exe'
+# # url = 'https://download.jetbrains.com/python/pycharm-community-2021.3.3.exe?_gl=1*1du2fct*_ga*MjEyMjQ2OTkyNS4xNjM2MjA4NTI0*_ga_V0XZL7QHEB*MTY0ODAyNjIzNi41LjAuMTY0ODAyNjIzNi4w&_ga=2.8012918.572347722.1648016234-2122469925.1636208524'
 # # # # url = 'https://allall01.baidupcs.com/file/cf8a08925421b695e8303093076db8bf?bkt=en-26dcfdb4e5ee1a499dee4ab6e168c91309a1886b96512db5554252c6dac76c07b31a08073a7f21e0&fid=2820270452-250528-53268081162635&time=1648014784&sign=FDTAXUbGERLQlBHSKfWaqi-DCb740ccc5511e5e8fedcff06b081203-4D5RWnRsPWPicG%2FdGXjCP7hmHtg%3D&to=79&size=1115475552&sta_dx=1115475552&sta_cs=467&sta_ft=esd&sta_ct=7&sta_mt=7&fm2=MH%2CXian%2CAnywhere%2C%2C%E4%B8%8A%E6%B5%B7%2Cany&ctime=1517297834&mtime=1578908100&resv0=-1&resv1=0&resv2=rlim&resv3=2&resv4=1115475552&vuk=2820270452&iv=0&htype=&randtype=&tkbind_id=0&esl=1&newver=1&newfm=1&secfm=1&flow_ver=3&pkey=en-444aa45ed77f292be8d490755f52141393089a94be5cec322787aa64c0badfdaef91ece364e6f556&sl=78053454&expires=8h&rt=pr&r=150501622&vbdid=4173101684&fin=SXC_2018LTSB_X64.esd&bflag=79,18-79&err_ver=1.0&check_blue=1&rtype=1&clienttype=9&channel=0&dp-logid=8809565293028790037&dp-callid=0.1&hps=1&tsl=120&csl=120&fsl=-1&csign=1I1eQUvOcDQFvOtRoQe6TT6LH2o%3D&so=0&ut=6&uter=0&serv=0&uc=2314189907&ti=970a8ec65273ef12230065b9576767b1d9ccdf649a1df586&sta_eck=1&hflag=30&from_type=0&adg=c_6c3e20d8811253d6c5007b12f0561376&reqlabel=250528_l_0d379c25691f1db02fd2dff786ffd19a_-1_b47a1c84a207d217ae9410ea0984f09f&ibp=1&by=themis'
 # BD = Bd(url)
 # BD.ThreadAct()

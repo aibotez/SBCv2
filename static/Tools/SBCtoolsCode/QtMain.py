@@ -1,4 +1,4 @@
-import sys
+import sys,base64
 from PyQt5.QtWidgets import QApplication, QMainWindow
 
 import MainShowWindow
@@ -33,11 +33,13 @@ def size_format(size):
     elif 1024*1024*1024*1024 <= size:
         return '%.1f' % float(size/(1024*1024*1024*1024)) + 'TB'
 class Speedcount():
-    def __init__(self):
+    def __init__(self,BD):
         self.time0 = time.time()
-        self.FileCurSize = 0
+        self.FileCurSize = BD.CurDownSize
     def GetSpeed(self,CurSize):
         time2 = time.time()
+        # speed = size_format((CurSize - 0) / (time2 - self.time0))
+        # print(size_format((CurSize-self.FileCurSize)),time2-self.time0)
         speed = size_format((CurSize-self.FileCurSize)/(time2-self.time0))
         self.time0 = time2
         self.FileCurSize = CurSize
@@ -45,19 +47,20 @@ class Speedcount():
 
 
 def UpdateProgress(ut,BD,speedCur):
+
     ut.label_4.setText('{}/{}'.format(size_format(BD.CurDownSize), size_format(BD.FileInfo['FileSize'])))
     speed = speedCur.GetSpeed(BD.CurDownSize)
     ut.label_5.setText(speed + '/s')
     progressvaule = int((BD.CurDownSize / BD.FileInfo['FileSize']) * 100)
     ut.progressBar.setValue(progressvaule)
-    print(BD.CurDownSize,BD.FileInfo['FileSize'],BD.DownStation)
+    # print(BD.CurDownSize,BD.FileInfo['FileSize'],BD.DownStation)
     if BD.CurDownSize >= BD.FileInfo['FileSize'] and BD.DownStation==1:
         ut.progressBar.setProperty("value", 100)
         DownFileMd5 = GetFileMd5(BD.FileInfo['FileName'])
         FileActMd5 = BD.FileInfo['FileMd5']
         if FileActMd5 == BD.FileInfo['FileName']:
             FileActMd5 = DownFileMd5
-        if DownFileMd5 == FileActMd5:
+        if DownFileMd5 == FileActMd5 or base64.b64decode(DownFileMd5).decode('utf-8') == FileActMd5:
             ut.label_5.setText('下载完成！')
         else:
             ut.label_5.setText('文件校验错误！')
@@ -65,15 +68,17 @@ def UpdateProgress(ut,BD,speedCur):
 
 
 def Down(ut):
-    speedCur = Speedcount()
+
     url = ut.textEdit.toPlainText()
     BD = Bai1.Bd(url)
+
     ut.label_4.setText('0/{}'.format(size_format(BD.FileInfo['FileSize'])))
     ut.label_3.setText(BD.FileInfo['FileName'])
     t1 = time.time()
     ut.timer.timeout.connect(lambda :UpdateProgress(ut,BD,speedCur))
-    ut.timer.start(700)
+    ut.timer.start(1000)
     BD.ThreadAct()
+    speedCur = Speedcount(BD)
 
 
 
