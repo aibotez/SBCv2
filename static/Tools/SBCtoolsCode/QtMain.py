@@ -57,10 +57,11 @@ def UpdateProgress(ut,BD,speedCur):
     if BD.CurDownSize >= BD.FileInfo['FileSize'] and BD.DownStation==1:
         ut.progressBar.setProperty("value", 100)
         DownFileMd5 = GetFileMd5(BD.FileInfo['FileName'])
+
         FileActMd5 = BD.FileInfo['FileMd5']
         if FileActMd5 == BD.FileInfo['FileName']:
             FileActMd5 = DownFileMd5
-        if DownFileMd5 == FileActMd5 or base64.b64decode(DownFileMd5).decode('utf-8') == FileActMd5:
+        if DownFileMd5 == FileActMd5 or base64.b64decode(FileActMd5).decode('utf-8') == DownFileMd5:
             ut.label_5.setText('下载完成！')
         else:
             ut.label_5.setText('文件校验错误！')
