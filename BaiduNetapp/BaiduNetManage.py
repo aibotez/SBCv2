@@ -14,11 +14,20 @@ class baidunet():
         self.FsId = ''
         self.timestamp = ''
         self.bdclnd = ''
+
+    def DealCookie(self,cook):
+        cookie = ''
+        coks = cook.split(';')
+        for i in coks:
+            if 'BDUSS' in i or 'STOKEN' in i:
+                cookie = cookie + i + ';'
+        return cookie
+
     def PulublicHearders(self):
         self.headers = {
             # 'User-Agent' : 'netdisk;4.6.2.0;PC;PC-Windows;10.0.10240;WindowsBaiduYunGuanJia',
             'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36',
-            'Cookie':self.cookies,
+            'Cookie':self.DealCookie(self.cookies),
             'Host': 'pan.baidu.com',
             'Connection': 'keep-alive',
             'Upgrade-Insecure-Requests': '1',
@@ -152,9 +161,10 @@ class baidunet():
         return resdata
 
     def GetDownLink(self,path):
+        # print(self.DealCookie(self.cookies))
         heardes ={
             'User-Agent':'netdisk;P2SP;3.0.0.127',
-            'Cookie':self.cookies,
+            'Cookie':self.DealCookie(self.cookies),
             # 'Cookie':'BDUSS=WlEMzN1T25sRTgybnFaflJkUjVuOEc2VUZNc2c3TGtiLWVhME0zQ3Z6Qk12c0ZoSVFBQUFBJCQAAAAAAAAAAAEAAACnqKsdZGxvZWNxaTQyMjM0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEwxmmFMMZphW;STOKEN=c5816c3b29a51273a34621968b5b96fe55b8dca9381014d2ce64789e28419409;STOKEN=c5816c3b29a51273a34621968b5b96fe55b8dca9381014d2ce64789e28419409',
             'Host': 'd.pcs.baidu.com'
         }
