@@ -16,6 +16,7 @@ class baidunet():
         self.bdclnd = ''
 
     def DealCookie(self,cook):
+        cook = cook.replace(' ','')
         cookie = ''
         coks = cook.split(';')
         for i in coks:
@@ -120,6 +121,7 @@ class baidunet():
             return '/static/img/wj.jfif'
     def GetBaiduNetUserInfo(self):
         url = 'https://pan.baidu.com/api/loginStatus?clienttype=0&app_id=250528&web=1'
+        # print(self.headers)
         res = requests.get(url,headers=self.headers).text
         resdata = json.loads(res)
         username = ''
