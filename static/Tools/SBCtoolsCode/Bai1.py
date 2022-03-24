@@ -59,7 +59,7 @@ class Bd():
             if 'name=' in fename:
                 name = fename.split('name=')[-1]
                 name = name.replace("'",'')
-                name = name.replace('"', '')
+                name = name.replace('"', '').encode('ISO-8859-1').decode('utf-8')
                 return name
 
             name = req['Content-Disposition'].split('"')[-2].encode('ISO-8859-1').decode('utf-8')
@@ -324,14 +324,16 @@ class Bd():
 
 
 # url = 'https://cdn4.mydown.com/623affc5/5e34431239485546c1977ab08a1d9f22/newsoft/3__5000557__3f7372633d6c6d266c733d6e32393464323930613961__68616f2e3336302e636e__0c6b.exe'
-# # url = 'https://download.jetbrains.com/python/pycharm-community-2021.3.3.exe?_gl=1*1du2fct*_ga*MjEyMjQ2OTkyNS4xNjM2MjA4NTI0*_ga_V0XZL7QHEB*MTY0ODAyNjIzNi41LjAuMTY0ODAyNjIzNi4w&_ga=2.8012918.572347722.1648016234-2122469925.1636208524'
-# # # # url = 'https://allall01.baidupcs.com/file/cf8a08925421b695e8303093076db8bf?bkt=en-26dcfdb4e5ee1a499dee4ab6e168c91309a1886b96512db5554252c6dac76c07b31a08073a7f21e0&fid=2820270452-250528-53268081162635&time=1648014784&sign=FDTAXUbGERLQlBHSKfWaqi-DCb740ccc5511e5e8fedcff06b081203-4D5RWnRsPWPicG%2FdGXjCP7hmHtg%3D&to=79&size=1115475552&sta_dx=1115475552&sta_cs=467&sta_ft=esd&sta_ct=7&sta_mt=7&fm2=MH%2CXian%2CAnywhere%2C%2C%E4%B8%8A%E6%B5%B7%2Cany&ctime=1517297834&mtime=1578908100&resv0=-1&resv1=0&resv2=rlim&resv3=2&resv4=1115475552&vuk=2820270452&iv=0&htype=&randtype=&tkbind_id=0&esl=1&newver=1&newfm=1&secfm=1&flow_ver=3&pkey=en-444aa45ed77f292be8d490755f52141393089a94be5cec322787aa64c0badfdaef91ece364e6f556&sl=78053454&expires=8h&rt=pr&r=150501622&vbdid=4173101684&fin=SXC_2018LTSB_X64.esd&bflag=79,18-79&err_ver=1.0&check_blue=1&rtype=1&clienttype=9&channel=0&dp-logid=8809565293028790037&dp-callid=0.1&hps=1&tsl=120&csl=120&fsl=-1&csign=1I1eQUvOcDQFvOtRoQe6TT6LH2o%3D&so=0&ut=6&uter=0&serv=0&uc=2314189907&ti=970a8ec65273ef12230065b9576767b1d9ccdf649a1df586&sta_eck=1&hflag=30&from_type=0&adg=c_6c3e20d8811253d6c5007b12f0561376&reqlabel=250528_l_0d379c25691f1db02fd2dff786ffd19a_-1_b47a1c84a207d217ae9410ea0984f09f&ibp=1&by=themis'
+# url = 'https://download.jetbrains.com/python/pycharm-community-2021.3.3.exe?_gl=1*1du2fct*_ga*MjEyMjQ2OTkyNS4xNjM2MjA4NTI0*_ga_V0XZL7QHEB*MTY0ODAyNjIzNi41LjAuMTY0ODAyNjIzNi4w&_ga=2.8012918.572347722.1648016234-2122469925.1636208524'
+# # # url = 'https://allall01.baidupcs.com/file/cf8a08925421b695e8303093076db8bf?bkt=en-26dcfdb4e5ee1a499dee4ab6e168c91309a1886b96512db5554252c6dac76c07b31a08073a7f21e0&fid=2820270452-250528-53268081162635&time=1648014784&sign=FDTAXUbGERLQlBHSKfWaqi-DCb740ccc5511e5e8fedcff06b081203-4D5RWnRsPWPicG%2FdGXjCP7hmHtg%3D&to=79&size=1115475552&sta_dx=1115475552&sta_cs=467&sta_ft=esd&sta_ct=7&sta_mt=7&fm2=MH%2CXian%2CAnywhere%2C%2C%E4%B8%8A%E6%B5%B7%2Cany&ctime=1517297834&mtime=1578908100&resv0=-1&resv1=0&resv2=rlim&resv3=2&resv4=1115475552&vuk=2820270452&iv=0&htype=&randtype=&tkbind_id=0&esl=1&newver=1&newfm=1&secfm=1&flow_ver=3&pkey=en-444aa45ed77f292be8d490755f52141393089a94be5cec322787aa64c0badfdaef91ece364e6f556&sl=78053454&expires=8h&rt=pr&r=150501622&vbdid=4173101684&fin=SXC_2018LTSB_X64.esd&bflag=79,18-79&err_ver=1.0&check_blue=1&rtype=1&clienttype=9&channel=0&dp-logid=8809565293028790037&dp-callid=0.1&hps=1&tsl=120&csl=120&fsl=-1&csign=1I1eQUvOcDQFvOtRoQe6TT6LH2o%3D&so=0&ut=6&uter=0&serv=0&uc=2314189907&ti=970a8ec65273ef12230065b9576767b1d9ccdf649a1df586&sta_eck=1&hflag=30&from_type=0&adg=c_6c3e20d8811253d6c5007b12f0561376&reqlabel=250528_l_0d379c25691f1db02fd2dff786ffd19a_-1_b47a1c84a207d217ae9410ea0984f09f&ibp=1&by=themis'
+#
+# url = 'https://xacu01.baidupcs.com/file/1ef41338d1208a58e8019f78476b9133?bkt=en-e031c0692dcd5a21460dfcce047dacdff039c647c0068ce08212eba07fed317911992bea2539482b&fid=2820270452-250528-322862895774618&time=1648126443&sign=FDTAXUbGERLQlBHSKfWqi-DCb740ccc5511e5e8fedcff06b081203-hGEcOJi2iKfRHyuCiHfw3EWZ%2BOc%3D&to=128&size=11585609&sta_dx=11585609&sta_cs=0&sta_ft=zip&sta_ct=7&sta_mt=7&fm2=MH%2CXian%2CAnywhere%2C%2Canhui%2Ccnc&ctime=1539081506&mtime=1539081506&resv0=-1&resv1=0&resv2=rlim&resv3=2&resv4=11585609&vuk=2820270452&iv=0&htype=&randtype=&tkbind_id=0&esl=1&newver=1&newfm=1&secfm=1&flow_ver=3&pkey=en-a6e0c16c99979b797080dc4278489322bc08a96fc2d4b72364d9f279dacf95c4275f83daf8a95e7d&sl=78053454&expires=8h&rt=pr&r=937514969&vbdid=-&fin=CAJViewer7%E5%85%8D%E5%AE%89%E8%A3%85.zip&bflag=128,79,303,18-128&err_ver=1.0&check_blue=1&rtype=1&clienttype=9&channel=0&dp-logid=8839538435313853808&dp-callid=0.1&hps=1&tsl=120&csl=120&fsl=-1&csign=1I1eQUvOcDQFvOtRoQe6TT6LH2o%3D&so=0&ut=6&uter=0&serv=0&uc=2314189907&ti=e292035734ac599541a1b88b4a84623b694eb9582f70f386c48031c257b32a4e&sta_eck=1&hflag=30&from_type=0&adg=c_195dcffd0ac4803330e489f48a738c43&reqlabel=250528_l_b79ee2ecbae2d617456e21c155258c29_-1_e25c92e6da30f5e414c0ac16cefb99e1&ibp=1&by=themis'
 # BD = Bd(url)
-# BD.ThreadAct()
-# #
-# while True:
-#     print(BD.CurDownSize)
-#     time.sleep(0.5)
-#     if BD.DownStation == 1:
-#         break
+# # BD.ThreadAct()
+# # #
+# # while True:
+# #     print(BD.CurDownSize)
+# #     time.sleep(0.5)
+# #     if BD.DownStation == 1:
+# #         break
 
