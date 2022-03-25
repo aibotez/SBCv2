@@ -191,7 +191,7 @@ class baidunet():
             'sd':'0',
             'clienttype':'9',
             'version':'3.0.0.127',
-            'time':'1647091729',
+            # 'time':'1647091729',
             # 'rand':'7d67077c7a5d4ba9ba1004ec26c18c41d596ec6f',
             # 'devuid':'BDIMXV2-O_91B0C68690D247B58683966534818267-C_0-D_33534c59584e4b30354135333037205420202020-M_68F7283616CD-V_50A68A1D',
             'channel':'0',
