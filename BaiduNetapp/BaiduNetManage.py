@@ -5,6 +5,7 @@ from urllib.parse import quote,unquote
 
 class baidunet():
     def __init__(self,cookie):
+        cookie = cookie.replace(' ','')
         self.cookies = cookie
         self.headers = ''
         self.PulublicHearders()
@@ -143,6 +144,7 @@ class baidunet():
 
     def GetFileList(self,path):
         urlSer = 'https://pan.baidu.com/api/list?&dir={}'.format(quote(path))
+        # print(self.cookies)
         headers = {
             'Cookie':self.cookies,
             'Host': 'pan.baidu.com',
@@ -230,6 +232,7 @@ class manage():
     def CheckBDUserCookie(self,usercookie):
         bdnOp = baidunet(usercookie)
         bdndatas = bdnOp.GetFileList('/')
+        # print(bdndatas)
         if bdndatas['errno'] == 0:
             return 1
         return 0

@@ -72,7 +72,7 @@ def BaiduNetSaveUser(request):
         return HttpResponseRedirect('/login/')
     manage = BaiduNetManage.manage()
     res = manage.BaiduNetSaveUser(LoginRes,request.POST.get('usercookie'))
-
+    # print(res)
     return JsonResponse({'res':res})
 
 @require_POST
