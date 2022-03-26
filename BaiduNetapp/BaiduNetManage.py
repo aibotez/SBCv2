@@ -197,11 +197,7 @@ class baidunet():
             'fsidlist':'[{}]'.format(shareInfo['fsid'][0]),
             'path': '{}'.format(SavePath)
         }
-        print(data)
-        print(payload)
         res = requests.post(url, headers=self.headers, params=payload, data=data)
-        print(res.text)
-        print(res.url)
     def GetFileList(self,path):
         urlSer = 'https://pan.baidu.com/api/list?&dir={}'.format(quote(path))
         # print(self.cookies)
@@ -298,6 +294,7 @@ class manage():
         return 0
 
     def BaiduNetSaveUser(self,LoginRes,usercookie):
+        usercookie = usercookie.replace(' ','')
         if not self.CheckBDUserCookie(usercookie):
             return 'cookieerror'
         userEmail = LoginRes['useremail']
