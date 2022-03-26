@@ -1,5 +1,5 @@
 from BaiduNetapp.models import BaiduNetUserManage
-import time,requests,json,base64
+import time,requests,json,base64,re
 from urllib.parse import quote,unquote
 
 
@@ -141,7 +141,67 @@ class baidunet():
             userused = self.size_format(resdata['used'])
             userprecent = resdata['used']/resdata['total']
         return {'username':username,'userused':userused+'/'+usertotal,'userprecent':userprecent,'photo_url':photo_url}
-
+    def VerShare(self,link_url,pass_code=None):
+        if pass_code:
+            # 生成时间戳
+            t_str = str(int(round(time.time() * 1000)))
+            check_url = 'https://pan.baidu.com/share/verify?surl=' + link_url[25:48] + '&t=' + t_str + '&channel=chunlei&web=1&clienttype=0'
+            post_data = {'pwd': pass_code, 'vcode': '', 'vcode_str': '', }
+            response_post = requests.post(url=check_url, headers=self.headers, data=post_data, timeout=10,
+                                   allow_redirects=False,
+                                   verify=False)
+            # 在cookie中加入bdclnd参数
+            if response_post.json()['errno'] == 0:
+                bdclnd = response_post.json()['randsk']
+                self.bdclnd = bdclnd
+            else:
+                # print('VerifyError')
+                return response_post.json()['errno']
+            if bool(re.search('BDCLND=', self.headers['Cookie'], re.IGNORECASE)):
+                self.headers['Cookie'] = re.sub(r'BDCLND=(\S+?);', r'BDCLND=' + bdclnd + ';',
+                                                  self.headers['Cookie'])
+            else:
+                self.headers['Cookie'] += '; BDCLND=' + bdclnd
+    def GetShareInfo0(self,url):
+        self.VerShare(url.replace('?from=init',''))
+        res = requests.get(url,headers=self.headers)
+        res.encoding = 'utf-8'
+        res = res.text
+        # timestamp=re.findall(r'timestamp=(.*?)&', res)[0]
+        # fid=re.findall(r'fid=(.*?)&', res)[0]
+        fs_id_list = re.findall('"fs_id":(\\d+?),"', res)
+        # sign = re.findall(r'sign=(.*?)&', res)[0]
+        # sign = unquote(sign)
+        # path = re.findall(r'object=(.*?)&', res)[0]
+        shareid = re.findall('"shareid":(\\d+?),"', res)[0]
+        shareuk = re.findall('"share_uk":"(\\d+?)","', res)[0]
+        bdstoken = re.findall(r'"bdstoken":"(.*?)","', res)[0]
+        # m = re.search('\"sign\":\"(.+?)\"', res)
+        # print(timestamp,fid,sign,shareid,shareuk,path)
+        return {'shareid':shareid,'shareuk':shareuk,'fsid':fs_id_list,'bdstoken':bdstoken}
+    def SaveShare(self,Shareurl,SavePath):
+        shareInfo = self.GetShareInfo0(Shareurl)
+        url = 'https://pan.baidu.com/share/transfer'
+        payload = {
+            'shareid':shareInfo['shareid'],
+            'from':shareInfo['shareuk'],
+            'sekey':unquote(self.bdclnd),
+            'channel': 'chunlei',
+            'web': '1',
+            'app_id': '250528',
+            'bdstoken': shareInfo['bdstoken'],
+            'clienttype': '0',
+            # 'logid':'Njg0NzdGNEFFRjEzNUVGRjY1MkQxMzZGN0U5N0VFODU6Rkc9MQ==',
+        }
+        data = {
+            'fsidlist':'[{}]'.format(shareInfo['fsid'][0]),
+            'path': '{}'.format(SavePath)
+        }
+        print(data)
+        print(payload)
+        res = requests.post(url, headers=self.headers, params=payload, data=data)
+        print(res.text)
+        print(res.url)
     def GetFileList(self,path):
         urlSer = 'https://pan.baidu.com/api/list?&dir={}'.format(quote(path))
         # print(self.cookies)
