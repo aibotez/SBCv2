@@ -162,8 +162,8 @@ class baidunet():
                                                   self.headers['Cookie'])
             else:
                 self.headers['Cookie'] += '; BDCLND=' + bdclnd
-    def GetShareInfo0(self,url):
-        self.VerShare(url.replace('?from=init',''))
+    def GetShareInfo0(self,url,pass_code=None):
+        self.VerShare(url.replace('?from=init',''),pass_code)
         res = requests.get(url,headers=self.headers)
         res.encoding = 'utf-8'
         res = res.text
@@ -179,8 +179,8 @@ class baidunet():
         # m = re.search('\"sign\":\"(.+?)\"', res)
         # print(timestamp,fid,sign,shareid,shareuk,path)
         return {'shareid':shareid,'shareuk':shareuk,'fsid':fs_id_list,'bdstoken':bdstoken}
-    def SaveShare(self,Shareurl,SavePath):
-        shareInfo = self.GetShareInfo0(Shareurl)
+    def SaveShare(self,Shareurl,SavePath,pass_code=None):
+        shareInfo = self.GetShareInfo0(Shareurl,pass_code)
         url = 'https://pan.baidu.com/share/transfer'
         payload = {
             'shareid':shareInfo['shareid'],
