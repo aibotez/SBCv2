@@ -209,6 +209,25 @@ def FileList(request):
     response['Cache-control'] = 'no-cache'
     return response
 
+
+@require_POST
+def GetFileListbyClient(request):
+    LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
+    if LoginRes['res']:
+        return HttpResponseRedirect('/login/')
+    res = {'errnor':'1'}
+    getuserpath = GetUserPath.GetUserPath()
+    req = {'path':request.POST['path']}
+    paths = getuserpath.userpath(req,LoginRes)
+    datas=filesget(paths)
+    res['errnor'] = '0'
+    res['FileList'] = datas[0]
+    res['Nav'] = datas[1]
+    return JsonResponse(res)
+
+
+
+
 def getdirsize(dir):
     size = 0
     for root, dirs, files in os.walk(dir):

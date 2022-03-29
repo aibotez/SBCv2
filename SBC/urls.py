@@ -36,6 +36,7 @@ urlpatterns = [
     path('home/',view.Home),
     path('GetImgCon/',view.GetImgCon),
     path('QuitLogin/',view.QuitLogin),
+    path('GetFileListbyClient/',view.GetFileListbyClient),
 
     path('FileDown/',viewDU.FileDown),
     path('Upfile/',viewDU.FileUp),

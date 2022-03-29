@@ -36,6 +36,7 @@ def loginVerify(request):
             # return render(request,'home/home.html')
             else:
                 response.set_cookie('coks', userInfos['useremail'] + 'auth:' + res['pass'])
+            # response['coks'] = userInfos['useremail']+'auth:'+res['pass']
             return response
         else:
             return render(request, "login/login.html",locals())
