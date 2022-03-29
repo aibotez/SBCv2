@@ -227,6 +227,7 @@ def GetFileListbyClient(request):
     res['errnor'] = '0'
     res['FileList'] = datas[0]
     res['Nav'] = datas[1]
+    res['imgFiles'] = datas[2]
     return JsonResponse(res)
 
 
@@ -279,12 +280,13 @@ def GetImgCon(request):
     LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
     if LoginRes['res']:
         return HttpResponseRedirect('/login/')
-    imgdict = request.POST.dict()
-    imgdict = json.loads(list(imgdict.keys())[0])
+    # imgdict = json.loads(list(imgdict.keys())[0])
+    imgdict = json.loads(request.body.decode('utf-8'))
     getuserpath = GetUserPath.GetUserPath()
     reData = {'src':[]}
     Src = []
     for i in imgdict['imgdata']:
+        # print(i)
         fepath = getuserpath.getuserserpath(LoginRes['useremail'], i['fepath'])
         fesrc = GetImgConPath1(fepath)
         Src.append(fesrc)
