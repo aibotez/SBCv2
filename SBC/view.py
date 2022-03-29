@@ -228,6 +228,7 @@ def GetFileListbyClient(request):
 
 
 
+
 def getdirsize(dir):
     size = 0
     for root, dirs, files in os.walk(dir):
