@@ -79,33 +79,33 @@ def GetImgConPath(fepath):
         # fetype = fetypes[0].split('/')[0]
         if fetype[0] == 'image':
             path = '/static/img/filecon/imgcon.jpg'
-            return path
+            return [path,'img']
             # imgtype = fetype[1]
             # return GetImgconBase64(fepath,imgtype)
         if fetype[0] == 'pdf':
             path = '/static/img/filecon/pdfcon.jpg'
-            return path
+            return [path,'pdf']
         if fetype[0] == 'word':
             path = '/static/img/filecon/wordcon.jpg'
-            return path
+            return [path,'word']
         if fetype[0] == 'ppt':
             path = '/static/img/filecon/pptcon.jpg'
-            return path
+            return [path,'ppt']
         if fetype[0] == 'excel':
             path = '/static/img/filecon/excelcon.jpg'
-            return path
+            return [path,'excel']
         if fetype[0] == 'zip':
             path = '/static/img/filecon/zipcon.png'
-            return path
+            return [path,'zip']
         if fetype[0] == 'html':
             path = '/static/img/filecon/htmlcon.jpg'
-            return path
+            return [path,'html']
         if fetype[0] == 'exe':
             path = '/static/img/filecon/execon.jpg'
-            return path
+            return [path,'exe']
     except Exception as e:
         print(e)
-    return '/static/img/wj.jfif'
+    return ['/static/img/wj.jfif','other']
 def filesget(paths):
     path = paths[0]
     serverpath = paths[1]
@@ -129,11 +129,14 @@ def filesget(paths):
         isdir = 1
         filepath = fileson+'/'
         imgpath = '/static/img/foldersm.png'
+        fetype = 'folder'
         if not os.path.isdir(filesonserver):
             filesize = os.path.getsize(filesonserver)
             filesize = size_format(filesize)
             isdir = 0
-            imgpath = GetImgConPath(filesonserver)
+            FileJu = GetImgConPath(filesonserver)
+            imgpath = FileJu[0]
+            fetype = FileJu[1]
             if 'imgcon.jpg' in imgpath:
                 imgFiles.append({'fepath':fileson})
             # imgpath = '/static/img/wj.jfif'
@@ -149,6 +152,7 @@ def filesget(paths):
             'date':getdate(filesonserver),
             'isdir':isdir,
             'imgpath':imgpath,
+            'fetype':fetype,
         })
     return [fesdata,navpaths,imgFiles]
 
