@@ -277,17 +277,23 @@ def DelFiles(request):
 
 @require_POST
 def GetImgCon(request):
+    # print(request.body)
     LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
     if LoginRes['res']:
         return HttpResponseRedirect('/login/')
     # imgdict = json.loads(list(imgdict.keys())[0])
     imgdict = json.loads(request.body.decode('utf-8'))
+    if 'fepath' not in request.body.decode('utf-8'):
+        imgdict['imgdata'] = base64.decodebytes(imgdict['imgdata'].encode('utf8')).decode()
+        imgdict['imgdata'] = json.loads(imgdict['imgdata'])
+    # print(imgdict)
     getuserpath = GetUserPath.GetUserPath()
     reData = {'src':[]}
     Src = []
     for i in imgdict['imgdata']:
         # print(i)
         fepath = getuserpath.getuserserpath(LoginRes['useremail'], i['fepath'])
+        # print(fepath)
         fesrc = GetImgConPath1(fepath)
         Src.append(fesrc)
     reData['src'] = Src
