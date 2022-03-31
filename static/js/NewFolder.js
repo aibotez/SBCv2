@@ -1,18 +1,19 @@
 
-function Ack(NewFolderName)
+function Ack(input)
 {
 	var CurPath = document.getElementById("CurPath").innerText;
 	var urlpath = "/netOper/";
 	var data = {
 		'netOper':"NewFilder",
 		'CurPath':CurPath,
-		'NewFolderName':NewFolderName
+		'NewFolderName':input.value
 	}
 	PostMethod(urlpath,data,0);
 	var bo = document.body;
 	bo.style="background-color:white";
 	var NewFolderDiv = document.getElementById("NewFolderDiv");
 	NewFolderDiv.remove();
+	alert(CurPath);
 	RefreshFiles({'id':CurPath});
 }
 function Cancel()
@@ -98,7 +99,7 @@ function NewFolder()
 	AckButton.type="Button";
 	AckButton.style = "cursor:pointer;border-radius:5px;height:30px;";
 	AckButton.value="确 认";
-	AckButton.onclick = function(){Ack(NewFolderName);};
+	AckButton.onclick = function(){Ack(input);};
 
 	
 	var CancelButton = document.createElement("input");
