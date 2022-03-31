@@ -13,8 +13,8 @@ function Ack(input)
 	bo.style="background-color:white";
 	var NewFolderDiv = document.getElementById("NewFolderDiv");
 	NewFolderDiv.remove();
-	alert(CurPath);
-	RefreshFiles({'id':CurPath});
+	//alert(CurPath);
+	RefreshFiles({'id':Base64.encode(CurPath)});
 }
 function Cancel()
 {
