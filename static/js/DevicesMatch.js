@@ -53,7 +53,7 @@ function Match()
 function AdjustHomeMenudiv(ScHeight,dpiperrem)
 {
 	RemAmount = ScHeight*(1/dpiperrem);
-	console.log(RemAmount);
+	//console.log(RemAmount);
 	document.getElementById("NavandContent").style.height = RemAmount-7+"rem";
 	
 }
