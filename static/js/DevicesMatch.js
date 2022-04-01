@@ -15,12 +15,16 @@ function Match()
 	if(ScHeight>ScWidth)
 	{
 		//竖版
-		document.documentElement.style.fontSize = ScWidth/60+'px';
-		
+		//console.log('shu');
+		//document.getElementById("div").style.flex-flow="column";
+		dpiperrem = DPi[0]/8;
+		//document.documentElement.style.fontSize = ScWidth/60+'px';
+		document.documentElement.style.fontSize = dpiperrem+'px';
 		document.getElementById("HomeMenudivLeft").style.display="none";
 		document.getElementById("HightModeMenu").style.display="";
 		//document.getElementById("FileLabel").style.width = "1000px";
 		document.getElementById("ShowMain").style.width = "100%";
+		AdjustHomeMenudiv(ScHeight,dpiperrem);
 		//document.getElementById("ShowMain").style.height = ScHeight-100-0.03*ScHeight+"px";
 		//document.getElementById("FilesData").style.width = ScWidth+"px";
 		//console.log(ScWidth);
@@ -32,8 +36,9 @@ function Match()
 		//document.documentElement.style.fontSize = ScWidth/90+'px';
 		
 		dpiperrem = DPi[0]/8;
+		//document.getElementById("div").style.flex-flow="row";
 		document.documentElement.style.fontSize = dpiperrem+'px';
-		
+		document.getElementById("NavandContent").style.height = "100%";
 		
 		document.getElementById("HomeMenudivLeft").style.display="";
 		document.getElementById("HightModeMenu").style.display="none";
@@ -42,6 +47,14 @@ function Match()
 
 	Window.globalConfig.remperdpi = 1/dpiperrem;
 
+	
+}
+
+function AdjustHomeMenudiv(ScHeight,dpiperrem)
+{
+	RemAmount = ScHeight*(1/dpiperrem);
+	console.log(RemAmount);
+	document.getElementById("NavandContent").style.height = RemAmount-7.5+"rem";
 	
 }
 

@@ -44,16 +44,12 @@
 	
 	max-width:80rem;
 	height:100%;
-    
+    flex:1;
 	margin:0px;
 	
 }
 
-.Showmainscroll
-{
-	
-	flex:1;
-}
+
 
 .FillContent
 {

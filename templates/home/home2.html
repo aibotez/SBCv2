@@ -29,7 +29,7 @@
 
         .div
         {
-            display:flex;
+
             position:fixed;
             top:0px;
             left:0px;
@@ -291,7 +291,7 @@
         </div>
 
     </div>
-    <div class="NavandContent">
+    <div class="NavandContent" id="NavandContent">
         <div class="container" style="height:3rem;width:100%;margin:10px">
             <div style="display: flex;flex-wrap: wrap;position:relative;">
                 <div style="background-color:white">
@@ -505,7 +505,7 @@
         var ScWidth = document.documentElement.clientWidth;
         var dpi = js_getDPI()[0];
         RemAmount = ScWidth*Window.globalConfig.remperdpi;
-        console.log(RemAmount);
+        //console.log(RemAmount);
         if (RemAmount>15+80)
         {
             document.getElementById("FillContent").style.display="";
