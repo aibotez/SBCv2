@@ -28,6 +28,8 @@
 .Content{
 	display:flex;
 	margin:0px;
+	overflow:scroll;
+	overflow-y:hidden;
 }
 
 .HomeContent
