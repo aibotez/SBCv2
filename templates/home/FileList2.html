@@ -1,0 +1,185 @@
+
+
+    <script type="text/javascript" src="/static/js/GlobalVar.js"></script>
+    <script type="text/javascript" src="/static/js/ShowDeals.js"></script>
+    <script type="text/javascript" src="/static/js/js-base64-main/base64.js">/* load */</script>
+        <div class="container" id="navlist" style="height:3rem;">
+            {% for navi in navlist %}
+                {% if navi.path == navlastpath %}
+                    <div>
+                        <label style="display:none;" id="CurPath">{{navi.path}}</label>
+                        <a id={{navi.path}} style="color:#000000;font-size:1.5rem;text-decoration:none;">&ensp;{{navi.navname}}</a>
+                    </div>
+                {% else %}
+                    <div>
+                        <a id={{navi.pathId}} style="color:#C0C0C0;font-size:1.5rem;text-decoration:none;" href="javascript:void(0);" onclick="RefreshFiles(this)">&ensp;{{navi.navname}}</a>
+                    </div>
+                    <div>
+                        <span id={{navi.path}}00 style="color:#C0C0C0;font-size:1.5rem;">&ensp;&gt;</span>
+                    </div>
+                 {% endif %}
+            {% endfor %}
+        </div>
+        <div style="border-bottom:1px solid #CCC"></div>
+        <div class="container" style="width:100%;">
+            <label style="font-size:1.5rem;display:block;width:58%;height:100%;color:Gray;">文件名</label>
+            <label style="font-size:1.5rem;display:block;width:15%;height:100%;color:Gray;">大小</label>
+            <label style="font-size:1.5rem;display:block;width:25%;height:100%;color:Gray;">修改日期</label>
+        </div>
+        <div style="border-bottom:1px solid #CCC"></div>
+
+        <div id="Showmainscroll" style="overflow:scroll;height:100%;width:100%;">
+            <div id="FilesData" style="width:100%;">
+                {% for filedata in data %}
+                    <table border="0" style="width:100%;border:0;word-break:break-all;table-layout: fixed;">
+                        <tr class="change" style="width:100%;">
+                            <td style="width:3%;">
+                                <div>
+                                    <input name={{filedata.filelj}} id='{{filedata.filelj}}Choseboxone' type="checkbox" value="" />
+                                </div>
+                            </td>
+                            <td style="width:97%;word-break:break-all;" id='{{filedata.filelj}}Chosebox' onclick="Chosebox(this)">
+                                <!--<div style="width:2%">-->
+                                    <!--<input name={{filedata.filelj}} id={{filedata.filelj}}Choseboxone type="checkbox" value="" />-->
+                                <!--</div>-->
+                                <!--&nbsp;-->
+                                <div class="container" style="width:100%;overflow:hidden;">
+                                    <div class="container" style="width:8%">
+                                        <!--<input name={{filedata.filelj}} id={{filedata.filelj}}Choseboxone type="checkbox" value="" onclick="Chosebox(this)" />&nbsp;-->
+                                        <img id='{{filedata.filelj}}Imgcon' src='{{filedata.imgpath}}' width="80%">
+                                    </div>
+                                    <div id="FileLabel" style="width:50%;overflow:hidden;text-overflow: ellipsis;white-space: nowrap">
+                                        <div class="container" id='{{filedata.filelj}}ReName' style="display:none;height:100%;">
+                                            <input type="text" id='{{filedata.filelj}}ReNameText' name={{filedata.filename}} style="font-size:2rem;" value={{filedata.filename}}>
+                                            <!--<textarea id={{filedata.filelj}}ReNameText name={{filedata.filename}} wrap='off' rows="1" cols="100" style="font-size:20px;width:60%;overflow-x:hidden">{{filedata.filename}}</textarea>-->
+                                            <!--&nbsp;-->
+                                            <div class="container" style="margin-left:5px;border:1px solid #000;width:3rem;height:3rem;border-radius:3px;background-color:white;">
+                                                <button id='{{filedata.filelj}}ReNameSure' name={{filedata.filelj}} onclick="ReNameAct(this)"></button>
+                                             </div>
+
+                                            <!--<button id={{filedata.filelj}}ReNameSure name={{filedata.filelj}} onclick="ReNameAct(this)"></button>-->
+                                            <!--&nbsp;-->
+                                            <div class="container" style="margin-left:10px;border:1px solid #000;width:3rem;height:3rem;border-radius:3px;background-color:white;">
+                                                <button id='{{filedata.filelj}}ReNameCancel' name='{{filedata.filelj}}' onclick="ReNameCancel(this)"></button>
+                                            </div>
+                                        </div>
+                                        <div style="max-width:90%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+                                            <a id={{filedata.filelj}} name="File" style="color:black;font-size:2rem;text-decoration:none;" href="javascript:void(0);" onclick="RefreshFile(this)">
+                                                {{filedata.filename}}
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                    <div style="font-size:2rem;width:40%;color:Gray;" class="container">
+                                        <div style="width:38%;color:Gray;">
+                                            <label>
+                                                {{filedata.big}}
+                                            </label>
+                                        </div>
+                                        <div style="width:62%;color:Gray;">
+                                            <label>
+                                                {{filedata.date}}
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <div style="border-bottom:1px solid #CCC"></div>
+                {% endfor %}
+            </div>
+        </div>
+
+
+
+    <script>
+
+        Window.globalConfig.GlobalFiles = {{data|safe}};
+        var ScWidth = document.documentElement.clientWidth;
+	    var ScHeight = document.documentElement.clientHeight;
+	    if(ScHeight>ScWidth)
+	    {   var pxperrem = ScWidth/60
+	        document.getElementById("Showmainscroll").style.height = ScHeight-100-0.03*ScHeight-3*pxperrem-3*pxperrem+"px";
+	    }
+	    else
+	    {   var pxperrem = ScWidth/90
+
+	        document.getElementById("Showmainscroll").style.height = ScHeight-4*pxperrem-5*pxperrem+"px";
+	    }
+
+	    setTimeout(function(){
+　　		ShowconDeals({{imgFiles|safe}});
+		}, 100);
+    </script>
+
+        <!--&lt;!&ndash;<div style="height:10%;width:100%;background-color:black;">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<div style="height:10%;width:100%;background-color:white;">&ndash;&gt;-->
+             <!--&lt;!&ndash;<button type="submit" id="signbutton">Sign In</button>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--<div class="container" id="navlist" style="height:4%;">-->
+            <!--{% for navi in navlist %}-->
+                <!--{% if navi.path == navlastpath %}-->
+                    <!--<div>-->
+                        <!--<label style="display:none;" id="CurPath">{{navi.path}}</label>-->
+                        <!--<a id={{navi.path}} style="color:#000000;font-size:15px;text-decoration:none;">&ensp;{{navi.navname}}</a>-->
+                    <!--</div>-->
+                <!--{% else %}-->
+                    <!--<div>-->
+                        <!--<a id={{navi.path}} style="color:#C0C0C0;font-size:15px;text-decoration:none;" href="javascript:void(0);" onclick="RefreshFiles(this)">&ensp;{{navi.navname}}</a>-->
+                    <!--</div>-->
+                    <!--<div>-->
+                        <!--<span id={{navi.path}}00 style="color:#C0C0C0;font-size:15px;">&ensp;&gt;</span>-->
+                    <!--</div>-->
+                 <!--{% endif %}-->
+            <!--{% endfor %}-->
+        <!--</div>-->
+        <!--<div style="border-bottom:1px solid #CCC"></div>-->
+        <!--<div class="container" style="height:2.9%;width:100%;">-->
+            <!--<label style="display:block;width:60%;height:100%;color:Gray;">文件名</label>-->
+            <!--<label style="display:block;width:15%;height:100%;color:Gray;">大小</label>-->
+            <!--<label style="display:block;width:25%;height:100%;color:Gray;">修改日期</label>-->
+        <!--</div>-->
+        <!--<div style="border-bottom:1px solid #CCC"></div>-->
+
+        <!--<div style="overflow:scroll;height:84.5%;width:100%;">-->
+            <!--<div id="FilesData">-->
+                <!--{% for filedata in data %}-->
+                    <!--<table width="100%" border="0" style="width:100%;">-->
+                        <!--<tr class="change">-->
+                            <!--<td style="width:100%;">-->
+                                <!--<div class="container">-->
+                                    <!--<div class="container" style="width:10%">-->
+                                        <!--<input name="FieChose" type="checkbox" value="" />&nbsp;-->
+                                        <!--<img src={{filedata.imgpath}} width="50%">-->
+                                    <!--</div>-->
+                                    <!--<div style="width:50%;">-->
+                                        <!--<a id={{filedata.filelj}} style="color:black;font-size:20px;text-decoration:none;" href="javascript:void(0);" onclick="RefreshFiles(this)">-->
+                                            <!--{{filedata.filename}}-->
+                                        <!--</a>-->
+                                    <!--</div>-->
+                                    <!--<div style="width:15%;color:Gray;">-->
+                                        <!--<label>-->
+                                            <!--{{filedata.big}}-->
+                                        <!--</label>-->
+                                    <!--</div>-->
+                                    <!--<div style="width:25%;color:Gray;">-->
+                                        <!--<label>-->
+                                            <!--{{filedata.date}}-->
+                                        <!--</label>-->
+                                    <!--</div>-->
+
+                                <!--</div>-->
+                            <!--</td>-->
+                        <!--</tr>-->
+                    <!--</table>-->
+                    <!--<div style="border-bottom:1px solid #CCC"></div>-->
+                <!--{% endfor %}-->
+            <!--</div>-->
+        <!--</div>-->
+
+

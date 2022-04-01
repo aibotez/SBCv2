@@ -1,0 +1,45 @@
+.Homediv
+{
+    position:fixed;
+    top:0px;
+    left:0px;
+    width: 100%;
+    height: 100%;
+}
+
+.HomeMenudivLeft
+{
+    background-color: #ADADAD;
+    width: 18%;
+	max-width:15rem;
+    height: 100%;
+    border:1px solid #0ba;
+    float:left;
+}
+
+.NavandContent{
+	display:flex;
+	flex-flow: column;
+}
+
+
+.Content{
+	display:flex;
+}
+
+.HomeContent
+{
+	color: black;
+    width: 81.5%;
+	max-width:80rem;
+    height: 90%;
+    float:left;
+	flex:1;
+	
+}
+.FillContent
+{
+	border: 2px solid yellow;
+	flex:1;/*这里设置为占比1，填充满剩余空间*/ 
+	background:blue;
+}
