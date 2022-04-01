@@ -97,9 +97,9 @@
     <script>
 
         Window.globalConfig.GlobalFiles = {{data|safe}};
-        let ScHeight = document.documentElement.clientHeight;
-
-        document.getElementById("Showmainscroll").style.height = ScHeight*Window.globalConfig.remperdpi-6.5+"rem";
+        var ScHeight = document.documentElement.clientHeight;
+<!--ScHeight*Window.globalConfig.remperdpi-7-->
+        document.getElementById("Showmainscroll").style.height = ScHeight*Window.globalConfig.remperdpi-9+"rem";
         <!--var ScWidth = document.documentElement.clientWidth;-->
 	    <!--var ScHeight = document.documentElement.clientHeight;-->
 	    <!--if(ScHeight>ScWidth)-->

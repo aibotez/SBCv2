@@ -39,7 +39,7 @@ function Match()
 		document.getElementById("HightModeMenu").style.display="none";
 		//document.getElementById("ShowMain").style.height = "100%";
 	}
-	alert(dpiperrem)
+
 	Window.globalConfig.remperdpi = 1/dpiperrem;
 
 	
