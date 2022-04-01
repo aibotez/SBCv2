@@ -11,7 +11,7 @@
 .HomeMenudivLeft
 {
     background-color: #ADADAD;
-    width: 18%;
+    width: 15rem;
 	max-width:15rem;
     height: 100%;
     border:1px solid #0ba;
@@ -21,15 +21,19 @@
 
 .NavandContent{
 	display:flex;
+	flex:1;
 	flex-flow: column;
 	height:100%;
 	margin:0px;
+
 }
 .Content{
 	display:flex;
+	
 	margin:0px;
 	overflow:scroll;
 	overflow-y:hidden;
+	
 }
 
 .HomeContent
@@ -38,8 +42,7 @@
 	flex-flow: column;
 	color: black;
 	min-width:80rem;
-	max-width:100rem;
-
+	max-width:120rem;
     float:left;
 	flex:1;
 	margin:0px;
@@ -49,11 +52,12 @@
 {
 	flex:1;/*这里设置为占比1，填充满剩余空间*/ 
 	background:blue;
-	margin-left:10px;
-	margin-right:10px;
+	min-width:0rem;
+	margin-left:10rem;
+	margin-right:10rem;
 	margin-bottom:20px;
 	margin-top:20px;
-	background:url('/static/img/zr.jpg');
+	background:url('/static/img/cat.jpeg');
 
 	background-size: 100% 100%;
 }
