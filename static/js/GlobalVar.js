@@ -1,5 +1,6 @@
 
 //var GlobalFiles=[];
 Window.globalConfig={
-	GlobalFiles:[]
+	GlobalFiles:[],
+	remperdpi:0,
 }

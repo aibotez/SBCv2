@@ -20,19 +20,21 @@
 .NavandContent{
 	display:flex;
 	flex-flow: column;
+	height:100%;
+	overflow:hidden;
 }
-
-
 .Content{
 	display:flex;
 }
 
 .HomeContent
 {
+	display:flex;
+	flex-flow: column;
 	color: black;
-    width: 81.5%;
-	max-width:80rem;
-    height: 90%;
+	min-width:60rem;
+	max-width:100rem;
+
     float:left;
 	flex:1;
 	

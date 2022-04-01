@@ -11,7 +11,7 @@ function Match()
 	
 	let DPi = js_getDPI();
 
-
+	let dpiperrem = 0;
 	if(ScHeight>ScWidth)
 	{
 		//竖版
@@ -30,12 +30,18 @@ function Match()
 	else
 	{
 		//document.documentElement.style.fontSize = ScWidth/90+'px';
-		console.log(DPi[0]);
-		document.documentElement.style.fontSize = DPi[0]/8+'px';
+		
+		dpiperrem = DPi[0]/8;
+		document.documentElement.style.fontSize = dpiperrem+'px';
+		
+		
 		document.getElementById("div1").style.display="";
 		document.getElementById("HightModeMenu").style.display="none";
 		//document.getElementById("ShowMain").style.height = "100%";
 	}
+	alert(dpiperrem)
+	Window.globalConfig.remperdpi = 1/dpiperrem;
+
 	
 }
 

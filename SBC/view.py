@@ -207,7 +207,7 @@ def FileList(request):
     # data=filesget(paths)
     usermanage = UserManage.usermange()
     UserUsedCap = usermanage.GetUserUsedCap(LoginRes['useremail'])
-    response = render(request, "home/FileList.html", locals())
+    response = render(request, "home/FileList2.html", locals())
     response['x-content-type-options'] = 'nosniff'
     response['Content-Type'] = 'text/html; charset=UTF-8'
     response['Cache-control'] = 'no-cache'
