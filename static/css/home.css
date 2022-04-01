@@ -28,8 +28,8 @@
 
 }
 .Content{
+	flex:1;
 	display:flex;
-	
 	margin:0px;
 	overflow:scroll;
 	overflow-y:hidden;
@@ -41,23 +41,29 @@
 	display:flex;
 	flex-flow: column;
 	color: black;
-	min-width:80rem;
-	max-width:120rem;
-    float:left;
-	flex:1;
+	
+	max-width:80rem;
+	height:100%;
+    
 	margin:0px;
 	
 }
+
+.Showmainscroll
+{
+	
+	flex:1;
+}
+
 .FillContent
 {
-	flex:1;/*这里设置为占比1，填充满剩余空间*/ 
+	
 	background:blue;
 	min-width:0rem;
-	margin-left:10rem;
-	margin-right:10rem;
+	margin-left:0rem;
+	margin-right:0rem;
 	margin-bottom:20px;
 	margin-top:20px;
 	background:url('/static/img/cat.jpeg');
-
 	background-size: 100% 100%;
 }

@@ -17,11 +17,11 @@ function Match()
 		//竖版
 		document.documentElement.style.fontSize = ScWidth/60+'px';
 		
-		document.getElementById("div1").style.display="none";
+		document.getElementById("HomeMenudivLeft").style.display="none";
 		document.getElementById("HightModeMenu").style.display="";
 		//document.getElementById("FileLabel").style.width = "1000px";
 		document.getElementById("ShowMain").style.width = "100%";
-		document.getElementById("ShowMain").style.height = ScHeight-100-0.03*ScHeight+"px";
+		//document.getElementById("ShowMain").style.height = ScHeight-100-0.03*ScHeight+"px";
 		//document.getElementById("FilesData").style.width = ScWidth+"px";
 		//console.log(ScWidth);
 		
@@ -35,7 +35,7 @@ function Match()
 		document.documentElement.style.fontSize = dpiperrem+'px';
 		
 		
-		document.getElementById("div1").style.display="";
+		document.getElementById("HomeMenudivLeft").style.display="";
 		document.getElementById("HightModeMenu").style.display="none";
 		//document.getElementById("ShowMain").style.height = "100%";
 	}

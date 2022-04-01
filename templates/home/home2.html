@@ -29,6 +29,7 @@
 
         .div
         {
+            display:flex;
             position:fixed;
             top:0px;
             left:0px;
@@ -108,7 +109,7 @@
 <body style="background-color:white">
 
 <div class="div" id="div">
-    <div class="HomeMenudivLeft" id="div1">
+    <div class="HomeMenudivLeft" id="HomeMenudivLeft">
         <div class="container" style="width:100%;position:relative;">
             <div style="margin:10px">
                 <img src="/static/img/SBCCon.png" width="50px" height="50px">
@@ -362,7 +363,7 @@
 
         <div class="Content">
             <div class="HomeContent" id="ShowMain"></div>
-            <div class="FillContent"></div>
+            <div class="FillContent" id="FillContent"></div>
         </div>
 
     </div>
@@ -496,7 +497,26 @@
     RefreshFiles({'id':Base64.encode(reqs.path)});
 </script>
 
+<script>
 
+    window.onresize = function()
+    {
+        Match();
+        var ScWidth = document.documentElement.clientWidth;
+        var dpi = js_getDPI()[0];
+        RemAmount = ScWidth*Window.globalConfig.remperdpi;
+        console.log(RemAmount);
+        if (RemAmount>15+80)
+        {
+            document.getElementById("FillContent").style.display="";
+            document.getElementById("FillContent").style.width=RemAmount-15-80+"rem";
+        }
+        else
+        {
+            document.getElementById("FillContent").style.display="none";
+        }
+    }
+</script>
 
 <script>
 
