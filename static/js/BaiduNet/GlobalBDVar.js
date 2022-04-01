@@ -1,3 +1,4 @@
 Window.globalConfig={
-	GlobalBDFiles:[]
+	GlobalBDFiles:[],
+	remperdpi:0,
 }

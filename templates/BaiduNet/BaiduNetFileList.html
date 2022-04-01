@@ -1,5 +1,5 @@
 
-    <script src="/static/js/BaiduNet/GlobalBDVar.js">
+    <!--<script src="/static/js/BaiduNet/GlobalBDVar.js">-->
     <script src="/static/js/js-base64-main/base64.js">/* load */</script>
         <div class="container" id="navlist" style="height:3rem;">
             {% for navi in navlist %}
@@ -19,14 +19,14 @@
             {% endfor %}
         </div>
         <div style="border-bottom:1px solid #CCC"></div>
-        <div class="container" style="width:100%;">
+        <div class="container" style="height:2rem;width:100%;">
             <label style="font-size:1.5rem;display:block;width:58%;height:100%;color:Gray;">文件名</label>
             <label style="font-size:1.5rem;display:block;width:15%;height:100%;color:Gray;">大小</label>
             <label style="font-size:1.5rem;display:block;width:25%;height:100%;color:Gray;">修改日期</label>
         </div>
         <div style="border-bottom:1px solid #CCC"></div>
 
-        <div id="Showmainscroll" style="overflow:scroll;height:100%;width:100%;">
+        <div class="Showmainscroll" id="Showmainscroll" style="overflow:scroll;width:100%;">
             <div id="FilesData" style="width:100%;">
                 {% for filedata in bdn.list %}
                     <table border="0" style="width:100%;border:0;word-break:break-all;table-layout: fixed;">
@@ -95,17 +95,19 @@
     <script>
 
         Window.globalConfig.GlobalBDFiles = {{data|safe}};
+
         var ScWidth = document.documentElement.clientWidth;
 	    var ScHeight = document.documentElement.clientHeight;
-	    if(ScHeight>ScWidth)
-	    {   var pxperrem = ScWidth/60
-	        document.getElementById("Showmainscroll").style.height = ScHeight-100-0.03*ScHeight-3*pxperrem-3*pxperrem+"px";
-	    }
-	    else
-	    {   var pxperrem = ScWidth/90
+	    document.getElementById("Showmainscroll").style.height = ScHeight*Window.globalConfig.remperdpi-9+"rem";
+	    <!--if(ScHeight>ScWidth)-->
+	    <!--{   var pxperrem = ScWidth/60-->
+	        <!--document.getElementById("Showmainscroll").style.height = ScHeight-100-0.03*ScHeight-3*pxperrem-3*pxperrem+"px";-->
+	    <!--}-->
+	    <!--else-->
+	    <!--{   var pxperrem = ScWidth/90-->
 
-	        document.getElementById("Showmainscroll").style.height = ScHeight-4*pxperrem-5*pxperrem+"px";
-	    }
+	        <!--document.getElementById("Showmainscroll").style.height = ScHeight-4*pxperrem-5*pxperrem+"px";-->
+	    <!--}-->
 
 	    setTimeout(function(){
 　　		//ShowconDeals({{imgFiles|safe}});

@@ -69,8 +69,10 @@
     </style>
     <link rel="stylesheet" type="text/css" href="/static/css/DropdownMean.css" charset="utf-8">
     <link rel="stylesheet" type="text/css" href="/static/css/NetOperNav.css" charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/static/css/home.css" charset="utf-8">
     <script src="/static/js/jquery-3.1.1.js"></script>
     <script src="/static/js/spark-md5.min.js"></script>
+    <script type="text/javascript" src="/static/js/BaiduNet/GlobalBDVar.js"></script>
     <script src="/static/js/SendMessegetoSer.js"></script>
     <script src="/static/js/BaiduNet/BaiduNet.js"></script>
     <script src="/static/js/BaiduNet/BaiduNetRefresh.js"></script>
@@ -79,7 +81,7 @@
 <body style="background-color:white">
 
 <div class="div" id="div">
-    <div class="div1" id="div1">
+    <div class="HomeMenudivLeft" id="div1">
         <div class="container" style="width:100%;position:relative;">
             <div style="width:100%;display: flex;align-items:left;">
                 <div style="margin:10px;height:100%;">
@@ -264,68 +266,78 @@
 
     </div>
 
-    <div style="height:3%;width:100%;margin:10px">
-        <div style="display: flex;flex-wrap: wrap;position:relative;">
-            <div style="background-color:white">
-                <button id="downbutton" value="下载" style="font-size:1.5rem;width:5rem;height:3rem;border-radius:1rem;background-color:white;color:blue;" onclick="BDDownFilebyPost()">
-                    下载
-                </button>
-            </div>
-            &nbsp;
-            <div id="UpCom">
-                <input type="file" id="SelectFiles" style="display:none" multiple="multiple" onchange="onChange(event)" />
-                <input type="file" id="SelectFolder" style="display:none" onchange="onChange(event)" webkitdirectory />
-                <!--<input type="file" name="files" multiple="multiple" id="upbutton" value="上传">-->
-                <div class="menudropdown">
-                    <button id="UP" value="上传" style="font-size:1.5rem;width:5rem;height:3rem;border-radius:1rem;background-color:white;color:blue;" onclick="UpmenudropdownShow()">上传</button>
-                    <div class="menudropdown-content" id="Upmenudropdown-content" style="width:12rem;font-size:1rem;display:none;">
-                        <a href="javascript:void(0);" style="font-size:1.5rem;" onclick="document.getElementById('SelectFiles').click()">上传文件</a>
-                        <a href="javascript:void(0);" style="font-size:1.5rem;" onclick="document.getElementById('SelectFolder').click()">上传文件夹</a>
+    <div class="NavandContent">
+        <div style="height:3rem;width:100%;margin:10px">
+            <div style="display: flex;flex-wrap: wrap;position:relative;">
+                <div style="background-color:white">
+                    <button id="downbutton" value="下载" style="font-size:1.5rem;width:5rem;height:3rem;border-radius:1rem;background-color:white;color:blue;" onclick="BDDownFilebyPost()">
+                        下载
+                    </button>
+                </div>
+                &nbsp;
+                <div id="UpCom">
+                    <input type="file" id="SelectFiles" style="display:none" multiple="multiple" onchange="onChange(event)" />
+                    <input type="file" id="SelectFolder" style="display:none" onchange="onChange(event)" webkitdirectory />
+                    <!--<input type="file" name="files" multiple="multiple" id="upbutton" value="上传">-->
+                    <div class="menudropdown">
+                        <button id="UP" value="上传" style="font-size:1.5rem;width:5rem;height:3rem;border-radius:1rem;background-color:white;color:blue;" onclick="UpmenudropdownShow()">上传</button>
+                        <div class="menudropdown-content" id="Upmenudropdown-content" style="width:12rem;font-size:1rem;display:none;">
+                            <a href="javascript:void(0);" style="font-size:1.5rem;" onclick="document.getElementById('SelectFiles').click()">上传文件</a>
+                            <a href="javascript:void(0);" style="font-size:1.5rem;" onclick="document.getElementById('SelectFolder').click()">上传文件夹</a>
+                        </div>
+                    </div>
+
+                    <!--<button id="UP" value="上传" style="font-size:1.5rem;width:5rem;height:3rem;border-radius:1rem;background-color:white;color:blue;" onclick="document.getElementById('SelectFiles').click()">上传</button>-->
+                </div>
+                &nbsp;
+                <div>
+                    <button style="font-size:1.5rem;width:5rem;height:3rem;border-radius:1rem;background-color:white;color:blue;" onclick="DelFiles()">
+                        删除
+                    </button>
+                </div>
+                &nbsp;
+                <div>
+                    <button style="font-size:1.5rem;width:7rem;height:3rem;border-radius:1rem;background-color:white;color:blue;" onclick="Rename()">
+                        重命名
+                    </button>
+                </div>
+                &nbsp;
+                <div class="menudropdown" id="menudropdown">
+                    <button onclick="menudropdownShow()" style="font-size:1.5rem;cursor:pointer;width:5rem;height:3rem;border-radius:1rem;background-color:white;color:blue;">更多</button>
+                    <div class="menudropdown-content" id="menudropdown-content" style="display:none;">
+                        <a href="javascript:void(0);" onclick="NewFolder()">新建</a>
+                        <a href="javascript:void(0);" onclick="SBCShare()">分享</a>
+                        <a href="javascript:void(0);" onclick="Moveto(this)">移动</a>
+                        <a href="javascript:void(0);" onclick="Copyto(this)">复制</a>
+                        <a href="javascript:void(0);" onclick="Attribute(this)">属性</a>
                     </div>
                 </div>
 
-                <!--<button id="UP" value="上传" style="font-size:1.5rem;width:5rem;height:3rem;border-radius:1rem;background-color:white;color:blue;" onclick="document.getElementById('SelectFiles').click()">上传</button>-->
-            </div>
-            &nbsp;
-            <div>
-                <button style="font-size:1.5rem;width:5rem;height:3rem;border-radius:1rem;background-color:white;color:blue;" onclick="DelFiles()">
-                    删除
-                </button>
-            </div>
-            &nbsp;
-            <div>
-                <button style="font-size:1.5rem;width:7rem;height:3rem;border-radius:1rem;background-color:white;color:blue;" onclick="Rename()">
-                    重命名
-                </button>
-            </div>
-            &nbsp;
-            <div class="menudropdown" id="menudropdown">
-                <button onclick="menudropdownShow()" style="font-size:1.5rem;cursor:pointer;width:5rem;height:3rem;border-radius:1rem;background-color:white;color:blue;">更多</button>
-                <div class="menudropdown-content" id="menudropdown-content" style="display:none;">
-                    <a href="javascript:void(0);" onclick="NewFolder()">新建</a>
-                    <a href="javascript:void(0);" onclick="SBCShare()">分享</a>
-                    <a href="javascript:void(0);" onclick="Moveto(this)">移动</a>
-                    <a href="javascript:void(0);" onclick="Copyto(this)">复制</a>
-                    <a href="javascript:void(0);" onclick="Attribute(this)">属性</a>
+                <div class="menudropdown" id="Netdropdown" style="margin-left:0.5rem">
+                    <button onclick="NetdropdownShow()" style="font-size:1.5rem;cursor:pointer;width:8rem;height:3rem;border-radius:1rem;background-color:white;color:blue;">切换网盘</button>
+                    <div class="menudropdown-content" id="Netdropdown-content" style="display:none;">
+                        <a href="javascript:void(0);" onclick="SBCNetShow()">小黑云</a>
+                        <a href="javascript:void(0);" onclick="BaiduNetShow()">百度云</a>
+                        <a href="javascript:void(0);" onclick="AlNetShow()">阿里云</a>
+
+                    </div>
                 </div>
+
+
             </div>
 
-            <div class="menudropdown" id="Netdropdown" style="margin-left:0.5rem">
-                <button onclick="NetdropdownShow()" style="font-size:1.5rem;cursor:pointer;width:8rem;height:3rem;border-radius:1rem;background-color:white;color:blue;">切换网盘</button>
-                <div class="menudropdown-content" id="Netdropdown-content" style="display:none;">
-                    <a href="javascript:void(0);" onclick="SBCNetShow()">小黑云</a>
-                    <a href="javascript:void(0);" onclick="BaiduNetShow()">百度云</a>
-                    <a href="javascript:void(0);" onclick="AlNetShow()">阿里云</a>
+        </div>
 
-                </div>
-            </div>
-
-
+        <div class="Content">
+            <div class="HomeContent" id="ShowMain"></div>
+            <div class="FillContent"></div>
         </div>
 
     </div>
 
-    <div class="div2" id="ShowMain"></div>
+
+
+
 </div>
 
 <div class="Updetail" id="Updetails" style="display:none;border-radius:10px;border:3px solid #ECF0F1;width:420px;background-color:#FDFEFE">
@@ -449,13 +461,13 @@
    <!--var datas = document.getElementById("CurDatas").value;-->
    <!--&lt;!&ndash;console.log(datas);&ndash;&gt;-->
 <!--</script>-->
-
+<script src="/static/js/DevicesMatch.js"></script>
 <script>
     var reqs = '{{showpath|safe}}';
    	let Showpath = Base64.encode(reqs);
 	BaiduNetRefreshFiles({'id':Showpath});
 </script>
-<script src="/static/js/DevicesMatch.js"></script>
+
 <script>
 
     function menudropdownShow()
