@@ -47,5 +47,9 @@
 {
 	flex:1;/*这里设置为占比1，填充满剩余空间*/ 
 	background:blue;
-	margin:0px;
+	margin-left:10px;
+	margin-right:10px;
+	background:url('/static/img/zr.jpg');
+
+	background-size: 100% 100%;
 }
