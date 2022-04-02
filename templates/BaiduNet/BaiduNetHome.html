@@ -472,9 +472,14 @@
 
 <script>
 
+AdjustFill();
     window.onresize = function()
     {
         Match();
+        AdjustFill();
+    }
+    function AdjustFill()
+    {
         var ScWidth = document.documentElement.clientWidth;
         var dpi = js_getDPI()[0];
         RemAmount = ScWidth*Window.globalConfig.remperdpi;
