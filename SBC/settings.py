@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'FileDownUpapp',
     'SBCShareapp',
     'BaiduNetapp',
+    'UserFileRecordapp',
 ]
 
 MIDDLEWARE = [
