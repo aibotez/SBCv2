@@ -6,6 +6,7 @@ from Usersapp.models import User
 from FileDownUpapp import models
 from SBC import GetUserPath
 from SBC import UserManage
+from UserFileRecordapp import UserFileRecordManage
 
 
 
@@ -63,6 +64,12 @@ class FileUp():
             lk.mklk(dst,srcfename,dstfename)
             usermange = UserManage.usermange()
             usermange.AddUsedCap(useremail,os.path.getsize(self.FilesStock + redit['FileName']))
+
+            if not os.path.isdir(dst):
+                dstuserpath = dst + redit['FileName']
+                userfilerecordmanage = UserFileRecordManage.userfilerecordmanage()
+                userfilerecordmanage.AddNewRecord(useremail,dstuserpath)
+
             return {'exist':1}
         else:
             FileStart = 0
@@ -95,6 +102,8 @@ class FileUp():
                 os.remove(self.FilesStock + redit['FileName'])
             os.rename(self.FilesStock + feMd5,self.FilesStock + redit['FileName'])
             dst = self.getuserpath.getuserserpath(useremail,userpath)
+
+
             if not os.path.isdir(dst):
                 os.makedirs(dst)
             dstfename = redit['FileName']
@@ -105,7 +114,10 @@ class FileUp():
             usermange = UserManage.usermange()
             usermange.AddUsedCap(useremail,os.path.getsize(self.FilesStock + redit['FileName']))
 
-
+            if not os.path.isdir(dst):
+                dstuserpath = dst + redit['FileName']
+                userfilerecordmanage = UserFileRecordManage.userfilerecordmanage()
+                userfilerecordmanage.AddNewRecord(useremail,dstuserpath)
 
         #
         # if models.FilesStock.objects.filter(FileMd5=feMd5).exists():
