@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'SBCShareapp',
     'BaiduNetapp',
     'UserFileRecordapp',
+    'SBCFileSearch',
 ]
 
 MIDDLEWARE = [

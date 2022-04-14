@@ -23,6 +23,7 @@ from FileDownUpapp import views as viewDU
 from SBCShareapp import views as viewShare
 from previewapp import views as viewPre
 from BaiduNetapp import views as viewBdn
+from SBCFileSearch import views as viewSBCFS
 
 urlpatterns = [
     path('', view.Home),
@@ -63,4 +64,6 @@ urlpatterns = [
     path('GetBDDownLink/',viewBdn.GetBDDownLink),
     path('BaiduNetQuitLogin/',viewBdn.BaiduNetQuitLogin),
     path('reD/',viewBdn.reD),
+
+    path('SearchFile/',viewSBCFS.SBCSearchFile),
 ]
