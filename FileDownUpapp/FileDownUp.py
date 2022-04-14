@@ -65,10 +65,10 @@ class FileUp():
             usermange = UserManage.usermange()
             usermange.AddUsedCap(useremail,os.path.getsize(self.FilesStock + redit['FileName']))
 
-            if not os.path.isdir(dst):
-                dstuserpath = dst + redit['FileName']
-                userfilerecordmanage = UserFileRecordManage.userfilerecordmanage()
-                userfilerecordmanage.AddNewRecord(useremail,dstuserpath)
+
+            dstuserpath = dst + redit['FileName']
+            userfilerecordmanage = UserFileRecordManage.userfilerecordmanage()
+            userfilerecordmanage.AddNewRecord(useremail,dstuserpath)
 
             return {'exist':1}
         else:
