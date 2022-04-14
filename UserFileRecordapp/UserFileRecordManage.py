@@ -26,6 +26,19 @@ class userfilerecordmanage():
         for i in FindFile:
             i.delete()
 
+    def NewName(self,OldPath,NewName):
+        pathlist = OldPath.split('/')
+        if pathlist[-1] =='':
+            del pathlist[-1]
+            path = OldPath[0:-1]
+        NewPath = OldPath.replace(pathlist[-1],NewName)
+        # print(OldPath,NewPath)
+        FindFile = models.UserFileRecord.objects.filter(FilePath__icontains=OldPath)
+        for i in FindFile:
+
+            i.FilePath = i.FilePath.replace(OldPath,NewPath)
+            i.save()
+
 
 
     # students = students.filter(name__icontains=bob)

@@ -316,6 +316,9 @@ def ReName(request):
     getuserpath = GetUserPath.GetUserPath()
     userPath = getuserpath.getuserserpath(LoginRes['useremail'], ReNameInfo['OldNamePath'])
     res = fileOper.Rename(userPath ,ReNameInfo['NewName'])
+
+    userfilerecordmanage = UserFileRecordManage.userfilerecordmanage()
+    userfilerecordmanage.NewName(userPath,ReNameInfo['NewName'])
     return HttpResponse(res)
 
 
