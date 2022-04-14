@@ -5,11 +5,12 @@ class userfilerecordmanage():
     def __init__(self):
         self.filetype = FileType.FileType()
 
-    def AddNewRecord(self,useremail,path):
+    def AddNewRecord(self,useremail,path,feMd5):
 
         fetype = self.filetype.GetFileType(path)[0]
+        # if models.UserFileRecord.objects.filter(FileMd5=feMd5).exists():
         if models.UserFileRecord.objects.filter(FilePath = path).exists():
-            FindFile = models.UserFileRecord.objects.get(FilePath=path)
+            FindFile = models.UserFileRecord.objects.get(FilePath = path)
             if FindFile.useremail == useremail:
                 if FindFile.FileType == fetype:
                     return
@@ -17,7 +18,7 @@ class userfilerecordmanage():
                 FindFile.save()
                 return
 
-        models.UserFileRecord.objects.create(useremail = useremail,FileType = fetype,FilePath = path)
+        models.UserFileRecord.objects.create(FileMd5=feMd5,useremail = useremail,FileType = fetype,FilePath = path,Expansion='')
 
     # models.FilesStock.objects.create(FileMd5=feMd5, FileName=srcfename, FilePath=self.FilesStock + srcfename)
 

@@ -5,5 +5,7 @@ from django.db import models
 class UserFileRecord(models.Model):
 
     useremail = models.CharField(max_length=32)
+    FileMd5 = models.CharField(max_length=100)
     FileType = models.CharField(max_length=10)
     FilePath = models.CharField(max_length=200)
+    Expansion = models.CharField(max_length=200)

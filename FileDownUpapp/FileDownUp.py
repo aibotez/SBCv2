@@ -68,7 +68,7 @@ class FileUp():
 
             dstuserpath = dst + redit['FileName']
             userfilerecordmanage = UserFileRecordManage.userfilerecordmanage()
-            userfilerecordmanage.AddNewRecord(useremail,dstuserpath)
+            userfilerecordmanage.AddNewRecord(useremail,dstuserpath,feMd5)
 
             return {'exist':1}
         else:
