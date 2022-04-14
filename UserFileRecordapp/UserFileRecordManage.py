@@ -23,7 +23,10 @@ class userfilerecordmanage():
 
     def DelRecord(self,paths):
         FindFile = models.UserFileRecord.objects.filter(FilePath__icontains=paths)
-        print(FindFile)
+        for i in FindFile:
+            i.delete()
+
+
 
     # students = students.filter(name__icontains=bob)
     # models.UserFileRecord.objects.filter(FilePath__icontains=bob)
