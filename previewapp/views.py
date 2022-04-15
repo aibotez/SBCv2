@@ -7,7 +7,7 @@ from SBC import LoginVerfiy
 from django.http import HttpResponse,JsonResponse
 from django.http import HttpResponseRedirect
 from SBC import GetUserPath
-import base64
+import base64,json
 
 # Create your views here.
 
@@ -23,7 +23,12 @@ def preview(request):
         return HttpResponseRedirect('/login/')
     getuserpath = GetUserPath.GetUserPath()
 
-    req = {'path':request.GET['filepath']}
+    if request.method == 'GET':
+        req = {'path':request.GET['filepath']}
+    else:
+        prep = json.loads(request.body)
+        # print(json.loads(request.body),type(json.loads(request.body)))
+        req = {'path': prep['filepath']}
     path = getuserpath.userpath(req,LoginRes)[1]
     FiletypeJudge = FileType.FileType()
     filetype = FiletypeJudge.GetFileType(path)[0]
