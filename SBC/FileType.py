@@ -14,6 +14,9 @@ class FileType():
             if Types[0] == 'image':
                 fetype = ['image',Types[1]]
                 return fetype
+            if Types[0] == 'video':
+                fetype = ['video',Types[1]]
+                return fetype
             if Types[1] == 'pdf':
                 fetype = ['pdf','']
                 return fetype

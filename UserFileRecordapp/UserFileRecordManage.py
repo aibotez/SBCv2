@@ -20,6 +20,7 @@ class userfilerecordmanage():
     def AddNewRecord(self,useremail,path,feMd5):
 
         fetype = self.filetype.GetFileType(path)[0]
+
         # if models.UserFileRecord.objects.filter(FileMd5=feMd5).exists():
         FindFile = models.UserFileRecord.objects.filter(
             Q(useremail=useremail) & Q(FileType=path))
@@ -39,7 +40,7 @@ class userfilerecordmanage():
 
     # models.FilesStock.objects.create(FileMd5=feMd5, FileName=srcfename, FilePath=self.FilesStock + srcfename)
 
-    def DelRecord(self,paths):
+    def DelRecord(self,useremail,paths):
         FindFile = models.UserFileRecord.objects.filter(FilePath__icontains=paths)
         for i in FindFile:
             i.delete()
