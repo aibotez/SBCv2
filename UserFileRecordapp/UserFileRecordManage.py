@@ -2,22 +2,14 @@ from UserFileRecordapp import models
 from SBC import FileType
 from django.db.models import Q
 import os,time
+from SBC import GetUserPath
 
 class userfilerecordmanage():
     def __init__(self):
         self.filetype = FileType.FileType()
+        self.getuserpath = GetUserPath.GetUserPath()
 
-    def size_format(size):
-        if size < 1024:
-            return '%i' % size + 'size'
-        elif 1024 <= size < 1024 * 1024:
-            return '%.1f' % float(size / 1024) + 'KB'
-        elif 1024 * 1024 <= size < 1024 * 1024 * 1024:
-            return '%.1f' % float(size / (1024 * 1024)) + 'MB'
-        elif 1024 * 1024 * 1024 <= size < 1024 * 1024 * 1024 * 1024:
-            return '%.1f' % float(size / (1024 * 1024 * 1024)) + 'GB'
-        elif 1024 * 1024 * 1024 * 1024 <= size:
-            return '%.1f' % float(size / (1024 * 1024 * 1024 * 1024)) + 'TB'
+
 
     def getdate(self,fie):
         statbuf = os.stat(fie)
@@ -39,8 +31,10 @@ class userfilerecordmanage():
             FindFile.save()
             return
 
-        data = self.getdate(path)
-        Fesize = os.path.getsize(path)
+        dst = self.getuserpath.getuserserpath(useremail,path)
+        # print(dst)
+        data = self.getdate(dst)
+        Fesize = os.path.getsize(dst)
         models.UserFileRecord.objects.create(FileSize=Fesize,FileModTime=data,FileMd5=feMd5,useremail = useremail,FileType = fetype,FilePath = path,Expansion='')
 
     # models.FilesStock.objects.create(FileMd5=feMd5, FileName=srcfename, FilePath=self.FilesStock + srcfename)

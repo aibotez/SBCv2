@@ -19,14 +19,14 @@ def SBCSearchFile(request):
 
 
     SearchInfo = json.loads(request.body)
-    print(SearchInfo)
+    # print(SearchInfo)
     SearchContent = SearchInfo['SearchContent']
     SearchFileType = SearchInfo['SearchFileType']
 
     if SearchContent =='':
         SearchResult = models.UserFileRecord.objects.filter(Q(useremail = LoginRes['useremail']) & Q(FileType = SearchFileType))
-        if SearchResult.exists():
-            # SearchResult = models.UserFileRecord.objects.get(Q(useremail = LoginRes['useremail']) & Q(FileType = SearchFileType))
-            for i in SearchResult:
-                print(i.FilePath)
+        # if SearchResult.exists():
+        #     # SearchResult = models.UserFileRecord.objects.get(Q(useremail = LoginRes['useremail']) & Q(FileType = SearchFileType))
+        #     for i in SearchResult:
+        #         print(i.FilePath)
         return JsonResponse({'error':'0','data':serializers.serialize("json", SearchResult)})

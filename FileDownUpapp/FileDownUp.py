@@ -66,7 +66,7 @@ class FileUp():
             usermange.AddUsedCap(useremail,os.path.getsize(self.FilesStock + redit['FileName']))
 
 
-            dstuserpath = dst + redit['FileName']
+            dstuserpath = userpath + redit['FileName']
             userfilerecordmanage = UserFileRecordManage.userfilerecordmanage()
             userfilerecordmanage.AddNewRecord(useremail,dstuserpath,feMd5)
 
@@ -114,7 +114,7 @@ class FileUp():
             usermange = UserManage.usermange()
             usermange.AddUsedCap(useremail,os.path.getsize(self.FilesStock + redit['FileName']))
 
-            dstuserpath = dst + redit['FileName']
+            dstuserpath = userpath + redit['FileName']
             userfilerecordmanage = UserFileRecordManage.userfilerecordmanage()
             userfilerecordmanage.AddNewRecord(useremail, dstuserpath)
 
