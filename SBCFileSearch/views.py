@@ -10,7 +10,7 @@ from django.db.models import Q
 # Create your views here.
 
 
-
+from django.core import serializers
 @require_POST
 def SBCSearchFile(request):
     LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
@@ -29,4 +29,4 @@ def SBCSearchFile(request):
             # SearchResult = models.UserFileRecord.objects.get(Q(useremail = LoginRes['useremail']) & Q(FileType = SearchFileType))
             for i in SearchResult:
                 print(i.FilePath)
-    return HttpResponse('1')
+        return JsonResponse({'error':'0','data':serializers.serialize("json", SearchResult)})
