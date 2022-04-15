@@ -116,7 +116,7 @@ class FileUp():
 
             dstuserpath = userpath + redit['FileName']
             userfilerecordmanage = UserFileRecordManage.userfilerecordmanage()
-            userfilerecordmanage.AddNewRecord(useremail, dstuserpath)
+            userfilerecordmanage.AddNewRecord(useremail, dstuserpath,feMd5)
 
         #
         # if models.FilesStock.objects.filter(FileMd5=feMd5).exists():
