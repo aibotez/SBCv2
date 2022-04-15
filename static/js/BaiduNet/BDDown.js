@@ -1,6 +1,6 @@
 
 function BDDownS(DownLink,downfile) {
-	let DownS=prompt("可复制以下链接使用工具高速下载，确认为直接下载(慢速，大文件(>60MB)不推荐)",DownLink.DownLink);
+	let DownS=prompt("可复制以下链接使用工具高速下载，确认为直接下载(慢速，大文件(>50MB)不推荐)",DownLink.DownLink);
 	
 	if (DownS == null)
 	{
@@ -20,7 +20,7 @@ function DOwnAct(DownLink,downfile)
 		downurl = DownLink.DownLink;
 		FileSize = DownLink.FileSize;
 
-		if (FileSize<100*1024*1024)
+		if (FileSize<50*1024*1024)
 		{
 			let a = document.createElement('a');
 			let filename = downfile.fename;
