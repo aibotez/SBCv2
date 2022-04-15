@@ -318,7 +318,7 @@ def ReName(request):
     res = fileOper.Rename(userPath ,ReNameInfo['NewName'])
 
     userfilerecordmanage = UserFileRecordManage.userfilerecordmanage()
-    userfilerecordmanage.NewName(userPath,ReNameInfo['NewName'])
+    userfilerecordmanage.NewName(ReNameInfo['OldNamePath'],ReNameInfo['NewName'])
     return HttpResponse(res)
 
 
