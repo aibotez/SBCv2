@@ -1,6 +1,6 @@
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
-import os
+import os,hashlib
 from django.contrib.auth.decorators import login_required
 from SBC import LoginVerfiy
 from django.http import HttpResponse,JsonResponse
@@ -157,12 +157,38 @@ def filesget(paths):
         })
     return [fesdata,navpaths,imgFiles]
 
+def getfileMd5(filename):
+    if not os.path.isfile(filename):
+        return
+    myhash = hashlib.md5()
+    f = open(filename, "rb")
+    while True:
+        b = f.read(8096)
+        if not b:
+            break
+        myhash.update(b)
+    f.close()
+    return myhash.hexdigest()
+
+from SBC import GetUserPath
+@require_POST
+def GetFileMd5(request):
+    LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
+    if LoginRes['res']:
+        return HttpResponseRedirect('/login/')
+    getuserpath = GetUserPath.GetUserPath()
+    req = {'path':request.POST['path']}
+    path = getuserpath.userpath(req,LoginRes)
+    FeMd5 = getfileMd5(path[1])
+    # return HttpResponse(FeMd5)
+    return JsonResponse({'error':0,'md5':FeMd5})
+
 def getdate(fie):
     statbuf = os.stat(fie)
     date=time.strftime('%Y-%m-%d %H:%M', time.localtime(statbuf.st_mtime))
     # date= statbuf.st_mtime
     return date
-from SBC import GetUserPath
+
 def Home(request):
     LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
     if LoginRes['res']:
