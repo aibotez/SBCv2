@@ -126,14 +126,15 @@ def filesget(paths):
     for i in dirshome:
         filesonserver = serverpath + i
         fileson = path + i
-        filesize = '-'
+        filesize = -1
+        filesize1 = '-'
         isdir = 1
         filepath = fileson+'/'
         imgpath = '/static/img/foldersm.png'
         fetype = 'folder'
         if not os.path.isdir(filesonserver):
             filesize = os.path.getsize(filesonserver)
-            filesize = size_format(filesize)
+            filesize1 = size_format(filesize)
             isdir = 0
             FileJu = GetImgConPath(filesonserver)
             imgpath = FileJu[0]
@@ -149,7 +150,8 @@ def filesget(paths):
         fesdata.append({
             'filename':i,
             'filelj':filepath,
-            'big':filesize,
+            'big':filesize1,
+            'size':filesize,
             'date':getdate(filesonserver),
             'isdir':isdir,
             'imgpath':imgpath,
