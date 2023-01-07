@@ -1,1 +1,1 @@
-python manage.py runserver 0.0.0.0:90 --insecure"
+python manage.py runserver [2408:8244:520:1db0:1e02::577]:90 --insecure"

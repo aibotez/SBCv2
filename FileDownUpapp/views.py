@@ -1,3 +1,5 @@
+import json
+
 from django.shortcuts import render
 from django.views.decorators.http import require_GET, require_http_methods, require_POST
 from SBC import LoginVerfiy
@@ -22,6 +24,26 @@ def FileDown(request):
     downinfo = getuserpath.GetDownPath(downinfo,LoginRes)
     FileDowUpCOm = FileDownUp.FileDU()
     res = FileDowUpCOm.Down(downinfo)
+    return res
+def FileDown1(request):
+    # print(request.POST)
+    LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
+    if LoginRes['res']:
+        return HttpResponseRedirect('/login/')
+
+    # print(request.body)
+
+    if request.method == 'POST':
+        downinfo = json.loads(request.body)
+        downinfo = downinfo['downinfo']
+    else:
+        downinfo = request.GET['downinfo']
+    downinfo = json.dumps(downinfo)
+    getuserpath = GetUserPath.GetUserPath()
+    downinfo = getuserpath.GetDownPath(downinfo,LoginRes)
+    print(downinfo)
+    FileDowUpCOm = FileDownUp.FileDU()
+    res = FileDowUpCOm.Down1(downinfo)
     return res
 
 

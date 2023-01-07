@@ -148,6 +148,15 @@ class FileDU():
                     yield c
                 else:
                     break
+    def file_iterator1(self,file_name, file_seek,chunk_size=2 * 1024 * 1024):
+        with open(file_name, 'rb') as f:
+            f.seek(file_seek,os.SEEK_SET)
+            while True:
+                c = f.read(chunk_size)
+                if c:
+                    yield c
+                else:
+                    break
 
     def Down(self,FileInfo):
 
@@ -159,6 +168,19 @@ class FileDU():
         response = FileResponse(response)
         response['Content-Type'] = 'application/octet-stream'
         response['content-length'] = os.path.getsize(the_file_path)
+        #response['Content-Disposition'] = 'attachment;filename="{0}"'.format(wjname)
+        response["Content-Disposition"] = "attachment; filename*=UTF-8''{}".format(escape_uri_path(the_file_name))
+        return response
+
+
+    def Down1(self,FileInfo):
+        the_file_name = FileInfo['fename']
+        the_file_path = FileInfo['fepath']
+        file_seek = FileInfo['feseek']
+        response = StreamingHttpResponse(self.file_iterator1(the_file_path,file_seek))
+        response = FileResponse(response)
+        response['Content-Type'] = 'application/octet-stream'
+        response['content-length'] = os.path.getsize(the_file_path)-file_seek
         #response['Content-Disposition'] = 'attachment;filename="{0}"'.format(wjname)
         response["Content-Disposition"] = "attachment; filename*=UTF-8''{}".format(escape_uri_path(the_file_name))
         return response

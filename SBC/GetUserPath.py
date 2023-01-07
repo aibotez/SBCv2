@@ -15,7 +15,9 @@ class GetUserPath():
         filedownpath = self.ServerHomePath+useremail+path.replace('/home','')
         filedownname = DownReInfo['fename']
         # print(filedownpath,filedownname)
-        return {'fename':filedownname,'fepath':filedownpath}
+        DownReInfo['fepath'] = filedownpath
+        return DownReInfo
+        # return {'fename':filedownname,'fepath':filedownpath}
 
     def getuserserpath(self,useremail,userpath):
         spath = userpath.replace('/home', '')
