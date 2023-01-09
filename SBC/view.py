@@ -107,6 +107,24 @@ def GetImgConPath(fepath):
     except Exception as e:
         print(e)
     return ['/static/img/wj.jfif','other']
+
+def GetFileInfo(path):
+    # path = paths[0]
+    serverpath = path
+    FileJu = GetImgConPath(serverpath)
+    imgpath = FileJu[0]
+    fetype = FileJu[1]
+    fedata={
+        'filename': os.path.basename(serverpath),
+        'filelj': path,
+        # 'big': filesize1,
+        'size': os.path.getsize(serverpath),
+        'date': getdate(serverpath),
+        'isdir': 0,
+        'imgpath': imgpath,
+        'fetype': fetype,
+    }
+    return fedata
 def filesget(paths):
     path = paths[0]
     serverpath = paths[1]
@@ -241,6 +259,33 @@ def FileList(request):
     response['Content-Type'] = 'text/html; charset=UTF-8'
     response['Cache-control'] = 'no-cache'
     return response
+
+
+def GetAllFiles(path):
+    Files = []
+    path = path[1].replace('\\', '/')
+    for root, dirs, files in os.walk(path):
+        root = root.replace('\\', '/')
+        fapath = root.replace(path, '')
+        for i in files:
+            fepath = root + i
+            FileInfo = GetFileInfo(fepath)
+            FileInfo['fapath'] = fapath
+            FileInfo['fapath'] = fapath
+            Files.append(FileInfo)
+    return Files
+@require_POST
+def GetAllFilesfromFolder(request):
+    LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
+    if LoginRes['res']:
+        return HttpResponseRedirect('/login/')
+    res = {'errnor':'1'}
+    getuserpath = GetUserPath.GetUserPath()
+    req = {'path':request.POST['path']}
+    paths = getuserpath.userpath(req,LoginRes)
+    fileinfo = GetAllFiles(paths)
+    res = {'Files':fileinfo}
+    return JsonResponse(res)
 
 
 @require_POST

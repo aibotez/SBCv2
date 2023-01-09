@@ -148,7 +148,7 @@ class FileDU():
                     yield c
                 else:
                     break
-    def file_iterator1(self,file_name, file_seek,chunk_size=2 * 1024 * 1024):
+    def file_iterator1(self,file_name, file_seek,chunk_size=20 * 1024 * 1024):
         with open(file_name, 'rb') as f:
             f.seek(file_seek,os.SEEK_SET)
             while True:
