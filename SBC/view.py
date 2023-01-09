@@ -272,7 +272,7 @@ def GetAllFiles(paths):
         for i in files:
             fepath = root + i
             FileInfo = GetFileInfo(fepath)
-            FileInfo['fepath'] = paths[0]+fapath
+            FileInfo['fepath'] = paths[0]+fapath+i
             FileInfo['fapath'] = fapath
             Files.append(FileInfo)
     return Files
