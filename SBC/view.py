@@ -116,7 +116,9 @@ def GetFileInfo(path):
     fetype = FileJu[1]
     fedata={
         'filename': os.path.basename(serverpath),
-        'filelj': path,
+        'fename':os.path.basename(serverpath),
+
+        # 'filelj': path,
         # 'big': filesize1,
         'size': os.path.getsize(serverpath),
         'date': getdate(serverpath),
@@ -261,16 +263,16 @@ def FileList(request):
     return response
 
 
-def GetAllFiles(path):
+def GetAllFiles(paths):
     Files = []
-    path = path[1].replace('\\', '/')
+    path = paths[1].replace('\\', '/')
     for root, dirs, files in os.walk(path):
         root = root.replace('\\', '/')
         fapath = root.replace(path, '')
         for i in files:
             fepath = root + i
             FileInfo = GetFileInfo(fepath)
-            FileInfo['fapath'] = fapath
+            FileInfo['fepath'] = paths[0]+fapath
             FileInfo['fapath'] = fapath
             Files.append(FileInfo)
     return Files
