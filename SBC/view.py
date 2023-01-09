@@ -267,10 +267,12 @@ def GetAllFiles(paths):
     Files = []
     path = paths[1].replace('\\', '/')
     for root, dirs, files in os.walk(path):
-        root = root.replace('\\', '/')
+        root += '/'
+        root = root.replace('\\', '/').replace('//','/')
         fapath = root.replace(path, '')
         for i in files:
             fepath = root + i
+
             FileInfo = GetFileInfo(fepath)
             FileInfo['fepath'] = paths[0]+fapath+i
             FileInfo['fapath'] = fapath
