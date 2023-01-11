@@ -23,7 +23,7 @@ class userfilerecordmanage():
 
         # if models.UserFileRecord.objects.filter(FileMd5=feMd5).exists():
         FindFile = models.UserFileRecord.objects.filter(
-            Q(useremail=useremail) & Q(FileType=path))
+            Q(useremail=useremail) & Q(FilePath=path))
         if FindFile.exists():
             FindFile = models.UserFileRecord.objects.get(FilePath = path)
             if FindFile.FileType == fetype:
