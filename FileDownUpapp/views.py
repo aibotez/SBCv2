@@ -85,3 +85,22 @@ def FileUp(request):
     #     for chunk in file_obj.chunks(chunk_size=2 * 1024 * 1024):
     #         f.write(chunk)
     return HttpResponse('1')
+@require_POST
+def FileUp1(request):
+    LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
+    if LoginRes['res']:
+        return HttpResponseRedirect('/login/')
+    FileInfo = json.loads(request.POST['FileInfo'])
+    # print(FileInfo)
+    # print(request.POST)
+    # FileInfo = json.loads(request.body)
+    # print(request.body.get())
+    FileSize = int(FileInfo['FileSize'])
+    usermange = UserManage.usermange()
+    if usermange.Capisfull(LoginRes['useremail'],FileSize):
+        return HttpResponse('FULL')
+    file_obj = request.FILES.get("file")
+
+    FileDowUpCOm = FileDownUp.FileUp()
+    FileDowUpCOm.Upfile1(FileInfo,LoginRes['useremail'],file_obj)
+    return HttpResponse('1')

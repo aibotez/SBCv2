@@ -45,6 +45,7 @@ urlpatterns = [
     path('FileDown1/',viewDU.FileDown1),
 
     path('Upfile/',viewDU.FileUp),
+    path('Upfile1/',viewDU.FileUp1),
     path('CheckFile/',viewDU.CheckFile),
     path('GetVcode/',views.GetVcode),
     path('VerifyVcode/',views.VerifyVcode),
