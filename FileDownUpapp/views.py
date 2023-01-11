@@ -90,11 +90,13 @@ def FileUp1(request):
     LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
     if LoginRes['res']:
         return HttpResponseRedirect('/login/')
-    FileInfo = json.loads(request.POST['FileInfo'])
-    # print(FileInfo)
+
     # print(request.POST)
-    # FileInfo = json.loads(request.body)
-    # print(request.body.get())
+    # print('REQUs', request.FILES)
+    FileInfo = json.loads(request.POST['FileInfo'])
+    # print(request.POST)
+    # # FileInfo = json.loads(request.body)
+    # # print(request.body.get())
     FileSize = int(FileInfo['FileSize'])
     usermange = UserManage.usermange()
     if usermange.Capisfull(LoginRes['useremail'],FileSize):

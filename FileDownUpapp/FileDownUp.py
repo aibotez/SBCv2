@@ -86,7 +86,6 @@ class FileUp():
     def Upfile1(self,redit,useremail,file_obj):
         feMd5 = redit['FileMd5']
         userpath = redit['CurPath']
-        print(self.FilesStock + feMd5)
         with open(self.FilesStock + feMd5, "ab") as f:
             # f.seek(0,2)
             for chunk in file_obj.chunks(chunk_size=2 * 1024 * 1024):
