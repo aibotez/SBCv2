@@ -324,10 +324,13 @@ def DelFiles(request):
     if LoginRes['res']:
         return HttpResponseRedirect('/login/')
     DelFilesInfo = {}
-    DelFilesStr = request.POST.dict()
-    # print(DelFilesStr)
-    for k in DelFilesStr.keys():
-        DelFilesInfo = json.loads(k)
+    if 'client' in json.loads(request.body):
+        DelFilesInfo = json.loads(request.body)
+    else:
+        DelFilesStr = request.POST.dict()
+        print(json.loads(request.body))
+        for k in DelFilesStr.keys():
+            DelFilesInfo = json.loads(k)
 
     DelFilesList = DelFilesInfo['data']
     getuserpath = GetUserPath.GetUserPath()

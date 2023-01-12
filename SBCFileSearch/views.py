@@ -25,6 +25,7 @@ def SBCSearchFile(request):
 
     if SearchContent =='':
         SearchResult = models.UserFileRecord.objects.filter(Q(useremail = LoginRes['useremail']) & Q(FileType = SearchFileType))
+
         # if SearchResult.exists():
         #     # SearchResult = models.UserFileRecord.objects.get(Q(useremail = LoginRes['useremail']) & Q(FileType = SearchFileType))
         #     for i in SearchResult:
