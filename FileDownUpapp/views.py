@@ -54,6 +54,7 @@ def CheckFile(request):
         return HttpResponseRedirect('/login/')
     # print(json.loads(request.body))
     # print(request.POST)
+    # print(request.data)
     FileSize = int(request.POST['FileSize'])
     usermange = UserManage.usermange()
     if usermange.Capisfull(LoginRes['useremail'],FileSize):
