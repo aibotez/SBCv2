@@ -93,8 +93,13 @@ def FileUp1(request):
         return HttpResponseRedirect('/login/')
 
     # print(request.POST)
+    # return HttpResponse('1')
     # print('REQUs', request.FILES)
-    FileInfo = json.loads(request.POST['FileInfo'])
+    try:
+        FileInfo = json.loads(request.POST['FileInfo'])
+    except:
+        return HttpResponse('0')
+    # FileInfo = json.loads(request.POST['FileInfo'])
     # print(request.POST)
     # # FileInfo = json.loads(request.body)
     # # print(request.body.get())
@@ -102,6 +107,7 @@ def FileUp1(request):
     usermange = UserManage.usermange()
     if usermange.Capisfull(LoginRes['useremail'],FileSize):
         return HttpResponse('FULL')
+
     file_obj = request.FILES.get("file")
 
     FileDowUpCOm = FileDownUp.FileUp()
