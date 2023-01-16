@@ -141,6 +141,7 @@ def filesget(paths):
         navpaths.append({'navname':i,'path':s,'pathId':Npath})
 
     dirshome = os.listdir(serverpath)
+    # dirshome.sort(key=lambda file: os.path.getctime(os.path.join(serverpath, file)))
     fesdata=[]
     imgFiles = []
     for i in dirshome:
@@ -173,6 +174,7 @@ def filesget(paths):
             'big':filesize1,
             'size':filesize,
             'date':getdate(filesonserver),
+            'date0':os.stat(filesonserver).st_mtime,
             'isdir':isdir,
             'imgpath':imgpath,
             'fetype':fetype,

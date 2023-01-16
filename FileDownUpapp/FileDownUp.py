@@ -31,8 +31,10 @@ class FileUp():
         self.FilesInfo=None
         # self.FilesStock = 'D:/documents/GitStock/SBCuserTest/FilesStock/'
         # self.FileServerHome = 'D:/documents/GitStock/SBCuserTest/'
-        self.FilesStock = 'C:/SBC/SBCStock/'
-        self.FileServerHome = 'C:/SBC/SBCUsers/'
+        # self.FilesStock = 'C:/SBC/SBCStock/'
+        # self.FileServerHome = 'C:/SBC/SBCUsers/'
+        self.FilesStock = 'D:/SBC/SBCStock/'
+        self.FileServerHome = 'D:/SBC/SBCUsers/'
         self.getuserpath = GetUserPath.GetUserPath()
 
     def GetFileMd5(self,filename):

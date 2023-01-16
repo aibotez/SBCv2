@@ -33,7 +33,9 @@ def preview(request):
     FiletypeJudge = FileType.FileType()
     filetype = FiletypeJudge.GetFileType(path)[0]
     if filetype == 'image':
+
         image_data = open(path, "rb").read()
+
         return HttpResponse(image_data, content_type="image/png")
     if filetype == 'pdf':
         # pdfbase64 = "data:application/pdf;base64," + GetFeBase64(path)
