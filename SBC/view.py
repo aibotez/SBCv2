@@ -144,6 +144,8 @@ def filesget(paths):
     # dirshome.sort(key=lambda file: os.path.getctime(os.path.join(serverpath, file)))
     fesdata=[]
     imgFiles = []
+    dirlist = []
+    felist = []
     for i in dirshome:
         filesonserver = serverpath + i
         fileson = path + i
@@ -166,9 +168,7 @@ def filesget(paths):
             filepath = fileson
         filepath = base64.encodebytes(filepath.encode('utf8')).decode()
         filepath = filepath.replace('\n','')
-        # print(filepath,type(filepath))
-        # decode_str = base64.decodebytes(encode_str).decode()
-        fesdata.append({
+        feinfo = {
             'filename':i,
             'filelj':filepath,
             'big':filesize1,
@@ -178,7 +178,13 @@ def filesget(paths):
             'isdir':isdir,
             'imgpath':imgpath,
             'fetype':fetype,
-        })
+        }
+        fesdata.append(feinfo)
+        if os.path.isdir(filesonserver):
+            dirlist.append(feinfo)
+        else:
+            felist.append(feinfo)
+    # return [{'dir':dirlist,'fe':felist}, navpaths, imgFiles]
     return [fesdata,navpaths,imgFiles]
 
 def getfileMd5(filename):
