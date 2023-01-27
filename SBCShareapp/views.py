@@ -14,7 +14,10 @@ def CreatShareFile(request):
     LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
     if LoginRes['res']:
         return HttpResponseRedirect('/login/')
-    ShareFileInfo = json.loads(list(request.POST.keys())[0])
+    try:
+        ShareFileInfo = json.loads(list(request.POST.keys())[0])
+    except:
+        ShareFileInfo = json.loads(request.body)
     # print(ShareFileInfo)
     req = request.POST.dict()
     CurUrl = request.get_host()
