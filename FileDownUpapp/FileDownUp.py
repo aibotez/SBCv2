@@ -14,7 +14,7 @@ from UserFileRecordapp import UserFileRecordManage
 class MakeLink():
     def __init__(self):
         # self.FilesStock = r'D:\documents\GitStock\SBCuserTest\FilesStock'
-        self.FilesStock = r'C:\SBC\SBCStock'
+        self.FilesStock = r'D:\SBC\SBCStock'
 
     def mklk(self,dst,srcfename,dstfename):
         # dstDirs = r'D:\documents\GitStock\SBCuserTest\2290227486@qq.com'
