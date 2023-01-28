@@ -35,10 +35,20 @@ class netOper():
         movefilesinfo = postdatas['movefilesinfo']
         for i in movefilesinfo:
             movefepath = getuserpath.getuserserpath(useremail,i['fepath'])
-            if i['isdir']:
-                shutil.copytree(movefepath,move2path+i['fename'])
-            else:
-                shutil.copyfile(movefepath,move2path+i['fename'])
+            try:
+                os.remove(move2path+i['fename'])
+            except:
+                shutil.rmtree(move2path+i['fename'])
+                pass
+            try:
+                if i['isdir']:
+                    shutil.copytree(movefepath,move2path+i['fename'],symlinks=True)
+                    shutil.rmtree(movefepath)
+                else:
+                    shutil.copyfile(movefepath,move2path+i['fename'],follow_symlinks=False)
+                    os.remove(movefepath)
+            except Exception as e:
+                print(e)
         return 1
 
     def NewFolder(self,useremail,postdatas):
