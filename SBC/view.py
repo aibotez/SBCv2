@@ -416,7 +416,13 @@ def netOper(request):
     if LoginRes['res']:
         return HttpResponseRedirect('/login/')
     netoper = FileOper.netOper()
-    res = netoper.netOperMain(LoginRes['useremail'],request.POST.dict())
+    try:
+        info = request.POST.dict()
+        if 'netOper 'not in info:
+            info = json.loads(request.body)
+    except:
+        info = json.loads(request.body)
+    res = netoper.netOperMain(LoginRes['useremail'],info)
     return HttpResponse(res)
 
 @require_POST

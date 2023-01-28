@@ -1,4 +1,4 @@
-import os
+import os,shutil
 from SBC import GetUserPath
 
 class FileOper():
@@ -26,6 +26,20 @@ class netOper():
         if postdatas['netOper'] == 'NewFilder':
             self.NewFolder(useremail,postdatas)
             return 1
+        if postdatas['netOper'] == 'MoveFile':
+            self.MoveFile(useremail,postdatas)
+            return 1
+    def MoveFile(self,useremail,postdatas):
+        getuserpath = GetUserPath.GetUserPath()
+        move2path = getuserpath.getuserserpath(useremail, postdatas['move2path'])
+        movefilesinfo = postdatas['movefilesinfo']
+        for i in movefilesinfo:
+            movefepath = getuserpath.getuserserpath(useremail,i['fepath'])
+            if i['isdir']:
+                shutil.copytree(movefepath,move2path+i['fename'])
+            else:
+                shutil.copyfile(movefepath,move2path+i['fename'])
+        return 1
 
     def NewFolder(self,useremail,postdatas):
         getuserpath = GetUserPath.GetUserPath()
