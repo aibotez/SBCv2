@@ -318,6 +318,35 @@ def GetFileListbyClient(request):
 
 
 
+def GetFilePorper(request):
+    LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
+    if LoginRes['res']:
+        return HttpResponseRedirect('/login/')
+    File = json.loads(request.body)
+    getuserpath = GetUserPath.GetUserPath()
+    paths = getuserpath.userpath(File,LoginRes)
+    serverpath = paths[1]
+    size = 0
+    FolderNums = -1
+    FileNUms = 0
+    if File['isdir']:
+        for root, dirs, files in os.walk(serverpath):
+            FileNUms += len(files)
+            FolderNums += 1
+            size += sum([os.path.getsize(os.path.join(root, name)) for name in files])
+    else:
+        size = File['size']
+    statbuf = os.stat(serverpath)
+    Modfdate=time.strftime('%Y-%m-%d %H:%M', time.localtime(statbuf.st_mtime))
+    Crefdate = time.strftime('%Y-%m-%d %H:%M', time.localtime(statbuf.st_ctime))
+    res = File
+    res['mtime'] = Modfdate
+    res['ctime'] = Crefdate
+    res['size'] = size
+    res['FolderNums'] = FolderNums
+    res['FileNUms'] = FileNUms
+    return JsonResponse(res)
+
 
 
 def getdirsize(dir):

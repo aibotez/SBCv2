@@ -40,6 +40,7 @@ urlpatterns = [
     path('GetFileListbyClient/',view.GetFileListbyClient),
     path('GetAllFilesfromFolder/',view.GetAllFilesfromFolder),
     path('GetFileMd5/',view.GetFileMd5),
+    path('GetFilePorper/',view.GetFilePorper),
 
     path('FileDown/',viewDU.FileDown),
     path('FileDown1/',viewDU.FileDown1),
