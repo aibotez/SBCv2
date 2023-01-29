@@ -33,7 +33,7 @@ class ShareManage():
         # paths = getuserpath.userpath(req, LoginRes)
         ShareFileInfostr = json.dumps(ShareFileInfo)
 
-        if SBCShare.objects.filter(ShareFileInfo=ShareFileInfostr).exists() :
+        if SBCShare.objects.filter(ShareFileInfo=ShareFileInfostr).exists():
             ShareData = SBCShare.objects.get(ShareFileInfo=ShareFileInfostr)
             if ShareData.useremail == userEmail:
                 return 'http://'+CurUrl+'/?SBCShare='+ShareData.ShareLink
@@ -44,5 +44,37 @@ class ShareManage():
         ShareCode = self.CreatShareCode()
         SBCShare.objects.create(ShareLink=ShareCode, ShareFileInfo=json.dumps(ShareFileInfo),
                                 useremail=userEmail,password=ShareFileInfo['SharePass'], ShareTime=curtime, toUser='0')
-        return 'http://'+CurUrl+'/?SBCShare='+ShareCode
+        return 'http://'+CurUrl+'/SBCShare/?SBCShare='+ShareCode
+
+    def checksharexist(self,sharelink):
+        if SBCShare.objects.filter(ShareLink=sharelink).exists():
+            return 1
+        return 0
+
+    def GetShareOutTime(self,shartime,durtime):
+        if '7天' in durtime or '周' in durtime:
+            return shartime + 7*24*60*60
+        elif '1天' in durtime:
+            return shartime + 1 * 24 * 60 * 60
+        elif '1个月' in durtime:
+            return shartime + 30 * 24 * 60 * 60
+        elif '永久' in durtime:
+            return shartime + 100 * 12 * 30 * 24 * 60 * 60
+
+    def checksharetimeout(self,sharelink):
+        ShareData = SBCShare.objects.get(ShareLink=sharelink)
+        sharetime = ShareData.ShareTime
+        shareinfo = json.loads(ShareData.ShareFileInfo)
+        shareOuttime = self.GetShareOutTime(sharetime,shareinfo['ShareDateDur'])
+        if shareOuttime < time.time():
+            return None
+        return shareinfo
+    def GetShareInfo(self,sharelink):
+        if not self.checksharexist(sharelink):
+            return '分享不存在'
+        shareinfo = self.checksharetimeout(sharelink)
+        if not shareinfo:
+            return '分享已超时'
+        ShareFilesInfo = shareinfo['ShareFile']
+
 

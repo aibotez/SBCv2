@@ -60,6 +60,7 @@ urlpatterns = [
 
     path('CreatShareFile/',viewShare.CreatShareFile),
     path('SBCShare/',viewShare.SBCShareShow),
+    # path('GetSBCShareFile/',viewShare.GetShareFile),
 
     path('preview/',viewPre.preview),
 

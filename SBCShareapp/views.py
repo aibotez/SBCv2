@@ -25,6 +25,14 @@ def CreatShareFile(request):
     res = SBCShareManages.CreatShareUrl(ShareFileInfo,LoginRes,CurUrl)
     return JsonResponse({'res':res})
     # return HttpResponse()
+def GetShareFile(request):
+    ShareLink = request.GET['SBCShare']
+
 
 def SBCShareShow(request):
+    data = request.GET
+    SBCShareManages = SBCShareManage.ShareManage()
+    if 'client' in data:
+        ShareLink = request.GET['SBCShare']
+        res = SBCShareManages.GetShareInfo(ShareLink)
     return render(request,'SBCShare/SBCShare.html')
