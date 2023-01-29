@@ -38,11 +38,12 @@ class netOper():
         movefilesinfo = postdatas['movefilesinfo']
         for i in movefilesinfo:
             movefepath = getuserpath.getuserserpath(useremail,i['fepath'])
-            try:
-                os.remove(move2path+i['fename'])
-            except:
-                shutil.rmtree(move2path+i['fename'])
-                pass
+            if i['isdir']:
+                if os.path.isdir(move2path+i['fename']):
+                    shutil.rmtree(move2path + i['fename'])
+            else:
+                if os.path.exists(move2path+i['fename']):
+                    os.remove(move2path + i['fename'])
             try:
                 if i['isdir']:
                     shutil.copytree(movefepath,move2path+i['fename'],symlinks=True)
