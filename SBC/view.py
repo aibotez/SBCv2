@@ -416,9 +416,10 @@ def netOper(request):
     if LoginRes['res']:
         return HttpResponseRedirect('/login/')
     netoper = FileOper.netOper()
+
     try:
         info = request.POST.dict()
-        if 'netOper 'not in info:
+        if 'netOper' not in info:
             info = json.loads(request.body)
     except:
         info = json.loads(request.body)
