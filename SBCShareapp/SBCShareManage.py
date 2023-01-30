@@ -86,7 +86,7 @@ class ShareManage():
             shareCurPath = shareCurPath[0:-1]
         shareFaPath = shareCurPath.split('/')
         del shareFaPath[0]
-        del shareFaPath[0-1]
+        del shareFaPath[-1]
         shareFaPath = '/'+'/'.join(shareFaPath)
         ShareFileInfo['shareFaPath'] = shareFaPath
         for i in range(len(ShareFileInfo['ShareFile'])):
