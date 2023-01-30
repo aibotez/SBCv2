@@ -3,6 +3,7 @@ import hashlib
 from SBCShareapp.models import SBCShare
 from SBC import GetUserPath
 from SBC import GetUserPath
+from SBC import FileType
 
 
 def size_format(size):
@@ -16,6 +17,42 @@ def size_format(size):
         return '%.1f' % float(size/(1024*1024*1024)) + 'GB'
     elif 1024*1024*1024*1024 <= size:
         return '%.1f' % float(size/(1024*1024*1024*1024)) + 'TB'
+def GetImgConPath(fepath):
+    filtypeOb = FileType.FileType()
+    # fetypes = mimetypes.guess_type(fepath)
+    # print(fepath,fetypes)
+    try:
+        fetype = filtypeOb.GetFileType(fepath)
+        # fetype = fetypes[0].split('/')[0]
+        if fetype[0] == 'image':
+            path = '/static/img/filecon/imgcon.jpg'
+            return [path,'img']
+            # imgtype = fetype[1]
+            # return GetImgconBase64(fepath,imgtype)
+        if fetype[0] == 'pdf':
+            path = '/static/img/filecon/pdfcon.jpg'
+            return [path,'pdf']
+        if fetype[0] == 'word':
+            path = '/static/img/filecon/wordcon.jpg'
+            return [path,'word']
+        if fetype[0] == 'ppt':
+            path = '/static/img/filecon/pptcon.jpg'
+            return [path,'ppt']
+        if fetype[0] == 'excel':
+            path = '/static/img/filecon/excelcon.jpg'
+            return [path,'excel']
+        if fetype[0] == 'zip':
+            path = '/static/img/filecon/zipcon.png'
+            return [path,'zip']
+        if fetype[0] == 'html':
+            path = '/static/img/filecon/htmlcon.jpg'
+            return [path,'html']
+        if fetype[0] == 'exe':
+            path = '/static/img/filecon/execon.jpg'
+            return [path,'exe']
+    except Exception as e:
+        print(e)
+    return ['/static/img/wj.jfif','other']
 class ShareManage():
     def __init__(self):
         self.RangeNums = []
@@ -121,7 +158,13 @@ class ShareManage():
             return 'passworderror'
         ShareFilesInfo = shareinfo['ShareFile']
         if path:
-            ShareFilesInfo = [{'fepath':path}]
+            userpath = shareinfo['shareFaPath']+path
+            SerPath = self.getuserpath.getuserserpath(shareinfo['useremail'], userpath)
+            Fes = os.listdir(SerPath)
+            ShareFilesInfo = []
+            for i in Fes:
+                fe = {'fepath':path+'/'+i}
+                ShareFilesInfo.append(fe)
 
         FilesInfo = []
         for i in ShareFilesInfo:
@@ -131,15 +174,21 @@ class ShareManage():
             userpath = shareinfo['shareFaPath']+i['fepath']
             SerPath = self.getuserpath.getuserserpath(shareinfo['useremail'], userpath)
             ShareFile['isdir'] = 0
+            fetype = 'folder'
             if os.path.isdir(SerPath):
                 ShareFile['isdir'] = 1
-            ShareFile['date'] = self.getdate(SerPath)
-            if not ShareFile['isdir']:
+            else:
                 size = os.path.getsize(SerPath)
                 big = size_format(size)
+                FileJu = GetImgConPath(SerPath)
+                fetype = FileJu[1]
+            ShareFile['date'] = self.getdate(SerPath)
             ShareFile['size'] = size
             ShareFile['big'] = big
+            ShareFile['ShareLink'] =sharelink
+            ShareFile['fename'] = i['fepath'].split('/')[-1]
             FilesInfo.append(ShareFile)
+            ShareFile['fetype'] = fetype
         return FilesInfo
 
 
