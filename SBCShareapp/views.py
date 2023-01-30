@@ -29,10 +29,26 @@ def GetShareFile(request):
     ShareLink = request.GET['SBCShare']
 
 
+
+def SBCShareCheckPass(request):
+    data = request.GET
+    ShareLink = data['ShareLink']
+    Password = data['PassWord']
+    SBCShareManages = SBCShareManage.ShareManage()
+    res = SBCShareManages.GetShareInfo(ShareLink)
+    return JsonResponse({'res': res})
+
 def SBCShareShow(request):
     data = request.GET
     SBCShareManages = SBCShareManage.ShareManage()
+    ShareLink = request.GET['SBCShare']
+
+    res = SBCShareManages.ShareCheck(ShareLink)
+    if res !='pass':
+        return JsonResponse({'check': res,'ShareLink':ShareLink})
+
     if 'client' in data:
-        ShareLink = request.GET['SBCShare']
         res = SBCShareManages.GetShareInfo(ShareLink)
+        return JsonResponse({'res': res})
+
     return render(request,'SBCShare/SBCShare.html')
