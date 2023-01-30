@@ -30,12 +30,13 @@ def GetShareFile(request):
 
 
 
-def SBCShareCheckPass(request):
+def GetSBCShareFile(request):
     data = request.GET
     ShareLink = data['ShareLink']
     Password = data['PassWord']
+    Path = data['path']
     SBCShareManages = SBCShareManage.ShareManage()
-    res = SBCShareManages.GetShareInfo(ShareLink)
+    res = SBCShareManages.GetShareInfo(ShareLink,Password,Path)
     return JsonResponse({'res': res})
 
 def SBCShareShow(request):

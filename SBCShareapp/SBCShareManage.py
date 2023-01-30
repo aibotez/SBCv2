@@ -52,7 +52,10 @@ class ShareManage():
         shareFaPath = '/'+'/'.join(shareFaPath)
         ShareFileInfo['shareFaPath'] = shareFaPath
         for i in range(len(ShareFileInfo['ShareFile'])):
-            ShareFileInfo['ShareFile'][i]['fepath'] = ShareFileInfo['ShareFile'][i]['fepath'].replace(shareFaPath,'')
+            Path = ShareFileInfo['ShareFile'][i]['fepath']
+            if ShareFileInfo['ShareFile'][i]['isdir']:
+                Path = ShareFileInfo['ShareFile'][i]['fepath'][0:-1]
+            ShareFileInfo['ShareFile'][i]['fepath'] = Path.replace(shareFaPath,'')
 
         # getuserpath = GetUserPath.GetUserPath()
         # paths = getuserpath.userpath(req, LoginRes)
@@ -111,12 +114,15 @@ class ShareManage():
         date = time.strftime('%Y-%m-%d %H:%M', time.localtime(statbuf.st_mtime))
         # date= statbuf.st_mtime
         return date
-    def GetShareInfo(self,sharelink,password=None):
+    def GetShareInfo(self,sharelink,password=None,path = None):
         shareinfo = self.checksharetimeout(sharelink)
         SharePass = shareinfo['SharePass']
         if SharePass and password != SharePass:
             return 'passworderror'
         ShareFilesInfo = shareinfo['ShareFile']
+        if path:
+            ShareFilesInfo = [{'fepath':path}]
+
         FilesInfo = []
         for i in ShareFilesInfo:
             size = -1
@@ -124,8 +130,11 @@ class ShareManage():
             ShareFile = i
             userpath = shareinfo['shareFaPath']+i['fepath']
             SerPath = self.getuserpath.getuserserpath(shareinfo['useremail'], userpath)
+            ShareFile['isdir'] = 0
+            if os.path.isdir(SerPath):
+                ShareFile['isdir'] = 1
             ShareFile['date'] = self.getdate(SerPath)
-            if not i['isdir']:
+            if not ShareFile['isdir']:
                 size = os.path.getsize(SerPath)
                 big = size_format(size)
             ShareFile['size'] = size
