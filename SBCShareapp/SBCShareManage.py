@@ -4,6 +4,7 @@ from SBCShareapp.models import SBCShare
 from SBC import GetUserPath
 from SBC import GetUserPath
 from SBC import FileType
+from Usersapp.models import User
 
 
 def size_format(size):
@@ -153,6 +154,7 @@ class ShareManage():
         return date
     def GetShareInfo(self,sharelink,password=None,path = None):
         shareinfo = self.checksharetimeout(sharelink)
+        ShareUserName = User.objects.get(email=shareinfo['useremail']).username
         SharePass = shareinfo['SharePass']
         if SharePass and password != SharePass:
             return 'passworderror'
@@ -187,8 +189,10 @@ class ShareManage():
             ShareFile['big'] = big
             ShareFile['ShareLink'] =sharelink
             ShareFile['fename'] = i['fepath'].split('/')[-1]
-            FilesInfo.append(ShareFile)
+            ShareFile['ShareUserName'] = ShareUserName
             ShareFile['fetype'] = fetype
+            FilesInfo.append(ShareFile)
+
         return FilesInfo
 
 
