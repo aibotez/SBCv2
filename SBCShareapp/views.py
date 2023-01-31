@@ -29,6 +29,16 @@ def GetShareFile(request):
     ShareLink = request.GET['SBCShare']
 
 
+def ShareSave2SBC(request):
+    LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
+    if LoginRes['res']:
+        return HttpResponseRedirect('/login/')
+
+    ShareFileInfo = json.loads(request.body)
+    SBCShareManages = SBCShareManage.ShareManage()
+    # print(ShareFileInfo)
+    res = SBCShareManages.Save2SBC(ShareFileInfo,LoginRes)
+    return JsonResponse({'res': res})
 
 def GetSBCShareFile(request):
     data = request.GET

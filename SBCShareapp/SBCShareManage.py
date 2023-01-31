@@ -1,5 +1,5 @@
 import os,json,time,random
-import hashlib
+import hashlib,shutil
 from SBCShareapp.models import SBCShare
 from SBC import GetUserPath
 from SBC import GetUserPath
@@ -112,6 +112,35 @@ class ShareManage():
                                 useremail=userEmail,password=ShareFileInfo['SharePass'], ShareTime=curtime, toUser='0')
         return 'http://'+CurUrl+'/SBCShare/?SBCShare='+ShareCode
 
+    def Save2SBC(self,Gdata,LoginRes):
+        userEmail = LoginRes['useremail']
+        data = Gdata['ShareFIleInfo']
+        move2path = Gdata['move2path']
+        sharelink = data[0]['ShareLink']
+        password = data[0]['password']
+        shareinfo = self.checksharetimeout(sharelink)
+        SharePass = shareinfo['SharePass']
+        if SharePass and password != SharePass:
+            return 'passworderror'
+        SerPathDst = self.getuserpath.getuserserpath(userEmail,move2path)
+        for i in data:
+            fepath = i['fepath']
+            Shareuseremail = shareinfo['useremail']
+            userpath = shareinfo['shareFaPath'] + fepath
+            SerPathSrc = self.getuserpath.getuserserpath(Shareuseremail, userpath)
+            if i['isdir']:
+                if os.path.isdir(SerPathDst+i['fename']):
+                    shutil.rmtree(SerPathDst + i['fename'])
+                shutil.copytree(SerPathSrc, SerPathDst + i['fename'], symlinks=True)
+            else:
+                if os.path.exists(move2path+i['fename']):
+                    os.remove(move2path + i['fename'])
+                shutil.copyfile(SerPathSrc, SerPathDst + i['fename'], follow_symlinks=False)
+        return '1'
+
+
+
+
     def checksharexist(self,sharelink):
         if SBCShare.objects.filter(ShareLink=sharelink).exists():
             return 1
@@ -154,6 +183,7 @@ class ShareManage():
         return date
     def GetShareInfo(self,sharelink,password=None,path = None):
         shareinfo = self.checksharetimeout(sharelink)
+
         ShareUserName = User.objects.get(email=shareinfo['useremail']).username
         SharePass = shareinfo['SharePass']
         if SharePass and password != SharePass:
@@ -191,6 +221,7 @@ class ShareManage():
             ShareFile['fename'] = i['fepath'].split('/')[-1]
             ShareFile['ShareUserName'] = ShareUserName
             ShareFile['fetype'] = fetype
+            ShareFile['password'] = SharePass
             FilesInfo.append(ShareFile)
 
         return FilesInfo
