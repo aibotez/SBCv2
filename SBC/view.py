@@ -18,9 +18,10 @@ import mimetypes
 from PIL import Image
 from SBC import FileType
 from UserFileRecordapp import UserFileRecordManage
+from SBCShareapp import SBCShareManage
 from io import BytesIO
 
-
+SBCShareManages = SBCShareManage.ShareManage()
 # from SBC import FileDownUp
 
 def size_format(size):
@@ -206,10 +207,17 @@ def GetFileMd5(request):
     LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
     if LoginRes['res']:
         return HttpResponseRedirect('/login/')
-    getuserpath = GetUserPath.GetUserPath()
-    req = {'path':request.POST['path']}
-    path = getuserpath.userpath(req,LoginRes)
-    FeMd5 = getfileMd5(path[1])
+    FeMd5 = None
+    FileInfo = json.loads(request.body)
+    if 'shareinfo' in FileInfo:
+        path = SBCShareManages.GetShareSerPath(FileInfo['shareinfo'])
+        FeMd5 = getfileMd5(path)
+    else:
+        print('NoShare')
+        getuserpath = GetUserPath.GetUserPath()
+        req = {'path':FileInfo['path']}
+        path = getuserpath.userpath(req,LoginRes)
+        FeMd5 = getfileMd5(path[1])
     # return HttpResponse(FeMd5)
     return JsonResponse({'error':0,'md5':FeMd5})
 

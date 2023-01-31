@@ -8,7 +8,13 @@ from django.http import HttpResponse,JsonResponse
 from SBC import GetUserPath
 from SBC import UserManage
 from FileDownUpapp import FileDownUp
+from SBCShareapp import SBCShareManage
 # Create your views here.
+
+
+
+
+SBCShareManages = SBCShareManage.ShareManage()
 
 # @require_POST
 def FileDown(request):
@@ -32,15 +38,20 @@ def FileDown1(request):
         return HttpResponseRedirect('/login/')
 
     # print(request.body)
-
+    downinfo = {}
     if request.method == 'POST':
         downinfo = json.loads(request.body)
         downinfo = downinfo['downinfo']
     else:
         downinfo = request.GET['downinfo']
-    downinfo = json.dumps(downinfo)
-    getuserpath = GetUserPath.GetUserPath()
-    downinfo = getuserpath.GetDownPath(downinfo,LoginRes)
+
+    if downinfo['shareinfo']:
+        ShareSerPath = SBCShareManages.GetShareSerPath(downinfo['shareinfo'])
+        downinfo['fepath'] = ShareSerPath
+    else:
+        downinfo = json.dumps(downinfo)
+        getuserpath = GetUserPath.GetUserPath()
+        downinfo = getuserpath.GetDownPath(downinfo,LoginRes)
     print(downinfo)
     FileDowUpCOm = FileDownUp.FileDU()
     res = FileDowUpCOm.Down1(downinfo)

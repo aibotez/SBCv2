@@ -111,6 +111,16 @@ class ShareManage():
         SBCShare.objects.create(ShareLink=ShareCode, ShareFileInfo=json.dumps(ShareFileInfo),
                                 useremail=userEmail,password=ShareFileInfo['SharePass'], ShareTime=curtime, toUser='0')
         return 'http://'+CurUrl+'/SBCShare/?SBCShare='+ShareCode
+    def GetShareSerPath(self,info):
+        info = json.loads(info)
+        password = info['password']
+        shareinfo = self.checksharetimeout(info['sharelink'])
+        SharePass = shareinfo['SharePass']
+        if SharePass and password != SharePass:
+            return 'passworderror'
+        userpath = shareinfo['shareFaPath'] + info['fepath']
+        SerPath = self.getuserpath.getuserserpath(shareinfo['useremail'], userpath)
+        return SerPath
 
     def Save2SBC(self,Gdata,LoginRes):
         userEmail = LoginRes['useremail']

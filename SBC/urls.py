@@ -77,5 +77,5 @@ urlpatterns = [
     path('SearchFile/',viewSBCFS.SBCSearchFile),
 
 
-    path('viewHM/',viewHM.TurnOnComputer),
+    path('HM/',viewHM.TurnOnComputer),
 ]
