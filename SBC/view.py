@@ -213,7 +213,6 @@ def GetFileMd5(request):
         path = SBCShareManages.GetShareSerPath(FileInfo['shareinfo'])
         FeMd5 = getfileMd5(path)
     else:
-        print('NoShare')
         getuserpath = GetUserPath.GetUserPath()
         req = {'path':FileInfo['path']}
         path = getuserpath.userpath(req,LoginRes)
@@ -300,9 +299,15 @@ def GetAllFilesfromFolder(request):
     if LoginRes['res']:
         return HttpResponseRedirect('/login/')
     res = {'errnor':'1'}
-    getuserpath = GetUserPath.GetUserPath()
-    req = {'path':request.POST['path']}
-    paths = getuserpath.userpath(req,LoginRes)
+    FileInfo = json.loads(request.body)
+    if 'shareinfo' in FileInfo:
+
+        path = SBCShareManages.GetShareSerPath(FileInfo['shareinfo'])
+        paths = [FileInfo['shareinfo']['fepath'],path]
+    else:
+        getuserpath = GetUserPath.GetUserPath()
+        req = {'path':FileInfo['path']}
+        paths = getuserpath.userpath(req,LoginRes)
     fileinfo = GetAllFiles(paths)
     res = {'Files':fileinfo}
     return JsonResponse(res)
