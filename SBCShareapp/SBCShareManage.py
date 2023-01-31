@@ -114,8 +114,12 @@ class ShareManage():
     def GetShareSerPath(self,info):
         if type(info) == str:
             info = json.loads(info)
-        password = info['shareinfo']['password']
-        shareinfo = self.checksharetimeout(info['shareinfo']['sharelink'])
+        if type(info['shareinfo']) == str:
+            sharei = json.loads(info['shareinfo'])
+        else:
+            sharei = info['shareinfo']
+        password = sharei['password']
+        shareinfo = self.checksharetimeout(sharei['sharelink'])
         SharePass = shareinfo['SharePass']
         if SharePass and password != SharePass:
             return 'passworderror'
