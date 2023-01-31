@@ -212,13 +212,14 @@ def GetFileMd5(request):
     if 'shareinfo' in FileInfo:
         path = SBCShareManages.GetShareSerPath(FileInfo)
         FeMd5 = getfileMd5(path)
-
+        # print(path,FeMd5)
     else:
         getuserpath = GetUserPath.GetUserPath()
         req = {'path':FileInfo['path']}
         path = getuserpath.userpath(req,LoginRes)
         FeMd5 = getfileMd5(path[1])
     # return HttpResponse(FeMd5)
+
     return JsonResponse({'error':0,'md5':FeMd5})
 
 def getdate(fie):
