@@ -112,7 +112,8 @@ class ShareManage():
                                 useremail=userEmail,password=ShareFileInfo['SharePass'], ShareTime=curtime, toUser='0')
         return 'http://'+CurUrl+'/SBCShare/?SBCShare='+ShareCode
     def GetShareSerPath(self,info):
-        info = json.loads(info)
+        if type(info) == str:
+            info = json.loads(info)
         password = info['password']
         shareinfo = self.checksharetimeout(info['sharelink'])
         SharePass = shareinfo['SharePass']
