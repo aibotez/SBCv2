@@ -46,13 +46,13 @@ def FileDown1(request):
         downinfo = request.GET['downinfo']
 
     if downinfo['shareinfo']:
-        ShareSerPath = SBCShareManages.GetShareSerPath(downinfo['shareinfo'])
+        ShareSerPath = SBCShareManages.GetShareSerPath(downinfo)
         downinfo['fepath'] = ShareSerPath
     else:
         downinfo = json.dumps(downinfo)
         getuserpath = GetUserPath.GetUserPath()
         downinfo = getuserpath.GetDownPath(downinfo,LoginRes)
-    print(downinfo)
+
     FileDowUpCOm = FileDownUp.FileDU()
     res = FileDowUpCOm.Down1(downinfo)
     return res

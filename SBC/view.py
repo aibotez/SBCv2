@@ -210,8 +210,9 @@ def GetFileMd5(request):
     FeMd5 = None
     FileInfo = json.loads(request.body)
     if 'shareinfo' in FileInfo:
-        path = SBCShareManages.GetShareSerPath(FileInfo['shareinfo'])
+        path = SBCShareManages.GetShareSerPath(FileInfo)
         FeMd5 = getfileMd5(path)
+
     else:
         getuserpath = GetUserPath.GetUserPath()
         req = {'path':FileInfo['path']}
@@ -302,7 +303,7 @@ def GetAllFilesfromFolder(request):
     FileInfo = json.loads(request.body)
     if 'shareinfo' in FileInfo:
 
-        path = SBCShareManages.GetShareSerPath(FileInfo['shareinfo'])
+        path = SBCShareManages.GetShareSerPath(FileInfo)
         paths = [FileInfo['shareinfo']['fepath'],path]
     else:
         getuserpath = GetUserPath.GetUserPath()
@@ -378,7 +379,6 @@ def DelFiles(request):
         DelFilesInfo = json.loads(request.body)
     else:
         DelFilesStr = request.POST.dict()
-        print(json.loads(request.body))
         for k in DelFilesStr.keys():
             DelFilesInfo = json.loads(k)
 
