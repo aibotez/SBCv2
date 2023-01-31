@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'BaiduNetapp',
     'UserFileRecordapp',
     'SBCFileSearch',
+    'HomeManageapp',
 ]
 
 MIDDLEWARE = [

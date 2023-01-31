@@ -24,6 +24,7 @@ from SBCShareapp import views as viewShare
 from previewapp import views as viewPre
 from BaiduNetapp import views as viewBdn
 from SBCFileSearch import views as viewSBCFS
+from HomeManageapp import  views as viewHM
 
 urlpatterns = [
     path('', view.Home),
@@ -74,4 +75,7 @@ urlpatterns = [
     path('reD/',viewBdn.reD),
 
     path('SearchFile/',viewSBCFS.SBCSearchFile),
+
+
+    path('viewHM/',viewHM.TurnOnComputer),
 ]
