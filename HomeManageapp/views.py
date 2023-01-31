@@ -14,7 +14,7 @@ def wake_up(mac=None):
     # 把原始数据转换为16进制字节数组，
     for i in range(0, len(data), 2):
         send_data = b''.join([send_data, struct.pack('B', int(data[i: i + 2], 16))])
-    print(send_data)
+    # print(send_data)
 
     # 通过socket广播出去，为避免失败，间隔广播三次
     try:
@@ -27,7 +27,7 @@ def wake_up(mac=None):
         sock.sendto(send_data, (BROADCAST, 9))
         time.sleep(1)
         sock.sendto(send_data, (BROADCAST, 9))
-        print("Done")
+        # print("Done")
     except Exception as e:
         print(e)
 
