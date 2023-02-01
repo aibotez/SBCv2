@@ -223,7 +223,7 @@ def GetFileMd5(request):
     return JsonResponse({'error':0,'md5':FeMd5})
 
 def ConnectTest(request):
-    return JsonResponse({'res': 'ok'})
+    return HttpResponse('1')
 
 def getdate(fie):
     statbuf = os.stat(fie)
