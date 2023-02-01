@@ -28,6 +28,7 @@ from HomeManageapp import  views as viewHM
 
 urlpatterns = [
     path('', view.Home),
+    path('ConnectTest/',view.ConnectTest),
     path('RefreshFiles/', view.FileList),
     path('DelFiles/',view.DelFiles),
     path('ReName/',view.ReName),
