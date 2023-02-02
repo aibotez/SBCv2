@@ -11,13 +11,24 @@ class loginOper():
         pass
 
     def LoginVerifyUser(self,userInfos):
+        msg = {'status': 0, 'pass': ''}
         useripv4 = userInfos['ipv4']
+        usercount = userInfos['usercount']
         userpassword = userInfos['userpassword']
-        useremail = userInfos['useremail']
-        msg={'status':0,'pass':''}
-        if User.objects.filter(email=useremail).exists():
-            Userfo = User.objects.get(email=useremail)
+        # useremail = userInfos['useremail']
+        if '@' in usercount:
+            UserExist = User.objects.filter(email=usercount).exists()
+
+        else:
+            UserExist = User.objects.filter(username=usercount).exists()
+
+        if UserExist:
+            if '@' in usercount:
+                Userfo = User.objects.get(email=usercount)
+            else:
+                Userfo = User.objects.get(username=usercount)
             username = Userfo.username
+            useremail = Userfo.email
             if authenticate(username=username,password=userpassword):
                 if Userfo.ipv4 == useripv4:
                     pass
@@ -26,6 +37,7 @@ class loginOper():
                     Userfo.save()
                 msg['status'] = 1
                 msg['pass'] = Userfo.password
+                msg['useremail'] = useremail
                 return msg
         return msg
 

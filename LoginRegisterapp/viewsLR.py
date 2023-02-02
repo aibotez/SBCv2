@@ -32,10 +32,10 @@ def loginVerify(request):
         if res['status']:
             response = redirect('/?path=/home/')#7 * 24 * 3600
             if 'remember' in userInfos:
-                response.set_cookie('coks', userInfos['useremail']+'auth:'+res['pass'], max_age=7 * 24 * 3600)
+                response.set_cookie('coks', res['useremail']+'auth:'+res['pass'], max_age=7 * 24 * 3600)
             # return render(request,'home/home.html')
             else:
-                response.set_cookie('coks', userInfos['useremail'] + 'auth:' + res['pass'])
+                response.set_cookie('coks', res['useremail'] + 'auth:' + res['pass'])
             # response['coks'] = userInfos['useremail']+'auth:'+res['pass']
             return response
         else:

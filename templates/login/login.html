@@ -32,7 +32,7 @@
 
       <form action="/loginVerify/" method="post">
         <div class="input-group mb-3">
-          <input type="email" class="form-control" name="useremail" id="emailcontent" placeholder="邮箱">
+          <input type="user" class="form-control" name="usercount" id="usercontent" placeholder="邮箱/用户名">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -100,7 +100,7 @@
   function GlobalCheck()
   {
     var passstr = document.getElementById('pswcontent').value;
-    var Emailstr = document.getElementById('emailcontent').value;
+    var Emailstr = document.getElementById('usercontent').value;
 
     if(passstr=='' || Emailstr=='')
     {
