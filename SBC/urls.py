@@ -56,7 +56,7 @@ urlpatterns = [
     path('loginVerify/',viewsLR.loginVerify),
 
     path('forgotpassword/',viewFG.forgotpassword),
-    path('forgotpassVcodeVerify/',viewFG.VerifyVcode),
+    path('forgotpassVcodeVerify/',viewFG.VerifyVcode1),
     path('ChangePassword/',viewFG.ChangePassword),
 
 

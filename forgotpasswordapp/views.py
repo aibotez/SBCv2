@@ -13,6 +13,38 @@ from django.http import HttpResponseRedirect
 def forgotpassword(request):
     return render(request, 'forgotpass/forgot-password-v2.html')
 
+
+
+@require_POST
+def VerifyVcode1(request):
+    if request.method == 'POST':
+        Vcode = request.POST['Vcode']
+        useremail = request.POST['useremail']
+        password = request.POST['password']
+        changeuserInfo = ChangeUserInfo.ChangeUserfo()
+        msg = changeuserInfo.CheckUser(useremail)
+        if msg:
+            vcodemanage = VcodeManage.VcodeManage()
+            msg='验证码错误'
+            VerRes = vcodemanage.VerifyVcode(useremail,Vcode,1)
+            if VerRes:
+                msg = ''
+                if 'client' in request.POST:
+                    changeuserInfo = ChangeUserInfo.ChangeUserfo()
+                    msg = changeuserInfo.ChangePassword(useremail,password)
+                    if msg:
+                        return HttpResponse('1')
+                    return HttpResponse('未知错误')
+                else:
+                    return render(request, 'forgotpass/recover-password-v2.html', locals())
+            if 'client' in request.POST:
+                return HttpResponse('验证码错误')
+            return render(request, 'forgotpass/forgot-password-v2.html', locals())
+        msg = '用户不存在'
+        if 'client' in request.POST:
+            return HttpResponse('用户不存在')
+        return render(request, 'forgotpass/forgot-password-v2.html', locals())
+
 @require_POST
 def VerifyVcode(request):
     if request.method == 'POST':
