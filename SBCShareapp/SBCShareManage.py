@@ -141,7 +141,7 @@ class ShareManage():
                 FileInfo = {}
                 FileInfo['fepath'] = paths[0] + fapath + i
                 FileInfo['fapath'] = fapath
-                Files.append(FileInfo)
+                Files.append(paths[0] + fapath + i)
         return Files
 
 
@@ -175,8 +175,8 @@ class ShareManage():
             usermange.AddUsedCap(userEmail,os.path.getsize(SerPathDst + i['fename']))
             if i['isdir']:
                 AllFiles = self.GetAllFiles([move2path + i['fename'],SerPathDst + i['fename']])
-                print(move2path + i['fename'],SerPathDst + i['fename'])
-                print(AllFiles)
+                for i in AllFiles:
+                    userfilerecordmanage.AddNewRecord(userEmail,i, '')
             else:
                 userfilerecordmanage.AddNewRecord(userEmail,move2path + i['fename'],'')
         return '1'
