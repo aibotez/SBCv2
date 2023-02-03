@@ -5,6 +5,8 @@ from SBC import GetUserPath
 from SBC import GetUserPath
 from SBC import FileType
 from Usersapp.models import User
+from SBC import UserManage
+from UserFileRecordapp import UserFileRecordManage
 
 
 def size_format(size):
@@ -127,6 +129,22 @@ class ShareManage():
         SerPath = self.getuserpath.getuserserpath(shareinfo['useremail'], userpath)
         return SerPath
 
+    def GetAllFiles(self,paths):
+        Files = []
+        path = paths[1].replace('\\', '/')
+        for root, dirs, files in os.walk(path):
+            root += '/'
+            root = root.replace('\\', '/').replace('//', '/')
+            fapath = root.replace(path, '')
+            for i in files:
+                fepath = root + i
+                FileInfo = {}
+                FileInfo['fepath'] = paths[0] + fapath + i
+                FileInfo['fapath'] = fapath
+                Files.append(FileInfo)
+        return Files
+
+
     def Save2SBC(self,Gdata,LoginRes):
         userEmail = LoginRes['useremail']
         data = Gdata['ShareFIleInfo']
@@ -138,6 +156,8 @@ class ShareManage():
         if SharePass and password != SharePass:
             return 'passworderror'
         SerPathDst = self.getuserpath.getuserserpath(userEmail,move2path)
+        userfilerecordmanage = UserFileRecordManage.userfilerecordmanage()
+        usermange = UserManage.usermange()
         for i in data:
             fepath = i['fepath']
             Shareuseremail = shareinfo['useremail']
@@ -151,6 +171,14 @@ class ShareManage():
                 if os.path.exists(move2path+i['fename']):
                     os.remove(move2path + i['fename'])
                 shutil.copyfile(SerPathSrc, SerPathDst + i['fename'], follow_symlinks=False)
+
+            usermange.AddUsedCap(userEmail,os.path.getsize(SerPathDst + i['fename']))
+            if i['isdir']:
+                AllFiles = self.GetAllFiles([move2path + i['fename'],SerPathDst + i['fename']])
+                print(move2path + i['fename'],SerPathDst + i['fename'])
+                print(AllFiles)
+            else:
+                userfilerecordmanage.AddNewRecord(userEmail,move2path + i['fename'],'')
         return '1'
 
 
