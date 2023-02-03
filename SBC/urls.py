@@ -25,10 +25,12 @@ from previewapp import views as viewPre
 from BaiduNetapp import views as viewBdn
 from SBCFileSearch import views as viewSBCFS
 from HomeManageapp import  views as viewHM
+from Usersapp import views as viewUser
 
 urlpatterns = [
     path('', view.Home),
     path('ConnectTest/',view.ConnectTest),
+    path('GetUserInfo/',viewUser.GetUserInfo),
     path('RefreshFiles/', view.FileList),
     path('DelFiles/',view.DelFiles),
     path('ReName/',view.ReName),

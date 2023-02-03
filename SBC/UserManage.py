@@ -23,7 +23,7 @@ class usermange():
        usedcappercent = usedCap/totalCap
 
        usedcappercentstr = self.size_format(usedCap)+'/'+self.size_format(totalCap)
-       return {'usedcappercent':usedcappercent,'usedcappercentstr':usedcappercentstr,'username':UserInfo.username}
+       return {'usedCap':usedCap,'totalCap':totalCap,'usedcappercent':usedcappercent,'usedcappercentstr':usedcappercentstr,'username':UserInfo.username}
 
     def Capisfull(self,useremail,NewFeSize):
         UserInfo = User.objects.get(email=useremail)
