@@ -64,10 +64,16 @@ class FileUp():
                 os.makedirs(dst)
             dstfename = redit['FileName']
             srcfename = models.FilesStock.objects.get(FileMd5=feMd5).FileName
+
+            existSize = 0
+            if os.path.exists(dst+dstfename):
+                existSize = os.path.getsize(dst+dstfename)
+
+
             lk = MakeLink()
             lk.mklk(dst,srcfename,dstfename)
             usermange = UserManage.usermange()
-            usermange.AddUsedCap(useremail,os.path.getsize(self.FilesStock + redit['FileName']))
+            usermange.AddUsedCap(useremail,os.path.getsize(self.FilesStock + redit['FileName'])-existSize)
 
 
             dstuserpath = userpath + redit['FileName']

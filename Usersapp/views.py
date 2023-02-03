@@ -9,7 +9,7 @@ from SBC import LoginVerfiy
 def GetUserInfo(request):
     LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
     if LoginRes['res']:
-        return HttpResponse('login')
+        return JsonResponse({'error':'login'})
     usermanage = UserManage.usermange()
     try:
         Userinfo = usermanage.GetUserUsedCap(LoginRes['useremail'])
