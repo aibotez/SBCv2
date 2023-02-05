@@ -26,6 +26,7 @@ from BaiduNetapp import views as viewBdn
 from SBCFileSearch import views as viewSBCFS
 from HomeManageapp import  views as viewHM
 from Usersapp import views as viewUser
+from FileSycapp import views as viewFS
 
 urlpatterns = [
     path('', view.Home),
@@ -45,6 +46,8 @@ urlpatterns = [
     path('GetAllFilesfromFolder/',view.GetAllFilesfromFolder),
     path('GetFileMd5/',view.GetFileMd5),
     path('GetFilePorper/',view.GetFilePorper),
+
+    path('GetAllFilesSyc/',viewFS.GetAllFilesfromFolder),
 
     path('FileDown/',viewDU.FileDown),
     path('FileDown1/',viewDU.FileDown1),

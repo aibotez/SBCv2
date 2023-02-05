@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'UserFileRecordapp',
     'SBCFileSearch',
     'HomeManageapp',
+    'FileSycapp',
 ]
 
 MIDDLEWARE = [
