@@ -37,9 +37,11 @@ def GetAllFilesfromFolder(request):
                 fepath = Serpath0 + fapath + i
                 FileInfo = {}
                 FileInfo['fapath'] = fepath.replace(Serpath0, '/')
+                FileInfo['fapath1'] = fapath
                 FileInfo['fepath'] = path[0:-1] + fepath.replace(Serpath0, '/')
                 FileInfo['size'] = os.path.getsize(fepath)
                 FileInfo['date'] = os.stat(fepath).st_mtime
+                FileInfo['fename'] = os.path.basename(fepath)
                 Files[str_trans_to_md5(FileInfo['fepath'])] = FileInfo
     return JsonResponse(Files)
 
