@@ -42,6 +42,8 @@ class FileSycManager():
         FileSeekStart = fileinfo['FileSeekStart']
         useremail = fileinfo['useremail']
         dst = self.getuserpath.getuserserpath(useremail, RoFileFaPath)
+        if not os.path.isdir(dst):
+            os.makedirs(dst)
         with open(dst+'/'+feMd5, "ab") as f:
             for chunk in file_obj.chunks(chunk_size=2 * 1024 * 1024):
                 f.write(chunk)
@@ -50,7 +52,7 @@ class FileSycManager():
             usermange = UserManage.usermange()
             usermange.AddUsedCap(useremail, os.path.getsize(dst+'/'+FileName))
             userfilerecordmanage = UserFileRecordManage.userfilerecordmanage()
-            userfilerecordmanage.AddNewRecord(useremail,RoFileFaPath + FileName, feMd5)
+            userfilerecordmanage.AddNewRecord(useremail,RoFileFaPath + '/' + FileName, feMd5)
             return 1
         else:
             os.remove(dst+'/'+feMd5)
