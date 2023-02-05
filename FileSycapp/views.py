@@ -29,12 +29,13 @@ def GetAllFilesfromFolder(request):
         root += '/'
         root = root.replace('\\', '/').replace('//', '/')
         fapath = root.replace(path, '')
-        for i in files:
-            fepath = path + fapath + i
-            FileInfo = {}
-            FileInfo['fapath'] = fepath.replace(path, '/')
-            FileInfo['fepath'] = fepath
-            FileInfo['size'] = os.path.getsize(fepath)
-            FileInfo['date'] = os.stat(fepath).st_mtime
-            Files[str_trans_to_md5(fepath)] = FileInfo
+        if '__pycache__' not in fapath:
+            for i in files:
+                fepath = path + fapath + i
+                FileInfo = {}
+                FileInfo['fapath'] = fepath.replace(path, '/')
+                FileInfo['fepath'] = fepath
+                FileInfo['size'] = os.path.getsize(fepath)
+                FileInfo['date'] = os.stat(fepath).st_mtime
+                Files[str_trans_to_md5(fepath)] = FileInfo
     return JsonResponse(Files)
