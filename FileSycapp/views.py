@@ -6,6 +6,8 @@ from django.http import HttpResponseRedirect
 from SBC import GetUserPath
 from django.http import HttpResponse,JsonResponse
 import os,json,hashlib
+# from FileSycManager import FileSycManager
+from . import FileSycManager
 # Create your views here.
 
 
@@ -39,3 +41,12 @@ def GetAllFilesfromFolder(request):
                 FileInfo['date'] = os.stat(fepath).st_mtime
                 Files[str_trans_to_md5(fepath)] = FileInfo
     return JsonResponse(Files)
+
+def CheckSBCFile(request):
+    LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
+    if LoginRes['res']:
+        return HttpResponseRedirect('/login/')
+    FileInfo = json.loads(request.body)
+    FileInfo['useremail'] = LoginRes['useremail']
+    FileCheck = FileSycManager.FileSycManager().checkFile(FileInfo)
+    return JsonResponse(FileCheck)

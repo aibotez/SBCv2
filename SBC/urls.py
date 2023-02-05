@@ -48,6 +48,7 @@ urlpatterns = [
     path('GetFilePorper/',view.GetFilePorper),
 
     path('GetAllFilesSyc/',viewFS.GetAllFilesfromFolder),
+    path('SycCheckSBCFile/',viewFS.CheckSBCFile),
 
     path('FileDown/',viewDU.FileDown),
     path('FileDown1/',viewDU.FileDown1),
