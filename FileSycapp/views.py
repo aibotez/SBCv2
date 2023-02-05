@@ -18,6 +18,18 @@ def str_trans_to_md5(src):
     myMd5.update(src)
     myMd5_Digest = myMd5.hexdigest()
     return myMd5_Digest
+def getfileMd5(filename):
+    if not os.path.isfile(filename):
+        return
+    myhash = hashlib.md5()
+    f = open(filename, "rb")
+    while True:
+        b = f.read(2*1024*1024)
+        if not b:
+            break
+        myhash.update(b)
+    f.close()
+    return myhash.hexdigest()
 def GetAllFilesfromFolder(request):
     LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
     if LoginRes['res']:
@@ -42,6 +54,7 @@ def GetAllFilesfromFolder(request):
                 FileInfo['size'] = os.path.getsize(fepath)
                 FileInfo['date'] = os.stat(fepath).st_mtime
                 FileInfo['fename'] = os.path.basename(fepath)
+                FileInfo['filemd5'] = getfileMd5(fepath)
                 Files[str_trans_to_md5(FileInfo['fepath'])] = FileInfo
     return JsonResponse(Files)
 
