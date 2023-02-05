@@ -40,7 +40,7 @@ def GetAllFilesfromFolder(request):
                 FileInfo['fepath'] = path[0:-1] + fepath.replace(Serpath0, '/')
                 FileInfo['size'] = os.path.getsize(fepath)
                 FileInfo['date'] = os.stat(fepath).st_mtime
-                Files[str_trans_to_md5(fepath)] = FileInfo
+                Files[str_trans_to_md5(FileInfo['fepath'])] = FileInfo
     return JsonResponse(Files)
 
 def CheckSBCFile(request):
