@@ -50,7 +50,7 @@ class FileSycManager():
             usermange = UserManage.usermange()
             usermange.AddUsedCap(useremail, os.path.getsize(dst+'/'+FileName))
             userfilerecordmanage = UserFileRecordManage.userfilerecordmanage()
-            userfilerecordmanage.AddNewRecord(useremail,dst+'/'+FileName, feMd5)
+            userfilerecordmanage.AddNewRecord(useremail,RoFileFaPath + FileName, feMd5)
             return 1
         else:
             os.remove(dst+'/'+feMd5)

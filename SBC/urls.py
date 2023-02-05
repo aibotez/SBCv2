@@ -49,6 +49,7 @@ urlpatterns = [
 
     path('GetAllFilesSyc/',viewFS.GetAllFilesfromFolder),
     path('SycCheckSBCFile/',viewFS.CheckSBCFile),
+    path('SycFileUp/',viewFS.Upfile),
 
     path('FileDown/',viewDU.FileDown),
     path('FileDown1/',viewDU.FileDown1),

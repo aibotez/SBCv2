@@ -8,6 +8,7 @@ from django.http import HttpResponse,JsonResponse
 import os,json,hashlib
 # from FileSycManager import FileSycManager
 from . import FileSycManager
+from SBC import UserManage
 # Create your views here.
 
 
@@ -25,18 +26,18 @@ def GetAllFilesfromFolder(request):
     FileInfo = json.loads(request.body)
     path = FileInfo['path']
     getuserpath = GetUserPath.GetUserPath()
-    path = getuserpath.getuserserpath(LoginRes['useremail'],path)
+    Serpath0 = getuserpath.getuserserpath(LoginRes['useremail'],path)
     Files = {}
-    for root, dirs, files in os.walk(path):
+    for root, dirs, files in os.walk(Serpath0):
         root += '/'
         root = root.replace('\\', '/').replace('//', '/')
-        fapath = root.replace(path, '')
+        fapath = root.replace(Serpath0, '')
         if '__pycache__' not in fapath:
             for i in files:
-                fepath = path + fapath + i
+                fepath = Serpath0 + fapath + i
                 FileInfo = {}
-                FileInfo['fapath'] = fepath.replace(path, '/')
-                FileInfo['fepath'] = fepath
+                FileInfo['fapath'] = fepath.replace(Serpath0, '/')
+                FileInfo['fepath'] = path[0:-1] + fepath.replace(Serpath0, '/')
                 FileInfo['size'] = os.path.getsize(fepath)
                 FileInfo['date'] = os.stat(fepath).st_mtime
                 Files[str_trans_to_md5(fepath)] = FileInfo
@@ -50,3 +51,18 @@ def CheckSBCFile(request):
     FileInfo['useremail'] = LoginRes['useremail']
     FileCheck = FileSycManager.FileSycManager().checkFile(FileInfo)
     return JsonResponse(FileCheck)
+
+def Upfile(request):
+    LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
+    if LoginRes['res']:
+        return HttpResponseRedirect('/login/')
+    FileInfo = request.POST['FileInfo']
+    FileInfo = json.loads(FileInfo)
+    FileInfo['useremail'] = LoginRes['useremail']
+    FileSize = int(FileInfo['FileSize'])
+    usermange = UserManage.usermange()
+    if usermange.Capisfull(LoginRes['useremail'],FileSize):
+        return HttpResponse('FULL')
+    file_obj = request.FILES.get("file")
+    FileUp = FileSycManager.FileSycManager().UpFile(FileInfo,file_obj)
+    return JsonResponse({'res':FileUp})
