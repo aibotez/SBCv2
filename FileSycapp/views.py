@@ -5,10 +5,16 @@ from SBC import LoginVerfiy
 from django.http import HttpResponseRedirect
 from SBC import GetUserPath
 from django.http import HttpResponse,JsonResponse
-import os,json
+import os,json,hashlib
 # Create your views here.
 
 
+def str_trans_to_md5(src):
+    src = src.encode("utf-8")
+    myMd5 = hashlib.md5()
+    myMd5.update(src)
+    myMd5_Digest = myMd5.hexdigest()
+    return myMd5_Digest
 def GetAllFilesfromFolder(request):
     LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
     if LoginRes['res']:
@@ -18,7 +24,7 @@ def GetAllFilesfromFolder(request):
     path = FileInfo['path']
     getuserpath = GetUserPath.GetUserPath()
     path = getuserpath.getuserserpath(LoginRes['useremail'],path)
-    Files = []
+    Files = {}
     for root, dirs, files in os.walk(path):
         root += '/'
         root = root.replace('\\', '/').replace('//', '/')
@@ -30,5 +36,5 @@ def GetAllFilesfromFolder(request):
             FileInfo['fepath'] = fepath
             FileInfo['size'] = os.path.getsize(fepath)
             FileInfo['date'] = os.stat(fepath).st_mtime
-            Files.append(FileInfo)
-    return JsonResponse({'Files':Files})
+            Files[str_trans_to_md5(fepath)] = FileInfo
+    return JsonResponse(Files)
