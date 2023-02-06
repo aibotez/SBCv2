@@ -134,11 +134,11 @@ var setTime=setInterval(GlobalCheck,1200);
 
     document.getElementById("register_button").disabled = true;
 
-    if (/.*[\u4e00-\u9fa5]+.*$/.test(usernamestr))
-    {
-      document.getElementById("GlobalNotice").innerHTML = "用户名不能含有汉字！";
-      return;
-    }
+<!--    if (/.*[\u4e00-\u9fa5]+.*$/.test(usernamestr))-->
+<!--    {-->
+<!--      document.getElementById("GlobalNotice").innerHTML = "用户名不能含有汉字！";-->
+<!--      return;-->
+<!--    }-->
     document.getElementById("GlobalNotice").innerHTML = "";
 
     if (Vcodestr.length > 4)
