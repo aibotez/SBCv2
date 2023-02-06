@@ -42,7 +42,7 @@ def GetFileMd5(filename):
         myhash.update(b)
     f.close()
     return myhash.hexdigest()
-def file_iterator(self, file_name, chunk_size=20 * 1024 * 1024):
+def file_iterator(file_name, chunk_size=20 * 1024 * 1024):
     with open(file_name, 'rb') as f:
         while True:
             c = f.read(chunk_size)
@@ -65,6 +65,7 @@ def DownClient(request):
     response = FileResponse(response)
     response['Content-Type'] = 'application/octet-stream'
     response['FileMd5'] = GetFileMd5(the_file_path)
+    response['FileName'] = the_file_name
     response['content-length'] = os.path.getsize(the_file_path)
     # response['Content-Disposition'] = 'attachment;filename="{0}"'.format(wjname)
     response["Content-Disposition"] = "attachment; filename*=UTF-8''{}".format(escape_uri_path(the_file_name))
