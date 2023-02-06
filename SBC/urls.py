@@ -27,6 +27,7 @@ from SBCFileSearch import views as viewSBCFS
 from HomeManageapp import  views as viewHM
 from Usersapp import views as viewUser
 from FileSycapp import views as viewFS
+from Updateapp import views as viewUpd
 
 urlpatterns = [
     path('', view.Home),
@@ -86,4 +87,7 @@ urlpatterns = [
 
 
     path('HM/',viewHM.TurnOnComputer),
+
+    path('GetCurVer/',viewUpd.GetCurVer),
+    path('DownClient/',viewUpd.DownClient),
 ]
