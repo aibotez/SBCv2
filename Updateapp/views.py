@@ -65,6 +65,7 @@ def DownClient(request):
     response = FileResponse(response)
     response['Content-Type'] = 'application/octet-stream'
     response['FileMd5'] = GetFileMd5(the_file_path)
+    response['size'] = os.path.getsize(the_file_path)
     response['FileName'] = the_file_name
     response['content-length'] = os.path.getsize(the_file_path)
     # response['Content-Disposition'] = 'attachment;filename="{0}"'.format(wjname)
