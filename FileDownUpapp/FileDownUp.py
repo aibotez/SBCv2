@@ -14,7 +14,7 @@ from UserFileRecordapp import UserFileRecordManage
 class MakeLink():
     def __init__(self):
         # self.FilesStock = r'D:\documents\GitStock\SBCuserTest\FilesStock'
-        self.FilesStock = r'D:\SBC\SBCStock'
+        self.FilesStock = '/mnt/SBC/SBCstock/'
 
     def mklk(self,dst,srcfename,dstfename):
         # dstDirs = r'D:\documents\GitStock\SBCuserTest\2290227486@qq.com'
@@ -33,8 +33,8 @@ class FileUp():
         # self.FileServerHome = 'D:/documents/GitStock/SBCuserTest/'
         # self.FilesStock = 'C:/SBC/SBCStock/'
         # self.FileServerHome = 'C:/SBC/SBCUsers/'
-        self.FilesStock = 'D:/SBC/SBCStock/'
-        self.FileServerHome = 'D:/SBC/SBCUsers/'
+        self.FilesStock = '/mnt/SBC/SBCstock/'
+        self.FileServerHome = '/mnt/SBC/SBCUsers/'
         self.getuserpath = GetUserPath.GetUserPath()
 
     def GetFileMd5(self,filename):

@@ -4,7 +4,7 @@ import os,json
 class GetUserPath():
     def __init__(self):
         # self.ServerHomePath = 'D:/documents/GitStock/SBCuserTest/'
-        self.ServerHomePath = 'D:/SBC/SBCUsers/'
+        self.ServerHomePath = '/mnt/SBC/SBCUsers/'
 
     def GetDownPath(self,DownReInfo,LoginRes):
 

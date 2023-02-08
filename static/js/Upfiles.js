@@ -284,7 +284,7 @@
 	
 	function upfilechunk(file,CurPath,FileMd5,startchunk)
 	{
-		const chunkSize = 64*1024;
+		const chunkSize = 1*1024*1024;
 		uploadact(startchunk);
 		function uploadact(startchunk)
 		{
