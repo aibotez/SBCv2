@@ -63,7 +63,7 @@ class netOper():
             if i['isdir']:
                 if movefepath in move2path+i['fename']:
                     return 0
-            
+
             try:
                 os.remove(move2path+i['fename'])
             except:

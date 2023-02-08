@@ -164,6 +164,8 @@ class ShareManage():
             userpath = shareinfo['shareFaPath'] + fepath
             SerPathSrc = self.getuserpath.getuserserpath(Shareuseremail, userpath)
             if i['isdir']:
+                if SerPathSrc in SerPathDst + i['fename']:
+                    return '0'
                 if os.path.isdir(SerPathDst+i['fename']):
                     shutil.rmtree(SerPathDst + i['fename'])
                 shutil.copytree(SerPathSrc, SerPathDst + i['fename'], symlinks=True)
