@@ -41,9 +41,9 @@ class userfilerecordmanage():
     # models.FilesStock.objects.create(FileMd5=feMd5, FileName=srcfename, FilePath=self.FilesStock + srcfename)
 
     def DelRecord(self,useremail,paths):
-        FindFile = models.UserFileRecord.objects.filter(FilePath__icontains=paths)
-        for i in FindFile:
-            i.delete()
+        FindFile = models.UserFileRecord.objects.filter(Q(useremail=useremail) & Q(FilePath__icontains=paths)).delete()
+        # for i in FindFile:
+        #     i.delete()
 
     def NewName(self,OldPath,NewName):
         pathlist = OldPath.split('/')

@@ -407,6 +407,7 @@ def DelFiles(request):
                 usermange.DelUsedCap(LoginRes['useremail'],DirsSize)
 
             userfilerecordmanage = UserFileRecordManage.userfilerecordmanage()
+            print('delet',path)
             userfilerecordmanage.DelRecord(LoginRes['useremail'],path)
         except Exception as e:
             print(e)
