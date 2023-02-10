@@ -122,5 +122,5 @@ def FileUp1(request):
     file_obj = request.FILES.get("file")
 
     FileDowUpCOm = FileDownUp.FileUp()
-    FileDowUpCOm.Upfile1(FileInfo,LoginRes['useremail'],file_obj)
-    return HttpResponse('1')
+    res = FileDowUpCOm.Upfile1(FileInfo,LoginRes['useremail'],file_obj)
+    return HttpResponse(res)

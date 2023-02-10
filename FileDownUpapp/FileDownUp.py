@@ -120,6 +120,11 @@ class FileUp():
                 dstuserpath = userpath + redit['FileName']
                 userfilerecordmanage = UserFileRecordManage.userfilerecordmanage()
                 userfilerecordmanage.AddNewRecord(useremail, dstuserpath, feMd5)
+                return 'finsh'
+            else:
+                os.remove(self.FilesStock + feMd5)
+                return 'checkerror'
+        return 'notfinsh'
 
 
 
