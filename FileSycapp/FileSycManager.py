@@ -1,8 +1,19 @@
 from SBC import GetUserPath
-import os,hashlib
+import os,hashlib,time
 from SBC import UserManage
 from UserFileRecordapp import UserFileRecordManage
+from UserFileRecordapp import models
+from django.db.models import Q
 
+
+
+
+def str_trans_to_md5(src):
+    src = src.encode("utf-8")
+    myMd5 = hashlib.md5()
+    myMd5.update(src)
+    myMd5_Digest = myMd5.hexdigest()
+    return myMd5_Digest
 class FileSycManager():
     def __init__(self):
         self.getuserpath = GetUserPath.GetUserPath()
@@ -18,6 +29,23 @@ class FileSycManager():
             myhash.update(b)
         f.close()
         return myhash.hexdigest()
+    def GetFilesAll(self,useremail,path):
+        Serpath = self.getuserpath.getuserserpath(useremail,path)
+        Serpathdir = os.path.dirname(Serpath)
+        files = {}
+        FindFile = models.UserFileRecord.objects.filter(Q(useremail=useremail) & Q(FilePath__icontains=path))
+        for i in FindFile:
+            FileInfo = {}
+            FileInfo['fepath'] = i.FilePath
+            FileInfo['size'] = i.FileSize
+            date = time.mktime(time.strptime(i.FileModTime, '%Y-%m-%d %H:%M'))
+            FileInfo['date'] = date
+            FileInfo['filemd5'] = i.FileMd5
+            FileInfo['fapath1'] = Serpath.replace(Serpathdir,'')
+            files[str_trans_to_md5(i.FilePath)] = FileInfo
+        return files
+
+
 
     def checkFile(self,fileinfo):
         feMd5 = fileinfo['LoMD5']

@@ -34,6 +34,15 @@ def GetAllFilesfromFolder(request):
     LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
     if LoginRes['res']:
         return HttpResponseRedirect('/login/')
+    FileInfo = json.loads(request.body)
+    path = FileInfo['path']
+    Files = FileSycManager.FileSycManager().GetFilesAll(LoginRes['useremail'],path)
+    return JsonResponse(Files)
+
+def GetAllFilesfromFolder1(request):
+    LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
+    if LoginRes['res']:
+        return HttpResponseRedirect('/login/')
     res = {'errnor':'1'}
     FileInfo = json.loads(request.body)
     path = FileInfo['path']

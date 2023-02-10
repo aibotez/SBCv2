@@ -25,7 +25,7 @@ class userfilerecordmanage():
         FindFile = models.UserFileRecord.objects.filter(
             Q(useremail=useremail) & Q(FilePath=path))
         if FindFile.exists():
-            FindFile = models.UserFileRecord.objects.get(FilePath = path)
+            FindFile = models.UserFileRecord.objects.get(Q(useremail=useremail) & Q(FilePath=path))
             if FindFile.FileType == fetype:
                 return
             FindFile.FileType = fetype
