@@ -65,15 +65,14 @@ class netOper():
                     return 0
 
             try:
-                os.remove(move2path+i['fename'])
-            except:
-                shutil.rmtree(move2path+i['fename'])
-                pass
-            try:
                 if i['isdir']:
+                    if os.path.isdir(move2path+i['fename']):
+                        shutil.rmtree(move2path + i['fename'])
                     shutil.copytree(movefepath,move2path+i['fename'],symlinks=True)
                     shutil.rmtree(movefepath)
                 else:
+                    if os.path.exists(move2path + i['fename']):
+                        os.remove(move2path + i['fename'])
                     shutil.copyfile(movefepath,move2path+i['fename'],follow_symlinks=False)
                     os.remove(movefepath)
             except Exception as e:
