@@ -58,12 +58,20 @@ class FileUp():
         if not redit['webkitRelativePath'] =='':
             userpath = userpath + redit['webkitRelativePath'].replace(redit['FileName'],'')
         if models.FilesStock.objects.filter(FileMd5=feMd5).exists():
+            FileInfo = models.FilesStock.objects.get(FileMd5=feMd5)
+            if not os.path.exists(FileInfo.FilePath):
+                FeInfo = {
+                    'exist': 0,
+                    'FileStart': 0
+                }
+                return FeInfo
+
             dst = self.getuserpath.getuserserpath(useremail,userpath)
             # print(userpath,dst)
             if not os.path.isdir(dst):
                 os.makedirs(dst)
             dstfename = redit['FileName']
-            srcfename = models.FilesStock.objects.get(FileMd5=feMd5).FileName
+            srcfename = FileInfo.FileName
 
             existSize = 0
             if os.path.exists(dst+dstfename):
@@ -73,7 +81,7 @@ class FileUp():
             lk = MakeLink()
             lk.mklk(dst,srcfename,dstfename)
             usermange = UserManage.usermange()
-            usermange.AddUsedCap(useremail,os.path.getsize(self.FilesStock + feMd5+'#'+ redit['FileName'])-existSize)
+            usermange.AddUsedCap(useremail,os.path.getsize(FileInfo.FilePath)-existSize)
 
 
             dstuserpath = userpath + redit['FileName']
