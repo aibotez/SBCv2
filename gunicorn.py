@@ -41,3 +41,4 @@ limit_request_fields = 101
 # 限制HTTP请求中请求头的大小，默认情况下这个值为8190。
 # 值是一个整数或者0，当该值为0时，表示将对请求头大小不做限制
 limit_request_field_size = 8190
+reload = True
