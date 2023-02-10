@@ -42,7 +42,7 @@ class FileSycManager():
             FileInfo['date'] = date
             FileInfo['filemd5'] = i.FileMd5
             FileInfo['fapath1'] = Serpath.replace(Serpathdir,'')
-            files[str_trans_to_md5(i.FilePath)] = FileInfo
+            files[str_trans_to_md5(FileInfo['fepath'])] = FileInfo
         return files
 
 
