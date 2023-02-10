@@ -118,9 +118,7 @@ def FileUp1(request):
     usermange = UserManage.usermange()
     if usermange.Capisfull(LoginRes['useremail'],FileSize):
         return HttpResponse('FULL')
-
     file_obj = request.FILES.get("file")
-
     FileDowUpCOm = FileDownUp.FileUp()
     res = FileDowUpCOm.Upfile1(FileInfo,LoginRes['useremail'],file_obj)
     return HttpResponse(res)

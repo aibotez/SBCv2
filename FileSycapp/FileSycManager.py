@@ -36,7 +36,7 @@ class FileSycManager():
         FindFile = models.UserFileRecord.objects.filter(Q(useremail=useremail) & Q(FilePath__icontains=path))
         for i in FindFile:
             FileInfo = {}
-            FileInfo['fepath'] = i.FilePath
+            FileInfo['fepath'] = i.FilePath.replace('//','/')
             FileInfo['size'] = i.FileSize
             date = time.mktime(time.strptime(i.FileModTime, '%Y-%m-%d %H:%M'))
             FileInfo['date'] = date
