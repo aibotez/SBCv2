@@ -14,11 +14,11 @@ def GetMaxVer(client):
         path ='static/Client/Windows'
     felist = os.listdir(path)
     Vers = [i.split('_')[1] for i in felist]
-    Versint = [int(i.replace('.','')) for i in Vers]
+    Versint = [float('0.'+i.replace('.','')) for i in Vers]
     VerMax = Versint[-1]
     VerStrMax = ''
     for i in Vers:
-        if int(i.replace('.','')) == VerMax:
+        if float('0.'+i.replace('.','')) == VerMax:
             VerStrMax = i
     return {'Ver':VerStrMax,'Verint':VerMax}
 
