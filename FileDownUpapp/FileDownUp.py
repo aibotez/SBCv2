@@ -73,7 +73,7 @@ class FileUp():
             lk = MakeLink()
             lk.mklk(dst,srcfename,dstfename)
             usermange = UserManage.usermange()
-            usermange.AddUsedCap(useremail,os.path.getsize(self.FilesStock + redit['FileName'])-existSize)
+            usermange.AddUsedCap(useremail,os.path.getsize(self.FilesStock + feMd5+'#'+ redit['FileName'])-existSize)
 
 
             dstuserpath = userpath + redit['FileName']
@@ -102,20 +102,20 @@ class FileUp():
                 f.write(chunk)
         if os.path.getsize(self.FilesStock + feMd5) == redit['FileSize']:
             if feMd5 == self.GetFileMd5(self.FilesStock + feMd5):
-                if os.path.exists(self.FilesStock + redit['FileName']):
-                    os.remove(self.FilesStock + redit['FileName'])
-                os.rename(self.FilesStock + feMd5, self.FilesStock + redit['FileName'])
+                if os.path.exists(self.FilesStock + feMd5+'#'+redit['FileName']):
+                    os.remove(self.FilesStock + feMd5+'#'+ redit['FileName'])
+                os.rename(self.FilesStock + feMd5, self.FilesStock + feMd5+'#'+ redit['FileName'])
                 dst = self.getuserpath.getuserserpath(useremail, userpath)
                 if not os.path.isdir(dst):
                     os.makedirs(dst)
                 dstfename = redit['FileName']
                 srcfename = redit['FileName']
                 lk = MakeLink()
-                lk.mklk(dst, srcfename, dstfename)
-                models.FilesStock.objects.create(FileMd5=feMd5, FileName=srcfename,
-                                                 FilePath=self.FilesStock + srcfename)
+                lk.mklk(dst, feMd5+'#'+srcfename, dstfename)
+                models.FilesStock.objects.create(FileMd5=feMd5, FileName=feMd5+'#'+ srcfename,
+                                                 FilePath=self.FilesStock + feMd5+'#'+ srcfename)
                 usermange = UserManage.usermange()
-                usermange.AddUsedCap(useremail, os.path.getsize(self.FilesStock + redit['FileName']))
+                usermange.AddUsedCap(useremail, os.path.getsize(self.FilesStock + feMd5+'#'+ redit['FileName']))
 
                 dstuserpath = userpath + redit['FileName']
                 userfilerecordmanage = UserFileRecordManage.userfilerecordmanage()
@@ -144,9 +144,9 @@ class FileUp():
         # print(type(redit['isLastChunk']))
         # print(self.FilesStock + redit['FileName'])
         if (int(redit['isLastChunk'])):
-            if os.path.exists(self.FilesStock + redit['FileName']):
+            if os.path.exists(self.FilesStock + feMd5+'#'+ redit['FileName']):
                 os.remove(self.FilesStock + redit['FileName'])
-            os.rename(self.FilesStock + feMd5,self.FilesStock + redit['FileName'])
+            os.rename(self.FilesStock + feMd5,self.FilesStock + feMd5+'#'+ redit['FileName'])
             dst = self.getuserpath.getuserserpath(useremail,userpath)
 
 
@@ -155,10 +155,10 @@ class FileUp():
             dstfename = redit['FileName']
             srcfename = redit['FileName']
             lk = MakeLink()
-            lk.mklk(dst,srcfename,dstfename)
-            models.FilesStock.objects.create(FileMd5=feMd5, FileName=srcfename,FilePath=self.FilesStock + srcfename)
+            lk.mklk(dst,feMd5+'#'+srcfename,dstfename)
+            models.FilesStock.objects.create(FileMd5=feMd5, FileName=feMd5+'#'+srcfename,FilePath=self.FilesStock + feMd5+'#'+ srcfename)
             usermange = UserManage.usermange()
-            usermange.AddUsedCap(useremail,os.path.getsize(self.FilesStock + redit['FileName']))
+            usermange.AddUsedCap(useremail,os.path.getsize(self.FilesStock + feMd5+'#'+ redit['FileName']))
 
             dstuserpath = userpath + redit['FileName']
             userfilerecordmanage = UserFileRecordManage.userfilerecordmanage()
