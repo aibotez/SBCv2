@@ -66,7 +66,7 @@ def preview(request):
         SerTempPath = 'static/{}/{}.pdf'.format(LoginRes['useremail'],FileName)
         if not os.path.exists(SerTempPath):
             Previewmanager = PreviewManager.Preview()
-            res = Previewmanager.Convert2pdf(LoginRes['useremail'], path)
+            res = Previewmanager.Convert2pdf(LoginRes['useremail'], req['path'])
         pdfbase64 = GetFeBase64(SerTempPath)
         if 'client' in req:
             return JsonResponse({'data':pdfbase64})
