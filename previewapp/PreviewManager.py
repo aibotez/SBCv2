@@ -1,11 +1,14 @@
 import os,time
 from SBC import GetUserPath
+import urllib
+from urllib import parse
 
 class Preview():
     def __init__(self):
         self.getuserpath = GetUserPath.GetUserPath()
 
     def Convert2pdf(self,useremail,path):
+        path = urllib.parse.unquote(path)
         SerPath = self.getuserpath.getuserserpath(useremail, path)
         FileName = os.path.basename(SerPath)
         Convert2Path = 'static/TEMP/{}/{}.pdf'.format(useremail,FileName)
