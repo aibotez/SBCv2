@@ -74,6 +74,7 @@ urlpatterns = [
     path('ShareSave2SBC/',viewShare.ShareSave2SBC),
 
     path('preview/',viewPre.preview),
+    path('Convert2PDF/',viewPre.Convert2PDF),
 
     path('BaiduNetUserExistCheck/',viewBdn.BaiduNetUserExistCheck),
     path('BaiduNetSaveUser/',viewBdn.BaiduNetSaveUser),

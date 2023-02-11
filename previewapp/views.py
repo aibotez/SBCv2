@@ -8,7 +8,7 @@ from django.http import HttpResponse,JsonResponse
 from django.http import HttpResponseRedirect
 from SBC import GetUserPath
 import base64,json
-
+from previewapp import PreviewManager
 # Create your views here.
 
 def GetFeBase64(path):
@@ -17,6 +17,15 @@ def GetFeBase64(path):
         febase64 = base64.b64encode(f.read()).decode()
         # imgbase64Url = "data:image/{};base64,".format(imgtype) + imgbase64
         return febase64
+def Convert2PDF(request):
+    LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
+    if LoginRes['res']:
+        return HttpResponseRedirect('/login/')
+    prep = json.loads(request.body)
+    Previewmanager = PreviewManager.Preview()
+    res = Previewmanager.Convert2pdf(LoginRes['useremail'],prep['path'])
+    return HttpResponse(res)
+
 def preview(request):
     LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
     if LoginRes['res']:
