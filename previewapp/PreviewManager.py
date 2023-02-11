@@ -8,7 +8,9 @@ class Preview():
         self.getuserpath = GetUserPath.GetUserPath()
 
     def Convert2pdf(self,useremail,path):
+        print(path)
         path = urllib.parse.unquote(path)
+        print(path)
         SerPath = self.getuserpath.getuserserpath(useremail, path)
         FileName = os.path.basename(SerPath)
         Convert2Path = 'static/TEMP/{}/{}.pdf'.format(useremail,FileName)
