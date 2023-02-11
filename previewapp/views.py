@@ -33,6 +33,53 @@ def preview(request):
     getuserpath = GetUserPath.GetUserPath()
 
     if request.method == 'GET':
+        if 'client' in request.GET:
+            req = {'path':request.GET['filepath'],'client':''}
+        else:
+            req = {'path': request.GET['filepath']}
+    else:
+        prep = json.loads(request.body)
+        # print(json.loads(request.body),type(json.loads(request.body)))
+        if 'client' in prep:
+            req = {'path': prep['filepath'],'client':''}
+        else:
+            req = {'path': prep['filepath']}
+    path = getuserpath.userpath(req,LoginRes)[1]
+    FiletypeJudge = FileType.FileType()
+    filetype = FiletypeJudge.GetFileType(path)[0]
+    if filetype == 'image':
+
+        image_data = open(path, "rb").read()
+
+        return HttpResponse(image_data, content_type="image/png")
+    elif filetype == 'pdf':
+        if 'client' in req:
+            pdfbase64 = GetFeBase64(path)
+            return JsonResponse({'data':pdfbase64})
+        else:
+        # pdfbase64 = "data:application/pdf;base64," + GetFeBase64(path)
+            pdfbase64 = GetFeBase64(path)
+        # return HttpResponseRedirect('/pdfviewer.html')
+            return render(request, "preview/pdfviewer.html",locals())
+    elif filetype == 'word' or filetype == 'ppt' or filetype =='excel' or filetype == 'html':
+        FileName = os.path.basename(path)
+        SerTempPath = 'static/{}/{}.pdf'.format(LoginRes['useremail'],FileName)
+        if not os.path.exists(SerTempPath):
+            Previewmanager = PreviewManager.Preview()
+            res = Previewmanager.Convert2pdf(LoginRes['useremail'], path)
+        pdfbase64 = GetFeBase64(SerTempPath)
+        if 'client' in req:
+            return JsonResponse({'data':pdfbase64})
+        else:
+            return render(request, "preview/pdfviewer.html", locals())
+
+def preview1(request):
+    LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
+    if LoginRes['res']:
+        return HttpResponseRedirect('/login/')
+    getuserpath = GetUserPath.GetUserPath()
+
+    if request.method == 'GET':
         req = {'path':request.GET['filepath']}
     else:
         prep = json.loads(request.body)
