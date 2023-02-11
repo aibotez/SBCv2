@@ -63,7 +63,7 @@ def preview(request):
             return render(request, "preview/pdfviewer.html",locals())
     elif filetype == 'word' or filetype == 'ppt' or filetype =='excel' or filetype == 'html':
         FileName = os.path.basename(path)
-        SerTempPath = 'static/{}/{}.pdf'.format(LoginRes['useremail'],FileName)
+        SerTempPath = 'static/TEMP/{}/{}.pdf'.format(LoginRes['useremail'],FileName)
         if not os.path.exists(SerTempPath):
             Previewmanager = PreviewManager.Preview()
             res = Previewmanager.Convert2pdf(LoginRes['useremail'], req['path'])

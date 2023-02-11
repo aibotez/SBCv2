@@ -2,5 +2,6 @@ static/Tools/GetCookie/GetCookie.exe
 static/Tools/SBCTool.exe
 static/Tools/SBCTool.7z
 static/Client
+static/TEMP
 SBC/__pycache__
 db.sqlite3
