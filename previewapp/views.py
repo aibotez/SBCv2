@@ -26,6 +26,32 @@ def Convert2PDF(request):
     res = Previewmanager.Convert2pdf(LoginRes['useremail'],prep['path'])
     return HttpResponse(res)
 
+def previewpdftest(request):
+    from django.http import StreamingHttpResponse, FileResponse
+    from django.utils.encoding import escape_uri_path
+    def file_iterator(file_name, chunk_size=20 * 1024 * 1024):
+        with open(file_name, 'rb') as f:
+            while True:
+                c = f.read(chunk_size)
+                if c:
+                    febase64 = base64.b64encode(c).decode()
+                    yield febase64
+                else:
+                    break
+    path = 'static/TEMP/2290227486@qq.com/J-TEXT实验研究进展-陈忠勇.pptx.pdf'
+    the_file_name = 'J-TEXT实验研究进展-陈忠勇.pptx.pdf'
+    the_file_path = path
+    # print(the_file_name,the_file_path)
+    # response = FileResponse(file_iterator(the_file_name))
+    response = StreamingHttpResponse(file_iterator(the_file_path))
+    response = FileResponse(response)
+    response['Content-Type'] = 'application/octet-stream'
+    response['content-length'] = os.path.getsize(the_file_path)
+    # response['Content-Disposition'] = 'attachment;filename="{0}"'.format(wjname)
+    response["Content-Disposition"] = "attachment; filename*=UTF-8''{}".format(escape_uri_path(the_file_name))
+    return response
+
+
 def preview(request):
     LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
     if LoginRes['res']:
