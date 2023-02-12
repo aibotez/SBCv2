@@ -26,14 +26,14 @@ def Convert2PDF(request):
     res = Previewmanager.Convert2pdf(LoginRes['useremail'],prep['path'])
     return HttpResponse(res)
 
-def previewpdftest(request):
+def previewpdftest(path,page):
     import fitz
     from PyQt5.QtGui import QImage
     from PyQt5 import QtCore
     import base64
-    info = json.loads(request.body)
-    page = info['page']
-    path = 'static/TEMP/2290227486@qq.com/J-TEXT实验研究进展-陈忠勇.pptx.pdf'
+    # info = json.loads(request.body)
+    # page = info['page']
+    # path = 'static/TEMP/2290227486@qq.com/J-TEXT实验研究进展-陈忠勇.pptx.pdf'
     doc = fitz.open(path)
     trans_a = 200
     trans_b = 200
@@ -41,69 +41,12 @@ def previewpdftest(request):
     pix = doc[page].get_pixmap(matrix=trans)
     fmt = QImage.Format_RGBA8888 if pix.alpha else QImage.Format_RGB888
     pageImage = QImage(pix.samples, pix.width, pix.height, pix.stride, fmt)
-
     data = QtCore.QByteArray()
     buf = QtCore.QBuffer(data)
     pageImage.save(buf, 'PNG')
-    # str = data.toBase64()
     febase64 = base64.b64encode(data).decode()
     return HttpResponse(febase64, content_type="image/png")
     # return HttpResponse(febase64)
-
-
-def previewpdftest1(request):
-
-    # info = json.loads(request.body)
-    # page = info['page']
-
-
-    from django.http import StreamingHttpResponse, FileResponse
-    from django.utils.encoding import escape_uri_path
-    import fitz
-    from PyQt5.QtGui import QImage
-    from PyQt5 import QtCore
-    import base64
-    def file_iterator(file_name, chunk_size=20 * 1024 * 1024):
-        doc = fitz.open(file_name)
-        pages = doc.page_count
-        print(pages)
-        for i in range(pages):
-            print(i)
-            trans_a = 200
-            trans_b = 200
-            trans = fitz.Matrix(trans_a / 100, trans_b / 100).prerotate(0)
-            pix = doc[i].get_pixmap(matrix=trans)
-            fmt = QImage.Format_RGBA8888 if pix.alpha else QImage.Format_RGB888
-            pageImage = QImage(pix.samples, pix.width, pix.height, pix.stride, fmt)
-
-            data = QtCore.QByteArray()
-            buf = QtCore.QBuffer(data)
-            pageImage.save(buf, 'PNG')
-            # str = data.toBase64()
-            febase64 = base64.b64encode(data).decode()
-            # print(66,data)
-            # print(77,str)
-            yield febase64
-        # with open(file_name, 'rb') as f:
-        #     while True:
-        #         c = f.read(chunk_size)
-        #         if c:
-        #             febase64 = base64.b64encode(c).decode()
-        #             yield febase64
-        #         else:
-        #             break
-    path = 'static/TEMP/2290227486@qq.com/J-TEXT实验研究进展-陈忠勇.pptx.pdf'
-    the_file_name = 'J-TEXT实验研究进展-陈忠勇.pptx.pdf'
-    the_file_path = path
-    # print(the_file_name,the_file_path)
-    # response = FileResponse(file_iterator(the_file_name))
-    response = StreamingHttpResponse(file_iterator(the_file_path))
-    response = FileResponse(response)
-    response['Content-Type'] = 'application/octet-stream'
-    response['content-length'] = os.path.getsize(the_file_path)
-    # response['Content-Disposition'] = 'attachment;filename="{0}"'.format(wjname)
-    response["Content-Disposition"] = "attachment; filename*=UTF-8''{}".format(escape_uri_path(the_file_name))
-    return response
 
 
 def preview(request):
@@ -114,14 +57,14 @@ def preview(request):
 
     if request.method == 'GET':
         if 'client' in request.GET:
-            req = {'path':request.GET['filepath'],'client':''}
+            req = {'path':request.GET['filepath'],'client':'','page':request.GET['page']}
         else:
             req = {'path': request.GET['filepath']}
     else:
         prep = json.loads(request.body)
         # print(json.loads(request.body),type(json.loads(request.body)))
         if 'client' in prep:
-            req = {'path': prep['filepath'],'client':''}
+            req = {'path': prep['filepath'],'client':'','page':prep['page']}
         else:
             req = {'path': prep['filepath']}
     path = getuserpath.userpath(req,LoginRes)[1]
@@ -134,7 +77,8 @@ def preview(request):
         return HttpResponse(image_data, content_type="image/png")
     elif filetype == 'pdf':
         if 'client' in req:
-            pdfbase64 = GetFeBase64(path)
+            # pdfbase64 = GetFeBase64(path)
+            pdfbase64 = previewpdftest(path,req['page'])
             return JsonResponse({'data':pdfbase64})
         else:
         # pdfbase64 = "data:application/pdf;base64," + GetFeBase64(path)
@@ -147,10 +91,12 @@ def preview(request):
         if not os.path.exists(SerTempPath):
             Previewmanager = PreviewManager.Preview()
             res = Previewmanager.Convert2pdf(LoginRes['useremail'], req['path'])
-        pdfbase64 = GetFeBase64(SerTempPath)
+
         if 'client' in req:
+            pdfbase64 = previewpdftest(SerTempPath, req['page'])
             return JsonResponse({'data':pdfbase64})
         else:
+            pdfbase64 = GetFeBase64(SerTempPath)
             return render(request, "preview/pdfviewer.html", locals())
 
 def preview1(request):
