@@ -14,7 +14,8 @@ class Preview():
         SerPath = self.getuserpath.getuserserpath(useremail, path)
         FileName = os.path.basename(SerPath)
         Convert2Path = 'static/TEMP/{}/{}.pdf'.format(useremail,FileName)
-        os.system('unoconv -f pdf -o {} {}'.format(Convert2Path,SerPath))
+        if not os.path.exists(Convert2Path):
+            os.system('unoconv -f pdf -o {} {}'.format(Convert2Path,SerPath))
         return '1'
 
     def PrewviewPDF(self,useremail,path):
