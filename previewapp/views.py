@@ -66,7 +66,9 @@ def preview(request):
         prep = json.loads(request.body)
         # print(json.loads(request.body),type(json.loads(request.body)))
         if 'client' in prep:
-            req = {'path': prep['filepath'],'client':'','page':prep['page']}
+            req = prep
+            req['path'] = prep['filepath']
+            # req = {'path': prep['filepath'],'client':'','page':prep['page']}
         else:
             req = {'path': prep['filepath']}
     path = getuserpath.userpath(req,LoginRes)[1]
