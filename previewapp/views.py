@@ -46,7 +46,7 @@ def previewpdftest(path,page):
     buf = QtCore.QBuffer(data)
     pageImage.save(buf, 'PNG')
     febase64 = base64.b64encode(data).decode()
-    return {'pages':pages,data:febase64}
+    return {'pages':pages,'data':febase64}
     # return HttpResponse(febase64, content_type="image/png")
     # return HttpResponse(febase64)
 
