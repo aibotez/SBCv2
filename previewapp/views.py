@@ -27,17 +27,71 @@ def Convert2PDF(request):
     return HttpResponse(res)
 
 def previewpdftest(request):
+    import fitz
+    from PyQt5.QtGui import QImage
+    from PyQt5 import QtCore
+    import base64
+    info = json.loads(request.body)
+    page = info['page']
+    path = 'static/TEMP/2290227486@qq.com/J-TEXT实验研究进展-陈忠勇.pptx.pdf'
+    doc = fitz.open(path)
+    trans_a = 200
+    trans_b = 200
+    trans = fitz.Matrix(trans_a / 100, trans_b / 100).prerotate(0)
+    pix = doc[page].get_pixmap(matrix=trans)
+    fmt = QImage.Format_RGBA8888 if pix.alpha else QImage.Format_RGB888
+    pageImage = QImage(pix.samples, pix.width, pix.height, pix.stride, fmt)
+
+    data = QtCore.QByteArray()
+    buf = QtCore.QBuffer(data)
+    pageImage.save(buf, 'PNG')
+    # str = data.toBase64()
+    febase64 = base64.b64encode(data).decode()
+    return HttpResponse(febase64, content_type="image/png")
+    # return HttpResponse(febase64)
+
+
+def previewpdftest1(request):
+
+    # info = json.loads(request.body)
+    # page = info['page']
+
+
     from django.http import StreamingHttpResponse, FileResponse
     from django.utils.encoding import escape_uri_path
+    import fitz
+    from PyQt5.QtGui import QImage
+    from PyQt5 import QtCore
+    import base64
     def file_iterator(file_name, chunk_size=20 * 1024 * 1024):
-        with open(file_name, 'rb') as f:
-            while True:
-                c = f.read(chunk_size)
-                if c:
-                    febase64 = base64.b64encode(c).decode()
-                    yield febase64
-                else:
-                    break
+        doc = fitz.open(file_name)
+        pages = doc.page_count
+        print(pages)
+        for i in range(pages):
+            print(i)
+            trans_a = 200
+            trans_b = 200
+            trans = fitz.Matrix(trans_a / 100, trans_b / 100).prerotate(0)
+            pix = doc[i].get_pixmap(matrix=trans)
+            fmt = QImage.Format_RGBA8888 if pix.alpha else QImage.Format_RGB888
+            pageImage = QImage(pix.samples, pix.width, pix.height, pix.stride, fmt)
+
+            data = QtCore.QByteArray()
+            buf = QtCore.QBuffer(data)
+            pageImage.save(buf, 'PNG')
+            # str = data.toBase64()
+            febase64 = base64.b64encode(data).decode()
+            # print(66,data)
+            # print(77,str)
+            yield febase64
+        # with open(file_name, 'rb') as f:
+        #     while True:
+        #         c = f.read(chunk_size)
+        #         if c:
+        #             febase64 = base64.b64encode(c).decode()
+        #             yield febase64
+        #         else:
+        #             break
     path = 'static/TEMP/2290227486@qq.com/J-TEXT实验研究进展-陈忠勇.pptx.pdf'
     the_file_name = 'J-TEXT实验研究进展-陈忠勇.pptx.pdf'
     the_file_path = path
