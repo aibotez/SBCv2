@@ -35,6 +35,7 @@ def previewpdftest(path,page):
     # page = info['page']
     # path = 'static/TEMP/2290227486@qq.com/J-TEXT实验研究进展-陈忠勇.pptx.pdf'
     doc = fitz.open(path)
+    pages = doc.page_count
     trans_a = 200
     trans_b = 200
     trans = fitz.Matrix(trans_a / 100, trans_b / 100).prerotate(0)
@@ -45,7 +46,8 @@ def previewpdftest(path,page):
     buf = QtCore.QBuffer(data)
     pageImage.save(buf, 'PNG')
     febase64 = base64.b64encode(data).decode()
-    return HttpResponse(febase64, content_type="image/png")
+    return {'pages':pages,data:febase64}
+    # return HttpResponse(febase64, content_type="image/png")
     # return HttpResponse(febase64)
 
 

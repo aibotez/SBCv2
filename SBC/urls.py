@@ -75,7 +75,7 @@ urlpatterns = [
 
     path('preview/',viewPre.preview),
     path('Convert2PDF/',viewPre.Convert2PDF),
-    path('previewpdftest/',viewPre.previewpdftest),
+    # path('previewpdftest/',viewPre.previewpdftest),
 
     path('BaiduNetUserExistCheck/',viewBdn.BaiduNetUserExistCheck),
     path('BaiduNetSaveUser/',viewBdn.BaiduNetSaveUser),
