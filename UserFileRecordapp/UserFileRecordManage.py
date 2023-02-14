@@ -36,7 +36,6 @@ class userfilerecordmanage():
         # print(dst)
         data = self.getdate(dst)
         Fesize = os.path.getsize(dst)
-
         models.UserFileRecord.objects.create(FileSize=Fesize,FileModTime=data,FileMd5=feMd5,useremail = useremail,FileType = fetype,FilePath = path,Expansion='')
 
     # models.FilesStock.objects.create(FileMd5=feMd5, FileName=srcfename, FilePath=self.FilesStock + srcfename)
