@@ -62,7 +62,8 @@ class userfilerecordmanage():
         for i in FindFile:
 
             i.FilePath = i.FilePath.replace(OldPath,NewPath)
-            i.save()
+            # i.save()
+        models.UserFileRecord.objects.bulk_update(FindFile,['FilePath'])
 
 
 
