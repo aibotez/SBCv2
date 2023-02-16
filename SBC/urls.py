@@ -29,7 +29,11 @@ from Usersapp import views as viewUser
 from FileSycapp import views as viewFS
 from Updateapp import views as viewUpd
 
+from SBCManagerapp import views as viewManager
+
 urlpatterns = [
+    path('man/',viewManager.sbcmanger),
+
     path('', view.Home),
     path('ConnectTest/',view.ConnectTest),
     path('GetUserInfo/',viewUser.GetUserInfo),

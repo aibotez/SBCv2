@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'HomeManageapp',
     'FileSycapp',
     'Updateapp',
+    'SBCManagerapp',
 ]
 
 MIDDLEWARE = [
