@@ -6,13 +6,31 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css"/>
+    <script src="/static/bootstrap/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/bootstrap/js/bootstrap.bundle.min.js" type="text/javascript" charset="utf-8"></script>
+<!--    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>-->
+
+    <style>
+
+        tr.change:hover
+        {
+            background-color:#A2D9CE;
+            opacity:0.5;
+            width:100%;
+        }
+    </style>
 </head>
 <body>
+
 
 <div class='d-flex' style="height: 100vh;">
     <div class='col-1' style="background-color:#EAEDED;max-width:200px;min-width:200px;">
         <div class="text-center" style="padding-top:100px;width:100%;">
             <label id="clickUserInfo" style="background-color:#FDFEFE;width:100%;padding-top:10px;padding-bottom:10px;cursor:pointer;">用户信息</label>
+        </div>
+
+        <div class="text-center" style="padding-top:0px;width:100%">
+            <label id="clickFilesInfo" style="background-color:#EAEDED;width:100%;padding-top:10px;padding-bottom:10px;cursor:pointer;">文件信息</label>
         </div>
 
         <div class="text-center" style="padding-top:0px;width:100%">
@@ -23,22 +41,98 @@
 
 
     <div class='flex-grow-1' style="background-color:#FDFEFE">
+        <div class="nav flex-column justify-content-center text-center" style="width:100%;height:100px;background-color:#138D75;">
+            <label style="color:white;font-size:38px;">小 黑 云 后 台 管 理</label>
+        </div>
+
+        <div class='flex-grow-1' style="border-width:1px;border-style:solid">
+            <div class="nav flex-column justify-content-center" style="height:60px;">
+                <div>
+                    <button type="button" class="btn btn-default btn-sm ">创建用户</button>
+                </div>
+                <div style="width:300px;">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="检索信息">
+                        <button type="button" class="btn btn-default btn-sm ">检索</button>
+                    </div>
+                </div>
+
+
+                <div class="dropdown">
+                    <button type="button" class="btn dropdown-toggle" id="dropdownMenu1" data-bs-toggle="dropdown">修改信息
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                        <li><a class="dropdown-item" href="#">修改容量</a></li>
+                        <li><a class="dropdown-item" href="#">修改密码</a></li>
+                        <li><a class="dropdown-item" href="#">删除用户</a></li>
+                        <li><a class="dropdown-item" href="#">设为管理员</a></li>
+                        <li><a class="dropdown-item" href="#">设为普通用户</a></li>
+                    </ul>
+                </div>
+
+
+
+            </div>
+
+
+            <div id="User">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <td scope="col" style="width:80px;cursor:pointer;">全选</td>
+                      <th scope="col">序号</th>
+                      <th scope="col">用户名</th>
+                      <th scope="col">使用情况</th>
+                      <th scope="col">是否为管理员</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    {% for userdata in UserInfo %}
+                        <tr class="change">
+                          <td>&nbsp;&nbsp;&nbsp;<input type="checkbox" value="" /></td>
+                          <th scope="row">{{userdata.numid}}</th>
+                          <td>{{userdata.username}}</td>
+                          <td>{{userdata.usercapacityinfo}}</td>
+                          <td>{{userdata.is_superuser}}</td>
+                        </tr>
+                    {% endfor %}
+
+                  </tbody>
+                </table>
+            </div>
+
+
+        </div>
+
+
+
+
+
 
     </div>
 </div>
 
 
-<script src="/static/bootstrap/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
 
 <script>
 document.getElementById('clickUserInfo').addEventListener('click', function () {
    document.getElementById('clickUserInfo').style.backgroundColor = '#FDFEFE'
    document.getElementById('clickDiskInfo').style.backgroundColor = '#EAEDED'
+   document.getElementById('clickFilesInfo').style.backgroundColor = '#EAEDED'
 },true)
 
 document.getElementById('clickDiskInfo').addEventListener('click', function () {
    document.getElementById('clickUserInfo').style.backgroundColor = '#EAEDED'
    document.getElementById('clickDiskInfo').style.backgroundColor = '#FDFEFE'
+   document.getElementById('clickFilesInfo').style.backgroundColor = '#EAEDED'
+},true)
+
+document.getElementById('clickFilesInfo').addEventListener('click', function () {
+   document.getElementById('clickUserInfo').style.backgroundColor = '#EAEDED'
+   document.getElementById('clickDiskInfo').style.backgroundColor = '#EAEDED'
+   document.getElementById('clickFilesInfo').style.backgroundColor = '#FDFEFE'
 },true)
 </script>
 
