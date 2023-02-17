@@ -23,7 +23,7 @@ class Manage():
         if int(info['ModCap']) > Total:
             info['ModCap'] = Total
         user = info['user']
-        ModCap = int(info['ModCap'])*1024*1024*1024
+        ModCap = 1024*(int(info['ModCap'])*1024*1024*1024)/1000
         Userfo = User.objects.get(username=user)
         Userfo.totalcapacity = ModCap
         Userfo.save()
