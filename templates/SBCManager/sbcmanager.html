@@ -63,11 +63,11 @@
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                        <li><a class="dropdown-item" href="#">修改容量</a></li>
-                        <li><a class="dropdown-item" href="#">修改密码</a></li>
-                        <li><a class="dropdown-item" href="#">删除用户</a></li>
-                        <li><a class="dropdown-item" href="#">设为管理员</a></li>
-                        <li><a class="dropdown-item" href="#">设为普通用户</a></li>
+                        <li><a class="dropdown-item" href="javascript:void(0);" onclick="ModCap()">修改容量</a></li>
+                        <li><a class="dropdown-item" href="javascript:void(0);" onclick="ModPass()">修改密码</a></li>
+                        <li><a class="dropdown-item" href="javascript:void(0);" onclick="DelUser()">删除用户</a></li>
+                        <li><a class="dropdown-item" href="javascript:void(0);" onclick="SetMan()">设为管理员</a></li>
+                        <li><a class="dropdown-item" href="javascript:void(0);" onclick="SetNoMan()">设为普通用户</a></li>
                     </ul>
                 </div>
 
@@ -75,12 +75,11 @@
 
             </div>
 
-
             <div id="User">
                 <table class="table">
                   <thead>
                     <tr>
-                      <td scope="col" style="width:80px;cursor:pointer;">全选</td>
+                      <td scope="col" style="width:80px;cursor:pointer;" onclick="SelectAll()">全选</td>
                       <th scope="col">序号</th>
                       <th scope="col">用户名</th>
                       <th scope="col">使用情况</th>
@@ -88,17 +87,15 @@
                     </tr>
                   </thead>
                   <tbody>
-
                     {% for userdata in UserInfo %}
                         <tr class="change">
-                          <td>&nbsp;&nbsp;&nbsp;<input type="checkbox" value="" /></td>
+                          <td>&nbsp;&nbsp;&nbsp;<input id={{userdata.numid}} type="checkbox" value="" /></td>
                           <th scope="row">{{userdata.numid}}</th>
                           <td>{{userdata.username}}</td>
                           <td>{{userdata.usercapacityinfo}}</td>
                           <td>{{userdata.is_superuser}}</td>
                         </tr>
                     {% endfor %}
-
                   </tbody>
                 </table>
             </div>
@@ -135,6 +132,54 @@ document.getElementById('clickFilesInfo').addEventListener('click', function () 
    document.getElementById('clickFilesInfo').style.backgroundColor = '#FDFEFE'
 },true)
 </script>
+
+
+
+<script>
+function GetChoseds()
+ {
+    var Users = {{UserInfo|safe}};
+    let Choseds = [];
+    for(let i =0;i<Users.length;i++)
+    {
+        let chosed = document.getElementById(Users[i].numid).checked;
+        if (chosed == 1)
+        {
+            Choseds.push(Users[i]);
+        }
+
+    }
+    return Choseds;
+  }
+function SelectAll()
+ {
+    var Users = {{UserInfo|safe}};
+    for(let i =0;i<Users.length;i++)
+    {
+        document.getElementById(Users[i].numid).checked = 1;
+    }
+ }
+
+function ModCap()
+{
+    let Choseds = GetChoseds();
+    console.log(Choseds.length);
+    if (Choseds.length>=1)
+    {
+        let Chosed = Choseds[0]
+        let ret = prompt('修改'+Chosed.username+'的容量\n'+'输入调整后的总容量（单位GB） 当前容量：'+Chosed.usercapacityinfo,'');
+        if(ret !== null && ret != '') {
+　　         ModCap = ret;
+
+        }
+
+    }
+    else
+    {return}
+}
+
+</script>
+
 
 </body>
 </html>

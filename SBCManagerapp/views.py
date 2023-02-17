@@ -36,7 +36,9 @@ def sbcmanger(request):
         userinfo['numid'] = str(j)
         userinfo['usedcapacity'] = i.usedcapacity
         userinfo['totalcapacity'] = i.totalcapacity
-        userinfo['is_superuser'] = i.is_superuser
+        userinfo['is_superuser'] = '0'
+        if i.is_superuser:
+            userinfo['is_superuser'] = '1'
         userinfo['usercapacityper'] = str(round((i.usedcapacity / i.totalcapacity) * 100,1))+'%'
         userinfo['usercapacityinfo'] = '{}/{}  ({})'.format(size_format(i.usedcapacity),size_format(i.totalcapacity),userinfo['usercapacityper'])
 
