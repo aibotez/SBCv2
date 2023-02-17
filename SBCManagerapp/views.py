@@ -88,6 +88,11 @@ def ModCap(request):
     Man.Manage().ModCap(request)
     return HttpResponse('1')
 def sbcmanger(request):
+    # ManInfo = Man.Manage().GetSerInfo()
+    # if not ManInfo:
+    #     return
+        # SBCManagemodels.SBCManager.objects.create(FileMd5=feMd5, FileName=feMd5+'#'+ srcfename,
+        #                                          FilePath=self.FilesStock + feMd5+'#'+ srcfename)
     LoginRes = verifylogin(request)
     if LoginRes['res']:
         return render(request, "SBCManager/sbcmangerlogin.html")
