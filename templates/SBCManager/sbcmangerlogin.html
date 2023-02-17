@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小黑云管理登录</title>
+      <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css"/>
+    <script src="/static/bootstrap/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+<!--    <script src="/static/bootstrap/js/bootstrap.bundle.min.js" type="text/javascript" charset="utf-8"></script>-->
+    <script src="/static/js/jquery-3.1.1.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+
+ <div class="container" style="width:400px;padding-top:100px;">
+    <form class="form-signin" method = "post" action = "/SBCManLogin/">
+        <h2 class="form-signin-heading">小黑云后台管理</h2>
+        <label class="sr-only" style="padding-top:20px;">账号</label>
+        <input name="usercount" class="form-control" placeholder="用户名/邮箱" required autofocus>
+        <label for="inputPassword" class="sr-only" style="padding-top:20px;">密码</label>
+        <input type="password" id="inputPassword" name="userpassword" class="form-control" placeholder="密码" required>
+      <br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" >登录</button>
+    </form>
+ </div> <!-- /container -->
+
+
+</body>
+</html>

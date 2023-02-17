@@ -33,6 +33,9 @@ from SBCManagerapp import views as viewManager
 
 urlpatterns = [
     path('man/',viewManager.sbcmanger),
+    path('GetSerInfo/',viewManager.GetSerInfo),
+    path('SBCManLogin/',viewManager.loginVerify),
+    path('ModCap/',viewManager.ModCap),
 
     path('', view.Home),
     path('ConnectTest/',view.ConnectTest),

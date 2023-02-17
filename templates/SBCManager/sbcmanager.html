@@ -8,6 +8,8 @@
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css"/>
     <script src="/static/bootstrap/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
     <script src="/static/bootstrap/js/bootstrap.bundle.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/js/jquery-3.1.1.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/js/SendMessegetoSer.js" type="text/javascript" charset="utf-8"></script>
 <!--    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>-->
 
     <style>
@@ -134,7 +136,6 @@ document.getElementById('clickFilesInfo').addEventListener('click', function () 
 </script>
 
 
-
 <script>
 function GetChoseds()
  {
@@ -166,10 +167,14 @@ function ModCap()
     console.log(Choseds.length);
     if (Choseds.length>=1)
     {
+        let res = PostMethod('/GetSerInfo/',{},0)
+        console.log(res)
         let Chosed = Choseds[0]
-        let ret = prompt('修改'+Chosed.username+'的容量\n'+'输入调整后的总容量（单位GB） 当前容量：'+Chosed.usercapacityinfo,'');
+        let ret = prompt('修改'+Chosed.username+'的容量；'+'  总容量为：'+res.Total+'\n输入调整后的总容量（单位GB） 当前容量：'+Chosed.usercapacityinfo,'');
         if(ret !== null && ret != '') {
 　　         ModCap = ret;
+            let res = PostMethod('/ModCap/',{'ModCap':ret,'user':Chosed.username},0)
+            location.replace(location.href);
 
         }
 
