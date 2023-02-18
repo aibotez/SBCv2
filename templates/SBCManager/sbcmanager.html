@@ -10,6 +10,7 @@
     <script src="/static/bootstrap/js/bootstrap.bundle.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="/static/js/jquery-3.1.1.js" type="text/javascript" charset="utf-8"></script>
     <script src="/static/js/SendMessegetoSer.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/js/SBCManager.js" type="text/javascript" charset="utf-8"></script>
 <!--    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>-->
 
     <style>
@@ -42,12 +43,12 @@
     </div>
 
 
-    <div class='flex-grow-1' style="background-color:#FDFEFE">
+    <div class='flex-grow-1' style="background-color:#FDFEFE;overflow-y:hidden;">
         <div class="nav flex-column justify-content-center text-center" style="width:100%;height:100px;background-color:#138D75;">
             <label style="color:white;font-size:38px;">小 黑 云 后 台 管 理</label>
         </div>
 
-        <div class='flex-grow-1'>
+        <div class='flex-grow-1' id="User">
             <div class="nav flex-column justify-content-center" style="height:60px;">
                 <div>
                     <button type="button" class="btn btn-default btn-sm ">创建用户</button>
@@ -72,12 +73,9 @@
                         <li><a class="dropdown-item" href="javascript:void(0);" onclick="SetNoMan()">设为普通用户</a></li>
                     </ul>
                 </div>
-
-
-
             </div>
 
-            <div id="User">
+            <div>
                 <table class="table">
                   <thead>
                     <tr>
@@ -102,6 +100,54 @@
                 </table>
             </div>
 
+        </div>
+
+        <div class='flex-grow-1' id="Files">
+            <div class="nav flex-column justify-content-center" style="height:60px;">
+                <div>
+                    <button type="button" class="btn btn-default btn-sm ">删除</button>
+                </div>
+                <div style="width:300px;">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="检索信息">
+                        <button type="button" class="btn btn-default btn-sm ">检索</button>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button type="button" class="btn dropdown-toggle" id="dropdownMenu2" data-bs-toggle="dropdown">显示设置
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
+                        <li><a class="dropdown-item" href="javascript:void(0);" onclick="ModCap()">只显示用户包含的文件</a></li>
+                        <li><a class="dropdown-item" href="javascript:void(0);" onclick="ModPass()">显示用户未包含的文件</a></li>
+                        <li><a class="dropdown-item" href="javascript:void(0);" onclick="DelUser()">显示全部</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div>
+                <table class="table" style="table-layout:fixed;word-break:break-all; word-wrap:break-all;">
+                  <thead>
+                    <tr>
+                      <td scope="col" style="width:80px;cursor:pointer;" onclick="SelectAll()">全选</td>
+                      <th scope="col" style="width:5%">序号</th>
+                      <th scope="col" style="width:45%">文件名</th>
+                      <th scope="col" style="width:30%">MD5</th>
+                      <th scope="col" style="width:10%">文件大小</th>
+                      <th scope="col" style="width:10%">文件类型</th>
+                    </tr>
+                  </thead>
+                </table>
+            </div>
+
+            <div style="height:80vh;overflow:scroll;overflow-y:scroll;overflow-x:hidden;">
+                <table class="table" style="table-layout:fixed;word-break:break-all; word-wrap:break-all;">
+                     <tbody id="UserTable">
+                     </tbody>
+                </table>
+            </div>
+
 
         </div>
 
@@ -116,22 +162,39 @@
 
 
 <script>
+var FileShow = 0;
+var DiskShow = 0;
+document.getElementById('Files').style.display = 'none';
+
+
 document.getElementById('clickUserInfo').addEventListener('click', function () {
+   document.getElementById('Files').style.display = 'none';
+   document.getElementById('User').style.display = 'block';
    document.getElementById('clickUserInfo').style.backgroundColor = '#FDFEFE'
    document.getElementById('clickDiskInfo').style.backgroundColor = '#EAEDED'
    document.getElementById('clickFilesInfo').style.backgroundColor = '#EAEDED'
 },true)
-
 document.getElementById('clickDiskInfo').addEventListener('click', function () {
    document.getElementById('clickUserInfo').style.backgroundColor = '#EAEDED'
    document.getElementById('clickDiskInfo').style.backgroundColor = '#FDFEFE'
    document.getElementById('clickFilesInfo').style.backgroundColor = '#EAEDED'
 },true)
-
 document.getElementById('clickFilesInfo').addEventListener('click', function () {
    document.getElementById('clickUserInfo').style.backgroundColor = '#EAEDED'
    document.getElementById('clickDiskInfo').style.backgroundColor = '#EAEDED'
    document.getElementById('clickFilesInfo').style.backgroundColor = '#FDFEFE'
+
+
+   document.getElementById('User').style.display = 'none';
+   document.getElementById('Files').style.display = 'block';
+   if (FileShow==0)
+   {
+        UpdateFiles();
+        FileShow = 1;
+   }
+
+
+
 },true)
 </script>
 

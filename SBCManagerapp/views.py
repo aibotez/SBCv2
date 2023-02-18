@@ -87,6 +87,12 @@ def ModCap(request):
         return render(request, "SBCManager/sbcmangerlogin.html")
     Man.Manage().ModCap(request)
     return HttpResponse('1')
+def GetStockFilesAll(request):
+    LoginRes = verifylogin(request)
+    if LoginRes['res']:
+        return render(request, "SBCManager/sbcmangerlogin.html")
+    info = Man.Manage().GetFilesAll()
+    return JsonResponse(info)
 def sbcmanger(request):
     # ManInfo = Man.Manage().GetSerInfo()
     # if not ManInfo:
