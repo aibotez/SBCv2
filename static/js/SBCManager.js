@@ -268,3 +268,32 @@ function GetStockUser()
         };
         pieHuan.setOption(pieHuanOption);
  }
+ 
+ function NetWork()
+ {
+	 // 基于准备好的dom，初始化echarts实例
+	var myChart = echarts.init(document.getElementById('Netused'));
+	// 指定图表的配置项和数据
+	var option = {
+	title:{
+	text:'树懒课堂研发费用折线图',
+	subtext:'数据纯属虚构',
+	},
+	xAxis: {
+	type: 'category',
+	boundaryGap: false,
+	data: ['一月', '二月', '三月', '四月', '五月', '六月']
+	},
+	yAxis: {
+	type: 'value'
+	},
+	series: [{
+	data: [920, 801, 964, 1390, 1530, 1620],
+	type: 'line',
+	areaStyle: {}
+	}]
+	};
+	// 使用刚指定的配置项和数据显示图表。
+	myChart.setOption(option);
+	 
+ }
