@@ -13,7 +13,7 @@ function GetStockUser()
 		tr.class = "change";
 		let td1 = document.createElement("td");
 		let input1 = document.createElement("input");
-		input1.id = i;
+		input1.id = 'FIles'+i.toString();
 		input1.type="checkbox";
 		td1.appendChild(input1);
 		let th1 = document.createElement("th");
@@ -44,12 +44,51 @@ function GetStockUser()
 	 
  }
  
- function UpdateFiles()
+ function UpdateFiles(judge)
  {
+	 console.log(judge)
 	 let res = GetStockUser();
 	 var FileNoUser = res.NoUser;
 	 var allstockFiles = res.all;
-	 Updateact(allstockFiles);
+	 if(judge==1)
+	 {
+		 Filesall = allstockFiles
+	 }
+	 else
+	 {
+		 Filesall = FileNoUser
+	 }
+	 var tbody = document.getElementById("UserTable");
+	 while(tbody.firstChild) { 
+	    tbody.removeChild(tbody.firstChild); 
+		} 
+	 Updateact(Filesall);
 	 
 	 return
+ }
+ function FileChosedAll()
+ {
+    for(let i =0;i<Filesall.length;i++)
+    {
+        document.getElementById('FIles'+i.toString()).checked = 1;
+    }
+ }
+ function GetFileChoseds()
+ {
+	let Choseds = [];
+	for(let i =0;i<Filesall.length;i++)
+	{
+		if(document.getElementById('FIles'+i.toString()).checked==1)
+        Choseds.push(Filesall[i]);
+    }
+	return Choseds
+ }
+ function DelFiles()
+ {
+	 let Chosed = GetFileChoseds();
+	 if(Chosed.length>0)
+	 {
+		let res = PostMethod('/DelStockFiles/',JSON.stringify({'Files':Chosed}),0);
+	 }
+	 
  }

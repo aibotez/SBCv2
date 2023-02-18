@@ -55,7 +55,7 @@ def loginVerify(request):
     if request.method == 'POST':
         request.POST = request.POST.copy()
         userInfos = request.POST.dict()
-        print(request.POST)
+
         res = LoginVerifyUser(userInfos)
         msg = '用户名或密码错误'
         if res['status']:
@@ -92,6 +92,12 @@ def GetStockFilesAll(request):
     if LoginRes['res']:
         return render(request, "SBCManager/sbcmangerlogin.html")
     info = Man.Manage().GetFilesAll()
+    return JsonResponse(info)
+def DelStockFiles(request):
+    LoginRes = verifylogin(request)
+    if LoginRes['res']:
+        return render(request, "SBCManager/sbcmangerlogin.html")
+    info = Man.Manage().DelStockFiles(request)
     return JsonResponse(info)
 def sbcmanger(request):
     # ManInfo = Man.Manage().GetSerInfo()
