@@ -99,3 +99,172 @@ function GetStockUser()
 	 }
 	 
  }
+ 
+ 
+ 
+ 
+  function CPUusedShow()
+ {
+	var pieHuan = echarts.init(document.getElementById('CPUused'));
+        pieHuanOption = {
+            // 标题
+            title: {
+				left:'center',
+                text: 'CPU用量'
+            },
+            // 不同区域的颜色
+            color: ['#65a5ff', '#dcebff'],
+
+	    graphic: {
+	        type: 'text',
+	        top: 'center',
+	        left: 'center',
+	        zlevel:0,
+	        style: {
+	            text: '30%',
+	            fontSize: 16,
+	            textAlign:'center',
+	            fontWeight: 'bold'
+//<!--	            fontWeight: 'bold'		文字字体的粗细，可选'normal'，'bold'，'bolder'，'lighter'-->
+	        }
+	    },
+            series: [
+                {
+                   // name: '磁盘用量',
+                    type: 'pie',
+                    // 数组的第一项是内半径，第二项是外半径；可以设置不同的内外半径显示成圆环图
+                    radius: ['40%', '60%'],
+                    // 饼图的中心（圆心）坐标，数组的第一项是横坐标，第二项是纵坐标；设置成百分比时第一项是相对于容器宽度，第二项是相对于容器高度
+                    center: ['50%', '50%'],
+                    itemStyle: {
+                        // 显示图例
+                        normal: {
+                            label: {
+								fontSize: 18,
+                                show: true
+                            },
+                            labelLine: {
+                                show: true
+                            }
+                        },
+
+                    },
+                    data: [
+                        { value: 3, name: '已使用' },
+                        { value: 7, name: '剩余' }
+                    ]
+                }
+            ]
+        };
+        pieHuan.setOption(pieHuanOption);
+ }
+  function MemusedShow()
+ {
+	var pieHuan = echarts.init(document.getElementById('Memused'));
+        pieHuanOption = {
+            // 标题
+            title: {
+				left:'center',
+                text: '内存用量'
+            },
+            // 不同区域的颜色
+            color: ['#65a5ff', '#dcebff'],
+
+	    graphic: {
+	        type: 'text',
+	        top: 'center',
+	        left: 'center',
+	        zlevel:0,
+	        style: {
+	            text: '100GB/7TB',
+	            fontSize: 16,
+	            textAlign:'center',
+	            fontWeight: 'bold'
+//<!--	            fontWeight: 'bold'		文字字体的粗细，可选'normal'，'bold'，'bolder'，'lighter'-->
+	        }
+	    },
+            series: [
+                {
+                    name: '磁盘用量',
+                    type: 'pie',
+                    // 数组的第一项是内半径，第二项是外半径；可以设置不同的内外半径显示成圆环图
+                    radius: ['40%', '60%'],
+                    // 饼图的中心（圆心）坐标，数组的第一项是横坐标，第二项是纵坐标；设置成百分比时第一项是相对于容器宽度，第二项是相对于容器高度
+                    center: ['50%', '50%'],
+                    itemStyle: {
+                        // 显示图例
+                        normal: {
+                            label: {
+								fontSize: 18,
+                                show: true
+                            },
+                            labelLine: {
+                                show: true
+                            }
+                        },
+
+                    },
+                    data: [
+                        { value: 3, name: '已使用' },
+                        { value: 7, name: '剩余' }
+                    ]
+                }
+            ]
+        };
+        pieHuan.setOption(pieHuanOption);
+ }
+ function DiskusedShow()
+ {
+	var pieHuan = echarts.init(document.getElementById('Diskused'));
+        pieHuanOption = {
+            // 标题
+            title: {
+				left:'center',
+                text: '磁盘用量'
+            },
+            // 不同区域的颜色
+            color: ['#65a5ff', '#dcebff'],
+
+	    graphic: {
+	        type: 'text',
+	        top: 'center',
+	        left: 'center',
+	        zlevel:0,
+	        style: {
+	            text: '100GB/7TB',
+	            fontSize: 16,
+	            textAlign:'center',
+	            fontWeight: 'bold'
+//<!--	            fontWeight: 'bold'		文字字体的粗细，可选'normal'，'bold'，'bolder'，'lighter'-->
+	        }
+	    },
+            series: [
+                {
+                    name: '磁盘用量',
+                    type: 'pie',
+                    // 数组的第一项是内半径，第二项是外半径；可以设置不同的内外半径显示成圆环图
+                    radius: ['40%', '60%'],
+                    // 饼图的中心（圆心）坐标，数组的第一项是横坐标，第二项是纵坐标；设置成百分比时第一项是相对于容器宽度，第二项是相对于容器高度
+                    center: ['50%', '50%'],
+                    itemStyle: {
+                        // 显示图例
+                        normal: {
+                            label: {
+								fontSize: 18,
+                                show: true
+                            },
+                            labelLine: {
+                                show: true
+                            }
+                        },
+
+                    },
+                    data: [
+                        { value: 3, name: '已使用' },
+                        { value: 7, name: '剩余' }
+                    ]
+                }
+            ]
+        };
+        pieHuan.setOption(pieHuanOption);
+ }

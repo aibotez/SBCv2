@@ -11,6 +11,11 @@
     <script src="/static/js/jquery-3.1.1.js" type="text/javascript" charset="utf-8"></script>
     <script src="/static/js/SendMessegetoSer.js" type="text/javascript" charset="utf-8"></script>
     <script src="/static/js/SBCManager.js" type="text/javascript" charset="utf-8"></script>
+
+
+	<script type="text/javascript" src="/static/js/echarts.min.js"></script>
+<!--    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>-->
+
 <!--    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>-->
 
     <style>
@@ -151,6 +156,27 @@
         </div>
 
 
+        <div class='flex-grow-1 row' id="SerInfo">
+            <div class='flex-grow-1 row' style="height:40vh;weight:100vh;display: inline">
+                <table class="table" style="height:100%;table-layout:fixed;word-break:break-all; word-wrap:break-all;">
+                      <thead>
+                        <tr>
+                          <th scope="col" style="width:1%"></th>
+                          <th id="Diskused" scope="col" style="height:100%;width:33%"></th>
+                          <th id="CPUused" scope="col" style="width:33%"></th>
+                          <th id="Memused" scope="col" style="width:33%"></th>
+                        </tr>
+                      </thead>
+                </table>
+
+            </div>
+
+
+
+        </div>
+
+
+
 
 
 
@@ -160,16 +186,31 @@
 
 
 
+
+
+<script>
+
+DiskusedShow();
+CPUusedShow();
+MemusedShow();
+
+</script>
+
+
+
+
 <script>
 var FileShow = 0;
 var DiskShow = 0;
 var Filesall = [];
 document.getElementById('Files').style.display = 'none';
+document.getElementById('SerInfo').style.display = 'none';
 
 
 document.getElementById('clickUserInfo').addEventListener('click', function () {
    document.getElementById('Files').style.display = 'none';
    document.getElementById('User').style.display = 'block';
+   document.getElementById('SerInfo').style.display = 'none';
    document.getElementById('clickUserInfo').style.backgroundColor = '#FDFEFE'
    document.getElementById('clickDiskInfo').style.backgroundColor = '#EAEDED'
    document.getElementById('clickFilesInfo').style.backgroundColor = '#EAEDED'
@@ -178,6 +219,10 @@ document.getElementById('clickDiskInfo').addEventListener('click', function () {
    document.getElementById('clickUserInfo').style.backgroundColor = '#EAEDED'
    document.getElementById('clickDiskInfo').style.backgroundColor = '#FDFEFE'
    document.getElementById('clickFilesInfo').style.backgroundColor = '#EAEDED'
+
+   document.getElementById('User').style.display = 'none';
+   document.getElementById('Files').style.display = 'none';
+   document.getElementById('SerInfo').style.display = 'block';
 },true)
 document.getElementById('clickFilesInfo').addEventListener('click', function () {
    document.getElementById('clickUserInfo').style.backgroundColor = '#EAEDED'
@@ -187,6 +232,7 @@ document.getElementById('clickFilesInfo').addEventListener('click', function () 
 
    document.getElementById('User').style.display = 'none';
    document.getElementById('Files').style.display = 'block';
+   document.getElementById('SerInfo').style.display = 'none';
    if (FileShow==0)
    {
         UpdateFiles(1);

@@ -29,8 +29,8 @@ class Manage():
                 AllUserFIles = UserFileRecord.objects.filter(FileMd5 = i['MD5'])
                 for va in AllUserFIles.values():
                     info = va
-                    path = info.FilePath
-                    useremail = info.useremail
+                    path = info['FilePath']
+                    useremail = info['useremail']
                     userPath = getuserpath.getuserserpath(useremail, path)
                     DirsSize = os.path.getsize(userPath)
                     os.remove(userPath)
