@@ -85,9 +85,16 @@ function GetStockUser()
  }
  function DelFiles()
  {
+
 	 let Chosed = GetFileChoseds();
 	 if(Chosed.length>0)
 	 {
+		let ret = confirm('确认删除'+Chosed.length+'个文件？');
+		if (ret==false)
+		{
+			return;
+		}
+		console.log(ret)
 		let res = PostMethod('/DelStockFiles/',JSON.stringify({'Files':Chosed}),0);
 	 }
 	 

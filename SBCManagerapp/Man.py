@@ -27,8 +27,8 @@ class Manage():
             Path = Serinfo['FileStock'] + i['MD5'] + '#' + i['FileName']
             if 'linkuser' in i:
                 AllUserFIles = UserFileRecord.objects.filter(FileMd5 = i['MD5'])
-                for va in AllUserFIles:
-                    info = va.value()
+                for va in AllUserFIles.values():
+                    info = va
                     path = info.FilePath
                     useremail = info.useremail
                     userPath = getuserpath.getuserserpath(useremail, path)
