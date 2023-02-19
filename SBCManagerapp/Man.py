@@ -5,34 +5,48 @@ from Usersapp.models import User
 from UserFileRecordapp.models import UserFileRecord
 from FileDownUpapp.models import FilesStock
 from pack import CommMode
-import json,psutil
+import json,psutil,time
 from SBC import GetUserPath
 from django.db.models import Q
 from SBC import UserManage
 
-from win32com.client import GetObject,Dispatch
-
-
-
-wmi = GetObject('winmgmts:/root/cimv2')
-# 创建 SWbemRefresher 刷新器对象
-objRefresher = Dispatch('WbemScripting.SWbemRefresher')
-# 使用从 Win32_PerfFormattedData派生的预计算数据类 Win32_PerfFormattedData_Tcpip_Networkinterface
-# 要注意的是调用了AddEnum之后需要再调用objRefresher.Refresh()来获取初始性能数据，下方因为在循环开头已经做了这步了所以跳过。
-NetInterfaces = objRefresher.AddEnum(wmi,"Win32_PerfFormattedData_Tcpip_Networkinterface")
+# from win32com.client import GetObject,Dispatch
+#
+#
+#
+# wmi = GetObject('winmgmts:/root/cimv2')
+# # 创建 SWbemRefresher 刷新器对象
+# objRefresher = Dispatch('WbemScripting.SWbemRefresher')
+# # 使用从 Win32_PerfFormattedData派生的预计算数据类 Win32_PerfFormattedData_Tcpip_Networkinterface
+# # 要注意的是调用了AddEnum之后需要再调用objRefresher.Refresh()来获取初始性能数据，下方因为在循环开头已经做了这步了所以跳过。
+# NetInterfaces = objRefresher.AddEnum(wmi,"Win32_PerfFormattedData_Tcpip_Networkinterface")
 class Manage():
     def __init__(self):
         self.ComTol = CommMode.ComTol()
 
-
-    def GetSpeed(self):
-        UpSpeed = 0
-        DownSpeed = 0
-        objRefresher.Refresh()
-        # 循环访问刷新器集合对象
-        for NetInterface in NetInterfaces.ObjectSet:
-            UpSpeed += int(NetInterface.BytesSentPersec)
-            DownSpeed += int(NetInterface.BytesReceivedPersec)
+    def get_net_speed(self,interval):
+        '''
+        输入间隔数，得到间隔数内网卡的流量
+        :param interval: 间隔数
+        :return:时间戳 间隔数内的发送字节 间隔数内的接收字节
+        '''
+        net_msg = psutil.net_io_counters()
+        bytes_sent, bytes_recv = net_msg.bytes_sent, net_msg.bytes_recv
+        time.sleep(interval)
+        time1 = int(time.time())
+        net_msg = psutil.net_io_counters()
+        bytes_sent2, bytes_recv2 = net_msg.bytes_sent, net_msg.bytes_recv
+        bytes_sent3 = bytes_sent2 - bytes_sent
+        bytes_recv3 = bytes_recv2 - bytes_recv
+        return [bytes_recv3,bytes_sent3]
+    # def GetSpeed(self):
+    #     UpSpeed = 0
+    #     DownSpeed = 0
+    #     objRefresher.Refresh()
+    #     # 循环访问刷新器集合对象
+    #     for NetInterface in NetInterfaces.ObjectSet:
+    #         UpSpeed += int(NetInterface.BytesSentPersec)
+    #         DownSpeed += int(NetInterface.BytesReceivedPersec)
         #
         # units = ['B/s','KB/s','MB/s','GB/s']
         # j = 0
@@ -45,7 +59,7 @@ class Manage():
         #         unit = units[j]
         #         break
         #     j += 1
-        return [DownSpeed,UpSpeed]
+        # return [DownSpeed,UpSpeed]
     def GetSerInfos(self,disk = None):
         mem = psutil.virtual_memory()
         MemTotal = mem.total
@@ -72,7 +86,7 @@ class Manage():
         SerInfos['Mem'] = {'MemTotal':self.ComTol.size_format(MemTotal),'MemUsed':self.ComTol.size_format(MemUsed),'MemPercent':MemPercent}
         SerInfos['Cpu'] = {'cpu_counts_phs':cpu_counts_phs,'cpu_counts_logi':cpu_counts_logi,'cpu_percent':cpu_percent}
         SerInfos['Disk'] = {'diskpars':diskpars}
-        SerInfos['Net'] = self.GetSpeed()
+        SerInfos['Net'] = self.get_net_speed(1)
         return SerInfos
 
 
