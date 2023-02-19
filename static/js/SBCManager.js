@@ -387,25 +387,17 @@ function GetStockUser()
 		ydataUp.push(res.Net[1])
 		
 		units = ['B/s','KB/s','MB/s','GB/s'];
-		let ydataDown1 = ydataDown;
-		let ydataUp1 = ydataUp;
 		ydataDownMax = Math.max.apply(null, ydataDown);
 		ydataUpMax = Math.max.apply(null, ydataUp);
 		//ydataUpMax = ydataUp1.sort().reverse()[0];
-		ydataMax = [ydataDownMax,ydataUpMax].sort().reverse()[0];
-		var j = 0;
-		while (ydataMax>1)
+		let ydataMax = Math.max.apply(null, [ydataDownMax,ydataUpMax]);;
+		let j = 0;
+		while (ydataMax>1000)
 		{
 			ydataMax = ydataMax/1024;
 			j = j+1 ;
 		}
-		unit = units[j-1]
-		console.log(j,unit,ydataDownMax,ydataUpMax)
-		for(let tmp=0;tmp<j;tmp++)
-		{
-			ydataDown = ydataDown.map(x => x/1024);
-			ydataUp = ydataUp.map(x => x/1024);
-		}
+		unit = units[j]
 		
 		if (xdata.length >60)
 		{
@@ -413,8 +405,18 @@ function GetStockUser()
 			ydataDown.shift();
 			ydataUp.shift();
 		}
-        option.series[0].data = ydataDown;
-		option.series[1].data = ydataUp;
+		option.series[0].data1 = ydataDown;
+		option.series[1].data1 = ydataUp;
+		let ydataDown1 = [];
+		let ydataUp1 = [];
+		for(let tmp = 0;tmp<xdata.length;tmp++)
+		{
+			ydataDown1.push(ydataDown[tmp]/(1024**j));
+			ydataUp1.push(ydataUp[tmp]/(1024**j));
+		}
+
+        option.series[0].data = ydataDown1;
+		option.series[1].data = ydataUp1;
 		option.data = xdata;
 		option.yAxis[0].name = unit
         chartNet.setOption(option);
