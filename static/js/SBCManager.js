@@ -275,23 +275,57 @@ function GetStockUser()
 	var myChart = echarts.init(document.getElementById('Netused'));
 	// 指定图表的配置项和数据
 	var option = {
-	title:{
-	text:'树懒课堂研发费用折线图',
-	subtext:'数据纯属虚构',
+	title:{left:'center',
+	text:'网络',
+	//subtext:'数据纯属虚构',
 	},
+	legend: {
+		
+		data: ["下载", "上传"],
+        top: "10%",
+        textStyle: {
+            color: "#1FC3CE",
+            fontSize: 14
+		},
+	},
+
 	xAxis: {
 	type: 'category',
 	boundaryGap: false,
-	data: ['一月', '二月', '三月', '四月', '五月', '六月']
+	data: ['1','2','3','4','5','6']
 	},
 	yAxis: {
 	type: 'value'
 	},
-	series: [{
-	data: [920, 801, 964, 1390, 1530, 1620],
-	type: 'line',
-	areaStyle: {}
-	}]
+	series: [
+		{
+			name: "下载",
+			symbol: 'none',
+			data: [920, 801, 964, 1390, 1530, 1620],
+			type: 'line',
+			areaStyle: {}
+		},
+		{
+			name: "上传",
+			symbol: 'none',
+			data: [420, 932, 901, 934, 1290, 1330],
+			//stack: '总量',
+			type: 'line',
+			areaStyle: {},
+			
+			itemStyle:
+			{
+				normal:
+				{
+					lineStyle:
+					{
+						width:2,
+						type:'dashed'  //'dotted'点型虚线 'solid'实线 'dashed'线性虚线
+					}
+				}
+			},
+		}
+	]
 	};
 	// 使用刚指定的配置项和数据显示图表。
 	myChart.setOption(option);
