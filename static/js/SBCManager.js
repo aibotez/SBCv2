@@ -308,6 +308,7 @@ function GetStockUser()
 			name: "下载",
 			symbol: 'none',
 			data: [0],
+			data1: [0],
 			type: 'line',
 			areaStyle: {}
 		},
@@ -315,7 +316,7 @@ function GetStockUser()
 			name: "上传",
 			symbol: 'none',
 			data: [0],
-			//stack: '总量',
+			data1: [0],
 			type: 'line',
 			areaStyle: {},
 			
@@ -380,8 +381,8 @@ function GetStockUser()
         var option = chartNet.getOption();
 		xdata = option.xAxis[0].data
 		xdata.push(xdata[xdata.length-1]+1)
-		ydataDown = option.series[0].data
-		ydataUp = option.series[1].data
+		ydataDown = option.series[0].data1
+		ydataUp = option.series[1].data1
 		ydataDown.push(res.Net[0])
 		ydataUp.push(res.Net[1])
 		
