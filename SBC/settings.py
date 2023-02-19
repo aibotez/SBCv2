@@ -51,8 +51,9 @@ INSTALLED_APPS = [
     'FileSycapp',
     'Updateapp',
     'SBCManagerapp',
+    'channels',
 ]
-
+ASGI_APPLICATION = "ChannelsReady.routing.application"
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

@@ -86,7 +86,7 @@ class Manage():
         SerInfos['Mem'] = {'MemTotal':self.ComTol.size_format(MemTotal),'MemUsed':self.ComTol.size_format(MemUsed),'MemPercent':MemPercent}
         SerInfos['Cpu'] = {'cpu_counts_phs':cpu_counts_phs,'cpu_counts_logi':cpu_counts_logi,'cpu_percent':cpu_percent}
         SerInfos['Disk'] = {'diskpars':diskpars}
-        SerInfos['Net'] = self.get_net_speed(1)
+        SerInfos['Net'] = self.get_net_speed(0.5)
         return SerInfos
 
 
