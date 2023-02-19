@@ -421,6 +421,28 @@ function GetStockUser()
 		option.yAxis[0].name = unit
         chartNet.setOption(option);
   }
+  function refresh1()
+  {
+	  
+	  var host = location.origin;
+	  console.log(host);
+	  var ws = new WebSocket("ws://localhost:8080/msg");
+	  ws.onopen = function(evt) {
+			console.log("Connection open ...");
+			ws.send("Hello WebSockets!");
+		};
+		 
+		ws.onmessage = function(evt) {
+			console.log("Received Message: " + evt.data);
+			ws.close();
+		};
+		 
+		ws.onclose = function(evt) {
+			console.log("Connection closed.");
+		};
+
+  }
+  
  function refreshData1() {
         //刷新数据
 		let res = PostMethod('/GetSerInfos/',JSON.stringify({'disk':1}),0);
