@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'SBCManagerapp',
     'channels',
 ]
-ASGI_APPLICATION = "ChannelsReady.routing.application"
+ASGI_APPLICATION = "SBC.asgi.application"
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
