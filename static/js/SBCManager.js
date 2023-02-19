@@ -176,7 +176,7 @@ function GetStockUser()
 	        left: 'center',
 	        zlevel:0,
 	        style: {
-	            text: '100GB/7TB',
+	            text: '',
 	            fontSize: 16,
 	            textAlign:'center',
 	            fontWeight: 'bold'
@@ -205,8 +205,8 @@ function GetStockUser()
 
                     },
                     data: [
-                        { value: 3, name: '已使用' },
-                        { value: 7, name: '剩余' }
+                        { value: 0, name: '已使用' },
+                        { value: 10, name: '剩余' }
                     ]
                 }
             ]
@@ -225,13 +225,15 @@ function GetStockUser()
             // 不同区域的颜色
             color: ['#65a5ff', '#dcebff'],
 
-	    graphic: {
+	    graphic: 
+		{
 	        type: 'text',
 	        top: 'center',
 	        left: 'center',
 	        zlevel:0,
-	        style: {
-	            text: '100GB/7TB',
+	        style: 
+			{
+	            text: '',
 	            fontSize: 16,
 	            textAlign:'center',
 	            fontWeight: 'bold'
@@ -260,8 +262,8 @@ function GetStockUser()
 
                     },
                     data: [
-                        { value: 3, name: '已使用' },
-                        { value: 7, name: '剩余' }
+                        { value: 0, name: '已使用' },
+                        { value: 10, name: '剩余' }
                     ]
                 }
             ]
@@ -277,6 +279,7 @@ function GetStockUser()
 	var option = {
 	title:{left:'center',
 	text:'网络',
+	sped:'B',
 	//subtext:'数据纯属虚构',
 	},
 	legend: {
@@ -284,31 +287,34 @@ function GetStockUser()
 		data: ["下载", "上传"],
         top: "10%",
         textStyle: {
-            color: "#1FC3CE",
+            
             fontSize: 14
 		},
 	},
 
 	xAxis: {
-	type: 'category',
-	boundaryGap: false,
-	data: ['1','2','3','4','5','6']
+
+		name: 'S',
+		type: 'category',
+		boundaryGap: false,
+		data: [0]
 	},
 	yAxis: {
-	type: 'value'
+		name: 'KB',
+		type: 'value'
 	},
 	series: [
 		{
 			name: "下载",
 			symbol: 'none',
-			data: [920, 801, 964, 1390, 1530, 1620],
+			data: [0],
 			type: 'line',
 			areaStyle: {}
 		},
 		{
 			name: "上传",
 			symbol: 'none',
-			data: [420, 932, 901, 934, 1290, 1330],
+			data: [0],
 			//stack: '总量',
 			type: 'line',
 			areaStyle: {},
@@ -331,13 +337,93 @@ function GetStockUser()
 	NetusedChart.setOption(option);
 	 
  }
- 
- 
- function refreshData() {
+
+  function refreshData()
+  {
+	  setInterval(refreshData1, 1000);
+  }
+  function refreshCpuData(res)
+  {
+	    var chart = echarts.getInstanceByDom(document.getElementById('CPUused'));
+        var option = chart.getOption();
+		option.series[0].data[0].value = res.Cpu.cpu_percent;
+
+		option.series[0].data[1].value = 100-res.Cpu.cpu_percent;
+		option.graphic[0].elements[0].style.text = res.Cpu.cpu_percent.toString()+'%\n'+res.Cpu.cpu_counts_phs.toString()+'/'+res.Cpu.cpu_counts_logi.toString();
+		chart.setOption(option);	
+  }
+  
+  function refreshMemData(res)
+  {
+	    var chart = echarts.getInstanceByDom(document.getElementById('Memused'));
+        var option = chart.getOption();
+		option.series[0].data[0].value = res.Mem.MemPercent;
+
+		option.series[0].data[1].value = 100-res.Mem.MemPercent;
+
+		option.graphic[0].elements[0].style.text = res.Mem.MemPercent.toString()+'%\n'+res.Mem.MemUsed+'/'+res.Mem.MemTotal;
+		chart.setOption(option);	
+  }
+  function refreshDiskData(res)
+  {
+	    var chart = echarts.getInstanceByDom(document.getElementById('Diskused'));
+        var option = chart.getOption();
+		option.series[0].data[0].value = res.Disk.diskpars[0].parper;
+		option.series[0].data[1].value = 100-res.Disk.diskpars[0].parper;
+		option.graphic[0].elements[0].style.text = res.Disk.diskpars[0].parper.toString()+'%\n'+res.Disk.diskpars[0].parsizeused+'/'+res.Disk.diskpars[0].parsizetotal;
+		chart.setOption(option);	
+  }
+  function refreshNetData(res)
+  {
+	  	NetSpeeds = res.Net;
+        var chartNet = echarts.getInstanceByDom(document.getElementById('Netused'));
+        var option = chartNet.getOption();
+		xdata = option.xAxis[0].data
+		xdata.push(xdata[xdata.length-1]+1)
+		ydataDown = option.series[0].data
+		ydataUp = option.series[1].data
+		ydataDown.push(res.Net[0])
+		ydataUp.push(res.Net[1])
+		
+		units = ['B/s','KB/s','MB/s','GB/s'];
+		let ydataDown1 = ydataDown;
+		let ydataUp1 = ydataUp;
+		ydataDownMax = Math.max.apply(null, ydataDown);
+		ydataUpMax = Math.max.apply(null, ydataUp);
+		//ydataUpMax = ydataUp1.sort().reverse()[0];
+		ydataMax = [ydataDownMax,ydataUpMax].sort().reverse()[0];
+		var j = 0;
+		while (ydataMax>1)
+		{
+			ydataMax = ydataMax/1024;
+			j = j+1 ;
+		}
+		unit = units[j-1]
+		console.log(j,unit,ydataDownMax,ydataUpMax)
+		for(let tmp=0;tmp<j;tmp++)
+		{
+			ydataDown = ydataDown.map(x => x/1024);
+			ydataUp = ydataUp.map(x => x/1024);
+		}
+		
+		if (xdata.length >60)
+		{
+			xdata.shift();
+			ydataDown.shift();
+			ydataUp.shift();
+		}
+        option.series[0].data = ydataDown;
+		option.series[1].data = ydataUp;
+		option.data = xdata;
+		option.yAxis[0].name = unit
+        chartNet.setOption(option);
+  }
+ function refreshData1() {
         //刷新数据
-        //var chart = echarts.getInstanceByDom(document.getElementById(id属性值);
-        //var option = chart.getOption();
-     　　  
-        //option.series[0].data = listData;
-        //chart.setOption(option);
+		let res = PostMethod('/GetSerInfos/',JSON.stringify({'disk':1}),0);
+		console.log(res);
+		refreshNetData(res);
+		refreshDiskData(res);
+		refreshMemData(res);
+		refreshCpuData(res);
     }

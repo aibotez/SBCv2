@@ -38,6 +38,7 @@ urlpatterns = [
     path('ModCap/',viewManager.ModCap),
     path('GetStockFilesAll/',viewManager.GetStockFilesAll),
     path('DelStockFiles/',viewManager.DelStockFiles),
+    path('GetSerInfos/',viewManager.GetSerInfos),
 
     path('', view.Home),
     path('ConnectTest/',view.ConnectTest),

@@ -10,17 +10,46 @@ from SBC import GetUserPath
 from django.db.models import Q
 from SBC import UserManage
 
+from win32com.client import GetObject,Dispatch
 
 
 
+wmi = GetObject('winmgmts:/root/cimv2')
+# 创建 SWbemRefresher 刷新器对象
+objRefresher = Dispatch('WbemScripting.SWbemRefresher')
+# 使用从 Win32_PerfFormattedData派生的预计算数据类 Win32_PerfFormattedData_Tcpip_Networkinterface
+# 要注意的是调用了AddEnum之后需要再调用objRefresher.Refresh()来获取初始性能数据，下方因为在循环开头已经做了这步了所以跳过。
+NetInterfaces = objRefresher.AddEnum(wmi,"Win32_PerfFormattedData_Tcpip_Networkinterface")
 class Manage():
     def __init__(self):
         self.ComTol = CommMode.ComTol()
 
-    def GetSerInfos(self):
+
+    def GetSpeed(self):
+        UpSpeed = 0
+        DownSpeed = 0
+        objRefresher.Refresh()
+        # 循环访问刷新器集合对象
+        for NetInterface in NetInterfaces.ObjectSet:
+            UpSpeed += int(NetInterface.BytesSentPersec)
+            DownSpeed += int(NetInterface.BytesReceivedPersec)
+        #
+        # units = ['B/s','KB/s','MB/s','GB/s']
+        # j = 0
+        # while True:
+        #     UpSpeed /= 1024
+        #     DownSpeed /= 1024
+        #     if UpSpeed <1 and DownSpeed <1:
+        #         UpSpeed *= 1024
+        #         DownSpeed *= 1024
+        #         unit = units[j]
+        #         break
+        #     j += 1
+        return [DownSpeed,UpSpeed]
+    def GetSerInfos(self,disk = None):
         mem = psutil.virtual_memory()
         MemTotal = mem.total
-        MemUsed = mem.total
+        MemUsed = mem.used
         MemPercent = mem.percent
         cpu_percent = psutil.cpu_percent()
         cpu_counts_logi = psutil.cpu_count()
@@ -29,12 +58,21 @@ class Manage():
         diskpars = []
         for i in psutil.disk_partitions():
             mount = psutil.disk_usage(i.mountpoint)
-            diskpars.append({'parinfo':i.mountpoint,'parsizetotal':self.ComTol.size_format(mount.total),'parsizeused':self.ComTol.size_format(mount.used),
-                     'parper':mount. percent})
+            par = i.mountpoint.replace('\\','/')
+            if disk:
+                if par in disk:
+                    diskpars.append({'parinfo': i.mountpoint.replace('\\', '/'),
+                                     'parsizetotal': self.ComTol.size_format(mount.total),
+                                     'parsizeused': self.ComTol.size_format(mount.used),
+                                     'parper': mount.percent})
+            else:
+                diskpars.append({'parinfo':i.mountpoint.replace('\\','/'),'parsizetotal':self.ComTol.size_format(mount.total),'parsizeused':self.ComTol.size_format(mount.used),
+                        'parper':mount. percent})
         SerInfos = {}
         SerInfos['Mem'] = {'MemTotal':self.ComTol.size_format(MemTotal),'MemUsed':self.ComTol.size_format(MemUsed),'MemPercent':MemPercent}
         SerInfos['Cpu'] = {'cpu_counts_phs':cpu_counts_phs,'cpu_counts_logi':cpu_counts_logi,'cpu_percent':cpu_percent}
         SerInfos['Disk'] = {'diskpars':diskpars}
+        SerInfos['Net'] = self.GetSpeed()
         return SerInfos
 
 

@@ -1,3 +1,4 @@
+import json
 
 from django.shortcuts import render
 from django.shortcuts import redirect
@@ -77,10 +78,22 @@ def verifylogin(request):
                 return LoginRes
     return LoginRes
 def GetSerInfo(request):
+    LoginRes = verifylogin(request)
+    if LoginRes['res']:
+        return render(request, "SBCManager/sbcmangerlogin.html")
     info = Man.Manage().GetSerInfo()
     info['Total'] = size_format(info['SBCStockSize'])
     return JsonResponse(info)
-
+def GetSerInfos(request):
+    LoginRes = verifylogin(request)
+    if LoginRes['res']:
+        return render(request, "SBCManager/sbcmangerlogin.html")
+    reinfo = json.loads(request.body)
+    if 'disk' in reinfo:
+        info = Man.Manage().GetSerInfos('D:/SBC')
+    else:
+        info = Man.Manage().GetSerInfos()
+    return JsonResponse(info)
 def ModCap(request):
     LoginRes = verifylogin(request)
     if LoginRes['res']:
