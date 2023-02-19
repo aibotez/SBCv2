@@ -5,7 +5,7 @@ from Usersapp.models import User
 from UserFileRecordapp.models import UserFileRecord
 from FileDownUpapp.models import FilesStock
 from pack import CommMode
-import json
+import json,psutil
 from SBC import GetUserPath
 from django.db.models import Q
 from SBC import UserManage
@@ -16,6 +16,27 @@ from SBC import UserManage
 class Manage():
     def __init__(self):
         self.ComTol = CommMode.ComTol()
+
+    def GetSerInfos(self):
+        mem = psutil.virtual_memory()
+        MemTotal = mem.total
+        MemUsed = mem.total
+        MemPercent = mem.percent
+        cpu_percent = psutil.cpu_percent()
+        cpu_counts_logi = psutil.cpu_count()
+        cpu_counts_phs = psutil.cpu_count(logical=False)
+        # psutil.disk_usage('/')
+        diskpars = []
+        for i in psutil.disk_partitions():
+            mount = psutil.disk_usage(i.mountpoint)
+            diskpars.append({'parinfo':i.mountpoint,'parsizetotal':self.ComTol.size_format(mount.total),'parsizeused':self.ComTol.size_format(mount.used),
+                     'parper':mount. percent})
+        SerInfos = {}
+        SerInfos['Mem'] = {'MemTotal':self.ComTol.size_format(MemTotal),'MemUsed':self.ComTol.size_format(MemUsed),'MemPercent':MemPercent}
+        SerInfos['Cpu'] = {'cpu_counts_phs':cpu_counts_phs,'cpu_counts_logi':cpu_counts_logi,'cpu_percent':cpu_percent}
+        SerInfos['Disk'] = {'diskpars':diskpars}
+        return SerInfos
+
 
     def DelStockFiles(self,req):
         info = json.loads(req.body)
