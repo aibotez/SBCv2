@@ -105,7 +105,7 @@ function GetStockUser()
  
   function CPUusedShow()
  {
-	var pieHuan = echarts.init(document.getElementById('CPUused'));
+	var CPUusedChart = echarts.init(document.getElementById('CPUused'));
         pieHuanOption = {
             // 标题
             title: {
@@ -156,11 +156,11 @@ function GetStockUser()
                 }
             ]
         };
-        pieHuan.setOption(pieHuanOption);
+        CPUusedChart.setOption(pieHuanOption);
  }
   function MemusedShow()
  {
-	var pieHuan = echarts.init(document.getElementById('Memused'));
+	var MemusedChart = echarts.init(document.getElementById('Memused'));
         pieHuanOption = {
             // 标题
             title: {
@@ -211,11 +211,11 @@ function GetStockUser()
                 }
             ]
         };
-        pieHuan.setOption(pieHuanOption);
+        MemusedChart.setOption(pieHuanOption);
  }
  function DiskusedShow()
  {
-	var pieHuan = echarts.init(document.getElementById('Diskused'));
+	var DiskusedChart = echarts.init(document.getElementById('Diskused'));
         pieHuanOption = {
             // 标题
             title: {
@@ -266,13 +266,13 @@ function GetStockUser()
                 }
             ]
         };
-        pieHuan.setOption(pieHuanOption);
+        DiskusedChart.setOption(pieHuanOption);
  }
  
  function NetWork()
  {
 	 // 基于准备好的dom，初始化echarts实例
-	var myChart = echarts.init(document.getElementById('Netused'));
+	var NetusedChart = echarts.init(document.getElementById('Netused'));
 	// 指定图表的配置项和数据
 	var option = {
 	title:{left:'center',
@@ -328,6 +328,16 @@ function GetStockUser()
 	]
 	};
 	// 使用刚指定的配置项和数据显示图表。
-	myChart.setOption(option);
+	NetusedChart.setOption(option);
 	 
  }
+ 
+ 
+ function refreshData() {
+        //刷新数据
+        //var chart = echarts.getInstanceByDom(document.getElementById(id属性值);
+        //var option = chart.getOption();
+     　　  
+        //option.series[0].data = listData;
+        //chart.setOption(option);
+    }
