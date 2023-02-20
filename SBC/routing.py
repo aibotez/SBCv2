@@ -9,5 +9,6 @@ from SBCManagerapp import consumers          # 从chat这个app导入consumers�
 
 # websocket的路由配置
 websocket_urlpatterns = [
-    re_path("^room/(?P<group>\w+)", consumers.ChatConsumer.as_asgi()),
+    # re_path("^room/(?P<group>\w+)", consumers.ChatConsumer.as_asgi()),
+    re_path("getSerInfows/", consumers.ChatConsumer.as_asgi()),
 ]

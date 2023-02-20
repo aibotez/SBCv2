@@ -339,7 +339,7 @@ function GetStockUser()
 	 
  }
 
-  function refreshData()
+  function refreshData11()
   {
 	  setInterval(refreshData1, 1000);
   }
@@ -421,20 +421,28 @@ function GetStockUser()
 		option.yAxis[0].name = unit
         chartNet.setOption(option);
   }
-  function refresh1()
+
+  function refreshData()
   {
-	  
-	  var host = location.origin;
-	  console.log(host);
-	  var ws = new WebSocket("ws://localhost:8080/msg");
+	  var host = window.location.host;
+	  var ws = new WebSocket("ws://"+host+"/getSerInfows/");
 	  ws.onopen = function(evt) {
 			console.log("Connection open ...");
-			ws.send("Hello WebSockets!");
+			setInterval(() => 
+			{
+				ws.send(JSON.stringify(
+				{
+				msg: 'wowowoow',
+				type: 'add',
+				'disk':1
+				}))
+			
+			}, 1000)
 		};
 		 
 		ws.onmessage = function(evt) {
 			console.log("Received Message: " + evt.data);
-			ws.close();
+			//ws.close();
 		};
 		 
 		ws.onclose = function(evt) {
@@ -446,7 +454,7 @@ function GetStockUser()
  function refreshData1() {
         //刷新数据
 		let res = PostMethod('/GetSerInfos/',JSON.stringify({'disk':1}),0);
-		console.log(res);
+		//console.log(res);
 		refreshNetData(res);
 		refreshDiskData(res);
 		refreshMemData(res);
