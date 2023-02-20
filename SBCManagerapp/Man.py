@@ -9,6 +9,7 @@ import json,psutil,time
 from SBC import GetUserPath
 from django.db.models import Q
 from SBC import UserManage
+from pySMART import Device
 
 # from win32com.client import GetObject,Dispatch
 #
@@ -23,6 +24,45 @@ from SBC import UserManage
 class Manage():
     def __init__(self):
         self.ComTol = CommMode.ComTol()
+
+    def disksinfoall(self):
+        values = []
+        disk_partitions = psutil.disk_partitions(all=False)
+        for partition in disk_partitions:
+            try:
+                usage = psutil.disk_usage(partition.mountpoint)
+                device = {'device': partition.device,
+                          'mountpoint': partition.mountpoint,
+                          'fstype': partition.fstype,
+                          'opts': partition.opts,
+                          'total': usage.total,
+                          'used': usage.used,
+                          'free': usage.free,
+                          'percent': usage.percent
+                          }
+                values.append(device)
+            except:
+                continue
+        values = sorted(values, key=lambda device: device['device'])
+        return values
+
+    # {'device': 'E:\\', 'mountpoint': 'E:\\', 'fstype': 'NTFS', 'opts': 'rw,fixed', 'total': 285616369664,
+    #  'used': 245613334528, 'free': 40003035136, 'percent': 86.0}
+    def GetDiskInfo(self,idx = None):
+        disksinfoall = self.disksinfoall()
+        if idx:
+            SBCstockpath = ''
+            for i in disksinfoall:
+                if i['mountpoint'].replace('\\','/') in SBCstockpath:
+                    devicePar = i['device'].replace('\\','/')
+                    sda = Device(devicePar)
+                    HealthState = sda.assessment
+                    Temp = sda.temperature
+                    
+
+
+
+        sda = Device('/dev/sda')
 
     def get_net_speed(self,interval):
         '''

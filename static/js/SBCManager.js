@@ -401,7 +401,7 @@ function GetStockUser()
 		
 		if (xdata.length >60)
 		{
-			xdata.shift();
+			xdata.pop();
 			ydataDown.shift();
 			ydataUp.shift();
 		}

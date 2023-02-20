@@ -45,6 +45,10 @@
             <label id="clickHardwareInfo" style="background-color:#EAEDED;width:100%;padding-top:10px;padding-bottom:10px;cursor:pointer;">后台信息</label>
         </div>
 
+        <div class="text-center" style="padding-top:0px;width:100%">
+            <label id="clickDiskInfo" style="background-color:#EAEDED;width:100%;padding-top:10px;padding-bottom:10px;cursor:pointer;">磁盘信息</label>
+        </div>
+
     </div>
 
 
@@ -181,7 +185,7 @@
                       </thead>
                 </table>
                 <div>
-                    <label>123</label>
+                    <label></label>
                 </div>
             </div>
 
@@ -189,6 +193,62 @@
 
         </div>
 
+
+        <div class='flex-grow-1' id="DiskInfo">
+
+
+            <div class="nav flex-column justify-content-center" style="height:60px;">
+
+                <div style="width:50vh;">
+                    <div class="input-group">
+                        <label class="btn">小黑云存储路径：</label>
+                        <input type="text" class="form-control" placeholder="/mnt/SBC/" disabled>
+                        <button type="button" class="btn btn-default btn-sm ">修改</button>
+                        <button type="button" class="btn btn-default btn-sm ">挂载硬盘</button>
+                    </div>
+                </div>
+                <div style="width:40vh;">
+                    <div style="width:20vh;float:left;">
+                        <label>硬盘温度：</label>
+                        <label>36 &#8451</label>
+                    </div>
+                    <div style="width:20vh;float:left;">
+                        <label>硬盘状态：</label>
+                        <label style="color:green">良好</label>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div style="width:100%;">
+                <label style="width:100%;text-align:center;font-size:16px">硬盘详细信息</label>
+            </div>
+
+            <div>
+
+                <table class="table" style="table-layout:fixed;word-break:break-all; word-wrap:break-all;">
+                  <thead>
+                    <tr>
+                      <th scope="col" style="width:5%">序号</th>
+                      <th scope="col" style="width:45%">文件名</th>
+                      <th scope="col" style="width:30%">MD5</th>
+                      <th scope="col" style="width:10%">文件大小</th>
+                      <th scope="col" style="width:10%">文件类型</th>
+                    </tr>
+                  </thead>
+                </table>
+            </div>
+
+            <div style="height:80vh;overflow:scroll;overflow-y:scroll;overflow-x:hidden;">
+                <table class="table" style="table-layout:fixed;word-break:break-all; word-wrap:break-all;">
+                     <tbody id="UserTable1">
+                     </tbody>
+                </table>
+            </div>
+
+
+        </div>
 
 
 
@@ -220,16 +280,29 @@ var DiskShow = 0;
 var Filesall = [];
 document.getElementById('Files').style.display = 'none';
 document.getElementById('SerInfo').style.display = 'none';
+document.getElementById('DiskInfo').style.display = 'none';
 
 
 document.getElementById('clickUserInfo').addEventListener('click', function () {
    document.getElementById('Files').style.display = 'none';
    document.getElementById('User').style.display = 'block';
    document.getElementById('SerInfo').style.display = 'none';
+   document.getElementById('DiskInfo').style.display = 'none';
    document.getElementById('clickUserInfo').style.backgroundColor = '#FDFEFE'
    document.getElementById('clickHardwareInfo').style.backgroundColor = '#EAEDED'
    document.getElementById('clickFilesInfo').style.backgroundColor = '#EAEDED'
 },true)
+document.getElementById('clickDiskInfo').addEventListener('click', function () {
+   document.getElementById('clickUserInfo').style.backgroundColor = '#EAEDED'
+   document.getElementById('clickHardwareInfo').style.backgroundColor = '#FDFEFE'
+   document.getElementById('clickFilesInfo').style.backgroundColor = '#EAEDED'
+
+   document.getElementById('User').style.display = 'none';
+   document.getElementById('Files').style.display = 'none';
+   document.getElementById('SerInfo').style.display = 'none';
+   document.getElementById('DiskInfo').style.display = 'block';
+},true)
+
 document.getElementById('clickHardwareInfo').addEventListener('click', function () {
    document.getElementById('clickUserInfo').style.backgroundColor = '#EAEDED'
    document.getElementById('clickHardwareInfo').style.backgroundColor = '#FDFEFE'
@@ -238,7 +311,10 @@ document.getElementById('clickHardwareInfo').addEventListener('click', function 
    document.getElementById('User').style.display = 'none';
    document.getElementById('Files').style.display = 'none';
    document.getElementById('SerInfo').style.display = 'block';
+   document.getElementById('DiskInfo').style.display = 'none';
 },true)
+
+
 document.getElementById('clickFilesInfo').addEventListener('click', function () {
    document.getElementById('clickUserInfo').style.backgroundColor = '#EAEDED'
    document.getElementById('clickHardwareInfo').style.backgroundColor = '#EAEDED'
@@ -248,6 +324,7 @@ document.getElementById('clickFilesInfo').addEventListener('click', function () 
    document.getElementById('User').style.display = 'none';
    document.getElementById('Files').style.display = 'block';
    document.getElementById('SerInfo').style.display = 'none';
+   document.getElementById('DiskInfo').style.display = 'none';
    if (FileShow==0)
    {
         UpdateFiles(1);
