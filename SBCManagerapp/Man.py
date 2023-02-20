@@ -58,7 +58,7 @@ class Manage():
                     sda = Device(devicePar)
                     HealthState = sda.assessment
                     Temp = sda.temperature
-                    
+
 
 
 

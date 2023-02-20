@@ -461,6 +461,7 @@ function GetStockUser()
 		 
 		ws.onclose = function(evt) {
 			console.log("Connection closed.");
+			clearInterval(window.setInteGetSerInfos);
 		};
 
   }
