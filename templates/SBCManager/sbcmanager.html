@@ -42,7 +42,7 @@
         </div>
 
         <div class="text-center" style="padding-top:0px;width:100%">
-            <label id="clickDiskInfo" style="background-color:#EAEDED;width:100%;padding-top:10px;padding-bottom:10px;cursor:pointer;">磁盘信息</label>
+            <label id="clickHardwareInfo" style="background-color:#EAEDED;width:100%;padding-top:10px;padding-bottom:10px;cursor:pointer;">后台信息</label>
         </div>
 
     </div>
@@ -227,12 +227,12 @@ document.getElementById('clickUserInfo').addEventListener('click', function () {
    document.getElementById('User').style.display = 'block';
    document.getElementById('SerInfo').style.display = 'none';
    document.getElementById('clickUserInfo').style.backgroundColor = '#FDFEFE'
-   document.getElementById('clickDiskInfo').style.backgroundColor = '#EAEDED'
+   document.getElementById('clickHardwareInfo').style.backgroundColor = '#EAEDED'
    document.getElementById('clickFilesInfo').style.backgroundColor = '#EAEDED'
 },true)
-document.getElementById('clickDiskInfo').addEventListener('click', function () {
+document.getElementById('clickHardwareInfo').addEventListener('click', function () {
    document.getElementById('clickUserInfo').style.backgroundColor = '#EAEDED'
-   document.getElementById('clickDiskInfo').style.backgroundColor = '#FDFEFE'
+   document.getElementById('clickHardwareInfo').style.backgroundColor = '#FDFEFE'
    document.getElementById('clickFilesInfo').style.backgroundColor = '#EAEDED'
 
    document.getElementById('User').style.display = 'none';
@@ -241,7 +241,7 @@ document.getElementById('clickDiskInfo').addEventListener('click', function () {
 },true)
 document.getElementById('clickFilesInfo').addEventListener('click', function () {
    document.getElementById('clickUserInfo').style.backgroundColor = '#EAEDED'
-   document.getElementById('clickDiskInfo').style.backgroundColor = '#EAEDED'
+   document.getElementById('clickHardwareInfo').style.backgroundColor = '#EAEDED'
    document.getElementById('clickFilesInfo').style.backgroundColor = '#FDFEFE'
 
 

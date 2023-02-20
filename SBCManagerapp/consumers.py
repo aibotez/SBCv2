@@ -2,6 +2,21 @@ import json
 
 from channels.generic.websocket import WebsocketConsumer
 from channels.exceptions import StopConsumer
+from SBCManagerapp import models as SBCManagemodels
+from SBCManagerapp import Man
+
+
+def verifylogin(request):
+    cookies = request
+    LoginRes = {'res': 1, 'useremail': ''}
+    if 'coks' in cookies:
+        usefo = cookies['coks'].split('auth:')
+        if SBCManagemodels.SBCManager.objects.filter(SBCManageEmail=usefo[0]).exists():
+            if SBCManagemodels.SBCManager.objects.get(SBCManageEmail=usefo[0]).SBCUserPass0 == usefo[1]:
+                LoginRes['res'] = 0
+                LoginRes['useremail'] = usefo[0]
+                return LoginRes
+    return LoginRes
 
 class ChatConsumer(WebsocketConsumer):
 
@@ -10,7 +25,16 @@ class ChatConsumer(WebsocketConsumer):
 
     def websocket_receive(self, message):
         info = json.loads(message['text'])
-        print(info)
+        LoginRes = verifylogin(info)
+        if LoginRes['res']:
+            self.send(text_data=json.dumps({'res':0}))
+        if 'disk' in info:
+            info = Man.Manage().GetSerInfos('D:/SBC')
+        else:
+            info = Man.Manage().GetSerInfos()
+
+
+        info['res'] = 1
         self.send(text_data=json.dumps(info))       # 返回给客户端的消息
 
     def websocket_disconnect(self, message):

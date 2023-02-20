@@ -365,7 +365,7 @@ function GetStockUser()
 		option.graphic[0].elements[0].style.text = res.Mem.MemPercent.toString()+'%\n'+res.Mem.MemUsed+'/'+res.Mem.MemTotal;
 		chart.setOption(option);	
   }
-  function refreshDiskData(res)
+  function refreshHardwareData(res)
   {
 	    var chart = echarts.getInstanceByDom(document.getElementById('Diskused'));
         var option = chart.getOption();
@@ -425,14 +425,16 @@ function GetStockUser()
   function refreshData()
   {
 	  var host = window.location.host;
+	  var cookie = document.cookie;
 	  var ws = new WebSocket("ws://"+host+"/getSerInfows/");
 	  ws.onopen = function(evt) {
 			console.log("Connection open ...");
-			setInterval(() => 
+			window.setInteGetSerInfos = setInterval(() => 
 			{
 				ws.send(JSON.stringify(
 				{
 				msg: 'wowowoow',
+				'coks':cookie.replace('coks=','').replace('"','').replace('"',''),
 				type: 'add',
 				'disk':1
 				}))
@@ -441,8 +443,20 @@ function GetStockUser()
 		};
 		 
 		ws.onmessage = function(evt) {
-			console.log("Received Message: " + evt.data);
-			//ws.close();
+			
+			resdata = JSON.parse(evt.data)
+			if (resdata.res==0)
+			{
+				console.log(resdata)
+				ws.close();
+				clearInterval(window.setInteGetSerInfos);
+				return
+			}
+			//console.log(resdata)
+			refreshNetData(resdata);
+			refreshHardwareData(resdata);
+			refreshMemData(resdata);
+			refreshCpuData(resdata);
 		};
 		 
 		ws.onclose = function(evt) {
@@ -456,7 +470,7 @@ function GetStockUser()
 		let res = PostMethod('/GetSerInfos/',JSON.stringify({'disk':1}),0);
 		//console.log(res);
 		refreshNetData(res);
-		refreshDiskData(res);
+		refreshHardwareData(res);
 		refreshMemData(res);
 		refreshCpuData(res);
     }
