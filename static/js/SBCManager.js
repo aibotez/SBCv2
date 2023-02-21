@@ -474,6 +474,14 @@ function GetStockUser()
 		refreshMemData(res);
 		refreshCpuData(res);
     }
+function clearcontent(elementID)
+{ 
+	var div = document.getElementById(elementID); 
+	while(div.firstChild)
+	{ 
+	    div.removeChild(div.firstChild); 
+	}
+}
 
 function ModBCstockact(Modedstock)
 {
@@ -490,6 +498,7 @@ function ModBCstockact(Modedstock)
 function ModSBCstockShow(diskinfos)
 {
 	let ModSBCsctockul = document.getElementById("ModSBCsctockul");
+	clearcontent("ModSBCsctockul");
 	
 	for (let i=0;i<diskinfos.length;i++)
 	{
@@ -510,9 +519,25 @@ function ModSBCstockShow(diskinfos)
 	}
 	
 }
+function MountDiskShowact(MountedDisk)
+{
+	var ret = prompt('准备挂载'+MountedDisk+'\n输入要挂载的路径', '/mnt/SBC/');
+	if(ret !== null && ret != '') 
+	{
+　　	MountPath = ret;
+	}
+	var cookie = document.cookie;
+	data = {
+		'coks':cookie.replace('coks=','').replace('"','').replace('"',''),
+		'MountDisk':MountedDisk,
+		'MountPath':MountPath
+	}
+	res = sendMessagebyWebScoket(data);
+}
 function MountDiskShow(diskinfos)
 {
 	let ModSBCsctockul = document.getElementById("MountDiskul");
+	clearcontent("MountDiskul");
 	
 	for (let i=0;i<diskinfos.length;i++)
 	{
