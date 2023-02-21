@@ -38,6 +38,11 @@ class ChatConsumer(WebsocketConsumer):
                 info = Man.Manage().GetDiskInfo(1)
             else:
                 info = Man.Manage().GetDiskInfo(0)
+        elif 'ModSBCstock' in info:
+            ModSBCstock = info['ModSBCstock']
+            info = Man.Manage().ModSBCstock(ModSBCstock)
+
+
         info['res'] = 1
         self.send(text_data=json.dumps(info))       # 返回给客户端的消息
 

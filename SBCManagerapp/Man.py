@@ -85,8 +85,22 @@ class Manage():
         sda = Device(devicePar)
         Temp = sda.temperature
         SMARTInfo['Temp'] = Temp
+
+        ATTRIBUTE = r.read().split('Vendor Specific SMART Attributes with Thresholds:')[-1].split('SMART Error Log Version:')[0]
+        SMARTInfo['ATTRIBUTE'] = ATTRIBUTE
         return SMARTInfo
 
+    def ModSBCstock(self,stock):
+        Info = SBCManagemodels.SBCManager.objects.all()
+        if Info:
+            info = Info[0]
+            info.FileStock = stock
+            info.save()
+            return {}
+        else:
+            SBCManagemodels.SBCManager.objects.creat(FileStock = stock,UserStock = '',SBCStockSize=0,SBCUser0 = 'SBC',
+                                                     SBCUserPass0='12',SBCManageEmail = '',par1='',par2='',par3='')
+        return 1
 
     # {'device': 'E:\\', 'mountpoint': 'E:\\', 'fstype': 'NTFS', 'opts': 'rw,fixed', 'total': 285616369664,
     #  'used': 245613334528, 'free': 40003035136, 'percent': 86.0}
@@ -112,9 +126,6 @@ class Manage():
             return DiskInfos
 
 
-
-
-        sda = Device('/dev/sda')
 
     def get_net_speed(self,interval):
         '''

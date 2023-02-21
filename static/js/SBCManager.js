@@ -475,9 +475,16 @@ function GetStockUser()
 		refreshCpuData(res);
     }
 
-function ModBCstock(Modedstock)
+function ModBCstockact(Modedstock)
 {
-	console.log(Modedstock);
+	
+	var cookie = document.cookie;
+	data = {
+		'coks':cookie.replace('coks=','').replace('"','').replace('"',''),
+		'ModSBCstock':Modedstock,
+	}
+	res = sendMessagebyWebScoket(data);
+	
 }
 
 function ModSBCstockShow(diskinfos)
@@ -487,7 +494,7 @@ function ModSBCstockShow(diskinfos)
 	for (let i=0;i<diskinfos.length;i++)
 	{
 		info = diskinfos[i]
-		parinfo = info.parinfo;
+		let parinfo = info.parinfo;
 		parsizetotal = info.parsizetotal;
 		parsizeused = info.parsizeused;
 		parper = info.parper;
@@ -495,7 +502,7 @@ function ModSBCstockShow(diskinfos)
 		let a = document.createElement("a");
 		a.className = "dropdown-item"
 		a.href='javascript:void(0)'
-		a.onclick=function(){ModBCstock(parinfo)}
+		a.onclick=function(){ModBCstockact(parinfo)}
 		a.innerText = parinfo + '  ' +parsizeused+'/'+parsizetotal+'  '+parper.toString()+'%';
 		li.appendChild(a);
 		ModSBCsctockul.appendChild(li);

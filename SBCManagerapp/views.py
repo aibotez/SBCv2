@@ -84,6 +84,8 @@ def GetSerInfo(request):
     info = Man.Manage().GetSerInfo()
     info['Total'] = size_format(info['SBCStockSize'])
     return JsonResponse(info)
+
+
 def GetSerInfos(request):
     LoginRes = verifylogin(request)
     if LoginRes['res']:
