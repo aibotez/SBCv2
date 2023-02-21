@@ -474,3 +474,97 @@ function GetStockUser()
 		refreshMemData(res);
 		refreshCpuData(res);
     }
+
+function ModBCstock(Modedstock)
+{
+	console.log(Modedstock);
+}
+
+function ModSBCstockShow(diskinfos)
+{
+	let ModSBCsctockul = document.getElementById("ModSBCsctockul");
+	
+	for (let i=0;i<diskinfos.length;i++)
+	{
+		info = diskinfos[i]
+		parinfo = info.parinfo;
+		parsizetotal = info.parsizetotal;
+		parsizeused = info.parsizeused;
+		parper = info.parper;
+		let li = document.createElement("li");
+		let a = document.createElement("a");
+		a.className = "dropdown-item"
+		a.href='javascript:void(0)'
+		a.onclick=function(){ModBCstock(parinfo)}
+		a.innerText = parinfo + '  ' +parsizeused+'/'+parsizetotal+'  '+parper.toString()+'%';
+		li.appendChild(a);
+		ModSBCsctockul.appendChild(li);
+		
+	}
+	
+}
+function ModSBCstock()
+{
+	  var host = window.location.host;
+	  var cookie = document.cookie;
+	  var ws = new WebSocket("ws://"+host+"/getSerInfows/");
+	  ws.onopen = function(evt) 
+	    {
+			console.log("Connection open ...");
+			ws.send(JSON.stringify(
+				{
+				'coks':cookie.replace('coks=','').replace('"','').replace('"',''),
+				'SerInfos':1,
+				}))
+	    };
+		 
+	  ws.onmessage = function(evt) {
+			
+			resdata = JSON.parse(evt.data)
+			if (resdata.res==0)
+			{
+				console.log(resdata)
+				ws.close();
+				return
+			}
+			console.log(resdata)
+			diskinfos = resdata.Disk.diskpars;
+			ModSBCstockShow(diskinfos);
+		};
+		 
+	  ws.onclose = function(evt) {
+			console.log("Connection closed.");
+		};
+}
+
+ function DiskHealthInfo() {
+	  var host = window.location.host;
+	  var cookie = document.cookie;
+	  var ws = new WebSocket("ws://"+host+"/getSerInfows/");
+	  ws.onopen = function(evt) 
+	    {
+			console.log("Connection open ...");
+			ws.send(JSON.stringify(
+				{
+				'coks':cookie.replace('coks=','').replace('"','').replace('"',''),
+				'DiskHealthInfo':1,
+				'DiskIndex':1
+				}))
+	    };
+		 
+	  ws.onmessage = function(evt) {
+			
+			resdata = JSON.parse(evt.data)
+			if (resdata.res==0)
+			{
+				console.log(resdata)
+				ws.close();
+				return
+			}
+			console.log(resdata)
+		};
+		 
+	  ws.onclose = function(evt) {
+			console.log("Connection closed.");
+		};
+    }

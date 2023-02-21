@@ -28,7 +28,7 @@
         }
     </style>
 </head>
-<body>
+<body id="body">
 
 
 <div class='d-flex' style="height: 100vh;">
@@ -194,7 +194,7 @@
         </div>
 
 
-        <div class='flex-grow-1' id="DiskInfo">
+        <div class='flex-grow-1' id="DiskInfo" style="background-color:#F2F3F4">
 
 
             <div class="nav flex-column justify-content-center" style="height:60px;">
@@ -202,8 +202,20 @@
                 <div style="width:50vh;">
                     <div class="input-group">
                         <label class="btn">小黑云存储路径：</label>
-                        <input type="text" class="form-control" placeholder="/mnt/SBC/" disabled>
-                        <button type="button" class="btn btn-default btn-sm ">修改</button>
+                        <input id="SBCsctockLabel" type="text" class="form-control" placeholder="/mnt/SBC/" disabled>
+
+
+                        <div class="dropdown">
+                            <button type="button" onclick="ModSBCstock()" class="btn dropdown-toggle" id="dropdownMenu3" data-bs-toggle="dropdown">修改
+                                <span class="caret"></span>
+                            </button>
+                            <ul id="ModSBCsctockul" class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu3">
+<!--                                <li><a class="dropdown-item" href="javascript:void(0);" onclick="UpdateFiles(0)">显示用户未包含的文件</a></li>-->
+<!--                                <li><a class="dropdown-item" href="javascript:void(0);" onclick="UpdateFiles(1)">显示全部</a></li>-->
+                            </ul>
+                        </div>
+
+<!--                        <button type="button" class="btn btn-default btn-sm" onclick="ModSBCsctock()">修改</button>-->
                         <button type="button" class="btn btn-default btn-sm ">挂载硬盘</button>
                     </div>
                 </div>
@@ -224,23 +236,63 @@
             <div style="width:100%;">
                 <label style="width:100%;text-align:center;font-size:16px">硬盘详细信息</label>
             </div>
+            <div style="width:100%;">
+                <label style="width:100%;color:blue;text-align:center;font-size:26px">ST8000NM000A-2KE101 8.00TB</label>
+                <label style="float:left;width:45%;text-align:right;font-size:16px">序列号：WKD14W9C</label>
+                <label style="float:left;width:10%;">&nbsp;</label>
+                <label style="float:left;width:45%;text-align:left;font-size:16px">固件：WKD14W9C</label>
+            </div>
+            <div style="width:100%;padding-top:40px">
+                <div style="float:left;width:20%;text-align:center;font-size:12px">
+                    <label style="width:100%">健康状态</label>
+                    <label style="width:5rem;background-color:green;border-radius:7px;font-size:23px">pass</label>
+                </div>
+                <div style="float:left;width:60%;text-align:center;font-size:12px">
+                    <div style="float:left;width:45%;text-align:right;font-size:12px">
+                        <div style="width:100%">
+                            <label>转速：</label><label>7200</label>
+                        </div>
+                        <div style="width:100%">
+                            <label>已用容量：</label><label>200GB</label>
+                        </div>
+                        <div style="width:100%">
+                            <label>总容量：</label><label>8.0TB</label>
+                        </div>
+                    </div>
+                    <div style="float:left;width:10%;">&nbsp; </div>
+                    <div style="float:left;width:45%;text-align:left;font-size:12px">
+                        <div style="width:100%">
+                            <label>通电时间：</label><label>7200</label>
+                        </div>
+                        <div style="width:100%">
+                            <label>通电次数：</label><label>200GB</label>
+                        </div>
+                        <div style="width:100%">
+                            <label>传输模式：</label><label>8.0TB</label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
 
             <div>
 
                 <table class="table" style="table-layout:fixed;word-break:break-all; word-wrap:break-all;">
                   <thead>
                     <tr>
-                      <th scope="col" style="width:5%">序号</th>
-                      <th scope="col" style="width:45%">文件名</th>
-                      <th scope="col" style="width:30%">MD5</th>
-                      <th scope="col" style="width:10%">文件大小</th>
-                      <th scope="col" style="width:10%">文件类型</th>
+                      <th scope="col" style="width:5%">ID</th>
+                      <th scope="col" style="width:45%">属性名称</th>
+                      <th scope="col" style="width:10%">当前值</th>
+                      <th scope="col" style="width:10%">历史最差值</th>
+                      <th scope="col" style="width:10%">临界值</th>
+                      <th scope="col" style="width:10%">原始数据</th>
                     </tr>
                   </thead>
                 </table>
             </div>
 
-            <div style="height:80vh;overflow:scroll;overflow-y:scroll;overflow-x:hidden;">
+            <div class="flex-grow-1" style="background-color:white;overflow-y:scroll;overflow-x:hidden;">
                 <table class="table" style="table-layout:fixed;word-break:break-all; word-wrap:break-all;">
                      <tbody id="UserTable1">
                      </tbody>
@@ -301,6 +353,8 @@ document.getElementById('clickDiskInfo').addEventListener('click', function () {
    document.getElementById('Files').style.display = 'none';
    document.getElementById('SerInfo').style.display = 'none';
    document.getElementById('DiskInfo').style.display = 'block';
+   DiskHealthInfo();
+
 },true)
 
 document.getElementById('clickHardwareInfo').addEventListener('click', function () {
