@@ -45,6 +45,48 @@ class Manage():
                 continue
         values = sorted(values, key=lambda device: device['device'])
         return values
+    def GetDiskSMART(self,devicePar):
+        # sda = Device(devicePar)
+        # atrs0 = sda.attributes
+        # atrs = [i for i in atrs0 if i]
+        SMARTattrs = []
+        SMARToverallhealth = ''
+        DeviceModel = ''
+        SerialNumber = ''
+        RotationRate = ''
+        SATAVersion = ''
+        Titles = ''
+        Power_On_Hours = ''
+        Power_Cycle_Count = ''
+        r = os.popen('smartctl -a {}'.format(devicePar))
+        for line in r.readlines():
+            Vaule = line.split(' ')[-1]
+            if 'Device Model:' in line:
+                DeviceModel = Vaule
+            elif 'Serial Number:' in line:
+                SerialNumber = Vaule
+            elif 'Rotation Rate:' in line:
+                RotationRate = Vaule
+            elif 'SATA Version is:' in line:
+                SATAVersion = Vaule
+            elif 'SMART overall-health self-assessment test result:' in line:
+                SMARToverallhealth = Vaule
+            elif 'ATTRIBUTE_NAME' in line:
+                Titles = line.split(' ')
+            elif 'Pre-fail' in line or 'Old_age' in line:
+                SMARTattrs.append(line.split(' '))
+                if 'Power_On_Hours' in line:
+                    Power_On_Hours = Vaule
+                elif 'Power_Cycle_Count' in line:
+                    Power_Cycle_Count = Vaule
+        SMARTInfo = {'SMARToverallhealth':SMARToverallhealth,'DeviceModel':DeviceModel,'SerialNumber':SerialNumber,
+                     'RotationRate':RotationRate,'SATAVersion':SATAVersion,'Titles':Titles,'SMARTattrs':SMARTattrs,
+                     'Power_Cycle_Count':Power_Cycle_Count,'Power_On_Hours':Power_On_Hours}
+        sda = Device(devicePar)
+        Temp = sda.temperature
+        SMARTInfo['Temp'] = Temp
+        return SMARTInfo
+
 
     # {'device': 'E:\\', 'mountpoint': 'E:\\', 'fstype': 'NTFS', 'opts': 'rw,fixed', 'total': 285616369664,
     #  'used': 245613334528, 'free': 40003035136, 'percent': 86.0}
@@ -55,9 +97,19 @@ class Manage():
             for i in disksinfoall:
                 if i['mountpoint'].replace('\\','/') in SBCstockpath:
                     devicePar = i['device'].replace('\\','/')
-                    sda = Device(devicePar)
-                    HealthState = sda.assessment
-                    Temp = sda.temperature
+                    DiskSMARTInfo = self.GetDiskSMART(devicePar)
+                    DiskSize = {'total':self.ComTol.size_format(i['total']),'used':self.ComTol.size_format(i['used']),'percent':i['percent']}
+                    return {'DiskSMARTInfo':DiskSMARTInfo,'DiskSize':DiskSize}
+        else:
+            DiskInfos = []
+            for i in disksinfoall:
+                devicePar = i['device'].replace('\\', '/')
+                DiskSMARTInfo = self.GetDiskSMART(devicePar)
+                DiskSize = {'total': self.ComTol.size_format(i['total']), 'used': self.ComTol.size_format(i['used']),
+                            'percent': i['percent']}
+                DiskInfos.append({'DiskSMARTInfo': DiskSMARTInfo, 'DiskSize': DiskSize})
+
+            return DiskInfos
 
 
 

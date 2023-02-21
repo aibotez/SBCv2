@@ -28,12 +28,16 @@ class ChatConsumer(WebsocketConsumer):
         LoginRes = verifylogin(info)
         if LoginRes['res']:
             self.send(text_data=json.dumps({'res':0}))
-        if 'disk' in info:
-            info = Man.Manage().GetSerInfos('D:/SBC')
-        else:
-            info = Man.Manage().GetSerInfos()
-
-
+        if 'SerInfos' in info:
+            if 'DiskIndex' in info:
+                info = Man.Manage().GetSerInfos('D:/SBC')
+            else:
+                info = Man.Manage().GetSerInfos()
+        elif 'DiskHealthInfo' in info:
+            if 'DiskIndex' in info:
+                info = Man.Manage().GetDiskInfo(1)
+            else:
+                info = Man.Manage().GetDiskInfo(0)
         info['res'] = 1
         self.send(text_data=json.dumps(info))       # 返回给客户端的消息
 

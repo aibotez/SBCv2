@@ -433,10 +433,9 @@ function GetStockUser()
 			{
 				ws.send(JSON.stringify(
 				{
-				msg: 'wowowoow',
 				'coks':cookie.replace('coks=','').replace('"','').replace('"',''),
-				type: 'add',
-				'disk':1
+				'SerInfos':1,
+				'DiskIndex':1
 				}))
 			
 			}, 1000)
