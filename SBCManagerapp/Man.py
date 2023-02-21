@@ -59,16 +59,17 @@ class Manage():
         Power_On_Hours = ''
         Power_Cycle_Count = ''
         r = os.popen('smartctl -a {}'.format(devicePar))
-        for line in r.readlines():
-            Vaule = line.split(' ')[-1]
+        content = r.read()
+        for line in content.split('\n'):
+            Vaule = line.split(' ')[-1].replace('\n','')
             if 'Device Model:' in line:
                 DeviceModel = Vaule
             elif 'Serial Number:' in line:
                 SerialNumber = Vaule
             elif 'Rotation Rate:' in line:
-                RotationRate = Vaule
+                RotationRate = line.split(' ')[-2]+' '+Vaule
             elif 'SATA Version is:' in line:
-                SATAVersion = Vaule
+                SATAVersion = line.split('SATA Version is:  ')[-1].replace('\n','')
             elif 'SMART overall-health self-assessment test result:' in line:
                 SMARToverallhealth = Vaule
             elif 'ATTRIBUTE_NAME' in line:
@@ -86,15 +87,16 @@ class Manage():
         Temp = sda.temperature
         SMARTInfo['Temp'] = Temp
 
-        ATTRIBUTE = r.read().split('Vendor Specific SMART Attributes with Thresholds:')[-1].split('SMART Error Log Version:')[0]
+        ATTRIBUTE = content.split('Vendor Specific SMART Attributes with Thresholds:')[-1].split('SMART Error Log Version')[0]
         SMARTInfo['ATTRIBUTE'] = ATTRIBUTE
         return SMARTInfo
 
     def ModSBCstock(self,stock):
+        stock = stock+'/'
         Info = SBCManagemodels.SBCManager.objects.all()
         if Info:
             info = Info[0]
-            info.FileStock = stock
+            info.FileStock = stock.replace('//','/')
             info.save()
             return {}
         else:
@@ -120,7 +122,7 @@ class Manage():
             diskinfo = self.GetSerInfo()
             SBCstockpath = diskinfo['FileStock']
             for i in disksinfoall:
-                if i['mountpoint'].replace('\\','/') in SBCstockpath:
+                if SBCstockpath in i['mountpoint'].replace('\\','/')+'/':
                     devicePar = i['device'].replace('\\','/')
                     DiskSMARTInfo = self.GetDiskSMART(devicePar)
                     DiskSize = {'total':self.ComTol.size_format(i['total']),'used':self.ComTol.size_format(i['used']),'percent':i['percent']}
