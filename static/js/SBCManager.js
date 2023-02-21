@@ -623,6 +623,17 @@ function ModSBCstock()
 		};
 }
 
+function ModLabel(data)
+{
+	document.getElementById("TempLabel").innerText = data.Temp;
+	document.getElementById("StateLabel").innerText = data.SMARToverallhealth;
+	document.getElementById("TempLabel").innerText = data.Temp +' &#8451';
+	document.getElementById("DeviceModeLabel").innerText = data.DeviceModel;
+
+	document.getElementById("SerialNumberLabel").innerText = data.SerialNumber;
+	document.getElementById("DeviceIDLabel").innerText = data.Temp;
+	
+}
  function DiskHealthInfo() {
 	  var host = window.location.host;
 	  var cookie = document.cookie;
@@ -647,7 +658,8 @@ function ModSBCstock()
 				ws.close();
 				return
 			}
-			console.log(resdata)
+			console.log(resdata);
+			ModLabel(resdata.DiskSMARTInfo);
 		};
 		 
 	  ws.onclose = function(evt) {

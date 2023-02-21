@@ -228,11 +228,13 @@
                 <div style="width:40vh;">
                     <div style="width:20vh;float:left;">
                         <label>硬盘温度：</label>
-                        <label>36 &#8451</label>
+                        <label id="TempLabel"></label>
+<!--                        <label>36 &#8451</label>-->
                     </div>
                     <div style="width:20vh;float:left;">
                         <label>硬盘状态：</label>
-                        <label style="color:green">良好</label>
+                        <label id="StateLabel" style="color:green"></label>
+<!--                        <label style="color:green">良好</label>-->
                     </div>
 
                 </div>
@@ -243,38 +245,38 @@
                 <label style="width:100%;text-align:center;font-size:16px">硬盘详细信息</label>
             </div>
             <div style="width:100%;">
-                <label style="width:100%;color:blue;text-align:center;font-size:26px">ST8000NM000A-2KE101 8.00TB</label>
-                <label style="float:left;width:45%;text-align:right;font-size:16px">序列号：WKD14W9C</label>
+                <label id="DeviceModeLabel" style="width:100%;color:blue;text-align:center;font-size:26px">ST8000NM000A-2KE101 8.00TB</label>
+                <label id="SerialNumberLabel" style="float:left;width:45%;text-align:right;font-size:16px">序列号：WKD14W9C</label>
                 <label style="float:left;width:10%;">&nbsp;</label>
-                <label style="float:left;width:45%;text-align:left;font-size:16px">固件：WKD14W9C</label>
+                <label id="DeviceIDLabel" style="float:left;width:45%;text-align:left;font-size:16px">设备ID：WKD14W9C</label>
             </div>
             <div style="width:100%;padding-top:40px">
                 <div style="float:left;width:20%;text-align:center;font-size:12px">
                     <label style="width:100%">健康状态</label>
-                    <label style="width:5rem;background-color:green;border-radius:7px;font-size:23px">pass</label>
+                    <label id="HealthStateLabel" style="width:5rem;background-color:green;border-radius:7px;font-size:23px">pass</label>
                 </div>
                 <div style="float:left;width:60%;text-align:center;font-size:12px">
                     <div style="float:left;width:45%;text-align:right;font-size:12px">
                         <div style="width:100%">
-                            <label>转速：</label><label>7200</label>
+                            <label>转速：</label><label id="rpmLabel">7200</label>
                         </div>
                         <div style="width:100%">
-                            <label>已用容量：</label><label>200GB</label>
+                            <label>已用容量：</label><label id="UsedCapLabel">200GB</label>
                         </div>
                         <div style="width:100%">
-                            <label>总容量：</label><label>8.0TB</label>
+                            <label>总容量：</label><label id="TotalCapLabel">8.0TB</label>
                         </div>
                     </div>
                     <div style="float:left;width:10%;">&nbsp; </div>
                     <div style="float:left;width:45%;text-align:left;font-size:12px">
                         <div style="width:100%">
-                            <label>通电时间：</label><label>7200</label>
+                            <label>通电时间：</label><label id="PowerTimeLabel">7200</label>
                         </div>
                         <div style="width:100%">
-                            <label>通电次数：</label><label>200GB</label>
+                            <label>通电次数：</label><label id="PowerCountLabel">200GB</label>
                         </div>
                         <div style="width:100%">
-                            <label>传输模式：</label><label>8.0TB</label>
+                            <label>传输模式：</label><label id="SataModeLabel">8.0TB</label>
                         </div>
                     </div>
 
