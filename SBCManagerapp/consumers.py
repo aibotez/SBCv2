@@ -42,6 +42,8 @@ class ChatConsumer(WebsocketConsumer):
         elif 'ModSBCstock' in info:
             ModSBCstock = info['ModSBCstock']
             info = Man.Manage().ModSBCstock(ModSBCstock)
+        elif 'GetMountDisks' in info:
+            info = {'data':Man.Manage().GetDiskParinfo()}
 
 
         info['res'] = 1

@@ -510,6 +510,60 @@ function ModSBCstockShow(diskinfos)
 	}
 	
 }
+function MountDiskShow(diskinfos)
+{
+	let ModSBCsctockul = document.getElementById("MountDiskul");
+	
+	for (let i=0;i<diskinfos.length;i++)
+	{
+		info = diskinfos[i]
+		let device = info.Device;
+		DiskSize = info.DiskSize;
+		parsizetotal = DiskSize.total;
+		parsizeused = DiskSize.used;
+		parper = DiskSize.percent;
+		let li = document.createElement("li");
+		let a = document.createElement("a");
+		a.className = "dropdown-item"
+		a.href='javascript:void(0)'
+		a.onclick=function(){MountDiskShowact(device)}
+		a.innerText = device + '  ' +parsizeused+'/'+parsizetotal+'  '+parper.toString()+'%';
+		li.appendChild(a);
+		ModSBCsctockul.appendChild(li);
+		
+	}
+	
+}
+
+function MountDisk()
+{
+	var host = window.location.host;
+	var cookie = document.cookie;
+	var ws = new WebSocket("ws://"+host+"/getSerInfows/");
+	ws.onopen = function(evt) 
+	    {
+			ws.send(JSON.stringify(
+				{
+				'coks':cookie.replace('coks=','').replace('"','').replace('"',''),
+				'GetMountDisks':1,
+				}))
+			ws.onmessage = function(evt) {
+			
+			resdata = JSON.parse(evt.data)
+			if (resdata.res==0)
+			{
+				console.log(resdata)
+				ws.close();
+				return
+			}
+			console.log(resdata)
+			disks = resdata.data;
+			MountDiskShow(disks)
+			//diskinfos = resdata.Disk.diskpars;
+			//ModSBCstockShow(diskinfos);
+		};
+	    };
+}
 function ModSBCstock()
 {
 	  var host = window.location.host;

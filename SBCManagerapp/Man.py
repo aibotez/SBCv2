@@ -104,6 +104,16 @@ class Manage():
 
     # {'device': 'E:\\', 'mountpoint': 'E:\\', 'fstype': 'NTFS', 'opts': 'rw,fixed', 'total': 285616369664,
     #  'used': 245613334528, 'free': 40003035136, 'percent': 86.0}
+
+    def GetDiskParinfo(self):
+        disksinfoall = self.disksinfoall()
+        DiskInfos = []
+        for i in disksinfoall:
+            devicePar = i['device'].replace('\\', '/')
+            DiskSize = {'total': self.ComTol.size_format(i['total']), 'used': self.ComTol.size_format(i['used']),
+                        'percent': i['percent']}
+            DiskInfos.append({'Device': devicePar, 'DiskSize': DiskSize})
+        return DiskInfos
     def GetDiskInfo(self,idx = None):
         disksinfoall = self.disksinfoall()
         if idx:
