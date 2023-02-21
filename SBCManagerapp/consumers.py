@@ -30,7 +30,8 @@ class ChatConsumer(WebsocketConsumer):
             self.send(text_data=json.dumps({'res':0}))
         if 'SerInfos' in info:
             if 'DiskIndex' in info:
-                info = Man.Manage().GetSerInfos('D:/SBC')
+
+                info = Man.Manage().GetSerInfos(1)
             else:
                 info = Man.Manage().GetSerInfos()
         elif 'DiskHealthInfo' in info:

@@ -107,7 +107,8 @@ class Manage():
     def GetDiskInfo(self,idx = None):
         disksinfoall = self.disksinfoall()
         if idx:
-            SBCstockpath = ''
+            diskinfo = self.GetSerInfo()
+            SBCstockpath = diskinfo['FileStock']
             for i in disksinfoall:
                 if i['mountpoint'].replace('\\','/') in SBCstockpath:
                     devicePar = i['device'].replace('\\','/')
@@ -177,6 +178,8 @@ class Manage():
             mount = psutil.disk_usage(i.mountpoint)
             par = i.mountpoint.replace('\\','/')
             if disk:
+                diskinfo = self.GetSerInfo()
+                disk = diskinfo['FileStock']
                 if par in disk:
                     diskpars.append({'parinfo': i.mountpoint.replace('\\', '/'),
                                      'parsizetotal': self.ComTol.size_format(mount.total),
