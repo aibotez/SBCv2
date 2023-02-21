@@ -123,6 +123,9 @@ def sbcmanger(request):
     LoginRes = verifylogin(request)
     if LoginRes['res']:
         return render(request, "SBCManager/sbcmangerlogin.html")
+
+    SBCstock = Man.Manage().GetSerInfo()
+
     Users = User.objects.all()
     UserInfo = []
     j = 1
