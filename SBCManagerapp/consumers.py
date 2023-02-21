@@ -10,7 +10,9 @@ def verifylogin(request):
     cookies = request
     LoginRes = {'res': 1, 'useremail': ''}
     if 'coks' in cookies:
-        usefo = cookies['coks'].split('auth:')
+        cok = cookies['coks']
+        cok = cok.split(';')[-1].replace(' ','')
+        usefo = cok.split('auth:')
         if SBCManagemodels.SBCManager.objects.filter(SBCManageEmail=usefo[0]).exists():
             if SBCManagemodels.SBCManager.objects.get(SBCManageEmail=usefo[0]).SBCUserPass0 == usefo[1]:
                 LoginRes['res'] = 0
