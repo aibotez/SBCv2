@@ -634,7 +634,7 @@ function ModLabel(data0)
 	document.getElementById("DeviceModeLabel").innerText = data.DeviceModel;
 
 	document.getElementById("SerialNumberLabel").innerText = '序列号：'+data.SerialNumber;
-	document.getElementById("DeviceIDLabel").innerText = '设备ID：'+data.DeviceId;
+	document.getElementById("DeviceIDLabel").innerText = '固件号：'+data.FirmwareVersion;
 	document.getElementById("HealthStateLabel").innerText = data.SMARToverallhealth;
 	document.getElementById("rpmLabel").innerText = data.RotationRate;
 	document.getElementById("UsedCapLabel").innerText = datasize.used;

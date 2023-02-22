@@ -60,6 +60,7 @@ class Manage():
         Power_Cycle_Count = ''
         DeviceId = ''
         DiskState = '欠佳'
+        FirmwareVersion = ''
         r = os.popen('smartctl -a {}'.format(devicePar))
         content = r.read()
         for line in content.split('\n'):
@@ -70,6 +71,8 @@ class Manage():
                 SerialNumber = Vaule
             elif 'Rotation Rate:' in line:
                 RotationRate = line.split(' ')[-2]+' '+Vaule
+            elif 'Firmware Version:' in line:
+                FirmwareVersion = Vaule
             elif 'Device Id:' in line:
                 DeviceId = Vaule
             elif 'SATA Version is:' in line:
@@ -90,7 +93,7 @@ class Manage():
         SMARTInfo = {'SMARToverallhealth':SMARToverallhealth,'DeviceModel':DeviceModel,'SerialNumber':SerialNumber,
                      'RotationRate':RotationRate,'SATAVersion':SATAVersion,'Titles':Titles,'SMARTattrs':SMARTattrs,
                      'Power_Cycle_Count':Power_Cycle_Count,'Power_On_Hours':Power_On_Hours,'DeviceId':DeviceId,
-                     'DiskState':DiskState}
+                     'DiskState':DiskState,'FirmwareVersion':FirmwareVersion}
         sda = Device(devicePar)
         Temp = sda.temperature
         SMARTInfo['Temp'] = Temp
