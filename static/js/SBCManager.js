@@ -628,18 +628,16 @@ function ModLabel(data0)
 {
 	data = data0.DiskSMARTInfo;
 	datasize = data0.DiskSize;
-	document.getElementById("TempLabel").innerText = data.Temp;
-	document.getElementById("StateLabel").innerText = data.SMARToverallhealth;
 	document.getElementById("TempLabel").innerText = data.Temp+' &#8451';
+	document.getElementById("StateLabel").innerText = data.SMARToverallhealth;
+	//document.getElementById("TempLabel").innerText = data.Temp+' &#8451';
 	document.getElementById("DeviceModeLabel").innerText = data.DeviceModel;
 
 	document.getElementById("SerialNumberLabel").innerText = '序列号：'+data.SerialNumber;
 	document.getElementById("DeviceIDLabel").innerText = '设备ID：'+data.DeviceId;
 	document.getElementById("HealthStateLabel").innerText = data.SMARToverallhealth;
 	document.getElementById("rpmLabel").innerText = data.RotationRate;
-	document.getElementById("TempLabel").innerText = data.Temp;
-	document.getElementById("UsedCapLabel").innerText = data.Temp;
-	document.getElementById("TempLabel").innerText = datasize.used;
+	document.getElementById("UsedCapLabel").innerText = data.used;
 	document.getElementById("TotalCapLabel").innerText = datasize.total;
 	
 	
