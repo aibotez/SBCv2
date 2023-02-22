@@ -636,11 +636,15 @@ function ModLabel(data0)
 	document.getElementById("SerialNumberLabel").innerText = '序列号：'+data.SerialNumber;
 	document.getElementById("DeviceIDLabel").innerText = '固件号：'+data.FirmwareVersion;
 	document.getElementById("HealthStateLabel").innerText = data.SMARToverallhealth;
+	if(data.DiskState == '良好')
+	{
+		document.getElementById("StateLabel").style.color = 'yellow';
+		document.getElementById("HealthStateLabel").backgroundColor = 'yellow';
+	}
 	document.getElementById("rpmLabel").innerText = data.RotationRate;
 	document.getElementById("UsedCapLabel").innerText = datasize.used;
 	document.getElementById("TotalCapLabel").innerText = datasize.total;
 	document.getElementById("PowerTimeLabel").innerText = data.Power_On_Hours;
-	
 	document.getElementById("PowerCountLabel").innerText = data.Power_Cycle_Count;
 	document.getElementById("SataModeLabel").innerText = data.SATAVersion;
 	
