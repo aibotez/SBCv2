@@ -121,7 +121,7 @@ function GetStockUser()
 	        left: 'center',
 	        zlevel:0,
 	        style: {
-	            text: '30%',
+	            text: '',
 	            fontSize: 16,
 	            textAlign:'center',
 	            fontWeight: 'bold'
@@ -150,8 +150,8 @@ function GetStockUser()
 
                     },
                     data: [
-                        { value: 3, name: '已使用' },
-                        { value: 7, name: '剩余' }
+                        { value: 0, name: '已使用' },
+                        { value: 10, name: '剩余' }
                     ]
                 }
             ]
