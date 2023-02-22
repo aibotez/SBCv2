@@ -107,6 +107,7 @@ class Manage():
             lt = i.split(' ')
             lst = [j for j in lt if j]
             attrlist.append(lst)
+        del attrlist[0]
         SMARTInfo['ATTRIBUTE'] = attrlist
         return SMARTInfo
 
