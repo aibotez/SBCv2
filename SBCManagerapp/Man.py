@@ -118,10 +118,12 @@ class Manage():
             info = Info[0]
             info.FileStock = stock.replace('//','/')
             info.save()
+            self.InitSerPath()
             return {}
         else:
             SBCManagemodels.SBCManager.objects.creat(FileStock = stock,UserStock = '',SBCStockSize=0,SBCUser0 = 'SBC',
                                                      SBCUserPass0='12',SBCManageEmail = '',par1='',par2='',par3='')
+        self.InitSerPath()
         return 1
 
     # {'device': 'E:\\', 'mountpoint': 'E:\\', 'fstype': 'NTFS', 'opts': 'rw,fixed', 'total': 285616369664,
