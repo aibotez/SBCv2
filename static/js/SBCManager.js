@@ -636,9 +636,9 @@ function ModLabel(data0)
 	document.getElementById("SerialNumberLabel").innerText = '序列号：'+data.SerialNumber;
 	document.getElementById("DeviceIDLabel").innerText = '固件号：'+data.FirmwareVersion;
 	document.getElementById("HealthStateLabel").innerText = data.SMARToverallhealth;
-	if(data.DiskState == '良好')
+	if(data.DiskState != '良好')
 	{
-		document.getElementById("StateLabel").style.color = '#B7950B';
+		document.getElementById("StateLabel").style.color = '#E74C3C';
 		document.getElementById("HealthStateLabel").style.backgroundColor = 'yellow';
 	}
 	document.getElementById("rpmLabel").innerText = data.RotationRate;
@@ -647,6 +647,8 @@ function ModLabel(data0)
 	document.getElementById("PowerTimeLabel").innerText = data.Power_On_Hours;
 	document.getElementById("PowerCountLabel").innerText = data.Power_Cycle_Count;
 	document.getElementById("SataModeLabel").innerText = data.SATAVersion;
+	
+	document.getElementById("tablelabel").innerText = data.ATTRIBUTE;
 	
 }
  function DiskHealthInfo() {
