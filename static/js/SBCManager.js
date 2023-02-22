@@ -638,8 +638,8 @@ function ModLabel(data0)
 	document.getElementById("HealthStateLabel").innerText = data.SMARToverallhealth;
 	if(data.DiskState == '良好')
 	{
-		document.getElementById("StateLabel").style.color = 'yellow';
-		document.getElementById("HealthStateLabel").backgroundColor = 'yellow';
+		document.getElementById("StateLabel").style.color = '#B7950B';
+		document.getElementById("HealthStateLabel").style.backgroundColor = 'yellow';
 	}
 	document.getElementById("rpmLabel").innerText = data.RotationRate;
 	document.getElementById("UsedCapLabel").innerText = datasize.used;
