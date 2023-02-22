@@ -648,7 +648,42 @@ function ModLabel(data0)
 	document.getElementById("PowerCountLabel").innerText = data.Power_Cycle_Count;
 	document.getElementById("SataModeLabel").innerText = data.SATAVersion;
 	
-	document.getElementById("tablelabel").innerText = data.ATTRIBUTE;
+	//document.getElementById("tablelabel").innerText = data.ATTRIBUTE;
+	var tbody = document.getElementById("DiskTable");
+	for (let i=0;i<data.ATTRIBUTE.length;i++)
+	{
+		let tr = document.createElement("tr");
+		let th1 = document.createElement("th");
+		th1.style.width = "5%";
+		th1.scope="row";
+		th1.innerText = data.ATTRIBUTE[0][0];
+				let th2 = document.createElement("th");
+		th1.style.width = "45%";
+		th1.scope="row";
+		th1.innerText = data.ATTRIBUTE[0][1];
+				let th3 = document.createElement("th");
+		th1.style.width = "10%";
+		th1.scope="row";
+		th1.innerText = data.ATTRIBUTE[0][2];
+				let th4 = document.createElement("th");
+		th1.style.width = "10%";
+		th1.scope="row";
+		th1.innerText = data.ATTRIBUTE[0][3];
+				let th5 = document.createElement("th");
+		th1.style.width = "10%";
+		th1.scope="row";
+		th1.innerText = data.ATTRIBUTE[0][4];
+				let th6 = document.createElement("th");
+		th1.style.width = "10%";
+		th1.scope="row";
+		th1.innerText = data.ATTRIBUTE[0][5];
+		tr.appendChild(th1);
+		tr.appendChild(th2);
+		tr.appendChild(th3);
+		tr.appendChild(th4);
+		tr.appendChild(th5);
+		tr.appendChild(th6);
+		tbody.appendChild(tr);
 	
 }
  function DiskHealthInfo() {

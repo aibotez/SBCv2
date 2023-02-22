@@ -99,7 +99,15 @@ class Manage():
         SMARTInfo['Temp'] = Temp
 
         ATTRIBUTE = content.split('Vendor Specific SMART Attributes with Thresholds:')[-1].split('SMART Error Log Version')[0]
-        SMARTInfo['ATTRIBUTE'] = ATTRIBUTE
+        ATTRIBUTE.replace('ATTRIBUTE_NAME','属性名称').replace('VALUE','当前值').replace('WORST','历史最差值').replace('THRESH','临界值').replace('WHEN_FAILED RAW_VALUE','原始数据')
+        attr = ATTRIBUTE.split('\n')
+        attrs = [i for i in attr if i]
+        attrlist = []
+        for i in attrs:
+            lt = i.split(' ')
+            lst = [j for j in lt if j]
+            attrlist.append(lst)
+        SMARTInfo['ATTRIBUTE'] = attrlist
         return SMARTInfo
 
     def ModSBCstock(self,stock):
