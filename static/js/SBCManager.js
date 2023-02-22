@@ -639,7 +639,10 @@ function ModLabel(data0)
 	document.getElementById("rpmLabel").innerText = data.RotationRate;
 	document.getElementById("UsedCapLabel").innerText = datasize.used;
 	document.getElementById("TotalCapLabel").innerText = datasize.total;
+	document.getElementById("PowerTimeLabel").innerText = data.Power_On_Hours;
 	
+	document.getElementById("PowerCountLabel").innerText = data.Power_Cycle_Count;
+	document.getElementById("SataModeLabel").innerText = data.SATAVersion;
 	
 }
  function DiskHealthInfo() {
