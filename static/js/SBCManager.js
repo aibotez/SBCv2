@@ -629,7 +629,7 @@ function ModLabel(data0)
 	data = data0.DiskSMARTInfo;
 	datasize = data0.DiskSize;
 	document.getElementById("TempLabel").innerText = data.Temp;
-	document.getElementById("StateLabel").innerText = data.SMARToverallhealth;
+	document.getElementById("StateLabel").innerText = data.DiskState;
 	//document.getElementById("TempLabel").innerText = data.Temp+' &#8451';
 	document.getElementById("DeviceModeLabel").innerText = data.DeviceModel;
 

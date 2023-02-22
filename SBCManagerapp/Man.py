@@ -59,6 +59,7 @@ class Manage():
         Power_On_Hours = ''
         Power_Cycle_Count = ''
         DeviceId = ''
+        DiskState = '欠佳'
         r = os.popen('smartctl -a {}'.format(devicePar))
         content = r.read()
         for line in content.split('\n'):
@@ -75,6 +76,9 @@ class Manage():
                 SATAVersion = line.split('SATA Version is:  ')[-1].replace('\n','')
             elif 'SMART overall-health self-assessment test result:' in line:
                 SMARToverallhealth = Vaule
+                if 'pass' in Vaule.lower():
+                    SMARToverallhealth = 'PASS'
+                    DiskState = '良好'
             elif 'ATTRIBUTE_NAME' in line:
                 Titles = line.split(' ')
             elif 'Pre-fail' in line or 'Old_age' in line:
@@ -85,7 +89,8 @@ class Manage():
                     Power_Cycle_Count = Vaule
         SMARTInfo = {'SMARToverallhealth':SMARToverallhealth,'DeviceModel':DeviceModel,'SerialNumber':SerialNumber,
                      'RotationRate':RotationRate,'SATAVersion':SATAVersion,'Titles':Titles,'SMARTattrs':SMARTattrs,
-                     'Power_Cycle_Count':Power_Cycle_Count,'Power_On_Hours':Power_On_Hours,'DeviceId':DeviceId}
+                     'Power_Cycle_Count':Power_Cycle_Count,'Power_On_Hours':Power_On_Hours,'DeviceId':DeviceId,
+                     'DiskState':DiskState}
         sda = Device(devicePar)
         Temp = sda.temperature
         SMARTInfo['Temp'] = Temp
