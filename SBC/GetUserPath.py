@@ -11,7 +11,7 @@ class GetUserPath():
     def __init__(self):
         # self.ServerHomePath = 'D:/documents/GitStock/SBCuserTest/'
         # self.ServerHomePath = '/mnt/SBC/SBCUsers/'
-        self.ServerHomePath = FileStockPath
+        self.ServerHomePath = FileUsersPath
 
     def GetDownPath(self,DownReInfo,LoginRes):
 

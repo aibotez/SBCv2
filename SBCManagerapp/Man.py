@@ -286,7 +286,7 @@ class Manage():
         FileStockPath = ''
         Serinfo = self.GetSerInfo()
         if Serinfo:
-            SBCPath = Serinfo['FileStock'] + '//'
+            SBCPath = Serinfo['FileStock'] + '/'
             SBCPath = SBCPath.replace('//', '/')
             FileStockPath = SBCPath + 'SBCstock'
             FileUsersPath = SBCPath + 'SBCUsers'
