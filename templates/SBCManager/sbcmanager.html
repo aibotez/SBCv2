@@ -34,6 +34,12 @@
 
 <div class='d-flex' style="height: 100vh;">
     <div class='col-1' style="background-color:#EAEDED;max-width:200px;">
+
+
+        <div class="text-center" style="padding-top:0px;width:100%">
+            <label id="clickHardwareInfo" style="background-color:#EAEDED;width:100%;padding-top:10px;padding-bottom:10px;cursor:pointer;">后台信息</label>
+        </div>
+
         <div class="text-center" style="padding-top:100px;width:100%;">
             <label id="clickUserInfo" style="background-color:#FDFEFE;width:100%;padding-top:10px;padding-bottom:10px;cursor:pointer;">用户信息</label>
         </div>
@@ -42,9 +48,9 @@
             <label id="clickFilesInfo" style="background-color:#EAEDED;width:100%;padding-top:10px;padding-bottom:10px;cursor:pointer;">文件信息</label>
         </div>
 
-        <div class="text-center" style="padding-top:0px;width:100%">
-            <label id="clickHardwareInfo" style="background-color:#EAEDED;width:100%;padding-top:10px;padding-bottom:10px;cursor:pointer;">后台信息</label>
-        </div>
+<!--        <div class="text-center" style="padding-top:0px;width:100%">-->
+<!--            <label id="clickHardwareInfo" style="background-color:#EAEDED;width:100%;padding-top:10px;padding-bottom:10px;cursor:pointer;">后台信息</label>-->
+<!--        </div>-->
 
         <div class="text-center" style="padding-top:0px;width:100%">
             <label id="clickDiskInfo" style="background-color:#EAEDED;width:100%;padding-top:10px;padding-bottom:10px;cursor:pointer;">磁盘信息</label>
@@ -253,7 +259,7 @@
             <div style="width:100%;padding-top:40px">
                 <div style="float:left;width:20%;text-align:center;font-size:12px">
                     <label style="width:100%">健康状态</label>
-                    <label id="HealthStateLabel" style="width:5rem;background-color:green;border-radius:7px;font-size:23px"></label>
+                    <label id="HealthStateLabel" style="color:white;width:5rem;background-color:green;border-radius:7px;font-size:23px"></label>
                 </div>
                 <div style="float:left;width:60%;text-align:center;font-size:12px">
                     <div style="float:left;width:45%;text-align:right;font-size:12px">
@@ -340,8 +346,10 @@ var FileShow = 0;
 var DiskShow = 0;
 var Filesall = [];
 document.getElementById('Files').style.display = 'none';
-document.getElementById('SerInfo').style.display = 'none';
+<!--document.getElementById('SerInfo').style.display = 'none';-->
 document.getElementById('DiskInfo').style.display = 'none';
+document.getElementById('User').style.display = 'none';
+
 
 
 document.getElementById('clickUserInfo').addEventListener('click', function () {
@@ -352,11 +360,13 @@ document.getElementById('clickUserInfo').addEventListener('click', function () {
    document.getElementById('clickUserInfo').style.backgroundColor = '#FDFEFE'
    document.getElementById('clickHardwareInfo').style.backgroundColor = '#EAEDED'
    document.getElementById('clickFilesInfo').style.backgroundColor = '#EAEDED'
+   document.getElementById('clickDiskInfo').style.backgroundColor = '#EAEDED'
 },true)
 document.getElementById('clickDiskInfo').addEventListener('click', function () {
    document.getElementById('clickUserInfo').style.backgroundColor = '#EAEDED'
-   document.getElementById('clickHardwareInfo').style.backgroundColor = '#FDFEFE'
+   document.getElementById('clickHardwareInfo').style.backgroundColor = '#EAEDED'
    document.getElementById('clickFilesInfo').style.backgroundColor = '#EAEDED'
+   document.getElementById('clickDiskInfo').style.backgroundColor = '#FDFEFE'
 
    document.getElementById('User').style.display = 'none';
    document.getElementById('Files').style.display = 'none';
@@ -370,6 +380,7 @@ document.getElementById('clickHardwareInfo').addEventListener('click', function 
    document.getElementById('clickUserInfo').style.backgroundColor = '#EAEDED'
    document.getElementById('clickHardwareInfo').style.backgroundColor = '#FDFEFE'
    document.getElementById('clickFilesInfo').style.backgroundColor = '#EAEDED'
+   document.getElementById('clickDiskInfo').style.backgroundColor = '#EAEDED'
 
    document.getElementById('User').style.display = 'none';
    document.getElementById('Files').style.display = 'none';
@@ -382,6 +393,7 @@ document.getElementById('clickFilesInfo').addEventListener('click', function () 
    document.getElementById('clickUserInfo').style.backgroundColor = '#EAEDED'
    document.getElementById('clickHardwareInfo').style.backgroundColor = '#EAEDED'
    document.getElementById('clickFilesInfo').style.backgroundColor = '#FDFEFE'
+   document.getElementById('clickDiskInfo').style.backgroundColor = '#EAEDED'
 
 
    document.getElementById('User').style.display = 'none';
