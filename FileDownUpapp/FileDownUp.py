@@ -7,14 +7,20 @@ from FileDownUpapp import models
 from SBC import GetUserPath
 from SBC import UserManage
 from UserFileRecordapp import UserFileRecordManage
+from SBCManagerapp import Man
 
 
+
+Serinfo = Man.Manage().InitSerPath()
+FileUsersPath = Serinfo['user']
+FileStockPath = Serinfo['stock']
 
 
 class MakeLink():
     def __init__(self):
         # self.FilesStock = r'D:\documents\GitStock\SBCuserTest\FilesStock'
-        self.FilesStock = '/mnt/SBC/SBCstock/'
+        # self.FilesStock = '/mnt/SBC/SBCstock/'
+        self.FilesStock = FileStockPath
 
     def mklk(self,dst,srcfename,dstfename):
         # dstDirs = r'D:\documents\GitStock\SBCuserTest\2290227486@qq.com'
@@ -33,8 +39,10 @@ class FileUp():
         # self.FileServerHome = 'D:/documents/GitStock/SBCuserTest/'
         # self.FilesStock = 'C:/SBC/SBCStock/'
         # self.FileServerHome = 'C:/SBC/SBCUsers/'
-        self.FilesStock = '/mnt/SBC/SBCstock/'
-        self.FileServerHome = '/mnt/SBC/SBCUsers/'
+        # self.FilesStock = '/mnt/SBC/SBCstock/'
+        # self.FileServerHome = '/mnt/SBC/SBCUsers/'
+        self.FilesStock = FileStockPath
+        self.FileServerHome = FileUsersPath
         self.getuserpath = GetUserPath.GetUserPath()
 
     def GetFileMd5(self,filename):

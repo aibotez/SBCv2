@@ -81,8 +81,8 @@ class ShareManage():
         md5_val = hashlib.md5(string.encode('utf8')).hexdigest()
         return md5_val
     def CreatShareUrl(self,ShareFileInfo,LoginRes,CurUrl):
-        if '127.0.0.1' in CurUrl:
-            CurUrl = 'local.sbc.plus:9090'
+        # if '127.0.0.1' in CurUrl:
+        #     CurUrl = 'local.sbc.plus:9090'
         userEmail = LoginRes['useremail']
         ShareFileInfo['useremail'] = userEmail
         shareCurPath = ShareFileInfo['ShareFile'][0]['fepath']

@@ -281,7 +281,20 @@ class Manage():
             allstockFiles.append(info)
         return {'all':allstockFiles,'NoUser':FileNoUser}
 
-
+    def InitSerPath(self):
+        FileUsersPath = ''
+        FileStockPath = ''
+        Serinfo = self.GetSerInfo()
+        if Serinfo:
+            SBCPath = Serinfo['FileStock'] + '//'
+            SBCPath = SBCPath.replace('//', '/')
+            FileStockPath = SBCPath + 'SBCstock'
+            FileUsersPath = SBCPath + 'SBCUsers'
+            if not os.path.isdir(FileStockPath):
+                os.makedirs(FileStockPath)
+            if not os.path.isdir(FileUsersPath):
+                os.makedirs(FileUsersPath)
+        return {'stock':FileStockPath+'/','user':FileUsersPath+'/'}
     def GetSerInfo(self):
         Info = SBCManagemodels.SBCManager.objects.all()
         if Info:

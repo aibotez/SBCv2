@@ -1,10 +1,17 @@
 import urllib.parse
 import os,json
+from SBCManagerapp import Man
 
+
+
+Serinfo = Man.Manage().InitSerPath()
+FileUsersPath = Serinfo['user']
+FileStockPath = Serinfo['stock']
 class GetUserPath():
     def __init__(self):
         # self.ServerHomePath = 'D:/documents/GitStock/SBCuserTest/'
-        self.ServerHomePath = '/mnt/SBC/SBCUsers/'
+        # self.ServerHomePath = '/mnt/SBC/SBCUsers/'
+        self.ServerHomePath = FileStockPath
 
     def GetDownPath(self,DownReInfo,LoginRes):
 

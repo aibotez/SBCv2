@@ -115,7 +115,7 @@ def DelStockFiles(request):
     info = Man.Manage().DelStockFiles(request)
     return JsonResponse(info)
 def sbcmanger(request):
-    print(request.headers)
+    # print(request.headers)
     # ManInfo = Man.Manage().GetSerInfo()
     # if not ManInfo:
     #     return
