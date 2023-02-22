@@ -630,7 +630,7 @@ function ModLabel(data0)
 	datasize = data0.DiskSize;
 	document.getElementById("TempLabel").innerText = data.Temp;
 	document.getElementById("StateLabel").innerText = data.SMARToverallhealth;
-	document.getElementById("TempLabel").innerText = data.Temp.toString() +' &#8451';
+	document.getElementById("TempLabel").innerText = data.Temp+' &#8451';
 	document.getElementById("DeviceModeLabel").innerText = data.DeviceModel;
 
 	document.getElementById("SerialNumberLabel").innerText = '序列号：'+data.SerialNumber;
