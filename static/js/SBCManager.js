@@ -684,7 +684,7 @@ function ModLabel(data0)
 		tr.appendChild(th5);
 		tr.appendChild(th6);
 		tbody.appendChild(tr);
-	
+	}
 }
  function DiskHealthInfo() {
 	  var host = window.location.host;
