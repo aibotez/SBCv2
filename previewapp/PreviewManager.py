@@ -109,8 +109,10 @@ class Preview():
             os.makedirs(SerAudFaPath)
         AudioPath = SerAudFaPath+AudioFileName
         if not os.path.exists(AudioPath):
+            self.VideoFrams.CreatWav(path, AudioPath)
             VideoInfo = self.VideoFrams.GetVideoInfo(path,AudioPath)
-            self.VideoFrams.CreatWav(path,AudioPath)
+
             return {'state':'CreatWav','VideoFile':VideoInfo}
         else:
-            pass
+            if 'VideoFram' not in req:
+                return {'stste':'CreatWavFinish'}
