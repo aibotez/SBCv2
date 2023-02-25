@@ -3,7 +3,7 @@ from SBC import GetUserPath
 import urllib
 from urllib import parse
 import wave
-import cv2
+import cv2,base64
 
 
 
@@ -124,4 +124,4 @@ class Preview():
                 AudioFrams = self.VideoFrams.GetAudioFrams(AudioPath, req['AudioFram'])
                 print(len(VideoFrams),len(AudioFrams))
                 # return {'res': 1}
-                return {'res': 1, 'AudioFrams':AudioFrams.decode()}
+                return {'res': 1, 'AudioFrams':base64.b64encode(AudioFrams).decode()}
