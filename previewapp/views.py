@@ -103,6 +103,13 @@ def preview(request):
             pdfbase64 = GetFeBase64(SerTempPath)
             return render(request, "preview/pdfviewer.html", locals())
 
+    elif filetype == 'video':
+        Previewmanager = PreviewManager.Preview()
+        res = Previewmanager.PreviewVideo(LoginRes['useremail'],path,req)
+        return JsonResponse(res)
+
+
+
 def preview1(request):
     LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
     if LoginRes['res']:
