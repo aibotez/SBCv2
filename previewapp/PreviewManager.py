@@ -38,8 +38,7 @@ class VideoFram():
             if not ret:  # 如果获取失败，则结束
                 print("exit")
                 break
-            frams.append(im)
-            cv2.waitKey(1)
+            frams.append(im.tolist())
             curidx += 1
             if curidx > framidexs[1]:
                 break
@@ -124,5 +123,5 @@ class Preview():
                 VideoFrams = self.VideoFrams.GetVideoFrams(path,req['VideoFram'])
                 AudioFrams = self.VideoFrams.GetAudioFrams(AudioPath, req['AudioFram'])
                 print(type(VideoFrams[0]),type(AudioFrams))
-                return {'res': 1}
-                # return {'res': 1, 'VideoFrams': VideoFrams,'AudioFrams':AudioFrams}
+                # return {'res': 1}
+                return {'res': 1, 'VideoFrams': VideoFrams,'AudioFrams':AudioFrams}
