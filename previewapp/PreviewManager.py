@@ -120,3 +120,7 @@ class Preview():
             if 'VideoFram' not in req:
                 VideoInfo = self.VideoFrams.GetVideoInfo(path, AudioPath)
                 return {'stste':'CreatWavFinish','VideoFile':VideoInfo}
+            else:
+                VideoFrams = self.VideoFrams.GetVideoFrams(path,req['VideoFram'])
+                AudioFrams = self.VideoFrams.GetAudioFrams(AudioPath, req['AudioFram'])
+                return {'res': 1, 'VideoFrams': VideoFrams,'AudioFrams':AudioFrams}
