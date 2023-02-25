@@ -59,6 +59,9 @@ class VideoFram():
         wf = wave.open(Audiopath, 'rb')  # 打开WAV文件
         AuduoFramsRate = wf.getnframes()
         AudioFramRate = wf.getframerate()
+        cap.release()  # 释放视频
+        cv2.destroyAllWindows()  # 释放所有显示图像的窗口
+        wf.close()
         return {'VideoFramsTotal':VideoFramsTotal,'VideoFramRate':VideoFramRate,'AuduoFramsRate':AuduoFramsRate,'AudioFramRate':AudioFramRate}
 
 class Preview():
