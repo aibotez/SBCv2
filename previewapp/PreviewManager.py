@@ -122,6 +122,6 @@ class Preview():
             else:
                 VideoFrams = self.VideoFrams.GetVideoFrams(path,req['VideoFram'])
                 AudioFrams = self.VideoFrams.GetAudioFrams(AudioPath, req['AudioFram'])
-                print(type(VideoFrams[0]),type(AudioFrams))
+                print(len(VideoFrams),len(AudioFrams))
                 # return {'res': 1}
-                return {'res': 1, 'VideoFrams': VideoFrams,'AudioFrams':AudioFrams}
+                return {'res': 1, 'AudioFrams':AudioFrams}
