@@ -110,8 +110,8 @@ class Preview():
         AudioPath = SerAudFaPath+AudioFileName
         if not os.path.exists(AudioPath):
             self.VideoFrams.CreatWav(path, AudioPath)
+            time.sleep(0.5)
             VideoInfo = self.VideoFrams.GetVideoInfo(path,AudioPath)
-
             return {'state':'CreatWav','VideoFile':VideoInfo}
         else:
             if 'VideoFram' not in req:
