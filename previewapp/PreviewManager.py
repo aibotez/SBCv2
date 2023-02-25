@@ -124,4 +124,4 @@ class Preview():
                 AudioFrams = self.VideoFrams.GetAudioFrams(AudioPath, req['AudioFram'])
                 print(len(VideoFrams),len(AudioFrams))
                 # return {'res': 1}
-                return {'res': 1, 'AudioFrams':str(AudioFrams,'utf-8')}
+                return {'res': 1, 'AudioFrams':AudioFrams.decode("utf-8")}
