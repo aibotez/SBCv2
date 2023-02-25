@@ -124,4 +124,4 @@ class Preview():
                 AudioFrams = self.VideoFrams.GetAudioFrams(AudioPath, req['AudioFram'])
                 print(len(VideoFrams),len(AudioFrams))
                 # return {'res': 1}
-                return {'res': 1, 'AudioFrams':base64.b64encode(AudioFrams).decode()}
+                return {'res': 1, 'VideoFrams':VideoFrams,'AudioFrams':base64.b64encode(AudioFrams).decode()}
