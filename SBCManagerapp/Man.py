@@ -210,11 +210,11 @@ class Manage():
         diskpars = []
         for i in psutil.disk_partitions():
             mount = psutil.disk_usage(i.mountpoint)
-            par = i.mountpoint.replace('\\','/')
+            par = i.mountpoint.replace('\\','/')+'/'
             if disk:
                 diskinfo = self.GetSerInfo()
                 disk = diskinfo['FileStock']
-                if par in disk:
+                if disk in par:
                     diskpars.append({'parinfo': i.mountpoint.replace('\\', '/'),
                                      'parsizetotal': self.ComTol.size_format(mount.total),
                                      'parsizeused': self.ComTol.size_format(mount.used),
