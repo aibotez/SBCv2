@@ -39,9 +39,9 @@ class VideoFram():
             if not ret:  # 如果获取失败，则结束
                 print("exit")
                 break
-            frams.append(im.tolist())
+            frams.append(base64.b64encode(im).decode())
             curidx += 1
-            cursize += len(im.tolist())
+            cursize += len(base64.b64encode(im).decode())
             if curidx > framidexs[1]:
                 print('cursize',cursize/1024/1024)
                 break
