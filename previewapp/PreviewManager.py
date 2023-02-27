@@ -39,7 +39,7 @@ class VideoFram():
         frams = []
         curidx = framidexs[0]
         cursize = 0
-        img_batch_rgb = np.empty(shape=[0, image_height, image_width, image_channel], dtype=np.uint8)
+        # img_batch_rgb = np.empty(shape=[0, image_height, image_width, image_channel], dtype=np.uint8)
         for i in range(framidexs[0],framidexs[1]+1):
             # print(i)
             ret, im = cap.read()  # 获取图像
@@ -47,12 +47,12 @@ class VideoFram():
                 print("exit")
                 break
             # im = base64.b64encode(im).decode()
-            img_batch_rgb = np.append(img_batch_rgb, np.expand_dims(im, 0), axis=0)
-            # frams.append(im)
+            # img_batch_rgb = np.append(img_batch_rgb, np.expand_dims(im, 0), axis=0)
+            frams.append(im.tobytes())
             # yield im
         # print(len(frams))
         # img_batch_rgb = base64.b64encode(img_batch_rgb).decode()
-        return img_batch_rgb.tobytes()
+        return frams
         # while (cap.isOpened()):
         #     ret, im = cap.read()  # 获取图像
         #     if not ret:  # 如果获取失败，则结束
