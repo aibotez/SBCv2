@@ -135,6 +135,6 @@ class Preview():
                 print(len(VideoFrams),len(AudioFrams))
                 # return {'res': 1}
                 res = {'res': 1, 'VideoFrams': VideoFrams, 'AudioFrams': AudioFrams}
-                HttpResponse(res, content_type='application/octet-stream')
+                return HttpResponse(res, content_type='application/octet-stream')
                 # return {'res': 1, 'VideoFrams': VideoFrams, 'AudioFrams': AudioFrams}
                 # return {'res': 1, 'VideoFrams':VideoFrams,'AudioFrams':base64.b64encode(AudioFrams).decode()}
