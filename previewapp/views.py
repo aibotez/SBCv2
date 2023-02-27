@@ -106,7 +106,7 @@ def preview(request):
     elif filetype == 'video':
         Previewmanager = PreviewManager.Preview()
         res = Previewmanager.PreviewVideo(LoginRes['useremail'],path,req)
-        return HttpResponse(res,content_type='application/octet-stream')
+        return res
 
 
 

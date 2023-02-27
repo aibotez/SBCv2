@@ -4,6 +4,7 @@ import urllib
 from urllib import parse
 import wave
 import cv2,base64
+from django.http import HttpResponse,JsonResponse
 
 
 
@@ -122,7 +123,8 @@ class Preview():
         else:
             if 'VideoFram' not in req:
                 VideoInfo = self.VideoFrams.GetVideoInfo(path, AudioPath)
-                return {'stste':'CreatWavFinish','VideoFile':VideoInfo}
+                return JsonResponse({'stste':'CreatWavFinish','VideoFile':VideoInfo})
+                # return {'stste':'CreatWavFinish','VideoFile':VideoInfo}
             else:
                 t1 = time.time()
                 VideoFrams = self.VideoFrams.GetVideoFrams(path,req['VideoFram'])
@@ -132,5 +134,7 @@ class Preview():
                 print(t3-t1,t2-t1)
                 print(len(VideoFrams),len(AudioFrams))
                 # return {'res': 1}
-                return {'res': 1, 'VideoFrams': VideoFrams, 'AudioFrams': AudioFrams}
+                res = {'res': 1, 'VideoFrams': VideoFrams, 'AudioFrams': AudioFrams}
+                HttpResponse(res, content_type='application/octet-stream')
+                # return {'res': 1, 'VideoFrams': VideoFrams, 'AudioFrams': AudioFrams}
                 # return {'res': 1, 'VideoFrams':VideoFrams,'AudioFrams':base64.b64encode(AudioFrams).decode()}
