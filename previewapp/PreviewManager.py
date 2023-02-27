@@ -36,12 +36,14 @@ class VideoFram():
         curidx = framidexs[0]
         cursize = 0
         for i in range(framidexs[0],framidexs[1]+1):
-            print(i)
+            # print(i)
             ret, im = cap.read()  # 获取图像
             if not ret:  # 如果获取失败，则结束
                 print("exit")
                 break
-            yield im
+            frams.append(im)
+            # yield im
+            return frams
         # while (cap.isOpened()):
         #     ret, im = cap.read()  # 获取图像
         #     if not ret:  # 如果获取失败，则结束
