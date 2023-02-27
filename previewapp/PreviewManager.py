@@ -46,6 +46,8 @@ class VideoFram():
             if not ret:  # 如果获取失败，则结束
                 print("exit")
                 break
+            # opencv:BGR  转换为 RGB
+            # rgb_img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
             # im = base64.b64encode(im).decode()
             # img_batch_rgb = np.append(img_batch_rgb, np.expand_dims(im, 0), axis=0)
             frams.append(im.tobytes())
