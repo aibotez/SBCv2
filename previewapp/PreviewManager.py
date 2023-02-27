@@ -39,11 +39,12 @@ class VideoFram():
             if not ret:  # 如果获取失败，则结束
                 print("exit")
                 break
-            frams.append(base64.b64encode(im).decode())
+            frams.append(im)
+            # frams.append(base64.b64encode(im).decode())
             curidx += 1
-            cursize += len(base64.b64encode(im).decode())
+            # cursize += len(base64.b64encode(im).decode())
             if curidx > framidexs[1]:
-                print('cursize',cursize/1024/1024)
+                # print('cursize',cursize/1024/1024)
                 break
         return frams
 
@@ -131,4 +132,5 @@ class Preview():
                 print(t3-t1,t2-t1)
                 print(len(VideoFrams),len(AudioFrams))
                 # return {'res': 1}
-                return {'res': 1, 'VideoFrams':VideoFrams,'AudioFrams':base64.b64encode(AudioFrams).decode()}
+                return {'res': 1, 'VideoFrams': VideoFrams, 'AudioFrams': AudioFrams}
+                # return {'res': 1, 'VideoFrams':VideoFrams,'AudioFrams':base64.b64encode(AudioFrams).decode()}
