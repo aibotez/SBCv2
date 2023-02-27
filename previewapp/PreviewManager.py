@@ -45,7 +45,7 @@ class VideoFram():
             frams.append(im)
             # yield im
         print(len(frams))
-        return frams
+        return im
         # while (cap.isOpened()):
         #     ret, im = cap.read()  # 获取图像
         #     if not ret:  # 如果获取失败，则结束
