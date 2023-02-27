@@ -41,6 +41,7 @@ class VideoFram():
             if not ret:  # 如果获取失败，则结束
                 print("exit")
                 break
+            im = base64.b64encode(im).decode()
             frams.append(im)
             # yield im
             return frams
@@ -144,7 +145,7 @@ class Preview():
                 # print(len(VideoFrams),len(AudioFrams))
                 # # return {'res': 1}
                 # res = {'res': 1, 'VideoFrams': VideoFrams, 'AudioFrams': AudioFrams}
-                return JsonResponse({'VideoFrams':VideoFrams.tolist()})
+                return JsonResponse({'VideoFrams':VideoFrams})
                 # return HttpResponse(VideoFrams, content_type='application/octet-stream')
                 # return {'res': 1, 'VideoFrams': VideoFrams, 'AudioFrams': AudioFrams}
                 # return {'res': 1, 'VideoFrams':VideoFrams,'AudioFrams':base64.b64encode(AudioFrams).decode()}
