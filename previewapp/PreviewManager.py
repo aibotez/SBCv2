@@ -44,6 +44,7 @@ class VideoFram():
             im = base64.b64encode(im).decode()
             frams.append(im)
             # yield im
+        print(len(frams))
         return frams
         # while (cap.isOpened()):
         #     ret, im = cap.read()  # 获取图像
