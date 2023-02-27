@@ -41,7 +41,7 @@ class VideoFram():
                 break
             frams.append(im.tolist())
             curidx += 1
-            cursize += len(im)
+            cursize += len(im.tolist())
             if curidx > framidexs[1]:
                 print('cursize',cursize/1024/1024)
                 break
