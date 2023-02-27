@@ -33,6 +33,7 @@ class VideoFram():
         cap.set(cv2.CAP_PROP_POS_FRAMES, framidexs[0])  # 设置帧数标记
         frams = []
         curidx = framidexs[0]
+        cursize = 0
         while (cap.isOpened()):
             ret, im = cap.read()  # 获取图像
             if not ret:  # 如果获取失败，则结束
@@ -40,7 +41,9 @@ class VideoFram():
                 break
             frams.append(im.tolist())
             curidx += 1
+            cursize += len(im)
             if curidx > framidexs[1]:
+                print('cursize',cursize/1024/1024)
                 break
         return frams
 
