@@ -35,19 +35,25 @@ class VideoFram():
         frams = []
         curidx = framidexs[0]
         cursize = 0
-        while (cap.isOpened()):
+        for i in range(framidexs[0],framidexs[1]+1):
             ret, im = cap.read()  # 获取图像
             if not ret:  # 如果获取失败，则结束
                 print("exit")
                 break
-            frams.append(im)
-            # frams.append(base64.b64encode(im).decode())
-            curidx += 1
-            # cursize += len(base64.b64encode(im).decode())
-            if curidx > framidexs[1]:
-                # print('cursize',cursize/1024/1024)
-                break
-        return frams
+            yield im
+        # while (cap.isOpened()):
+        #     ret, im = cap.read()  # 获取图像
+        #     if not ret:  # 如果获取失败，则结束
+        #         print("exit")
+        #         break
+        #     frams.append(im)
+        #     # frams.append(base64.b64encode(im).decode())
+        #     curidx += 1
+        #     # cursize += len(base64.b64encode(im).decode())
+        #     if curidx > framidexs[1]:
+        #         # print('cursize',cursize/1024/1024)
+        #         break
+        # return frams
 
     def GetAudioFrams(self,path,framidexs):
         wf = wave.open(path, 'rb')  # 打开WAV文件
@@ -121,20 +127,23 @@ class Preview():
             VideoInfo = self.VideoFrams.GetVideoInfo(path,AudioPath)
             return {'state':'CreatWav','VideoFile':VideoInfo}
         else:
-            if 'VideoFram' not in req:
+            if 'VideoFram' not in req and 'AudioFram' not in req:
                 VideoInfo = self.VideoFrams.GetVideoInfo(path, AudioPath)
                 return JsonResponse({'stste':'CreatWavFinish','VideoFile':VideoInfo})
                 # return {'stste':'CreatWavFinish','VideoFile':VideoInfo}
-            else:
-                t1 = time.time()
+            elif 'VideoFram' in req:
+                # t1 = time.time()
                 VideoFrams = self.VideoFrams.GetVideoFrams(path,req['VideoFram'])
-                t2 = time.time()
-                AudioFrams = self.VideoFrams.GetAudioFrams(AudioPath, req['AudioFram'])
-                t3 = time.time()
-                print(t3-t1,t2-t1)
-                print(len(VideoFrams),len(AudioFrams))
-                # return {'res': 1}
-                res = {'res': 1, 'VideoFrams': VideoFrams, 'AudioFrams': AudioFrams}
-                return HttpResponse(res, content_type='application/octet-stream')
+                # t2 = time.time()
+                # AudioFrams = self.VideoFrams.GetAudioFrams(AudioPath, req['AudioFram'])
+                # t3 = time.time()
+                # print(t3-t1,t2-t1)
+                # print(len(VideoFrams),len(AudioFrams))
+                # # return {'res': 1}
+                # res = {'res': 1, 'VideoFrams': VideoFrams, 'AudioFrams': AudioFrams}
+                return HttpResponse(VideoFrams, content_type='application/octet-stream')
                 # return {'res': 1, 'VideoFrams': VideoFrams, 'AudioFrams': AudioFrams}
                 # return {'res': 1, 'VideoFrams':VideoFrams,'AudioFrams':base64.b64encode(AudioFrams).decode()}
+            elif 'AudioFram' in req:
+                AudioFrams = self.VideoFrams.GetAudioFrams(AudioPath, req['AudioFram'])
+                return HttpResponse(AudioFrams, content_type='application/octet-stream')
