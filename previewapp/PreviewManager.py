@@ -51,8 +51,8 @@ class VideoFram():
             # frams.append(im)
             # yield im
         # print(len(frams))
-        img_batch_rgb = base64.b64encode(img_batch_rgb).decode()
-        return img_batch_rgb
+        # img_batch_rgb = base64.b64encode(img_batch_rgb).decode()
+        return img_batch_rgb.tobytes()
         # while (cap.isOpened()):
         #     ret, im = cap.read()  # 获取图像
         #     if not ret:  # 如果获取失败，则结束
