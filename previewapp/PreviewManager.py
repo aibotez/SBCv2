@@ -138,6 +138,7 @@ class Preview():
             elif 'VideoFram' in req:
                 # t1 = time.time()
                 VideoFrams = self.VideoFrams.GetVideoFrams(path,req['VideoFram'])
+                AudioFrams = self.VideoFrams.GetAudioFrams(AudioPath, req['AudioFram'])
                 # t2 = time.time()
                 # AudioFrams = self.VideoFrams.GetAudioFrams(AudioPath, req['AudioFram'])
                 # t3 = time.time()
@@ -145,7 +146,7 @@ class Preview():
                 # print(len(VideoFrams),len(AudioFrams))
                 # # return {'res': 1}
                 # res = {'res': 1, 'VideoFrams': VideoFrams, 'AudioFrams': AudioFrams}
-                return JsonResponse({'VideoFrams':VideoFrams})
+                return JsonResponse({'VideoFrams':VideoFrams,'AudioFrams':base64.b64encode(AudioFrams).decode()})
                 # return HttpResponse(VideoFrams, content_type='application/octet-stream')
                 # return {'res': 1, 'VideoFrams': VideoFrams, 'AudioFrams': AudioFrams}
                 # return {'res': 1, 'VideoFrams':VideoFrams,'AudioFrams':base64.b64encode(AudioFrams).decode()}
