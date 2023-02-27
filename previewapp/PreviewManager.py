@@ -120,8 +120,12 @@ class Preview():
                 VideoInfo = self.VideoFrams.GetVideoInfo(path, AudioPath)
                 return {'stste':'CreatWavFinish','VideoFile':VideoInfo}
             else:
+                t1 = time.time()
                 VideoFrams = self.VideoFrams.GetVideoFrams(path,req['VideoFram'])
+                t2 = time.time()
                 AudioFrams = self.VideoFrams.GetAudioFrams(AudioPath, req['AudioFram'])
+                t3 = time.time()
+                print(t3-t1,t2-t1)
                 print(len(VideoFrams),len(AudioFrams))
                 # return {'res': 1}
                 return {'res': 1, 'VideoFrams':VideoFrams,'AudioFrams':base64.b64encode(AudioFrams).decode()}
