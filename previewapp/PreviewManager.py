@@ -3,6 +3,7 @@ from SBC import GetUserPath
 import urllib
 from urllib import parse
 import wave
+import numpy as np
 import cv2,base64
 from django.http import HttpResponse,JsonResponse
 
@@ -30,22 +31,28 @@ class VideoFram():
 
     def GetVideoFrams(self,Videopath,framidexs):
         cap = cv2.VideoCapture(Videopath)
+        image_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))  # 视频帧宽度
+        image_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))  # 视频帧高度
+        image_channel = 3  # RGB 3通道
         # cap.set(cv2.CAP_PROP_POS_MSEC, timespan[0])
         cap.set(cv2.CAP_PROP_POS_FRAMES, framidexs[0])  # 设置帧数标记
         frams = []
         curidx = framidexs[0]
         cursize = 0
+        img_batch_rgb = np.empty(shape=[0, image_height, image_width, image_channel], dtype=np.uint8)
         for i in range(framidexs[0],framidexs[1]+1):
             # print(i)
             ret, im = cap.read()  # 获取图像
             if not ret:  # 如果获取失败，则结束
                 print("exit")
                 break
-            im = base64.b64encode(im).decode()
-            frams.append(im)
+            # im = base64.b64encode(im).decode()
+            img_batch_rgb = np.append(img_batch_rgb, np.expand_dims(im, 0), axis=0)
+            # frams.append(im)
             # yield im
-        print(len(frams))
-        return im
+        # print(len(frams))
+        img_batch_rgb = base64.b64encode(img_batch_rgb).decode()
+        return img_batch_rgb
         # while (cap.isOpened()):
         #     ret, im = cap.read()  # 获取图像
         #     if not ret:  # 如果获取失败，则结束
