@@ -101,9 +101,9 @@ class ClipVideo():
         print(filename)
         return {'timeduring':float(result.stdout),'fename':os.path.basename(filename)}
     def cutVideo(self,path, TEMPpath,timespan):
-        if os.path.exists(path):
-            os.remove(path)
-        videoName = '{}/{}_{}'.format(TEMPpath,timespan[0], timespan[1]) + os.path.basename(path)
+        videoName = '{}/{}_{}#'.format(TEMPpath, timespan[0], timespan[1]) + os.path.basename(path)
+        if os.path.exists(videoName):
+            os.remove(videoName)
         # 'ffmpeg -i input.mp4 -ss 00:01:20 -t 02:00:00 -vcodec copy -acodec copy output.mp4'
         command = 'ffmpeg -i {} -ss {} -to {} -vcodec copy -acodec copy  {}'.format(path, timespan[0],
                                                                                     timespan[1], videoName)
