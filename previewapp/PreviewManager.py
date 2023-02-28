@@ -129,7 +129,7 @@ class ClipVideo():
         if os.path.exists(videoName):
             os.remove(videoName)
         # 'ffmpeg -i input.mp4 -ss 00:01:20 -t 02:00:00 -vcodec copy -acodec copy output.mp4'
-        command = 'ffmpeg -ss {} -i {} -to {} -vcodec copy -flags +global_header -acodec copy  {}'.format(TimeFormat(timespan[0]),path,
+        command = 'ffmpeg -ss {} -i {} -to {} -vcodec copy -flags +global_header -acodec copy -copyts {}'.format(TimeFormat(timespan[0]),path,
                                                                                     TimeFormat(timespan[1]), videoName)
         os.system(command)
         videocount = None
