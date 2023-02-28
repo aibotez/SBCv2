@@ -88,9 +88,39 @@ class VideoFram():
         wf.close()
         return {'VideoFramsTotal':VideoFramsTotal,'VideoFramRate':VideoFramRate,'AuduoFramsRate':AuduoFramsRate,'AudioFramRate':AudioFramRate}
 
+
+class ClipVideo():
+    def __init__(self):
+        pass
+    def get_length(self,filename):
+        result = subprocess.run(["ffprobe", "-v", "error", "-show_entries",
+                                 "format=duration", "-of",
+                                 "default=noprint_wrappers=1:nokey=1", filename],
+                                stdout=subprocess.PIPE,
+                                stderr=subprocess.STDOUT)
+        return {'timeduring':float(result.stdout),'fename':os.path.basename(filename)}
+    def cutVideo(self,path, TEMPpath,timespan):
+        if os.path.exists(path):
+            os.remove(path)
+        videoName = '{}/{}_{}'.format(TEMPpath,timespan[0], timespan[1]) + os.path.basename(path)
+        # 'ffmpeg -i input.mp4 -ss 00:01:20 -t 02:00:00 -vcodec copy -acodec copy output.mp4'
+        command = 'ffmpeg -i {} -ss {} -to {} -vcodec copy -acodec copy  {}'.format(path, timespan[0],
+                                                                                    timespan[1], videoName)
+        os.system(command)
+        videocount = None
+        try:
+            with open(videoName,'rb') as f:
+                videocount = f.read()
+            os.remove(videoName)
+        except:
+            pass
+        return videocount
+
+
 class Preview():
     def __init__(self):
         self.VideoFrams = VideoFram()
+        self.ClipVideo = ClipVideo()
         self.getuserpath = GetUserPath.GetUserPath()
         self.ConvertState = 0
 
@@ -129,37 +159,45 @@ class Preview():
 
     def PreviewVideo(self,useremail,path,req):
         SerPathHome = self.getuserpath.getuserserpath(useremail, '/')
-        SerAudFaPath = SerPathHome+'TEMP/'
+        SerAudFaPath = SerPathHome+'TEMP/video'
         VideoFileName = os.path.basename(path)
         AudioFileName = VideoFileName+'.wav'
         if not os.path.isdir(SerAudFaPath):
             os.makedirs(SerAudFaPath)
-        AudioPath = SerAudFaPath+AudioFileName
-        if not os.path.exists(AudioPath):
-            self.VideoFrams.CreatWav(path, AudioPath)
-            time.sleep(0.5)
-            VideoInfo = self.VideoFrams.GetVideoInfo(path,AudioPath)
-            return {'state':'CreatWav','VideoFile':VideoInfo}
+
+        if 'VideoFram' not in req:
+            VideoInfo = self.ClipVideo.get_length(path)
+            return JsonResponse(VideoInfo)
         else:
-            if 'VideoFram' not in req and 'AudioFram' not in req:
-                VideoInfo = self.VideoFrams.GetVideoInfo(path, AudioPath)
-                return JsonResponse({'stste':'CreatWavFinish','VideoFile':VideoInfo})
-                # return {'stste':'CreatWavFinish','VideoFile':VideoInfo}
-            elif 'VideoFram' in req:
-                # t1 = time.time()
-                VideoFrams = self.VideoFrams.GetVideoFrams(path,req['VideoFram'])
-                AudioFrams = self.VideoFrams.GetAudioFrams(AudioPath, req['AudioFram'])
-                # t2 = time.time()
-                # AudioFrams = self.VideoFrams.GetAudioFrams(AudioPath, req['AudioFram'])
-                # t3 = time.time()
-                # print(t3-t1,t2-t1)
-                # print(len(VideoFrams),len(AudioFrams))
-                # # return {'res': 1}
-                # res = {'res': 1, 'VideoFrams': VideoFrams, 'AudioFrams': AudioFrams}
-                return JsonResponse({'VideoFrams':base64.b64encode(VideoFrams).decode(),'AudioFrams':base64.b64encode(AudioFrams).decode()})
-                # return HttpResponse(VideoFrams, content_type='application/octet-stream')
-                # return {'res': 1, 'VideoFrams': VideoFrams, 'AudioFrams': AudioFrams}
-                # return {'res': 1, 'VideoFrams':VideoFrams,'AudioFrams':base64.b64encode(AudioFrams).decode()}
-            elif 'AudioFram' in req:
-                AudioFrams = self.VideoFrams.GetAudioFrams(AudioPath, req['AudioFram'])
-                return HttpResponse(AudioFrams, content_type='application/octet-stream')
+            VideoFrams = self.ClipVideo.cutVideo(path, SerAudFaPath,req['VideoFram'])
+            return HttpResponse(VideoFrams, content_type='application/octet-stream')
+        #
+        # AudioPath = SerAudFaPath+AudioFileName
+        # if not os.path.exists(AudioPath):
+        #     self.VideoFrams.CreatWav(path, AudioPath)
+        #     time.sleep(0.5)
+        #     VideoInfo = self.VideoFrams.GetVideoInfo(path,AudioPath)
+        #     return {'state':'CreatWav','VideoFile':VideoInfo}
+        # else:
+        #     if 'VideoFram' not in req and 'AudioFram' not in req:
+        #         VideoInfo = self.VideoFrams.GetVideoInfo(path, AudioPath)
+        #         return JsonResponse({'stste':'CreatWavFinish','VideoFile':VideoInfo})
+        #         # return {'stste':'CreatWavFinish','VideoFile':VideoInfo}
+        #     elif 'VideoFram' in req:
+        #         # t1 = time.time()
+        #         VideoFrams = self.VideoFrams.GetVideoFrams(path,req['VideoFram'])
+        #         AudioFrams = self.VideoFrams.GetAudioFrams(AudioPath, req['AudioFram'])
+        #         # t2 = time.time()
+        #         # AudioFrams = self.VideoFrams.GetAudioFrams(AudioPath, req['AudioFram'])
+        #         # t3 = time.time()
+        #         # print(t3-t1,t2-t1)
+        #         # print(len(VideoFrams),len(AudioFrams))
+        #         # # return {'res': 1}
+        #         # res = {'res': 1, 'VideoFrams': VideoFrams, 'AudioFrams': AudioFrams}
+        #         return JsonResponse({'VideoFrams':base64.b64encode(VideoFrams).decode(),'AudioFrams':base64.b64encode(AudioFrams).decode()})
+        #         # return HttpResponse(VideoFrams, content_type='application/octet-stream')
+        #         # return {'res': 1, 'VideoFrams': VideoFrams, 'AudioFrams': AudioFrams}
+        #         # return {'res': 1, 'VideoFrams':VideoFrams,'AudioFrams':base64.b64encode(AudioFrams).decode()}
+        #     elif 'AudioFram' in req:
+        #         AudioFrams = self.VideoFrams.GetAudioFrams(AudioPath, req['AudioFram'])
+        #         return HttpResponse(AudioFrams, content_type='application/octet-stream')
