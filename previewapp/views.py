@@ -9,6 +9,11 @@ from django.http import HttpResponseRedirect
 from SBC import GetUserPath
 import base64,json
 from previewapp import PreviewManager
+
+import fitz
+from PyQt5.QtGui import QImage
+from PyQt5 import QtCore
+
 # Create your views here.
 
 def GetFeBase64(path):
@@ -27,10 +32,6 @@ def Convert2PDF(request):
     return HttpResponse(res)
 
 def previewpdftest(path,page):
-    import fitz
-    from PyQt5.QtGui import QImage
-    from PyQt5 import QtCore
-    import base64
     # info = json.loads(request.body)
     # page = info['page']
     # path = 'static/TEMP/2290227486@qq.com/J-TEXT实验研究进展-陈忠勇.pptx.pdf'
