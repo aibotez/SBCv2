@@ -128,7 +128,7 @@ class ClipVideo():
         videoName = '{}/{}_{}#'.format(TEMPpath, timespan[0], timespan[1]) + os.path.basename(path)
         if os.path.exists(videoName):
             os.remove(videoName)
-        command = 'ffmpeg -ss {} -to {} -accurate_seek -i {} -avoid_negative_ts 1 -y {}'.format(TimeFormat(timespan[0]),TimeFormat(timespan[1]),path,videoName)
+        command = 'ffmpeg -ss {} -accurate_seek -i {} -to {} -avoid_negative_ts 1 -y {}'.format(TimeFormat(timespan[0]),path,TimeFormat(timespan[1]),videoName)
         # 'ffmpeg -i input.mp4 -ss 00:01:20 -t 02:00:00 -vcodec copy -acodec copy output.mp4'
         # command = 'ffmpeg -ss {} -i {} -to {} -vcodec copy -flags +global_header -acodec copy -copyts {}'.format(TimeFormat(timespan[0]),path,
         #                                                                             TimeFormat(timespan[1]), videoName)
