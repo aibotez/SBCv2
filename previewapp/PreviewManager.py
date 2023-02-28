@@ -98,6 +98,7 @@ class ClipVideo():
                                  "default=noprint_wrappers=1:nokey=1", filename],
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.STDOUT)
+        print(filename)
         return {'timeduring':float(result.stdout),'fename':os.path.basename(filename)}
     def cutVideo(self,path, TEMPpath,timespan):
         if os.path.exists(path):
