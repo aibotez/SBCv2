@@ -88,7 +88,31 @@ class VideoFram():
         wf.close()
         return {'VideoFramsTotal':VideoFramsTotal,'VideoFramRate':VideoFramRate,'AuduoFramsRate':AuduoFramsRate,'AudioFramRate':AudioFramRate}
 
+def TimeFormat(t0):
+    hour = int(t0/60/60)
+    if hour < 0:
+        hourstr = '00'
+    else:
+        if hour <10:
+            hourstr = '0'+str(int(hour))
+        else:
+            hourstr = str(int(hour))
+    tm0 = t0 - int(hour)*60*60
+    tm = tm0/60
+    if tm < 0:
+        minstr = '00'
+    else:
+        if tm <10:
+            minstr = '0'+str(int(tm))
+        else:
+            minstr = str(int(tm))
+    ts = tm0 - int(tm) * 60
+    if ts < 10:
+        Secstr = '0'+str(int(ts))
+    else:
+        Secstr = str(int(ts))
 
+    return hourstr+':'+minstr+':'+Secstr
 class ClipVideo():
     def __init__(self):
         pass
@@ -105,8 +129,8 @@ class ClipVideo():
         if os.path.exists(videoName):
             os.remove(videoName)
         # 'ffmpeg -i input.mp4 -ss 00:01:20 -t 02:00:00 -vcodec copy -acodec copy output.mp4'
-        command = 'ffmpeg -i {} -ss {} -to {} -vcodec copy -acodec copy  {}'.format(path, timespan[0],
-                                                                                    timespan[1], videoName)
+        command = 'ffmpeg -i {} -ss {} -to {} -vcodec copy -acodec copy  {}'.format(path, TimeFormat(timespan[0]),
+                                                                                    TimeFormat(timespan[1]), videoName)
         os.system(command)
         videocount = None
         try:
