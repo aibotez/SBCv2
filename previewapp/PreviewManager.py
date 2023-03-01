@@ -117,14 +117,44 @@ class ClipVideo():
     def __init__(self):
         pass
     def get_length(self,filename):
+        cap = cv2.VideoCapture(filename)
+        rate = cap.get(5)
+        frame_num = cap.get(7)
         result = subprocess.run(["ffprobe", "-v", "error", "-show_entries",
                                  "format=duration", "-of",
                                  "default=noprint_wrappers=1:nokey=1", filename],
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.STDOUT)
         print(filename)
-        return {'timeduring':float(result.stdout),'fename':os.path.basename(filename)}
-    def cutVideo(self,path, TEMPpath,timespan):
+        return {'timeduring':float(result.stdout),'fename':os.path.basename(filename),'VideoRate':rate,'VideoFrams':frame_num}
+    def cutVideo(self,path, TEMPpath,timespan,framidexs):
+        videoName = '{}/{}_{}#'.format(TEMPpath, timespan[0], timespan[1]) + os.path.basename(path)
+        if os.path.exists(videoName):
+            os.remove(videoName)
+        cap = cv2.VideoCapture(path)
+        fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+        frame_width = int(cap.get(3))
+        frame_height = int(cap.get(4))
+        fps = cap.get(cv2.CAP_PROP_FPS)
+        frame_size = (frame_width, frame_height)
+        lz = cv2.VideoWriter(videoName, fourcc, fps, frame_size)
+        # cap.set(cv2.CAP_PROP_POS_MSEC, timespan[0])
+        cap.set(cv2.CAP_PROP_POS_FRAMES, framidexs[0])  # 设置帧数标记
+        for i in range(framidexs[0], framidexs[1] + 1):
+            ret, im = cap.read()  # 获取图像
+            if not ret:  # 如果获取失败，则结束
+                print("exit")
+                break
+            lz.write(im)
+        cap.release()
+        lz.release()
+        cv2.destroyAllWindows()
+
+
+
+
+
+    def cutVideo1(self,path, TEMPpath,timespan):
         videoName = '{}/{}_{}#'.format(TEMPpath, timespan[0], timespan[1]) + os.path.basename(path)
         if os.path.exists(videoName):
             os.remove(videoName)
@@ -195,7 +225,7 @@ class Preview():
             VideoInfo = self.ClipVideo.get_length(path)
             return JsonResponse(VideoInfo)
         else:
-            VideoFrams = self.ClipVideo.cutVideo(path, SerAudFaPath,req['VideoFram'])
+            VideoFrams = self.ClipVideo.cutVideo(path, SerAudFaPath,req['VideoFram'],req['framidexs'])
             return HttpResponse(VideoFrams, content_type='application/octet-stream')
         #
         # AudioPath = SerAudFaPath+AudioFileName
