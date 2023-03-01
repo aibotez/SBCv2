@@ -149,6 +149,14 @@ class ClipVideo():
         cap.release()
         lz.release()
         cv2.destroyAllWindows()
+        videocount = None
+        try:
+            with open(videoName,'rb') as f:
+                videocount = f.read()
+            os.remove(videoName)
+        except:
+            pass
+        return videocount
 
 
 
