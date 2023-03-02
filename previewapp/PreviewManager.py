@@ -223,17 +223,17 @@ class Preview():
 
     def PreviewVideo(self,useremail,path,req):
         SerPathHome = self.getuserpath.getuserserpath(useremail, '/')
-        SerAudFaPath = SerPathHome+'TEMP/video'
+        SerPathHome = SerPathHome.replace(useremail,'SBCTEMP')+useremail+'/'
+        SerVidFaPath = SerPathHome+'video'
         VideoFileName = os.path.basename(path)
         AudioFileName = VideoFileName+'.wav'
-        if not os.path.isdir(SerAudFaPath):
-            os.makedirs(SerAudFaPath)
-
+        if not os.path.isdir(SerVidFaPath):
+            os.makedirs(SerVidFaPath)
         if 'VideoFram' not in req:
             VideoInfo = self.ClipVideo.get_length(path)
             return JsonResponse(VideoInfo)
         else:
-            VideoFrams = self.ClipVideo.cutVideo(path, SerAudFaPath,req['VideoFram'],req['framidexs'])
+            VideoFrams = self.ClipVideo.cutVideo(path, SerVidFaPath,req['VideoFram'],req['framidexs'])
             return HttpResponse(VideoFrams, content_type='application/octet-stream')
         #
         # AudioPath = SerAudFaPath+AudioFileName
