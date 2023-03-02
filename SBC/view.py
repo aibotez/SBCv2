@@ -396,6 +396,9 @@ def DelFiles(request):
         try:
             # print(userPath)
             # print(i)
+            userfilerecordmanage = UserFileRecordManage.userfilerecordmanage()
+            print('delet',path)
+            userfilerecordmanage.DelRecord(LoginRes['useremail'],path)
             if i['feisdir']:
 
                 DirsSize = getdirsize(userPath)
@@ -406,9 +409,6 @@ def DelFiles(request):
                 os.remove(userPath)
                 usermange.DelUsedCap(LoginRes['useremail'],DirsSize)
 
-            userfilerecordmanage = UserFileRecordManage.userfilerecordmanage()
-            print('delet',path)
-            userfilerecordmanage.DelRecord(LoginRes['useremail'],path)
         except Exception as e:
             print(e)
 
