@@ -392,6 +392,16 @@ def DelFiles(request):
         path = i['fepath']
         userPath = getuserpath.getuserserpath(LoginRes['useremail'],path)
         usermange = UserManage.usermange()
+        if len(path)>11 and '/home/TEMP' in path[0:10]:
+            print('del TEMP:',userPath)
+            try:
+                if i['feisdir']:
+                    shutil.rmtree(userPath)
+                else:
+                    os.remove(userPath)
+            except:
+                pass
+            return HttpResponse('ok')
 
         try:
             # print(userPath)
