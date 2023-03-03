@@ -116,7 +116,16 @@ def TimeFormat(t0):
 class ClipVideo():
     def __init__(self):
         pass
-    def get_length(self,filename):
+    def CreatWav(self,Videopath,Audiopath):
+        if os.path.exists(Audiopath):
+            os.remove(Audiopath)
+        try:
+            cmd = 'ffmpeg -i {} -f wav {}'.format(Videopath,Audiopath)
+            os.system(cmd)
+            return 1
+        except:
+            return 0
+    def get_length(self,filename,AudPath):
         cap = cv2.VideoCapture(filename)
         rate = cap.get(5)
         frame_num = cap.get(7)
@@ -125,8 +134,22 @@ class ClipVideo():
                                  "default=noprint_wrappers=1:nokey=1", filename],
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.STDOUT)
+        HveAud = 1
+        if not self.CreatWav(filename,AudPath):
+            HveAud = 0
         print(filename)
-        return {'timeduring':float(result.stdout),'fename':os.path.basename(filename),'VideoRate':rate,'VideoFrams':frame_num}
+        return {'timeduring':float(result.stdout),'fename':os.path.basename(filename),'VideoRate':rate,'VideoFrams':frame_num,
+                'HveAud':HveAud}
+    def cutAudio(self,AudPath,timespan):
+        wf = wave.open(AudPath, 'rb')  # 打开WAV文件
+        AuduoFrams = wf.getnframes()
+        AudioFramRate = wf.getframerate()
+        idx1 = timespan[0]*AudioFramRate
+        idx2 = timespan[1]*AudioFramRate
+        wf.readframes(idx1)  # 读取第n帧数据
+        data = wf.readframes(idx2-idx1)
+        return data
+
     def cutVideo(self,path, TEMPpath,timespan,framidexs):
         videoName = '{}/{}_{}#'.format(TEMPpath, timespan[0], timespan[1]) + os.path.basename(path)
         if os.path.exists(videoName):
@@ -227,10 +250,11 @@ class Preview():
         SerVidFaPath = SerPathHome+'video'
         VideoFileName = os.path.basename(path)
         AudioFileName = VideoFileName+'.wav'
+        SerAudFaPath = SerPathHome+'video'
         if not os.path.isdir(SerVidFaPath):
             os.makedirs(SerVidFaPath)
         if 'VideoFram' not in req:
-            VideoInfo = self.ClipVideo.get_length(path)
+            VideoInfo = self.ClipVideo.get_length(path,SerAudFaPath+'/'+AudioFileName)
             return JsonResponse(VideoInfo)
         else:
             VideoFrams = self.ClipVideo.cutVideo(path, SerVidFaPath,req['VideoFram'],req['framidexs'])
