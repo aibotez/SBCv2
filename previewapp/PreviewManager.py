@@ -257,8 +257,12 @@ class Preview():
             VideoInfo = self.ClipVideo.get_length(path,SerAudFaPath+'/'+AudioFileName)
             return JsonResponse(VideoInfo)
         else:
-            VideoFrams = self.ClipVideo.cutVideo(path, SerVidFaPath,req['VideoFram'],req['framidexs'])
-            return HttpResponse(VideoFrams, content_type='application/octet-stream')
+            if 'HveAud' in req:
+                audiodata = self.ClipVideo.cutAudio(SerAudFaPath+'/'+AudioFileName,req['VideoFram'])
+                return HttpResponse(audiodata, content_type='application/octet-stream')
+            else:
+                VideoFrams = self.ClipVideo.cutVideo(path, SerVidFaPath,req['VideoFram'],req['framidexs'])
+                return HttpResponse(VideoFrams, content_type='application/octet-stream')
         #
         # AudioPath = SerAudFaPath+AudioFileName
         # if not os.path.exists(AudioPath):
