@@ -81,6 +81,7 @@ class VideoFram():
         VideoFramsTotal = cap.get(7)
         VideoFramRate = cap.get(5)
         wf = wave.open(Audiopath, 'rb')  # 打开WAV文件
+
         AuduoFramsRate = wf.getnframes()
         AudioFramRate = wf.getframerate()
         cap.release()  # 释放视频
@@ -134,12 +135,21 @@ class ClipVideo():
                                  "default=noprint_wrappers=1:nokey=1", filename],
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.STDOUT)
-        HveAud = 1
+        HveAud = 0
+        sampwidth = 0
+        channels = 0
+        framerate = 0
         if not self.CreatWav(filename,AudPath):
             HveAud = 0
+        else:
+            HveAud = 1
+            wf = wave.open(AudPath, 'rb')
+            sampwidth = wf.getsampwidth()
+            channels = wf.getnchannels()
+            framerate = wf.getframerate()
         print(filename)
         return {'timeduring':float(result.stdout),'fename':os.path.basename(filename),'VideoRate':rate,'VideoFrams':frame_num,
-                'HveAud':HveAud}
+                'HveAud':HveAud,'audsampwidth':sampwidth,'audchannels':channels,'audframerate':framerate}
     def cutAudio(self,AudPath,timespan):
         wf = wave.open(AudPath, 'rb')  # 打开WAV文件
         AuduoFrams = wf.getnframes()
