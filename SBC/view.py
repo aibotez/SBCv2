@@ -354,9 +354,18 @@ def GetFilePorper(request):
             size += sum([os.path.getsize(os.path.join(root, name)) for name in files])
     else:
         size = File['size']
+    print(serverpath)
+
     statbuf = os.stat(serverpath)
     Modfdate=time.strftime('%Y-%m-%d %H:%M', time.localtime(statbuf.st_mtime))
     Crefdate = time.strftime('%Y-%m-%d %H:%M', time.localtime(statbuf.st_ctime))
+
+    from datetime import datetime
+    mtime = os.path.getmtime("test")  # 修改时间
+    mtime_string = datetime.fromtimestamp(int(mtime))
+    print(time.localtime(statbuf.st_mtime),Modfdate)
+    print(mtime,mtime_string)
+
     res = File
     res['mtime'] = Modfdate
     res['ctime'] = Crefdate
