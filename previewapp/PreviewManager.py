@@ -139,6 +139,7 @@ class ClipVideo():
         sampwidth = 0
         channels = 0
         framerate = 0
+        framstotal = 0
         if not self.CreatWav(filename,AudPath):
             HveAud = 0
         else:
@@ -147,9 +148,10 @@ class ClipVideo():
             sampwidth = wf.getsampwidth()
             channels = wf.getnchannels()
             framerate = wf.getframerate()
+            framstotal = wf.getnframes()
         print(filename)
         return {'timeduring':float(result.stdout),'fename':os.path.basename(filename),'VideoRate':rate,'VideoFrams':frame_num,
-                'HveAud':HveAud,'audsampwidth':sampwidth,'audchannels':channels,'audframerate':framerate}
+                'HveAud':HveAud,'audsampwidth':sampwidth,'audchannels':channels,'audframerate':framerate,'audframstotal':framstotal}
     def cutAudio(self,AudPath,timespan):
         wf = wave.open(AudPath, 'rb')  # 打开WAV文件
         AuduoFrams = wf.getnframes()
