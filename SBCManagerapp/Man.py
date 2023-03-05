@@ -24,6 +24,8 @@ from pySMART import Device
 class Manage():
     def __init__(self):
         self.ComTol = CommMode.ComTol()
+        Serinfo = self.InitSerPath()
+        self.FileStockPath = Serinfo['stock']
 
     def disksinfoall(self):
         values = []
@@ -237,7 +239,7 @@ class Manage():
         getuserpath = GetUserPath.GetUserPath()
         usermange = UserManage.usermange()
         for i in Files:
-            Path = Serinfo['FileStock'] + i['MD5'] + '#' + i['FileName']
+            Path = self.FileStockPath+i['MD5'] + '#' + i['FileName']
             if 'linkuser' in i:
                 AllUserFIles = UserFileRecord.objects.filter(FileMd5 = i['MD5'])
                 for va in AllUserFIles.values():
@@ -248,7 +250,7 @@ class Manage():
                     DirsSize = os.path.getsize(userPath)
                     os.remove(userPath)
                     usermange.DelUsedCap(useremail, DirsSize)
-                    os.remove(userPath)
+                    # os.remove(userPath)
             try:
                 os.remove(Path)
             except Exception as e:
