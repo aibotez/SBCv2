@@ -1,6 +1,6 @@
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
-import os,hashlib
+import hashlib
 from django.contrib.auth.decorators import login_required
 from SBC import LoginVerfiy
 from django.http import HttpResponse,JsonResponse
@@ -335,8 +335,13 @@ def GetFileListbyClient(request):
     return JsonResponse(res)
 
 
-
+def tests():
+    serverpath = '/mnt/SBC/SBCUsers/2290227486@qq.com/同步/refl/博士/杂质输运/混杂模式下杂质对台基的影响/80496/time2.fig'
+    statbuf = os.stat(serverpath)
+    Modfdate=time.strftime('%Y-%m-%d %H:%M', time.localtime(statbuf.st_mtime))
+    print('Modfdate:', Modfdate)
 def GetFilePorper(request):
+    tests()
     LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
     if LoginRes['res']:
         return HttpResponseRedirect('/login/')
@@ -354,19 +359,18 @@ def GetFilePorper(request):
             size += sum([os.path.getsize(os.path.join(root, name)) for name in files])
     else:
         size = File['size']
-    serverpath = '/mnt/SBC/SBCUsers/2290227486@qq.com/同步/refl/博士/杂质输运/混杂模式下杂质对台基的影响/80496/time2.fig'
+    # serverpath = '/mnt/SBC/SBCUsers/2290227486@qq.com/同步/refl/博士/杂质输运/混杂模式下杂质对台基的影响/80496/time2.fig'
     print(serverpath)
-
     statbuf = os.stat(serverpath)
     Modfdate=time.strftime('%Y-%m-%d %H:%M', time.localtime(statbuf.st_mtime))
     Crefdate = time.strftime('%Y-%m-%d %H:%M', time.localtime(statbuf.st_ctime))
-    print('Modfdate:',Modfdate)
+    # print('Modfdate:',Modfdate)
 
-    from datetime import datetime
-    mtime = os.path.getmtime(serverpath)  # 修改时间
-    mtime_string = datetime.fromtimestamp(int(mtime))
-    print(time.localtime(statbuf.st_mtime),Modfdate)
-    print(mtime,mtime_string)
+    # from datetime import datetime
+    # mtime = os.path.getmtime(serverpath)  # 修改时间
+    # mtime_string = datetime.fromtimestamp(int(mtime))
+    # print(time.localtime(statbuf.st_mtime),Modfdate)
+    # print(mtime,mtime_string)
 
     res = File
     res['mtime'] = Modfdate
