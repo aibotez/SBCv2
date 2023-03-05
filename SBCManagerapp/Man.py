@@ -274,7 +274,11 @@ class Manage():
             info0 = None
             info1 = None
             if i.FileMd5 in alluserFiles:
-                info0 = {'linkuser':alluserFiles[i.FileMd5],'MD5':i.FileMd5,'FileName':FileName,'FileType':alluserFiles[i.FileMd5]['FileType'],'FileSize':alluserFiles[i.FileMd5]['FileSize'],'FileSizestr':self.ComTol.size_format(alluserFiles[i.FileMd5]['FileSize'])}
+                info0 = {'linkuser': alluserFiles[i.FileMd5], 'MD5': i.FileMd5, 'FileName': FileName,
+                         'FileType': alluserFiles[i.FileMd5]['FileType'],
+                         'FileSize': alluserFiles[i.FileMd5]['FileSize'],
+                         'FileSizestr': self.ComTol.size_format(alluserFiles[i.FileMd5]['FileSize'])}
+                # info0 = {'linkuser':alluserFiles[i.FileMd5],'MD5':i.FileMd5,'FileName':FileName,'FileType':alluserFiles[i.FileMd5]['FileType'],'FileSize':alluserFiles[i.FileMd5]['FileSize'],'FileSizestr':self.ComTol.size_format(alluserFiles[i.FileMd5]['FileSize'])}
             else:
                 if os.path.exists(i.FilePath):
                     FileSize = os.path.getsize(i.FilePath)

@@ -64,7 +64,7 @@ function GetStockUser()
 			
 		}
 		ClearFiles();
-		//console.log(CurFilesall)
+		console.log(CurFilesall)
 		Updateact(CurFilesall);
 	 }
  }
