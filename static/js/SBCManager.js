@@ -9,7 +9,7 @@ function GetStockUser()
 	var tbody = document.getElementById("UserTable");
 	for (let i=0;i<Files.length;i++)
 	{
-		if (Files[i].FileName)
+		if (Files[i])
 		{
 			
 			let tr = document.createElement("tr");
@@ -42,6 +42,10 @@ function GetStockUser()
 			tr.appendChild(td4);
 			tr.appendChild(td5);
 			tbody.appendChild(tr);
+		}
+		else
+		{
+			console.log(Files[i])
 		}
 	}
 	
