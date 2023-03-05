@@ -113,7 +113,8 @@ def DelStockFiles(request):
     if LoginRes['res']:
         return render(request, "SBCManager/sbcmangerlogin.html")
     info = Man.Manage().DelStockFiles(request)
-    return JsonResponse(info)
+    return HttpResponse('1')
+    # return JsonResponse(info)
 def sbcmanger(request):
     # print(request.headers)
     # ManInfo = Man.Manage().GetSerInfo()

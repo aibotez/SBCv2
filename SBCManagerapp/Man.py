@@ -251,8 +251,8 @@ class Manage():
                     os.remove(userPath)
             try:
                 os.remove(Path)
-            except:
-                pass
+            except Exception as e:
+                print('DelStockFiles',e)
 
 
 
