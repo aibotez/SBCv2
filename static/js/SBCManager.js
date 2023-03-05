@@ -133,7 +133,7 @@ function GetStockUser()
 		let res = PostMethod('/DelStockFiles/',JSON.stringify({'Files':Chosed}),0);
 	 }
 	 ClearFiles();
-	 UpdateFiles(CurFilesShow);
+	 FilesFilter();
 	 
  }
  
