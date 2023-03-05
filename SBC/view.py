@@ -337,7 +337,7 @@ def GetFileListbyClient(request):
 
 def tests():
     serverpath = '/mnt/SBC/SBCstock/9ba9c614c6b9b9cf29e92e367934e830#time2.fig'
-    statbuf = os.stat(serverpath)
+    statbuf = os.stat(serverpath,follow_symlinks=True)
     Modfdate=time.strftime('%Y-%m-%d %H:%M%S', time.localtime(statbuf.st_mtime))
     print('Modfdate:', Modfdate)
 def GetFilePorper(request):
