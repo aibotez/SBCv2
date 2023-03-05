@@ -61,7 +61,7 @@ function GetStockUser()
 		 CurFilesall = [];
 		 for(var i =0;i<len;i++)
 		{
-			if(Filesall[i].FileName)
+			if(Filesall[i])
 			{
 				if(Filesall[i].FileName.search(Filter) != -1)
 				{
