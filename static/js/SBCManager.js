@@ -43,7 +43,36 @@ function GetStockUser()
 	
 	 
  }
- 
+ function FilesFilter()
+ {
+	 var Filter = document.getElementById("FileFilter").value;
+	 let FilterResult = [];
+	 if(Filter != '')
+	 {
+		 for(let i =0;i<Filesall.length;i++)
+		{
+			//console.log(Filesall[i].FileName)
+			if(Filesall[i].FileName)
+			{
+				if(Filesall[i].FileName.search(Filter) != -1)
+				{
+					FilterResult.push(Filesall[i]);
+				}
+			}
+			
+		}
+		ClearFiles();
+		console.log(FilterResult)
+		Updateact(FilterResult);
+	 }
+ }
+ function ClearFiles()
+ {
+	var tbody = document.getElementById("UserTable");
+	 while(tbody.firstChild) { 
+	    tbody.removeChild(tbody.firstChild); 
+		} 
+ }
  function UpdateFiles(judge)
  {
 	 console.log(judge)
