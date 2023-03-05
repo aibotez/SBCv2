@@ -45,7 +45,7 @@ function GetStockUser()
 		}
 		else
 		{
-			console.log(Files[i])
+			let s = 0;
 		}
 	}
 	
