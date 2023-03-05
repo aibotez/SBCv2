@@ -226,7 +226,7 @@ def ConnectTest(request):
     return HttpResponse('1')
 
 def getdate(fie):
-    statbuf = os.stat(fie)
+    statbuf = os.stat(fie,follow_symlinks=False)
     date=time.strftime('%Y-%m-%d %H:%M', time.localtime(statbuf.st_mtime))
     # date= statbuf.st_mtime
     return date
