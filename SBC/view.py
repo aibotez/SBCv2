@@ -359,6 +359,7 @@ def GetFilePorper(request):
     statbuf = os.stat(serverpath)
     Modfdate=time.strftime('%Y-%m-%d %H:%M', time.localtime(statbuf.st_mtime))
     Crefdate = time.strftime('%Y-%m-%d %H:%M', time.localtime(statbuf.st_ctime))
+    print('Modfdate:',Modfdate)
 
     from datetime import datetime
     mtime = os.path.getmtime(serverpath)  # 修改时间
