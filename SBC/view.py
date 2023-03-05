@@ -342,7 +342,7 @@ def tests():
     Modfdate=time.strftime('%Y-%m-%d %H:%M%S', time.localtime(statbuf.st_mtime))
     print('Modfdate:', Modfdate)
 def GetFilePorper(request):
-    tests()
+    # tests()
     LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
     if LoginRes['res']:
         return HttpResponseRedirect('/login/')
@@ -361,9 +361,10 @@ def GetFilePorper(request):
     else:
         size = File['size']
     # serverpath = '/mnt/SBC/SBCUsers/2290227486@qq.com/同步/refl/博士/杂质输运/混杂模式下杂质对台基的影响/80496/time2.fig'
-    print(serverpath)
-    statbuf = os.stat(serverpath)
+    # print(serverpath)
+    statbuf = os.stat(serverpath,follow_symlinks=False)
     Modfdate=time.strftime('%Y-%m-%d %H:%M', time.localtime(statbuf.st_mtime))
+    statbuf = os.stat(serverpath)
     Crefdate = time.strftime('%Y-%m-%d %H:%M', time.localtime(statbuf.st_ctime))
     # print('Modfdate:',Modfdate)
 
