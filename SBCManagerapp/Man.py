@@ -276,7 +276,7 @@ class Manage():
             alluserFiles[i.FileMd5] = {'MD5':i.FileMd5,'FileType':i.FileType,'UserEmail':i.useremail,'FileSize':i.FileSize}
         FileNoUser = []
         allstockFiles = []
-        print('AllStockFiles',len(AllStockFiles))
+        # print('AllStockFiles',len(AllStockFiles))
         for i in AllStockFiles:
             FileName = i.FileName.replace(i.FileMd5+'#','')
             info0 = None
