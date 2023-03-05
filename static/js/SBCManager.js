@@ -69,7 +69,7 @@ function GetStockUser()
 		return
 	 }
 	 ClearFiles();
-	 Updateact(CurFilesall);
+	 UpdateFiles(CurFilesShow);
  }
  function ClearFiles()
  {
@@ -80,6 +80,7 @@ function GetStockUser()
  }
  function UpdateFiles(judge)
  {
+	 CurFilesShow = judge;
 	 console.log(judge)
 	 let res = GetStockUser();
 	 var FileNoUser = res.NoUser;
