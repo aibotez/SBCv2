@@ -66,7 +66,10 @@ function GetStockUser()
 		ClearFiles();
 		//console.log(CurFilesall)
 		Updateact(CurFilesall);
+		return
 	 }
+	 ClearFiles();
+	 Updateact(CurFilesall);
  }
  function ClearFiles()
  {
@@ -128,8 +131,7 @@ function GetStockUser()
 		console.log(ret)
 		let res = PostMethod('/DelStockFiles/',JSON.stringify({'Files':Chosed}),0);
 	 }
-	 ClearFiles();
-	 Updateact(CurFilesall);
+	FilesFilter()
 	 
  }
  
