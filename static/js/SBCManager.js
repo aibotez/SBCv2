@@ -78,6 +78,20 @@ function GetStockUser()
 	    tbody.removeChild(tbody.firstChild); 
 		} 
  }
+ function ReloadFiles(judge)
+ {
+	 let res = GetStockUser();
+	 var FileNoUser = res.NoUser;
+	 var allstockFiles = res.all;
+	 if(judge==1)
+	 {
+		 Filesall = allstockFiles
+	 }
+	 else
+	 {
+		 Filesall = FileNoUser
+	 }
+ }
  function UpdateFiles(judge)
  {
 	 CurFilesShow = judge;
@@ -132,6 +146,7 @@ function GetStockUser()
 		console.log(ret)
 		let res = PostMethod('/DelStockFiles/',JSON.stringify({'Files':Chosed}),0);
 	 }
+	 ReloadFiles(CurFilesShow);
 	 ClearFiles();
 	 FilesFilter();
 	 
