@@ -11,6 +11,7 @@ from django.db.models import Q
 from SBC import UserManage
 from pySMART import Device
 
+
 # from win32com.client import GetObject,Dispatch
 #
 #
@@ -253,6 +254,10 @@ class Manage():
                     # os.remove(userPath)
             try:
                 os.remove(Path)
+            except Exception as e:
+                print('DelStockFiles',e)
+            try:
+                FilesStock.objects.filter(FileMd5=i['MD5']).delete()
             except Exception as e:
                 print('DelStockFiles',e)
 
