@@ -65,6 +65,9 @@ class ComTol():
             if fetype[0] == 'exe':
                 path = '/static/img/filecon/execon.jpg'
                 return [path, 'exe']
+            if fetype[0] == 'video':
+                path = '/static/img/filecon/video.jpg'
+                return [path, 'video']
         except Exception as e:
             print(e)
         return ['/static/img/wj.jfif', 'other']
