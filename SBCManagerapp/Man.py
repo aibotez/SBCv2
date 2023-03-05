@@ -289,7 +289,7 @@ class Manage():
             else:
                 if os.path.exists(i.FilePath):
                     FileSize = os.path.getsize(i.FilePath)
-                    info1 = {'MD5': i.FileMd5, 'FileName': FileName, 'FileType': self.ComTol.GetImgConPath(i.FilePath), 'FileSize': FileSize,'FileSizestr':self.ComTol.size_format(FileSize)}
+                    info1 = {'MD5': i.FileMd5, 'FileName': FileName, 'FileType': self.ComTol.GetImgConPath(i.FilePath)[-1], 'FileSize': FileSize,'FileSizestr':self.ComTol.size_format(FileSize)}
                 else:
                     info1 = {'MD5': i.FileMd5, 'FileName': FileName, 'FileType': 'O',
                             'FileSize':-1, 'FileSizestr': '-1'}
