@@ -46,24 +46,26 @@ function GetStockUser()
  function FilesFilter()
  {
 	 var Filter = document.getElementById("FileFilter").value;
-	 let FilterResult = [];
+	 //console.log(Filesall.length)
+	 len = Filesall.length;
 	 if(Filter != '')
 	 {
-		 for(let i =0;i<Filesall.length;i++)
+		 CurFilesall = [];
+		 for(var i =0;i<len;i++)
 		{
-			//console.log(Filesall[i].FileName)
 			if(Filesall[i].FileName)
 			{
 				if(Filesall[i].FileName.search(Filter) != -1)
 				{
-					FilterResult.push(Filesall[i]);
+					//console.log(Filesall[i].FileName)
+					CurFilesall.push(Filesall[i]);
 				}
 			}
 			
 		}
 		ClearFiles();
-		console.log(FilterResult)
-		Updateact(FilterResult);
+		//console.log(CurFilesall)
+		Updateact(CurFilesall);
 	 }
  }
  function ClearFiles()
@@ -91,13 +93,13 @@ function GetStockUser()
 	 while(tbody.firstChild) { 
 	    tbody.removeChild(tbody.firstChild); 
 		} 
+	CurFilesall = Filesall;
 	 Updateact(Filesall);
-	 
 	 return
  }
  function FileChosedAll()
  {
-    for(let i =0;i<Filesall.length;i++)
+    for(let i =0;i<CurFilesall.length;i++)
     {
         document.getElementById('FIles'+i.toString()).checked = 1;
     }
@@ -105,10 +107,10 @@ function GetStockUser()
  function GetFileChoseds()
  {
 	let Choseds = [];
-	for(let i =0;i<Filesall.length;i++)
+	for(let i =0;i<CurFilesall.length;i++)
 	{
 		if(document.getElementById('FIles'+i.toString()).checked==1)
-        Choseds.push(Filesall[i]);
+        Choseds.push(CurFilesall[i]);
     }
 	return Choseds
  }
