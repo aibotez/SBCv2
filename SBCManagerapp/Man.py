@@ -294,7 +294,7 @@ class Manage():
                     info1 = {'MD5': i.FileMd5, 'FileName': FileName, 'FileType': 'O',
                             'FileSize':-1, 'FileSizestr': '-1'}
                     # info = {}
-                # info0 = info1
+                info0 = info1
                 FileNoUser.append(info1)
             allstockFiles.append(info0)
         # for i in allstockFiles:
