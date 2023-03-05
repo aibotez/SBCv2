@@ -9,7 +9,6 @@ function GetStockUser()
 	var tbody = document.getElementById("UserTable");
 	for (let i=0;i<Files.length;i++)
 	{
-		console.log('add',Files[i])
 		let tr = document.createElement("tr");
 		tr.class = "change";
 		let td1 = document.createElement("td");
@@ -65,7 +64,7 @@ function GetStockUser()
 			
 		}
 		ClearFiles();
-		console.log(CurFilesall)
+		//console.log(CurFilesall)
 		Updateact(CurFilesall);
 	 }
  }
