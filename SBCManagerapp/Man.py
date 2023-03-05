@@ -290,12 +290,12 @@ class Manage():
                 info0 = info1
                 FileNoUser.append(info1)
             allstockFiles.append(info0)
-        for i in allstockFiles:
-            if 'time2' in i['FileName']:
-                print('ALL:',i)
-        for i in FileNoUser:
-            if 'time2' in i['FileName']:
-                print('FileNoUser:',i)
+        # for i in allstockFiles:
+        #     if 'time2' in i['FileName']:
+        #         print('ALL:',i)
+        # for i in FileNoUser:
+        #     if 'time2' in i['FileName']:
+        #         print('FileNoUser:',i)
         return {'all':allstockFiles,'NoUser':FileNoUser}
 
     def InitSerPath(self):
