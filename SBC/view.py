@@ -354,6 +354,7 @@ def GetFilePorper(request):
             size += sum([os.path.getsize(os.path.join(root, name)) for name in files])
     else:
         size = File['size']
+    serverpath = '/mnt/SBC/SBCUsers/2290227486@qq.com/同步/refl/博士/杂质输运/混杂模式下杂质对台基的影响/80496/time2.fig'
     print(serverpath)
 
     statbuf = os.stat(serverpath)
