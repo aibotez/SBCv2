@@ -123,7 +123,9 @@ class ClipVideo():
         try:
             cmd = 'ffmpeg -i {} -f wav {}'.format(Videopath,Audiopath)
             os.system(cmd)
-            return 1
+            if os.path.exists(Audiopath):
+                return 1
+            return 0
         except:
             return 0
     def get_length(self,filename,AudPath):
