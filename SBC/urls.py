@@ -95,6 +95,7 @@ urlpatterns = [
     path('BaiduNetQuitLogin/',viewBdn.BaiduNetQuitLogin),
     path('reD/',viewBdn.reD),
     path('GetBaiduNetUserInfo/',viewBdn.GetBaiduNetUserInfo),
+    path('GetBaiduNetFiles/',viewBdn.GetFiles),
 
     path('SearchFile/',viewSBCFS.SBCSearchFile),
 

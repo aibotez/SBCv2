@@ -55,6 +55,21 @@ def BaiduNetHome(request):
     return render(request,'BaiduNet/BaiduNetHome.html',locals())
 
 
+def GetFiles(request):
+    LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
+    if LoginRes['res']:
+        return HttpResponseRedirect('/login/')
+    if request.method == 'GET':
+        showpath = request.GET['showpath']
+    else:
+        showpath = request.POST['showpath']
+    showpath = unquote(showpath)
+    manage = BaiduNetManage.manage()
+    bdn = manage.baidunetShow(LoginRes,showpath)
+    data = bdn['list']
+    navlist = GetNavpath(showpath)
+    navlastpath = navlist[-1]['path']
+    return JsonResponse({'navlist':navlist,'navlastpath':navlastpath,'list':data})
 def BaiduNetShow(request):
     LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
     if LoginRes['res']:
