@@ -94,6 +94,7 @@ urlpatterns = [
     path('GetBDDownLink/',viewBdn.GetBDDownLink),
     path('BaiduNetQuitLogin/',viewBdn.BaiduNetQuitLogin),
     path('reD/',viewBdn.reD),
+    path('GetBaiduNetUserInfo/',viewBdn.GetBaiduNetUserInfo),
 
     path('SearchFile/',viewSBCFS.SBCSearchFile),
 

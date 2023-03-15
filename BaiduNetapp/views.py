@@ -32,6 +32,14 @@ def GetNavpath(path):
     return navpaths
 
 
+def GetBaiduNetUserInfo(request):
+    LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
+    if LoginRes['res']:
+        return HttpResponseRedirect('/login/')
+    manage = BaiduNetManage.manage()
+    BaiduNetUserInfo = manage.GetBaiduNetUserInfo(LoginRes)
+    return JsonResponse(BaiduNetUserInfo)
+
 def BaiduNetHome(request):
     LoginRes = LoginVerfiy.LoginVerfiy().verifylogin(request)
     if LoginRes['res']:
