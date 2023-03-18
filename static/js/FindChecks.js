@@ -12,7 +12,7 @@ function FindCheck(files1)
 			feisdir =files[i].isdir;
 			filepath = Base64.decode(file)
 			//console.log(file);
-			Res.push({'fename':filename,'fepath':filepath,'feisdir':feisdir,'fileId':file});
+			Res.push({'fename':filename,'fepath':filepath,'feisdir':feisdir,'isdir':feisdir,'fileId':file});
 		}
 		
 	}
