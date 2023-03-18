@@ -17,6 +17,7 @@ function SureShare()
 	}
 	var urlpath = "/CreatShareFile/";
 	var jsondata = JSON.stringify(postdata);
+	console.log(ShareFileInfo)
 	var res = PostMethod(urlpath,jsondata,0);
 	//CancelShare();
 	console.log(res);
