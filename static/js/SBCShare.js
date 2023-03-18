@@ -13,11 +13,12 @@ function SureShare()
 	postdata={
 		'ShareFile':ShareFileInfo,
 		'ShareDateDur':ShareFeDateDur,
-		'SharePass':SharePass
+		'SharePass':SharePass,
+		'Host':window.location.host
 	}
 	var urlpath = "/CreatShareFile/";
 	var jsondata = JSON.stringify(postdata);
-	//console.log(ShareFileInfo)
+	console.log(window.location.host,ShareFileInfo)
 	var res = PostMethod(urlpath,jsondata,0);
 	//CancelShare();
 	console.log(res);
