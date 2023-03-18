@@ -19,11 +19,13 @@ def CreatShareFile(request):
     except:
         ShareFileInfo = json.loads(request.body)
     # print(ShareFileInfo)
-    req = request.POST.dict()
+    # req = request.POST.dict()
     reqHeadres = request.headers
     # if 'Host'
-
-    CurUrl = reqHeadres['Host']
+    if 'Host' in ShareFileInfo:
+        CurUrl = ShareFileInfo['Host']
+    else:
+        CurUrl = reqHeadres['Host']
     SBCShareManages = SBCShareManage.ShareManage()
     res = SBCShareManages.CreatShareUrl(ShareFileInfo,LoginRes,CurUrl)
     return JsonResponse({'res':res})
