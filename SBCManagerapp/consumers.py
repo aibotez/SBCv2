@@ -26,6 +26,8 @@ class ChatConsumer(WebsocketConsumer):
         self.accept()
 
     def websocket_receive(self, message):
+
+
         info = json.loads(message['text'])
         LoginRes = verifylogin(info)
         if LoginRes['res']:
@@ -46,7 +48,6 @@ class ChatConsumer(WebsocketConsumer):
             info = Man.Manage().ModSBCstock(ModSBCstock)
         elif 'GetMountDisks' in info:
             info = {'data':Man.Manage().GetDiskParinfo()}
-
 
         info['res'] = 1
         self.send(text_data=json.dumps(info))       # 返回给客户端的消息

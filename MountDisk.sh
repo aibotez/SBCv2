@@ -1,0 +1,1 @@
+mount -t ntfs-3g /dev/sdc /mnt/SBC
