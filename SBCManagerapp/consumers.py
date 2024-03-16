@@ -64,7 +64,8 @@ class ChatConsumer(WebsocketConsumer):
                 self.audio_real.int()
             self.audio_real.language_chose = lagu
             audiodata = np.array(audiodata).astype(np.float32) / 32768.0
-            return self.audio_real.transcribe_act(audiodata)
+            conts = self.audio_real.transcribe_act(audiodata)
+            info = {'data': conts}
 
 
 
