@@ -11,7 +11,7 @@ class audiomain():
         # self.CHUNK = int(self.RATE/10)
         # self.stream = None
         self.language_chose = 'en'
-        self.model_path = 'faster_whisper_model/small/'
+        self.model_path = 'faster_whisper_model/model/base/'
         self.model = None
         # self.aud_datas = {}
         # self.aud_max_list=[]
@@ -23,11 +23,15 @@ class audiomain():
 
     def transcribe_act(self,aud_data):
         # global aud_datas
-        print('start.')
+        # print('start.')
         segments, info = self.model.transcribe(aud_data, language=self.language_chose, vad_filter=True,
                                                vad_parameters=dict(min_silence_duration_ms=1000))
+
+        conts = ''
         for segment in segments:
+            conts = conts+segment.text
             print("[%.2fs -> %.2fs] %s" % (segment.start, segment.end, segment.text))
+        return conts
 
 
     # def findInternalRecordingDevice(self):

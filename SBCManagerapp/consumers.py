@@ -4,6 +4,9 @@ from channels.generic.websocket import WebsocketConsumer
 from channels.exceptions import StopConsumer
 from SBCManagerapp import models as SBCManagemodels
 from SBCManagerapp import Man
+from pack import faster_whisper_pack
+
+import numpy as np
 
 
 def verifylogin(request):
@@ -21,11 +24,16 @@ def verifylogin(request):
     return LoginRes
 
 class ChatConsumer(WebsocketConsumer):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.audio_real = faster_whisper_pack.audiomain()
 
     def websocket_connect(self, message):
         self.accept()
 
     def websocket_receive(self, message):
+        print('connect_in....')
+        # print(message)
 
 
         info = json.loads(message['text'])
@@ -48,6 +56,17 @@ class ChatConsumer(WebsocketConsumer):
             info = Man.Manage().ModSBCstock(ModSBCstock)
         elif 'GetMountDisks' in info:
             info = {'data':Man.Manage().GetDiskParinfo()}
+
+        elif 'audio_realtime' in info:
+            audiodata = info['audiodata']
+            lagu = info['lagu']
+            if not self.audio_real.model:
+                self.audio_real.int()
+            self.audio_real.language_chose = lagu
+            audiodata = np.array(audiodata).astype(np.float32) / 32768.0
+            return self.audio_real.transcribe_act(audiodata)
+
+
 
         info['res'] = 1
         self.send(text_data=json.dumps(info))       # 返回给客户端的消息

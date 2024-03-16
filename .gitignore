@@ -19,4 +19,5 @@ HomeManageapp/__pycache__
 FileSycapp/__pycache__
 FileDownUpapp/__pycache__
 BaiduNetapp/__pycache__
+faster_whisper_model/model
 db.sqlite3
