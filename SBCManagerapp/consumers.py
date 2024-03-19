@@ -6,6 +6,8 @@ from SBCManagerapp import models as SBCManagemodels
 from SBCManagerapp import Man
 from pack import faster_whisper_pack
 
+import time
+
 import numpy as np
 
 
@@ -39,7 +41,9 @@ class ChatConsumer(WebsocketConsumer):
         info = json.loads(message['text'])
         LoginRes = verifylogin(info)
         if LoginRes['res']:
+            print('login+fai')
             self.send(text_data=json.dumps({'res':0}))
+        # print(message)
         if 'SerInfos' in info:
             if 'DiskIndex' in info:
 
@@ -60,12 +64,16 @@ class ChatConsumer(WebsocketConsumer):
         elif 'audio_realtime' in info:
             audiodata = info['audiodata']
             lagu = info['lagu']
-            if not self.audio_real.model:
-                self.audio_real.int()
+            print('audio_rec')
+            # if not self.audio_real.model:
+            self.audio_real.int()
             self.audio_real.language_chose = lagu
             audiodata = np.array(audiodata).astype(np.float32) / 32768.0
+            # print(audiodata)
             conts = self.audio_real.transcribe_act(audiodata)
+            print(conts)
             info = {'data': conts}
+            # time.sleep(60)
 
 
 
