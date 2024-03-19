@@ -65,8 +65,8 @@ class ChatConsumer(WebsocketConsumer):
             audiodata = info['audiodata']
             lagu = info['lagu']
             print('audio_rec')
-            # if not self.audio_real.model:
-            self.audio_real.int()
+            if not self.audio_real.model:
+                self.audio_real.int()
             self.audio_real.language_chose = lagu
             audiodata = np.array(audiodata).astype(np.float32) / 32768.0
             # print(audiodata)
