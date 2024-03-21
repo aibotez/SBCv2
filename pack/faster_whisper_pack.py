@@ -28,7 +28,7 @@ class audiomain():
                                                vad_parameters=dict(min_silence_duration_ms=1000))
 
         conts = ''
-        # print('start_transfer.{}'.format(len(aud_data)))
+        print('start_transfer.{}'.format(len(aud_data)))
         for segment in segments:
             conts = conts+segment.text
             print("[%.2fs -> %.2fs] %s" % (segment.start, segment.end, segment.text))
