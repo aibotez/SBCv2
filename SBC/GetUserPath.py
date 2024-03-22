@@ -4,14 +4,16 @@ from SBCManagerapp import Man
 
 
 
-Serinfo = Man.Manage().InitSerPath()
-FileUsersPath = Serinfo['user']
-FileStockPath = Serinfo['stock']
+#Serinfo = Man.Manage().InitSerPath()
+#FileUsersPath = Serinfo['user']
+#FileStockPath = Serinfo['stock']
 class GetUserPath():
     def __init__(self):
         # self.ServerHomePath = 'D:/documents/GitStock/SBCuserTest/'
         # self.ServerHomePath = '/mnt/SBC/SBCUsers/'
-        self.ServerHomePath = FileUsersPath
+        self.Serinfo = Man.Manage().InitSerPath()
+        
+        self.ServerHomePath = self.Serinfo['user']
 
     def GetDownPath(self,DownReInfo,LoginRes):
 

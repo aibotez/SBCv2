@@ -5,7 +5,7 @@ workers = 2
 # 指定每个进程开启的线程数
 threads = 3
 # 绑定的ip与端口
-bind = '0.0.0.0:90'
+bind = '0.0.0.0:9090'
 # 设置守护进程,将进程交给supervisor管理
 daemon = 'false'
 # 工作模式协程，默认的是sync模式

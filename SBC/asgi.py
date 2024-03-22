@@ -15,14 +15,20 @@ https://docs.djangoproject.com/en/3.2/howto/deployment/asgi/
 #
 # application = get_asgi_application()
 
+import django
 
 
 import os
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'SBC.settings')
+django.setup()
+
+
+
 from django.core.asgi import get_asgi_application
 from channels.routing import ProtocolTypeRouter, URLRouter
 from . import routing     # 这个文件后续会说，你先写上。
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'SBC.settings')
 # application = get_asgi_application()  # 注释掉原来的application
 
 application = ProtocolTypeRouter(

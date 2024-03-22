@@ -1,1 +1,3506 @@
 sh: /root/MountDisk.sh: No such file or directory
+2024/03/21 14:36:41 [1;34m[I] [service.go:298] [740dd6077bac4647] login to server success, get run id [740dd6077bac4647], server udp port [0][0m
+2024/03/21 14:36:41 [1;34m[I] [proxy_manager.go:142] [740dd6077bac4647] proxy added: [SBC][0m
+2024/03/21 14:36:41 [1;34m[I] [control.go:172] [740dd6077bac4647] [SBC] start proxy success[0m
+Watching for file changes with StatReloader
+2024/03/21 15:55:35 [1;34m[I] [service.go:298] [5ba1390480a59ee3] login to server success, get run id [5ba1390480a59ee3], server udp port [0][0m
+2024/03/21 15:55:35 [1;34m[I] [proxy_manager.go:142] [5ba1390480a59ee3] proxy added: [SBC][0m
+2024/03/21 15:55:35 [1;34m[I] [control.go:172] [5ba1390480a59ee3] [SBC] start proxy success[0m
+Watching for file changes with StatReloader
+2024/03/21 16:00:22 [1;34m[I] [service.go:298] [356d510d14c307e2] login to server success, get run id [356d510d14c307e2], server udp port [0][0m
+2024/03/21 16:00:22 [1;34m[I] [proxy_manager.go:142] [356d510d14c307e2] proxy added: [SBC][0m
+2024/03/21 16:00:23 [1;34m[I] [control.go:172] [356d510d14c307e2] [SBC] start proxy success[0m
+Watching for file changes with StatReloader
+WebSocket HANDSHAKING /getSerInfows/ [127.0.0.1:49728]
+WebSocket CONNECT /getSerInfows/ [127.0.0.1:49728]
+WebSocket HANDSHAKING /getSerInfows/ [127.0.0.1:49730]
+WebSocket CONNECT /getSerInfows/ [127.0.0.1:49730]
+WebSocket DISCONNECT /getSerInfows/ [127.0.0.1:49730]
+WebSocket DISCONNECT /getSerInfows/ [127.0.0.1:49728]
+WebSocket HANDSHAKING /getSerInfows/ [127.0.0.1:49736]
+WebSocket CONNECT /getSerInfows/ [127.0.0.1:49736]
+WebSocket DISCONNECT /getSerInfows/ [127.0.0.1:49736]
+WebSocket HANDSHAKING /getSerInfows/ [127.0.0.1:49738]
+WebSocket CONNECT /getSerInfows/ [127.0.0.1:49738]
+WebSocket DISCONNECT /getSerInfows/ [127.0.0.1:49738]
+WebSocket HANDSHAKING /getSerInfows/ [127.0.0.1:49744]
+WebSocket CONNECT /getSerInfows/ [127.0.0.1:49744]
+WebSocket DISCONNECT /getSerInfows/ [127.0.0.1:49744]
+WebSocket HANDSHAKING /getSerInfows/ [127.0.0.1:49758]
+WebSocket CONNECT /getSerInfows/ [127.0.0.1:49758]
+Performing system checks...
+
+System check identified no issues (0 silenced).
+March 21, 2024 - 16:00:26
+Django version 4.2.11, using settings 'SBC.settings'
+Starting ASGI/Channels version 3.0.0 development server at http://0.0.0.0:92/
+Quit the server with CONTROL-C.
+connect_in....
+connect_in....
+connect_in....
+connect_in....
+connect_in....
+connect_in....
+connect_in....
+connect_in....
+connect_in....
+connect_in....
+connect_in....
+connect_in....
+connect_in....
+connect_in....
+audio_rec
+start_transfer.16318
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.11s -> 1.11s]  I said this one.
+ I said this one.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Thanks.
+ Thanks.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.05s -> 2.05s]  I'll see you in the next one.
+ I'll see you in the next one.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Thank you very much.
+ Thank you very much.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Thank you very much.
+ Thank you very much.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Thank you very much.
+ Thank you very much.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  Look, it made a...
+ Look, it made a...
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  You can see that.
+ You can see that.
+connect_in....
+audio_rec
+start_transfer.16318
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Hello, hello.
+ Hello, hello.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 0.84s]  Hello?
+ Hello?
+connect_in....
+audio_rec
+start_transfer.16320
+[0.37s -> 1.37s]  Good luck.
+ Good luck.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  Thank you very much.
+ Thank you very much.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Good morning.
+ Good morning.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  You're not going to be able to do it.
+ You're not going to be able to do it.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  That's it.
+ That's it.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Why that thing?
+ Why that thing?
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  Hello?
+[2.00s -> 4.00s]  Yeah.
+[4.00s -> 6.00s]  Hello?
+[6.00s -> 8.00s]  This is Mal.
+[8.00s -> 10.00s]  Hello.
+[10.00s -> 12.00s]  Mal.
+[12.00s -> 14.00s]  I'm Mal.
+[14.00s -> 16.00s]  Mal.
+[16.00s -> 18.00s]  I'm Mal.
+[18.00s -> 20.00s]  Mal.
+[20.00s -> 22.00s]  Mal.
+[22.00s -> 24.00s]  Mal.
+[24.00s -> 27.00s]  Mal.
+ Hello? Yeah. Hello? This is Mal. Hello. Mal. I'm Mal. Mal. I'm Mal. Mal. Mal. Mal. Mal.
+connect_in....
+audio_rec
+start_transfer.16318
+[0.00s -> 2.00s]  And I thought I'd think
+ And I thought I'd think
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  I work this modified-
+ I work this modified-
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  I still have a lot of work to do.
+ I still have a lot of work to do.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  profile.
+ profile.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  it could affect us.
+ it could affect us.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  can heat transport.
+ can heat transport.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.11s -> 2.11s]  and oh
+ and oh
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  so it would happen.
+ so it would happen.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  on the tub in the scalp.
+ on the tub in the scalp.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  a little bit of touristy.
+ a little bit of touristy.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  and we also know that
+ and we also know that
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  that we have a lot of...
+ that we have a lot of...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Bye.
+ Bye.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  So
+ So
+connect_in....
+audio_rec
+start_transfer.16320
+[0.05s -> 2.05s]  too
+ too
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Perfect.
+ Perfect.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  I'm not native to Polish.
+ I'm not native to Polish.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.05s -> 2.05s]  Like
+ Like
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  RMP.
+ RMP.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.11s -> 1.11s]  I'm starting out here.
+ I'm starting out here.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  trinsy cart.
+ trinsy cart.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.18s -> 2.18s]  But we are...
+ But we are...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  Why should also remind
+ Why should also remind
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  and you'll feel stuck.
+ and you'll feel stuck.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  This current.
+ This current.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.05s -> 1.05s]  I'm driven.
+ I'm driven.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.11s -> 2.11s]  or
+ or
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  Mainly, relax.
+ Mainly, relax.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  from flow.
+ from flow.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  which means...
+ which means...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  um
+ um
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  Thank you.
+ Thank you.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  are mainly young.
+ are mainly young.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  And that's how it's supposed to be.
+ And that's how it's supposed to be.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  that.
+ that.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.11s -> 1.11s]  We'll go out.
+ We'll go out.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  while they are elected.
+ while they are elected.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  on the floor.
+ on the floor.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  we have also
+ we have also
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  One thing to say
+ One thing to say
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Electron has this.
+ Electron has this.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  Smaller, Gel Radius.
+ Smaller, Gel Radius.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  then ions.
+ then ions.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.11s -> 2.11s]  You're I give it
+ You're I give it
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  example.
+ example.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  Let's do it.
+ Let's do it.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  This is because
+ This is because
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  difference.
+ difference.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  of like
+ of like
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  from the 90s also.
+ from the 90s also.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  is here.
+ is here.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  from floating.
+ from floating.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  So here I give them the example.
+ So here I give them the example.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.37s -> 2.37s]  Oh
+ Oh
+connect_in....
+audio_rec
+start_transfer.16002
+[0.00s -> 2.00s]  When we have the...
+ When we have the...
+connect_in....
+audio_rec
+start_transfer.16318
+[0.00s -> 1.00s]  That is what you're doing.
+ That is what you're doing.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  example on.
+ example on.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  Eevee.
+ Eevee.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  in the same
+ in the same
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  That's it.
+ That's it.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Thank you for your time.
+ Thank you for your time.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.80s]  food that's right here.
+ food that's right here.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  We have a election.
+ We have a election.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.24s -> 1.24s]  Radiant.
+ Radiant.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.30s -> 2.30s]  Oh
+ Oh
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  zero points.
+ zero points.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Cheryl 12.
+ Cheryl 12.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.05s -> 2.05s]  millimeter.
+ millimeter.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.18s -> 2.18s]  Wow
+ Wow
+connect_in....
+audio_rec
+start_transfer.16320
+[0.05s -> 2.05s]  And guitar
+ And guitar
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  I am sweet.
+ I am sweet.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  have a journal read.
+ have a journal read.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  use.
+ use.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  of Newly.
+ of Newly.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  One millimeter.
+ One millimeter.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.05s -> 2.05s]  so which means
+ so which means
+connect_in....
+audio_rec
+start_transfer.16320
+[0.18s -> 2.18s]  if we
+ if we
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  measures that car
+ measures that car
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  we will
+ we will
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  we will have.
+ we will have.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  and more precise.
+ and more precise.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  the fiction of
+ the fiction of
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  the magnetic top on.
+ the magnetic top on.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  So
+ So
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  in order to measure that.
+ in order to measure that.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.11s -> 2.11s]  We have this
+ We have this
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  sign in.
+ sign in.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  especially for a cold day.
+ especially for a cold day.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  I'm from Electron Pro.
+ I'm from Electron Pro.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  That probe has...
+ That probe has...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  and allow me to teach.
+ and allow me to teach.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  in the front which is
+ in the front which is
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  The same with all
+ The same with all
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  the other probes that
+ the other probes that
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  He says so.
+ He says so.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  density proof
+ density proof
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  computer.
+ computer.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  for 5,000.
+ for 5,000.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  potentially provide.
+ potentially provide.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  the normative here.
+ the normative here.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  is.
+ is.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  the problem is this
+ the problem is this
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  was host.
+ was host.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  The houses were small.
+ The houses were small.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  long with.
+ long with.
+connect_in....
+audio_rec
+start_transfer.16002
+[0.00s -> 2.00s]  and deep
+ and deep
+connect_in....
+audio_rec
+start_transfer.16318
+[0.00s -> 1.00s]  Thank you.
+ Thank you.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.24s -> 2.24s]  Remember
+ Remember
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  which in page we have.
+ which in page we have.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  It's like a one thing.
+ It's like a one thing.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  to say that.
+ to say that.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  D-I-
+ D-I-
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  hands with help.
+ hands with help.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  That's a lot of joke.
+[1.00s -> 2.00s]  I don't really...
+ That's a lot of joke. I don't really...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  Thank you.
+ Thank you.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Let's see what's in here.
+ Let's see what's in here.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  So we, if...
+ So we, if...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  We have a home.
+ We have a home.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  that was appropriate.
+ that was appropriate.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.18s -> 1.18s]  I'll...
+ I'll...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.37s -> 1.37s]  What?
+ What?
+connect_in....
+audio_rec
+start_transfer.16320
+[0.30s -> 2.30s]  That was...
+ That was...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  to repair ice.
+ to repair ice.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.05s -> 2.05s]  Because I am
+ Because I am
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  this would not pass.
+ this would not pass.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  to hold.
+ to hold.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  the election.
+ the election.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  We have also a...
+ We have also a...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  positive bye
+ positive bye
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  on the...
+ on the...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Tractors.
+ Tractors.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  So we will.
+ So we will.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  And
+ And
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Repel.
+ Repel.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Bye.
+ Bye.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  High energy.
+ High energy.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  guys and viewers.
+ guys and viewers.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  in the eyes.
+ in the eyes.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  So that's we got
+ So that's we got
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  If you were like
+ If you were like
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Shantlow.
+ Shantlow.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  We have also designed...
+ We have also designed...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  you read the whole
+ you read the whole
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  Those are, um,
+ Those are, um,
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  assembled.
+ assembled.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Good night.
+ Good night.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  in the form of 2 re-
+ in the form of 2 re-
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  to get a race on the obli-
+ to get a race on the obli-
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  of the science.
+ of the science.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Please forgive us.
+ Please forgive us.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  radio structure and port
+ radio structure and port
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  obligation of
+ obligation of
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  this election.
+ this election.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  I'm sorry.
+ I'm sorry.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  So, um,
+ So, um,
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  before measuring.
+ before measuring.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.05s -> 2.05s]  We have to
+ We have to
+connect_in....
+audio_rec
+start_transfer.16320
+[0.18s -> 2.18s]  Define
+ Define
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  the car's direction.
+ the car's direction.
+connect_in....
+audio_rec
+start_transfer.16002
+
+connect_in....
+audio_rec
+start_transfer.16318
+[0.00s -> 2.00s]  for simplicity.
+ for simplicity.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  the current direction.
+ the current direction.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  definition is
+ definition is
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  The same was possible.
+ The same was possible.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  I'm currently in double center.
+ I'm currently in double center.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  and which
+ and which
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  this strap card in the...
+ this strap card in the...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Dr. X, which is...
+ Dr. X, which is...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  is if you
+ is if you
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  You from Koth?
+ You from Koth?
+connect_in....
+audio_rec
+start_transfer.16320
+[0.11s -> 2.11s]  I can't put a big...
+ I can't put a big...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  positive.
+ positive.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  it is anti-club.
+ it is anti-club.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Bye.
+ Bye.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  the country would be done today.
+ the country would be done today.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  It is clockwise.
+ It is clockwise.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  So uh...
+ So uh...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Thank you very much.
+ Thank you very much.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  We have no-
+ We have no-
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  from the General R.I.
+ from the General R.I.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  And
+ And
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  slow.
+ slow.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  that.
+ that.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.11s -> 2.11s]  Um, um,
+ Um, um,
+connect_in....
+audio_rec
+start_transfer.16320
+[0.30s -> 2.30s]  the next.
+ the next.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  comes.
+ comes.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  which
+ which
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  D.E.P.
+ D.E.P.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  Mashes
+ Mashes
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  pieces of
+ pieces of
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Three parts.
+ Three parts.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.30s -> 2.30s]  Which...
+ Which...
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.24s -> 2.24s]  how it looks.
+ how it looks.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.24s -> 2.24s]  I'll turn to the...
+ I'll turn to the...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  difference.
+ difference.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.05s -> 1.05s]  Bro, bye.
+ Bro, bye.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.30s -> 2.30s]  Uh,
+ Uh,
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  tempered distance.
+ tempered distance.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  at the target.
+ at the target.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.37s -> 1.37s]  to end.
+ to end.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  of the target.
+ of the target.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.11s -> 1.11s]  Which is cool.
+ Which is cool.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  electric car.
+ electric car.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.24s -> 1.24s]  Okay.
+ Okay.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  Land the other term
+ Land the other term
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  is how low
+ is how low
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  pressure gradient.
+ pressure gradient.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  and the third term
+ and the third term
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  this pedal.
+ this pedal.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  temperature gradient.
+ temperature gradient.
+connect_in....
+audio_rec
+start_transfer.16002
+[0.11s -> 2.11s]  and the
+ and the
+connect_in....
+audio_rec
+start_transfer.16318
+[0.00s -> 2.00s]  three
+ three
+connect_in....
+audio_rec
+start_transfer.16320
+[0.05s -> 1.05s]  First.
+ First.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  is not
+ is not
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  what D.P.
+ what D.P.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  direct message.
+ direct message.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.05s -> 2.05s]  But the
+ But the
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  they are equal to
+ they are equal to
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  on that card.
+ on that card.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  So that's we got a
+ So that's we got a
+connect_in....
+audio_rec
+start_transfer.16320
+[0.37s -> 2.37s]  So
+ So
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  They're told to us.
+ They're told to us.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  is recovered.
+ is recovered.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  Uh...
+ Uh...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.24s -> 1.24s]  Hello.
+ Hello.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  How would we are?
+ How would we are?
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  I've had these
+ I've had these
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  I will do this later.
+ I will do this later.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  So.
+ So.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.30s -> 2.30s]  First off
+ First off
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  introduce the anti-actual.
+ introduce the anti-actual.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  The current profile is standard.
+ The current profile is standard.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  configuration.
+ configuration.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.05s -> 2.05s]  As the end of the...
+ As the end of the...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  organization.
+ organization.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Um.
+ Um.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  We have it.
+ We have it.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.05s -> 2.05s]  there are two
+ there are two
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  shots here.
+ shots here.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  which is
+ which is
+connect_in....
+audio_rec
+start_transfer.16320
+[0.37s -> 2.37s]  Oh
+ Oh
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  The similar
+ The similar
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.05s -> 2.05s]  Power
+ Power
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 21.50s]  18 power.
+ 18 power.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  of similar uh
+ of similar uh
+connect_in....
+audio_rec
+start_transfer.16320
+[0.37s -> 2.37s]  time.
+ time.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  about that energy.
+ about that energy.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.11s -> 2.11s]  They have
+ They have
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  different. Sorry to
+ different. Sorry to
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  I'm sorry, I'm sorry.
+ I'm sorry, I'm sorry.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  that's the same.
+ that's the same.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Thank you very much.
+ Thank you very much.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  we are
+ we are
+connect_in....
+audio_rec
+start_transfer.16320
+[0.24s -> 1.24s]  most big.
+ most big.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  Thank you so much.
+ Thank you so much.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  being different.
+ being different.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  different is that
+ different is that
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  We have different-
+ We have different-
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  control for you
+ control for you
+connect_in....
+audio_rec
+start_transfer.16002
+[0.00s -> 2.00s]  And.
+ And.
+connect_in....
+audio_rec
+start_transfer.16318
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  just cause a r
+ just cause a r
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  Difference in the
+ Difference in the
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  We are.
+ We are.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  National Land Fund.
+ National Land Fund.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.18s -> 2.18s]  But first
+ But first
+connect_in....
+audio_rec
+start_transfer.16320
+[0.24s -> 1.24s]  No.
+ No.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  I said...
+ I said...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.37s -> 2.37s]  See
+ See
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  Look at the...
+ Look at the...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  in the left.
+ in the left.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  What do you see?
+ What do you see?
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  You see that?
+ You see that?
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Thank you very much.
+ Thank you very much.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  Separation.
+ Separation.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  at around
+ at around
+connect_in....
+audio_rec
+start_transfer.16320
+[0.05s -> 2.05s]  68
+ 68
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Right?
+ Right?
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  The...
+ The...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  at the right of this.
+ at the right of this.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  for our chiefs.
+ for our chiefs.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.37s -> 1.37s]  There.
+ There.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  to control B.
+ to control B.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  and that kind of will be showing.
+ and that kind of will be showing.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  and
+ and
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  blue or blue.
+ blue or blue.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  right here.
+ right here.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  And...
+ And...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  Left to this...
+ Left to this...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  separate.
+ separate.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  We would.
+ We would.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  see orange.
+ see orange.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  or right between
+ or right between
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  It's only to cut.
+ It's only to cut.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  So
+ So
+connect_in....
+audio_rec
+start_transfer.16320
+[0.05s -> 2.05s]  why is
+ why is
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 0.50s]  peace.
+ peace.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Separate sheet.
+ Separate sheet.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  So clear.
+ So clear.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.37s -> 2.37s]  And
+ And
+connect_in....
+audio_rec
+start_transfer.16320
+[0.11s -> 2.11s]  We have to
+ We have to
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  just look into the diff
+ just look into the diff
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  differences in...
+ differences in...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  side and outside.
+ side and outside.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  these separate tricks.
+ these separate tricks.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.05s -> 2.05s]  And
+ And
+connect_in....
+audio_rec
+start_transfer.16320
+[0.30s -> 2.30s]  So
+ So
+connect_in....
+audio_rec
+start_transfer.16320
+[0.05s -> 2.05s]  I have to click on the...
+ I have to click on the...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  Here
+ Here
+connect_in....
+audio_rec
+start_transfer.16002
+[0.00s -> 2.00s]  So outside the separate-
+ So outside the separate-
+connect_in....
+audio_rec
+start_transfer.16318
+[0.00s -> 2.00s]  which in...
+ which in...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  we have.
+ we have.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  Perivation
+ Perivation
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 7.00s]  net lens.
+ net lens.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  As you can see, if I'm...
+ As you can see, if I'm...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  These feet here.
+ These feet here.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Can you see my mouse?
+ Can you see my mouse?
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  Can you see my mouth?
+ Can you see my mouth?
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.11s -> 1.11s]  Yeah.
+ Yeah.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Yes.
+ Yes.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.30s -> 1.30s]  Okay.
+ Okay.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  So, ask.
+ So, ask.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  by these separate checks.
+ by these separate checks.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  we can see.
+ we can see.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  D.I.
+ D.I.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  connection lens is very ...
+ connection lens is very ...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  which is less...
+ which is less...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  10 meters.
+ 10 meters.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  And
+ And
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  and inside.
+ and inside.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Shorts.
+ Shorts.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.30s -> 2.30s]  Have a good...
+ Have a good...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  nationals over to
+ nationals over to
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  200 meters.
+ 200 meters.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.18s -> 1.18s]  Right?
+ Right?
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  and then
+ and then
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  We die too.
+ We die too.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  look into the...
+ look into the...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  figures in the last
+ figures in the last
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  That's it.
+ That's it.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  outside this uh
+ outside this uh
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  separate checks.
+ separate checks.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  See you next time.
+ See you next time.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  You're Russian.
+ You're Russian.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  We have come.
+ We have come.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  head was inside me.
+ head was inside me.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  have much lower.
+ have much lower.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.11s -> 2.11s]  And
+ And
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  Elections completed, yeah.
+ Elections completed, yeah.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  and electron density.
+ and electron density.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  We believe
+ We believe
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  this is because of
+ this is because of
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  you are trying to
+ you are trying to
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  and sources difference.
+ and sources difference.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.37s -> 2.37s]  And
+ And
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.11s -> 1.11s]  Yeah.
+ Yeah.
+connect_in....
+audio_rec
+start_transfer.16002
+[0.00s -> 2.00s]  if we are
+ if we are
+connect_in....
+audio_rec
+start_transfer.16318
+[0.00s -> 1.00s]  we can't stay there.
+ we can't stay there.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  short connection lens.
+ short connection lens.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.24s -> 2.24s]  We have
+ We have
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.05s -> 1.05s]  Not much.
+ Not much.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  coalitions week.
+ coalitions week.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  but basically no collision.
+ but basically no collision.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  It's a work of hope, it's a work of hope.
+ It's a work of hope, it's a work of hope.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  and heat the targets.
+ and heat the targets.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Um.
+ Um.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  We'll see.
+ We'll see.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.05s -> 1.05s]  and...
+ and...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.11s -> 2.11s]  that being
+ that being
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  as we have no...
+ as we have no...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  I don't know who she is.
+ I don't know who she is.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.11s -> 2.11s]  I'm...
+ I'm...
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  radiant
+ radiant
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  So, let's take a look at this.
+ So, let's take a look at this.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  and pressure green.
+ and pressure green.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Welcome.
+ Welcome.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Thank you very much.
+ Thank you very much.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  inside.
+ inside.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  the cash.
+ the cash.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  and this is much longer.
+ and this is much longer.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  It allows you.
+ It allows you.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  Welcome to the...
+ Welcome to the...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  It's not happening.
+ It's not happening.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  so which means
+ so which means
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  the parallel.
+ the parallel.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  I'm afraid I can't do it.
+ I'm afraid I can't do it.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  I don't know how it's up here.
+ I don't know how it's up here.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  in here.
+ in here.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  Um, I was...
+ Um, I was...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  I'll show you the other does later.
+ I'll show you the other does later.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  But
+ But
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  It was in two sides.
+ It was in two sides.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  But let's
+ But let's
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Let's get started.
+ Let's get started.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  My Assumptions.
+ My Assumptions.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  for yet.
+ for yet.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Ugh.
+ Ugh.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  now we have
+ now we have
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  Find the comms
+ Find the comms
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  And I'll see you next time.
+ And I'll see you next time.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  and also.
+ and also.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Shots.
+ Shots.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  Now
+ Now
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  we
+ we
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  now look.
+ now look.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  or the differences.
+ or the differences.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.11s -> 1.11s]  and through.
+ and through.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  in these two shirts about
+ in these two shirts about
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  on the parallel gradient.
+ on the parallel gradient.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  in part.
+ in part.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.18s -> 2.18s]  And...
+ And...
+connect_in....
+audio_rec
+start_transfer.16002
+
+connect_in....
+audio_rec
+start_transfer.16318
+[0.00s -> 2.00s]  So we...
+ So we...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.24s -> 2.24s]  If you look
+ If you look
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  into the...
+ into the...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  that's kind of bigger.
+ that's kind of bigger.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  I don't know, I don't know.
+ I don't know, I don't know.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  here.
+ here.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  we see
+ we see
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  That's...
+ That's...
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.18s -> 2.18s]  the red
+ the red
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  Uh, uh, Kurt.
+ Uh, uh, Kurt.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  As
+ As
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Say hi to Karim.
+ Say hi to Karim.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.30s -> 2.30s]  Then...
+ Then...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  will come.
+ will come.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.18s -> 2.18s]  of all
+ of all
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.84s]  4, 3, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1.
+ 4, 3, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  the deepest
+ the deepest
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  stuff or because
+ stuff or because
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  the most frail
+ the most frail
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  I'm going to cut it.
+ I'm going to cut it.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.24s -> 2.24s]  channels.
+ channels.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  The red has all...
+ The red has all...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  always.
+ always.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  especially in this part.
+ especially in this part.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  or AR.
+ or AR.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Fire comes.
+ Fire comes.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.24s -> 1.24s]  Then come back.
+ Then come back.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  with fluid.
+ with fluid.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  in the yoke leg.
+ in the yoke leg.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  lens.
+ lens.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.30s -> 2.30s]  We...
+ We...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Also observe.
+ Also observe.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.11s -> 1.11s]  a button.
+ a button.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Contrast.
+ Contrast.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.30s -> 1.30s]  Oh, hi.
+ Oh, hi.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  Thank you very much.
+ Thank you very much.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  Plotty, come.
+ Plotty, come.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Okay.
+ Okay.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  I have to
+ I have to
+connect_in....
+audio_rec
+start_transfer.16320
+[0.11s -> 1.11s]  are explaining.
+ are explaining.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  here so we have
+ here so we have
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  That's
+ That's
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  these for you.
+ these for you.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  here.
+ here.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  who respond to the
+ who respond to the
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  Oh
+ Oh
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  Curves here
+ Curves here
+connect_in....
+audio_rec
+start_transfer.16320
+[0.05s -> 2.05s]  Which means
+ Which means
+connect_in....
+WebSocket DISCONNECT /getSerInfows/ [127.0.0.1:49758]
+Application instance <Task pending name='Task-103' coro=<ProtocolTypeRouter.__call__() running at /root/miniconda3/envs/py39/lib/python3.9/site-packages/channels/routing.py:71> wait_for=<Future pending cb=[shield.<locals>._outer_done_callback() at /root/miniconda3/envs/py39/lib/python3.9/asyncio/tasks.py:907, <TaskWakeupMethWrapper object at 0x7fa5e74f26d0>()]>> for connection <WebSocketProtocol client=['127.0.0.1', 49758] path=b'/getSerInfows/'> took too long to shut down and was killed.
+WebSocket HANDSHAKING /getSerInfows/ [127.0.0.1:49852]
+WebSocket CONNECT /getSerInfows/ [127.0.0.1:49852]
+WebSocket DISCONNECT /getSerInfows/ [127.0.0.1:49852]
+WebSocket HANDSHAKING /getSerInfows/ [127.0.0.1:49854]
+WebSocket CONNECT /getSerInfows/ [127.0.0.1:49854]
+WebSocket DISCONNECT /getSerInfows/ [127.0.0.1:49854]
+WebSocket HANDSHAKING /getSerInfows/ [127.0.0.1:49862]
+WebSocket CONNECT /getSerInfows/ [127.0.0.1:49862]
+WebSocket DISCONNECT /getSerInfows/ [127.0.0.1:49862]
+WebSocket HANDSHAKING /getSerInfows/ [127.0.0.1:49868]
+WebSocket CONNECT /getSerInfows/ [127.0.0.1:49868]
+WebSocket DISCONNECT /getSerInfows/ [127.0.0.1:49868]
+WebSocket HANDSHAKING /getSerInfows/ [127.0.0.1:49872]
+WebSocket CONNECT /getSerInfows/ [127.0.0.1:49872]
+WebSocket DISCONNECT /getSerInfows/ [127.0.0.1:49872]
+WebSocket HANDSHAKING /getSerInfows/ [127.0.0.1:49880]
+WebSocket CONNECT /getSerInfows/ [127.0.0.1:49880]
+WebSocket DISCONNECT /getSerInfows/ [127.0.0.1:49880]
+WebSocket HANDSHAKING /getSerInfows/ [127.0.0.1:49888]
+WebSocket CONNECT /getSerInfows/ [127.0.0.1:49888]
+WebSocket DISCONNECT /getSerInfows/ [127.0.0.1:49888]
+WebSocket HANDSHAKING /getSerInfows/ [127.0.0.1:49902]
+WebSocket CONNECT /getSerInfows/ [127.0.0.1:49902]
+WebSocket DISCONNECT /getSerInfows/ [127.0.0.1:49902]
+Application instance <Task pending name='Task-1254' coro=<ProtocolTypeRouter.__call__() running at /root/miniconda3/envs/py39/lib/python3.9/site-packages/channels/routing.py:71> wait_for=<Future pending cb=[shield.<locals>._outer_done_callback() at /root/miniconda3/envs/py39/lib/python3.9/asyncio/tasks.py:907, <TaskWakeupMethWrapper object at 0x7fa5e4443d90>()]>> for connection <WebSocketProtocol client=['127.0.0.1', 49902] path=b'/getSerInfows/'> took too long to shut down and was killed.
+WebSocket HANDSHAKING /getSerInfows/ [127.0.0.1:49908]
+WebSocket CONNECT /getSerInfows/ [127.0.0.1:49908]
+WebSocket DISCONNECT /getSerInfows/ [127.0.0.1:49908]
+WebSocket HANDSHAKING /getSerInfows/ [127.0.0.1:49914]
+WebSocket CONNECT /getSerInfows/ [127.0.0.1:49914]
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  if we have...
+ if we have...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  A higher...
+ A higher...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Clutch lines.
+ Clutch lines.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.05s -> 1.05s]  We will.
+ We will.
+connect_in....
+audio_rec
+start_transfer.16002
+[0.00s -> 1.00s]  It's stuck.
+ It's stuck.
+connect_in....
+audio_rec
+start_transfer.16318
+[0.11s -> 1.11s]  Accept it.
+ Accept it.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  Lua
+ Lua
+connect_in....
+audio_rec
+start_transfer.16320
+[0.05s -> 2.05s]  and that's current.
+ and that's current.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.24s -> 2.24s]  Give me...
+ Give me...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.24s -> 2.24s]  Have a big...
+ Have a big...
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.24s -> 2.24s]  So
+ So
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  shorter. Knit.
+ shorter. Knit.
+connect_in....
+audio_rec
+start_transfer.16640
+[0.00s -> 2.00s]  we would have.
+ we would have.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  High-end.
+ High-end.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.30s -> 2.30s]  Um
+ Um
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  net current.
+ net current.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  which we believe.
+ which we believe.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  is driven by D.
+ is driven by D.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  Pyrogradian.
+ Pyrogradian.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.05s -> 1.05s]  But...
+ But...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  So, here.
+ So, here.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  All right.
+ All right.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  This right here
+ This right here
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  You are long enough.
+ You are long enough.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Actually, I'm sorry.
+ Actually, I'm sorry.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  would cause a
+ would cause a
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Smaller card.
+ Smaller card.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  correlations which
+ correlations which
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s]  if we have
+ if we have
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  I've been done.
+ I've been done.
+connect_in....
+audio_rec
+start_transfer.16318
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.18s -> 1.18s]  Test.
+ Test.
+connect_in....
+audio_rec
+start_transfer.20160
+
+connect_in....
+audio_rec
+start_transfer.16640
+[0.00s -> 1.00s]  That's it.
+[1.00s -> 2.00s]  Bye.
+ That's it. Bye.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Okay.
+ Okay.
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16640
+[0.24s -> 2.24s]  Hi, oh
+ Hi, oh
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 0.84s]  Okay.
+ Okay.
+connect_in....
+audio_rec
+start_transfer.28800
+
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.18560
+[0.43s -> 2.43s]  Hi yo.
+ Hi yo.
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s]  Okay.
+ Okay.
+connect_in....
+audio_rec
+start_transfer.17918
+
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.30s -> 1.30s] 你好
+你好
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.21760
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s] 再次
+再次
+connect_in....
+audio_rec
+start_transfer.17214
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s] 我认识了
+我认识了
+connect_in....
+audio_rec
+start_transfer.19200
+
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16962
+
+connect_in....
+audio_rec
+start_transfer.16318
+[0.00s -> 1.00s] 继续
+继续
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16642
+[0.30s -> 1.30s] 这里
+这里
+connect_in....
+audio_rec
+start_transfer.16318
+
+connect_in....
+audio_rec
+start_transfer.16318
+
+connect_in....
+audio_rec
+start_transfer.16254
+
+connect_in....
+audio_rec
+start_transfer.16384
+
+connect_in....
+audio_rec
+start_transfer.16062
+
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s] 这里是下
+这里是下
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 0.50s] 嘿
+嘿
+connect_in....
+audio_rec
+start_transfer.19840
+
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s] 吃那一屎小
+吃那一屎小
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s] 很容易
+很容易
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16960
+
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.20480
+
+connect_in....
+audio_rec
+start_transfer.16318
+
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s] 吃好饰饰
+吃好饰饰
+connect_in....
+audio_rec
+start_transfer.17918
+[0.00s -> 1.00s] 对
+对
+connect_in....
+audio_rec
+start_transfer.16640
+[0.00s -> 1.00s] 對
+對
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s] 这次的线也很简单
+这次的线也很简单
+connect_in....
+audio_rec
+start_transfer.20160
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s] 再次
+再次
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 2.00s] 水灯灯灯
+水灯灯灯
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16640
+
+connect_in....
+audio_rec
+start_transfer.16960
+
+connect_in....
+audio_rec
+start_transfer.21760
+
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.16320
+
+connect_in....
+audio_rec
+start_transfer.17346
+
+connect_in....
+audio_rec
+start_transfer.24576
+
+connect_in....
+audio_rec
+start_transfer.16384
+
+connect_in....
+audio_rec
+start_transfer.16254
+[0.18s -> 1.18s] 請問
+請問
+connect_in....
+audio_rec
+start_transfer.16514
+
+connect_in....
+audio_rec
+start_transfer.16126
+
+connect_in....
+audio_rec
+start_transfer.20800
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.11s -> 1.11s] 在那邊
+在那邊
+connect_in....
+audio_rec
+start_transfer.17920
+
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s] 我給你一個
+我給你一個
+connect_in....
+audio_rec
+start_transfer.16320
+[0.18s -> 1.18s] 放在这里
+放在这里
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s] 你
+你
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 1.00s] 然後就...
+然後就...
+connect_in....
+audio_rec
+start_transfer.16320
+[0.00s -> 0.50s] 嗯
+[0.50s -> 1.00s] 嗯
+嗯嗯
+connect_in....
+audio_rec
+start_transfer.19200
+[0.00s -> 1.00s] 在那裡
+[1.00s -> 2.00s] 在那裡
+在那裡在那裡
+connect_in....
+audio_rec
+start_transfer.16450
+
+connect_in....
+audio_rec
+start_transfer.16190
+
+connect_in....
+audio_rec
+start_transfer.16640
+[0.00s -> 2.00s] 快點,趕快
+快點,趕快
+connect_in....
+audio_rec
+start_transfer.16322
+
+connect_in....
+audio_rec
+start_transfer.17918
+[0.00s -> 1.00s] 来吧
+WebSocket DISCONNECT /getSerInfows/ [127.0.0.1:49914]
+2024/03/22 14:00:53 [1;34m[I] [service.go:298] [1ba55d5b8f42507d] login to server success, get run id [1ba55d5b8f42507d], server udp port [0][0m
+2024/03/22 14:00:53 [1;34m[I] [proxy_manager.go:142] [1ba55d5b8f42507d] proxy added: [SBC][0m
+2024/03/22 14:00:53 [1;34m[I] [control.go:172] [1ba55d5b8f42507d] [SBC] start proxy success[0m
+Watching for file changes with StatReloader
+  File "/root/SBCv2/manage.py", line 17
+    ) from exc
+         ^
+SyntaxError: invalid syntax
+2024/03/22 14:02:22 [1;34m[I] [service.go:298] [c76c3df8ee7de1d9] login to server success, get run id [c76c3df8ee7de1d9], server udp port [0][0m
+2024/03/22 14:02:22 [1;34m[I] [proxy_manager.go:142] [c76c3df8ee7de1d9] proxy added: [SBC][0m
+2024/03/22 14:02:22 [1;34m[I] [control.go:172] [c76c3df8ee7de1d9] [SBC] start proxy success[0m
+2024/03/22 14:15:23 [1;34m[I] [service.go:298] [bcea179a262b033c] login to server success, get run id [bcea179a262b033c], server udp port [0][0m
+2024/03/22 14:15:23 [1;34m[I] [proxy_manager.go:142] [bcea179a262b033c] proxy added: [SBC][0m
+2024/03/22 14:15:24 [1;34m[I] [control.go:172] [bcea179a262b033c] [SBC] start proxy success[0m
+Watching for file changes with StatReloader
+/root/SBCv2/SBC/asgi.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+March 22, 2024 - 14:15:26
+Django version 4.2.11, using settings 'SBC.settings'
+Starting ASGI/Channels version 3.0.0 development server at http://0.0.0.0:92/
+Quit the server with CONTROL-C.
+Watching for file changes with StatReloader
+/root/SBCv2/SBC/asgi.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+March 22, 2024 - 14:16:07
+Django version 4.2.11, using settings 'SBC.settings'
+Starting ASGI/Channels version 3.0.0 development server at http://0.0.0.0:92/
+Quit the server with CONTROL-C.
+Watching for file changes with StatReloader
+/root/SBCv2/SBC/asgi.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+March 22, 2024 - 14:18:13
+Django version 4.2.11, using settings 'SBC.settings'
+Starting ASGI/Channels version 3.0.0 development server at http://0.0.0.0:92/
+Quit the server with CONTROL-C.
+Watching for file changes with StatReloader
+/root/SBCv2/SBC/asgi.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+March 22, 2024 - 14:19:36
+Django version 4.2.11, using settings 'SBC.settings'
+Starting ASGI/Channels version 3.0.0 development server at http://0.0.0.0:92/
+Quit the server with CONTROL-C.
+Watching for file changes with StatReloader
+/root/SBCv2/SBC/asgi.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+March 22, 2024 - 14:27:49
+Django version 4.2.11, using settings 'SBC.settings'
+Starting ASGI/Channels version 3.0.0 development server at http://0.0.0.0:92/
+Quit the server with CONTROL-C.
+Watching for file changes with StatReloader
+/root/SBCv2/SBC/GetUserPath.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+March 22, 2024 - 14:28:23
+Django version 4.2.11, using settings 'SBC.settings'
+Starting ASGI/Channels version 3.0.0 development server at http://0.0.0.0:92/
+Quit the server with CONTROL-C.
+Watching for file changes with StatReloader
+2024/03/22 14:47:20 [1;34m[I] [service.go:298] [3e7cda19a67ab20c] login to server success, get run id [3e7cda19a67ab20c], server udp port [0][0m
+2024/03/22 14:47:20 [1;34m[I] [proxy_manager.go:142] [3e7cda19a67ab20c] proxy added: [SBC][0m
+2024/03/22 14:47:20 [1;34m[I] [control.go:172] [3e7cda19a67ab20c] [SBC] start proxy success[0m
+Watching for file changes with StatReloader
+2024/03/22 14:51:18 [1;34m[I] [service.go:298] [c96c64dc4a54b19b] login to server success, get run id [c96c64dc4a54b19b], server udp port [0][0m
+2024/03/22 14:51:18 [1;34m[I] [proxy_manager.go:142] [c96c64dc4a54b19b] proxy added: [SBC][0m
+2024/03/22 14:51:18 [1;34m[I] [control.go:172] [c96c64dc4a54b19b] [SBC] start proxy success[0m
+Watching for file changes with StatReloader
+WebSocket HANDSHAKING /getSerInfows/ [127.0.0.1:49550]
+WebSocket CONNECT /getSerInfows/ [127.0.0.1:49550]
+WebSocket DISCONNECT /getSerInfows/ [127.0.0.1:49550]
+/root/SBCv2/SBC/urls.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+March 22, 2024 - 14:51:21
+Django version 4.2.11, using settings 'SBC.settings'
+Starting ASGI/Channels version 3.0.0 development server at http://0.0.0.0:92/
+Quit the server with CONTROL-C.
+connect_in....
+connect_in....
+connect_in....
+connect_in....
+Watching for file changes with StatReloader
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+  File "/root/miniconda3/envs/py39/lib/python3.9/threading.py", line 980, in _bootstrap_inner
+    self.run()
+  File "/root/miniconda3/envs/py39/lib/python3.9/threading.py", line 917, in run
+    self._target(*self._args, **self._kwargs)
+  File "/root/miniconda3/envs/py39/lib/python3.9/site-packages/django/utils/autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+  File "/root/miniconda3/envs/py39/lib/python3.9/site-packages/channels/management/commands/runserver.py", line 75, in inner_run
+    self.check(display_num_errors=True)
+  File "/root/miniconda3/envs/py39/lib/python3.9/site-packages/django/core/management/base.py", line 485, in check
+    all_issues = checks.run_checks(
+  File "/root/miniconda3/envs/py39/lib/python3.9/site-packages/django/core/checks/registry.py", line 88, in run_checks
+    new_errors = check(app_configs=app_configs, databases=databases)
+  File "/root/miniconda3/envs/py39/lib/python3.9/site-packages/django/core/checks/urls.py", line 14, in check_url_config
+    return check_resolver(resolver)
+  File "/root/miniconda3/envs/py39/lib/python3.9/site-packages/django/core/checks/urls.py", line 24, in check_resolver
+    return check_method()
+  File "/root/miniconda3/envs/py39/lib/python3.9/site-packages/django/urls/resolvers.py", line 494, in check
+    for pattern in self.url_patterns:
+  File "/root/miniconda3/envs/py39/lib/python3.9/site-packages/django/utils/functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/root/miniconda3/envs/py39/lib/python3.9/site-packages/django/urls/resolvers.py", line 715, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/root/miniconda3/envs/py39/lib/python3.9/site-packages/django/utils/functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/root/miniconda3/envs/py39/lib/python3.9/site-packages/django/urls/resolvers.py", line 708, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "/root/miniconda3/envs/py39/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/root/SBCv2/SBC/urls.py", line 38, in <module>
+    urlpatterns += staticfiles_urlpatterns()
+NameError: name 'urlpatterns' is not defined
+/root/SBCv2/SBC/urls.py changed, reloading.
+Performing system checks...
+
+Watching for file changes with StatReloader
+/root/SBCv2/SBC/urls.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+March 22, 2024 - 15:25:21
+Django version 4.2.11, using settings 'SBC.settings'
+Starting ASGI/Channels version 3.0.0 development server at http://0.0.0.0:92/
+Quit the server with CONTROL-C.
+Watching for file changes with StatReloader
+/root/SBCv2/SBC/urls.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+March 22, 2024 - 15:25:53
+Django version 4.2.11, using settings 'SBC.settings'
+Starting ASGI/Channels version 3.0.0 development server at http://0.0.0.0:92/
+Quit the server with CONTROL-C.
+Watching for file changes with StatReloader
+/root/SBCv2/SBC/urls.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+March 22, 2024 - 15:26:03
+Django version 4.2.11, using settings 'SBC.settings'
+Starting ASGI/Channels version 3.0.0 development server at http://0.0.0.0:92/
+Quit the server with CONTROL-C.
+Watching for file changes with StatReloader
+/root/SBCv2/SBC/urls.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+March 22, 2024 - 15:26:18
+Django version 4.2.11, using settings 'SBC.settings'
+Starting ASGI/Channels version 3.0.0 development server at http://0.0.0.0:92/
+Quit the server with CONTROL-C.
+Watching for file changes with StatReloader

@@ -29,7 +29,13 @@ from Usersapp import views as viewUser
 from FileSycapp import views as viewFS
 from Updateapp import views as viewUpd
 
+
 from SBCManagerapp import views as viewManager
+
+
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+# ...
+#urlpatterns += staticfiles_urlpatterns()
 
 urlpatterns = [
     path('man/',viewManager.sbcmanger),
@@ -105,3 +111,4 @@ urlpatterns = [
     path('GetCurVer/',viewUpd.GetCurVer),
     path('DownClient/',viewUpd.DownClient),
 ]
+urlpatterns += staticfiles_urlpatterns()
